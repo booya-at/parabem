@@ -1,5 +1,9 @@
+# -*- coding: utf-8 -*-
+from __future__ import division
 import os
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 import ppm
@@ -19,16 +23,16 @@ for xi in x:
     target = ppm.PanelVector3(xi, 0., 0.1)
     panel_infl = doublet_3_0_vsaero(target, source)
     point_infl = doublet_3_0_n0(target, source)
-    y.append([panel_infl, point_infl, abs(panel_infl - point_infl) / abs(panel_infl)])
+    y.append([panel_infl, point_infl, abs(panel_infl - point_infl)])
 y = list(zip(*y))
 
 
 plt.figure(figsize=(8,3))
 plt.gcf().subplots_adjust(bottom=0.15)
 plt.ylabel("Einfluss")
-plt.xlabel("Abstand")
-plt.plot(x, y[0], label="Nahbereich")
-plt.plot(x, y[1], label="Fernfeld")
+plt.xlabel("x")
+plt.plot(x, y[0], label=u"Exakte Lösung")
+plt.plot(x, y[1], label=u"Näherungslösung")
 plt.ylim(-0.1, 0.6)
 plt.xlim(0, None)
 plt.legend()
@@ -38,8 +42,8 @@ plt.close()
 
 plt.figure(figsize=(8,3))
 plt.gcf().subplots_adjust(bottom=0.15)
-plt.ylabel("relativer Fehler")
-plt.xlabel("Abstand")
+plt.ylabel("Fehler")
+plt.xlabel("x")
 plt.yscale('log')
 plt.plot(x, y[2], label="Fehler durch Fernfeldmethode")
 plt.ylim(None, 1)

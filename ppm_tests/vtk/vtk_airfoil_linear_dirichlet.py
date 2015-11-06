@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from matplotlib import pyplot as plt
 
 import ppm
 from ppm.airfoil import Airfoil
@@ -21,7 +20,7 @@ case = Case(panels)
 case.v_inf = ppm.Vector2(1, 0.3)
 case.run()
 # plt.plot(np.array(case.matrix.values).T)
-# plt.show()
+# # plt.show()
 
 nx = 200
 ny = 200

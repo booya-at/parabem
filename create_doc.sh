@@ -9,13 +9,12 @@ mkdir $OUTDIR -p
 cd doc/latex_doc/tex
 pdflatex $FILENAME.tex
 bibtex $FILENAME
-makeindex $FILENAME.nlo -s $nomencl.ist -o $FILENAME.nls
+makeindex $FILENAME.nlo -s nomencl.ist -o $FILENAME.nls
 pdflatex $FILENAME.tex
 rm *.aux *.ilg *.log *.nls *.toc *.nlo *.bbl *blg
-# rm Abbildungen -r
-cp $FILENAME.pdf ../../../$OUTDIR
+mv $FILENAME.pdf ../../../$OUTDIR
 
 cd ../../..
 cp doc/tutorial build/doc/ -r
 
-evince build/doc/$FILENAME.pdf &
+# evince build/doc/$FILENAME.pdf &

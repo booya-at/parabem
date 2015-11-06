@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 import numpy as np
 import ppm
@@ -31,4 +33,4 @@ plt.plot(*zip(*x1))
 plt.plot(*zip(*x2))
 plt.savefig(check_path("results/2d/cylinder_cp.png"))
 
-plt.show()
+# plt.show()

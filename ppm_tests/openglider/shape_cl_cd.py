@@ -1,5 +1,7 @@
 from copy import deepcopy
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 
 from openglider.glider import glider_2d
@@ -73,14 +75,14 @@ def min_func(x):
 
 y_positions = np.linspace(-6, 10, 30)
 cD = [min_func(i) for i in y_positions]
-plt.show()
+# plt.show()
 plt.figure(figsize=(10,4))
 plt.plot(y_positions, cD, marker="x")
-plt.xlabel('y-Position der Kontrollpunkte [m]', fontsize=10)
-plt.ylabel('induzierter Widerstandsbeiwert $c_{Wi}$', fontsize=10)
+plt.xlabel('y-Position der Kontrollpunkte [m]', fontsize=15)
+plt.ylabel('induzierter Widerstandsbeiwert $c_{Wi}$', fontsize=15)
 plt.grid(True)
 plt.savefig(check_path('results/vtk_opt/induced_drag.png'),  bbox_inches='tight')
-# plt.show()
+# # plt.show()
 plt.close()
 
 

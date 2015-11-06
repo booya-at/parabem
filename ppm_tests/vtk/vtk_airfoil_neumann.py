@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-import matplotlib.pyplot as plt
 
 import ppm
 from ppm.vtk_export import VtkWriter
@@ -46,5 +45,3 @@ with open(check_path("results/neumann/airfoil.vtk"), "w") as _file:
     writer.points(_file, [list(i.points[0]) + [0] for i in case.panels])
     writer.lines(_file, [range(len(case.panels))])
 
-plt.plot([p.cp for p in case.panels])
-plt.show()

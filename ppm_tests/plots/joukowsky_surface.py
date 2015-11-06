@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import matplotlib
+matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -61,10 +63,10 @@ plt.plot(airfoil.coordinates(num_konform).real, airfoil.coordinates(num_konform)
 
 plt.plot(airfoil.x(num_konform), np.array(vel), label="Konforme Abbildung")
 
-label = "Dirichlet Randbedingung konstante Dipol-Panel"
+label = "Dirichlet-Randbedingung konstante Dipol-Panel"
 plt.plot(pan_center_x, pan_vel[1], marker='+', ls=':', label=label)
 
-label = "Dirichlet Randbedingung konstante Dipol-Quellen-panel "
+label = "Dirichlet-Randbedingung konstante Dipol-Quellen-panel "
 plt.plot(pan_center_x, pan_vel[2], marker='1', ls=':', label=label)
 
 # label = "Neumann Randbedingung konstante Dipol-Panel"
@@ -81,10 +83,10 @@ plt.legend()
 plt.axes().set_aspect("equal", "datalim")
 plt.xlim([-1,1])
 plt.ylim([-0.5,3])
-plt.xlabel('x', fontsize=15)
-plt.ylabel('Geschwindigkeit', fontsize=15)
+plt.xlabel('x', fontsize=20)
+plt.ylabel('$\\frac{u}{u_inf}$', fontsize=20 , rotation=0)
 plt.grid(True)
 # plt.savefig("results/2d/trefftz-kutta.png")
 plt.savefig(check_path("results/2d/joukowsky.png"))
 # plt.savefig("results/2d/vandevooren_100.png")
-plt.show()
+# plt.show()

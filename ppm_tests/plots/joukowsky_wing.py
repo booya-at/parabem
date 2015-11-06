@@ -1,4 +1,5 @@
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')import matplotlib.pyplot as plt
 import numpy as np
 import ppm
 from ppm.vtk_export import CaseToVTK
@@ -35,10 +36,10 @@ case.run()
 for i in range(n_y):
     plt.plot(*zip(*[[pan.center.x, pan.cp] for pan in case.panels[i * n_x : (i+1) * n_x]]),
         marker="x")
-plt.show()
+# plt.show()
 
 plt.plot(*zip(*a.coordinates))
-plt.show()
+# plt.show()
 
 vtk_writer = CaseToVTK(case, "results/joukowsky3_d")
 vtk_writer.write_panels(data_type="point")

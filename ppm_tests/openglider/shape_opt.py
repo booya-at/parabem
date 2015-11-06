@@ -1,5 +1,7 @@
 from copy import deepcopy
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 
 from openglider.glider import glider_2d
@@ -83,7 +85,7 @@ plt.xlabel('y-Position der Kontrollpunkte [m]', fontsize=15)
 plt.ylabel('aerodynamische Effizienz', fontsize=15)
 plt.grid(True)
 plt.savefig(check_path('results/vtk_opt/aero_eff.png'))
-plt.show()
+# plt.show()
 plt.close()
 
 # export best, min, max

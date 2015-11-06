@@ -48,7 +48,9 @@ Dirichlet boundary condition with constant doublet (dipol) panels.
 
 4. displaying the results using matplotlib:
 
->>> from matplotlib import pyplot as plt
+>>> import matplotlib
+matplotlib.use('Agg')
+from matplotlib import pyplot as plt
 
 >>> x1 = [list(i.center) for i in case.panels]
 >>> x2 = [[i.center.x, i.velocity.norm()] for i in case.panels]

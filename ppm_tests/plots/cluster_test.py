@@ -1,6 +1,8 @@
 from __future__ import division
 
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 
 import ppm
@@ -47,8 +49,8 @@ plt.plot(x_vals, val_near, label="near")
 plt.plot(x_vals, val_far, label="far")
 plt.legend()
 
-plt.show()
+# plt.show()
 
 plt.plot(x_vals, error)
-plt.show()
+# plt.show()
 

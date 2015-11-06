@@ -1,4 +1,3 @@
-from matplotlib import pyplot as plt
 import numpy as np
 import ppm
 from ppm.pan2d import DirichletDoublet1Case2 as Case
@@ -21,14 +20,6 @@ vector[0].wake_vertex = True
 case = Case(panels)
 case.v_inf = ppm.Vector2(1, 0.5)
 case.run()
-
-# plt.plot(np.array(case.matrix.values).T[0])
-# plt.plot(np.array(case.matrix.values).T[-1])
-# plt.plot(np.array(case.matrix.values).T[2])
-# plt.plot(np.array(case.matrix.values))
-# plt.plot([pt.potential for pt in case.points.values])
-# plt.plot([pan.cp for pan in case.panels])
-# plt.show()
 
 nx = 100
 ny = 100

@@ -1,0 +1,38 @@
+dist: trusty
+language: cpp
+compiler: g++
+python:
+  - "2.7.6"
+addons:
+  apt:
+    packages:
+    - libpython2.7
+    - libpython2.7-dev
+    - libboost-python*
+    - libboost-all-dev
+    - libeigen3-dev
+    - python-numpy
+    - python-matplotlib
+    - texlive-latex-base
+    - texlive-latex-recommended
+    - texlive-lang-german
+    - texlive-fonts-recommended
+    - texlive-latex-extra 
+
+before_install:
+  - git clone https://github.com/hiaselhans/OpenGlider.git
+  - cd OpenGlider
+  - sudo pip install -e .
+  - cd .. 
+
+install:
+  - mkdir build && cd build && cmake ../ 
+    -DPYTHON_EXECUTABLE=/usr/bin/python
+
+script:
+  - sudo make -j2 install
+  - sh ../run_all.sh /usr/bin/python
+  - sh ../create_doc.sh
+branches:
+  only:
+    - master

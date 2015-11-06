@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
 from openglider.jsonify import load
 from openglider.airfoil import Profile2D
 from openglider.glider.in_out.export_3d import ppm_Panels
@@ -40,8 +44,6 @@ vtk_writer.write_panels(data_type="point")
 vtk_writer.write_wake_panels()
 vtk_writer.write_body_stream(panels, 100)
 
-import matplotlib.pyplot as plt
-import numpy as np
 
 p = []
 alpha = []

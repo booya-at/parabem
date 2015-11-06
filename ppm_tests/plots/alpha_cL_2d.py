@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -37,4 +39,4 @@ axes = plt.gca()
 axes.set_xlim([-0.25, 1.25])
 
 plt.savefig(check_path("results/2d/alpha_ca_cm_xcp_2d.png"))
-plt.show()
+# plt.show()

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="167.92619mm"
+   height="104.77322mm"
+   viewBox="0 0 595.01407 371.2437"
+   id="svg5015"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Auswertung_Einfluss.svg"
+   inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+   inkscape:export-xdpi="199"
+   inkscape:export-ydpi="199">
+  <defs
+     id="defs5017">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path6733"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path6730"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       markerWidth="20.5"
+       markerHeight="3.1049876"
+       refX="10.25"
+       refY="1.5524938"
+       orient="auto"
+       id="marker5595">
+      <g
+         transform="matrix(-1,0,0,1,340.5,-465.80971)"
+         id="g4979">
+        <g
+           id="g4981">
+          <g
+             id="g4983">
+            <g
+               id="g4985">
+              <g
+                 id="g4987">
+                <path
+                   inkscape:connector-curvature="0"
+                   id="path4989"
+                   d="m 340,467.3622 0,-1 -10,1 10,1 z"
+                   style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+              </g>
+            </g>
+          </g>
+        </g>
+        <path
+           inkscape:connector-curvature="0"
+           id="path4991"
+           d="m 330,467.3622 -10,0"
+           style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      </g>
+    </marker>
+    <marker
+       markerWidth="20.5"
+       markerHeight="3.1049876"
+       refX="10.25"
+       refY="1.5524938"
+       orient="auto"
+       id="marker5628">
+      <g
+         id="g4845"
+         transform="translate(-320,-465.80971)">
+        <g
+           id="g4179">
+          <g
+             id="g4220">
+            <g
+               id="g4273">
+              <g
+                 id="g4338">
+                <path
+                   style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   d="m 340,467.3622 0,-1 -10,1 10,1 z"
+                   id="path4142"
+                   inkscape:connector-curvature="0" />
+              </g>
+            </g>
+          </g>
+        </g>
+        <path
+           style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 330,467.3622 -10,0"
+           id="path4838"
+           inkscape:connector-curvature="0" />
+      </g>
+    </marker>
+    <marker
+       markerWidth="20.5"
+       markerHeight="3.1049876"
+       refX="10.25"
+       refY="1.5524938"
+       orient="auto"
+       id="marker5628-1">
+      <g
+         id="g4845-6"
+         transform="translate(-320,-465.80971)">
+        <g
+           id="g4179-3">
+          <g
+             id="g4220-3">
+            <g
+               id="g4273-8">
+              <g
+                 id="g4338-1">
+                <path
+                   style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   d="m 340,467.3622 0,-1 -10,1 10,1 z"
+                   id="path4142-4"
+                   inkscape:connector-curvature="0" />
+              </g>
+            </g>
+          </g>
+        </g>
+        <path
+           style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 330,467.3622 -10,0"
+           id="path4838-5"
+           inkscape:connector-curvature="0" />
+      </g>
+    </marker>
+    <marker
+       markerWidth="20.5"
+       markerHeight="3.1049876"
+       refX="10.25"
+       refY="1.5524938"
+       orient="auto"
+       id="marker5595-5">
+      <g
+         transform="matrix(-1,0,0,1,340.5,-465.80971)"
+         id="g4979-0">
+        <g
+           id="g4981-9">
+          <g
+             id="g4983-4">
+            <g
+               id="g4985-1">
+              <g
+                 id="g4987-5">
+                <path
+                   inkscape:connector-curvature="0"
+                   id="path4989-3"
+                   d="m 340,467.3622 0,-1 -10,1 10,1 z"
+                   style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+              </g>
+            </g>
+          </g>
+        </g>
+        <path
+           inkscape:connector-curvature="0"
+           id="path4991-2"
+           d="m 330,467.3622 -10,0"
+           style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      </g>
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-3"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6730-5"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend-0"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6733-0"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.90509668"
+     inkscape:cx="624.98505"
+     inkscape:cy="165.94018"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1317"
+     inkscape:window-height="744"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:object-nodes="true"
+     inkscape:object-paths="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-grids="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:snap-nodes="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid5685"
+       originx="-77.973873"
+       originy="-548.74149" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5020">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-77.973877,-132.37704)">
+    <path
+       inkscape:connector-curvature="0"
+       id="path4933"
+       d="m 380,152.3622 -260,200 292,122 260,-200 z"
+       style="fill:#e6e6e6;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5628);marker-end:url(#marker5595)"
+       d="M 384.27483,495.68925 92.274832,373.68926"
+       id="path4952"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5628);marker-end:url(#marker5595)"
+       d="m 347.12456,138.62657 -260.000002,200"
+       id="path4933-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 120,352.3622 78.166633,334.88387"
+       id="path4952-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="204.02029"
+       y="231.03789"
+       id="text4984"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan4986"
+         x="204.02029"
+         y="231.03789"
+         style="font-size:25px;stroke-width:2.00000018;">1</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 120,352.3622 82.479107,381.22443"
+       id="path4933-1-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 380,152.3622 338.16663,134.88387"
+       id="path4952-4-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 395.95732,312.93278 0,-172.2161"
+       id="path6724"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 412,474.3622 -37.52089,28.86223"
+       id="path4933-1-2-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="219.298"
+       y="458.97287"
+       id="text4984-4"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan4986-8"
+         x="219.298"
+         y="458.97287">1</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Lstart)"
+       d="M 544.24563,313.93661 395.37138,249.39193"
+       id="path4952-4-4-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="470.09381"
+       y="276.35446"
+       id="text7485"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan7487"
+         x="470.09381"
+         y="276.35446"
+         style="font-size:25px;stroke-width:2.00000024">x</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 433.94999,329.41372 395.95732,312.93278"
+       id="path4952-4-4-7-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.75630975;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5628);marker-end:url(#marker5595)"
+       d="m 420.93444,323.61704 0,-63.15783"
+       id="path6724-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="435.49493"
+       y="302.1297"
+       id="text8887"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/lo/projects/pm/doc/latex_doc/Abbildungen/png/Auswertung_Einfluss.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan8889"
+         x="435.49493"
+         y="302.1297"
+         style="font-size:25px;stroke-width:2.00000024">0.1</tspan></text>
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path9150"
+       sodipodi:type="arc"
+       sodipodi:cx="103.4827"
+       sodipodi:cy="351.91605"
+       sodipodi:rx="68.576683"
+       sodipodi:ry="36.241467"
+       sodipodi:start="5.5209309"
+       sodipodi:end="0.50330435"
+       d="m 153.08291,326.88936 a 68.576683,36.241467 0 0 1 10.47252,42.50677"
+       sodipodi:open="true" />
+    <circle
+       id="path9154"
+       style="fill:#000000;stroke:none"
+       cx="151.02074"
+       cy="348.5426"
+       r="4.6250005" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path9150-5"
+       sodipodi:type="arc"
+       sodipodi:cx="-527.56696"
+       sodipodi:cy="334.04489"
+       sodipodi:rx="27.572296"
+       sodipodi:ry="40.322945"
+       sodipodi:start="5.3082331"
+       sodipodi:end="0.97350975"
+       d="m -512.09317,300.6706 a 27.572296,40.322945 0 0 1 12.0985,33.34521 27.572296,40.322945 0 0 1 -12.0656,33.3707"
+       transform="matrix(-0.15466515,-0.98796695,0.98796695,-0.15466514,0,0)"
+       sodipodi:open="true" />
+    <circle
+       id="path9154-4"
+       style="fill:#000000;stroke:none"
+       cx="408.39236"
+       cy="456.75922"
+       r="4.625001" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="402.80103"
+       y="211.93916"
+       id="text9589"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan9591"
+         x="402.80103"
+         y="211.93916"
+         style="font-size:25.00000191px">n</tspan></text>
+  </g>
+</svg>

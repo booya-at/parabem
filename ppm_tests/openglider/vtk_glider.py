@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import numpy as np
 
 from openglider.jsonify import load
@@ -10,7 +9,7 @@ from ppm.pan3d import DirichletDoublet0Source0Case3 as Case
 from ppm.vtk_export import CaseToVTK
 from ppm.utils import vinf_deg_range3
 
-n_x = 80
+n_x = 30
 
 with open("glider/referenz_schirm_berg.json") as _file:
     glider_2d = load(_file)["data"]
@@ -19,7 +18,7 @@ with open("glider/referenz_schirm_berg.json") as _file:
 
 _, panels, trailing_edge = ppm_Panels(
     glider,
-    midribs=7,
+    midribs=3,
     profile_numpoints=n_x,
     distribution=Profile2D.cos_2_distribution,
     num_average=0,
@@ -42,26 +41,3 @@ vtk_writer = CaseToVTK(case, "results/vtk_glider_case")
 vtk_writer.write_panels(data_type="cell")
 vtk_writer.write_wake_panels()
 vtk_writer.write_body_stream(panels, 100)
-
-arr = []
-for i in range(len(case.panels) / n_x):
-    arr.append([[i.center.x, i.cp] for i in panels[i * n_x: (i + 1) * n_x]])
-for i in arr:
-    plt.plot(*zip(*i))
-plt.show()
-
-arr = []
-for i in range(len(case.panels) / n_x):
-    arr.append([[i.center.y, i.cp] for i in panels[i * n_x: (i + 1) * n_x]])
-for i in zip(*arr):
-    plt.plot(*zip(*i))
-plt.show()
-
-p = []
-alpha = []
-for i in polars.values:
-    alpha.append(i.alpha)
-    p.append((i.cL, i.cD, i.cP))
-plt.plot(np.array(p), alpha)
-plt.grid()
-plt.show()

@@ -13,8 +13,8 @@ ADD_DEFINITIONS(-std=c++11)
 #find necessary packages
 
 set(Python_ADDITIONAL_VERSIONS ${py})
-find_package(PythonLibs)
 find_package(PythonInterp ${py})
+find_package(PythonLibs ${py})
 
 IF (NOT boost)
   find_package( Boost COMPONENTS "python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}")
@@ -22,7 +22,8 @@ ELSE()
   find_package( Boost COMPONENTS ${boost})
 ENDIF()
 
-EXECUTE_PROCESS(COMMAND python${py} -c 
+message($PYTHON_EXECUTABLE)
+EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c 
   "from distutils.sysconfig import get_python_lib; print(get_python_lib())"
   OUTPUT_VARIABLE python_libs OUTPUT_STRIP_TRAILING_WHITESPACE )
 
@@ -31,6 +32,7 @@ MESSAGE(STATUS "python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}")
 MESSAGE(STATUS "installing to ${python_libs}")
 
 find_package(Eigen3)
+MESSAGE(${EIGEN3_VERSION})
 find_package(OpenMP)
 
 if(OPENMP_FOUND)

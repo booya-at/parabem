@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import ppm
@@ -18,4 +20,4 @@ case.v_inf = ppm.Vector2(1, 0.2)
 case.run()
 
 plt.plot(*zip(*[[pan.center.x, pan.cp] for pan in case.panels]), marker="x")
-plt.show()
+# plt.show()

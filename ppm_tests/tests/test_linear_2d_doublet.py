@@ -1,7 +1,6 @@
 from ppm.pan2d import doublet_2_1
 import ppm
 import numpy as np
-import matplotlib.pyplot as plt
 
 v1 = ppm.PanelVector2(-1, 0)
 v2 = ppm.PanelVector2(1,  0)
