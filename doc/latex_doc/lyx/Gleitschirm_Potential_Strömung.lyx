@@ -1,0 +1,5274 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{ifthen}
+\usepackage[bottom,hang]{footmisc}
+\setlength{\footnotemargin}{0pt}
+
+
+\renewcommand{\nomgroup}[1]{%
+\ifthenelse{\equal{#1}{A}}{\item[\textbf{Latainisch}]}{%
+\ifthenelse{\equal{#1}{B}}{\item[\textbf{Griechisch}]}{%
+\ifthenelse{\equal{#1}{C}}{\item[\textbf{Indizes}]}
+{}
+}% matches mathematical symbols
+}% matches Subscripts
+}% matches Abbreviations
+
+\newcommand{\nomunit}[1]{%
+ \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+\renewcommand{\nomname}{Symbolverzeichnis}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language ngerman
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 2
+\tocdepth 1
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+3D-Potentialströmung für Gleitschirmprobleme
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{Lechner Lorenz 0931308}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+date{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/00_deckplatt.png
+	lyxscale 30
+	scale 40
+	BoundingBox 500bp 0bp 1400bp 1000bp
+	clip
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+Bachelorarbeit vorgelegt am
+\begin_inset Newline newline
+\end_inset
+
+Institut für Strömungslehre und Wärmeübertragung TU Graz
+\begin_inset Newline newline
+\end_inset
+
+bei Ao.Univ.-Prof.
+ Dipl.-Ing.
+ Dr.techn.
+ Helfried Steiner
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Symbolverzeichnis}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+latainisch:
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Ak"
+symbol "$u$"
+description "allgeimeiner Geschwindigkeitsvektor \\nomunit{$[\\frac{m}{s}]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Ak"
+symbol "$p$"
+description "dynamischer Druck \\nomunit{$[Pa]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Ak"
+symbol "$n$"
+description "Normale auf eine Oberfläche bzw. Linie \\nomunit{$[m]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Ag"
+symbol "$V$"
+description "Volumen \\nomunit{$[m^3]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "A"
+symbol "$S$"
+description "Oberfläche \\nomunit{$[m^{2}]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Ag"
+symbol "$C$"
+description "Linie \\nomunit{$[m]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Ag"
+symbol "N"
+description "Panelanzahl"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Ag"
+symbol "F"
+description "Kraft  \\nomunit{$[N]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Ag"
+symbol "M"
+description "Moment  \\nomunit{$[N m]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Ak"
+symbol "c"
+description "Beiwert"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+nomenclature[Ak]{
+\backslash
+textbf{r}, r}{allgemeiner Vektor, Länge des Vektors / Radius 
+\backslash
+footnote{Als Konvention wird festgelegt, dass Vektoren fett geschrieben
+ werden.
+ Bezieht sich ein nicht fett geschriebenes Symbol auf einen Vektor, ist
+ damit dessen Länge gemeint.} 
+\backslash
+nomunit{$[m]$}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Griechisch:
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Bg"
+symbol "$\\phi$, $\\Phi$"
+description "allgemeines Potential, Geschwindigkeitspotential  \\nomunit{$[\\frac{m^{2}}{s}]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Bg"
+symbol "$\\psi$, $\\Psi$"
+description "allgemeine Testfunktion, Fundamentallösung der Laplacegleichung"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Bk"
+symbol "$\\mu$"
+description "Dipolstärke, dynamische Viskosität"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Bk"
+symbol "$\\sigma$"
+description "Quellenstärke"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Bk"
+symbol "$\\epsilon$"
+description "Gleitzahl"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Bk"
+symbol "$\\alpha$"
+description "Winkel der Anströmung zum Horizont \\nomunit{$[Grad]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Bk"
+symbol "$\\chi$"
+description "Polarwinkel \\nomunit{$[Grad]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Bk"
+symbol "$\\theta$"
+description "Umfangswinkel \\nomunit{$[Grad]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Bk"
+symbol "$\\beta$"
+description "Winkel \\nomunit{$[Grad]$}"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "Bk"
+symbol "$\\rho$"
+description "Dichte \\nomunit{$[\\frac{kg}{m^3}]$}"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Indizes:
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "C"
+symbol "$P$"
+description "Bezogen auf ein Panel / Punkt"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "I"
+symbol "$K$"
+description "Bezogen auf die Kontur, Kugel, Kreis"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "C"
+symbol "$W$"
+description "Bezogen auf den Nachlauf"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "C"
+symbol "I"
+description "Bezogen auf das Innere des umströmten Körpers"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "C"
+symbol "E"
+description "Bezogen auf das Äußere des umströmten Körpers"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "C"
+symbol "$\\infty$"
+description "Bezogen auf einen Punkt weit entfernt vom umströmten Körper"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset nomencl_print
+LatexCommand printnomenclature
+set_width "custom"
+width "5cm"
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Einführung und Problemerläuterung}  
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+Einführung und Problemerläuterung
+\end_layout
+
+\begin_layout Standard
+Gleitschirme stellen eine der simpelsten Arten von Fluggeräten dar.
+ Gleitschirme bestehen aus einem Flügel, dessen Form durch aufgeblasene
+ Zellen zustande kommt.
+ Auf den Flügel wirken Kräfte, welche in den Leinen gebündelt werden und
+ Verformungen am Flügel hervorrufen.
+ Das Gesamtsystem wird durch das Zusammenspiel zwischen aerodynamischen
+ Kräften und elastischen Verformungen geprägt.
+ Deshalb sind Kenntnisse über aerodynamische Eigenschaften wichtig.
+\end_layout
+
+\begin_layout Standard
+Die Arbeit beschäftigt sich mit der Potentialströmung um Gleitschirme.
+ Diese dient dazu die Kräfteverhältnisse an Gleitschirmen zu simulieren
+ und kann als Grundlage für den aerodynamischen Entwurf von Gleitschirmen
+ herangezogen werden.
+\end_layout
+
+\begin_layout Standard
+Als Zielsetzung dieser Arbeit soll ein Computerprogramm entstehen, das eine
+ bekannte Panelmethode implementiert.
+ Dieses Programm soll auf Gleitschirmprobleme angewendet werden und exemplarisch
+ das dynamische Verhalten des Gleitschirmes bei Änderungen des Anstellwinkels
+ analysieren.
+ In weiterer Folge soll versucht werden eine optimale Form des Gleitschirmes
+ zu finden, bei der ein Minimum an induziertem Widerstand auftritt.
+ 
+\end_layout
+
+\begin_layout Standard
+Die Arbeit gliedert sich in einen ersten Teil, in dem die mathematische
+ Formulierung für die Panelmethode erarbeitet wird.
+ Im zweiten Teil soll diese an den oben genannten Gleitschirmproblemen zur
+ Anwendung kommen.
+\end_layout
+
+\begin_layout Part
+Theoretische Grundlagen
+\end_layout
+
+\begin_layout Section
+Grundgleichungen und Vereinfachungen
+\end_layout
+
+\begin_layout Standard
+Ausgangsbasis für die Berechnung Newtonscher Fluide stellen die Navier-Stokes-Gl
+eichungen dar.
+\end_layout
+
+\begin_layout Standard
+Um diese zu vereinfachen, sollen zunächst die Kenngrößen des Strömungsproblems
+ abgeschätzt werden.
+ Die Geschwindigkeit von Gleitschirmen ist abhängig von der Auslegung des
+ Schirms (Schirmfläche, Streckung, Auftriebsbeiwert...), kann aber auch während
+ des Fluges durch diverse Steuerleinen (Bremsen und Beschleuniger) verändert
+ werden.
+ Diese kann durch ein oberes Maximum von ca.
+ 
+\begin_inset Formula $u_{max}=20\frac{m}{s}$
+\end_inset
+
+ abgeschätzt werden, welche in etwa einer Machzahl von 
+\begin_inset Formula $Ma=\frac{u_{max}}{\sqrt{\kappa R_{s}T}}\approx\frac{20}{\sqrt{1.4\cdot287\cdot293.15}}\approx0.06$
+\end_inset
+
+ entspricht.
+ Aufgrund der geringen Machzahl darf inkompressibel gerechnet werden.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S.16 "
+key "LSA"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Da zunächst nur der stationäre Flug von Interesse ist, sollen auch alle
+ Zeitableitungen vernachlässigt werden.
+ Weiters sollen auch die Volumenkräfte vernachlässigt werden.
+ Die Kontinuitätsgleichung und die Impulserhaltung lassen sich dadurch in
+ der folgenden Form angeben.
+\begin_inset Formula 
+\begin{align}
+\nabla\cdot u=0\\
+\rho\left(u\cdot\nabla\right)u=-\nabla p+\mu\Delta u
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Mittels dem Croccoschem Wirbelsatz die Drehungsfreiheit von reibungsfreier
+ strömung beweisen...
+\end_layout
+
+\begin_layout Plain Layout
+Skriptum höhere...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Drehungsfreies Geschwindigkeitsfeld und Geschwindigkeitspotential
+\end_layout
+
+\begin_layout Standard
+Für hohe Reynoldszahlen kann gezeigt werden, dass sich die viskosen Effekte
+ auf die direkte Umgebung der Wand eines umströmten Körpers und den Nachlauf
+ beschränken.
+ Im restlichen Strömungsfeld kann man von reibungsfreier Strömung ausgehen.
+ Für reibungsfreie Strömung kann mit Hilfe des Croccoschen Wirbelsatzes
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "S. 48"
+key "hoeh_stroem"
+
+\end_inset
+
+ unter Vorraussetzung von homenergetischer und homentroper Strömung die
+ Drehungsfreiheit wie folgt gezeigt werden:
+\begin_inset Formula 
+\begin{align*}
+\nabla H=0,\;\nabla s=0\\
+T\nabla s=\nabla H-2u\times\omega=2u\times\omega=0\\
+\omega=\frac{1}{2}\nabla\times u=\nabla\times u=0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Desweiteren muss die Kontinuitätsgleichung erfüllt sein.
+ Für das betrachtete Problem wird diese durch 
+\begin_inset Formula $\nabla\cdot u=0$
+\end_inset
+
+ beschrieben.
+ Durch Einführung eines skalaren Potentials 
+\begin_inset Formula $\Phi$
+\end_inset
+
+ können die beiden Vektorgleichungen zusammengefasst werden.
+ Der Gradient des Potentials ist definiert durch 
+\begin_inset Formula $\nabla\left(\Phi\right)=u$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Das Einsetzen in die oben genannten Gleichungen liefert:
+\begin_inset Formula 
+\begin{align*}
+\nabla\times\left(\nabla\Phi\right)\equiv0\\
+\nabla\cdot\left(\nabla\Phi\right)=\Delta\Phi=0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Rotation des Gradienten ist immer Null, daher durch die Wahl von 
+\begin_inset Formula $\Phi$
+\end_inset
+
+ erfüllt.
+ Die Kontinuitätsgleichung führt unter Einführung von 
+\begin_inset Formula $\Phi$
+\end_inset
+
+ auf die Laplace-Gleichung 
+\begin_inset Formula $\Delta\Phi=0$
+\end_inset
+
+.
+ Diese stellt die Grundlage zur Beschreibung der Potentialströmung dar.
+\end_layout
+
+\begin_layout Standard
+Grundsätzlich sind mehrere Methoden zur Lösung der Laplace-Gleichung anwendbar.
+ Für einfache Geometrien (bsw.
+ Zylinder, Kugel) kann die Lösung analytisch bestimmt werden.
+ Ebenfalls analytisch berechenbar sind Geometrien, die durch konforme Abbildunge
+n von den einfachen Geometrien abgeleitet werden können.
+ Diese sollen zur Validierung, des im Rahmen dieser Arbeit verwendeten numerisch
+en Verfahrens, Anwendung finden.
+ Außerdem gelangt man durch Überlagern von Einzellösungen (z.B: Quellen,
+ Dipole, Wirbel, Parallelströmung ...) zu Lösungen für allgemeine Geometrien.
+ Werden diese Einzellösungen auf der Kontur des umströmten Körpers platziert,
+ ist dieser Zugang ähnlich der Behandlung der Gleichung mittels der Randelement
+ Methode (BEM).
+ Die Randelementmethode eingesetzt für Strömungsprobleme die durch Potentialstöm
+ung beschrieben sind, wird gewöhnlich als Panelmethode bezeichnet.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Diese Lösungsansätze für Strömungsprobleme, die durch die Potentialströmung
+ beschrieben werden, werden gewöhnlich als Panelmethoden bezeichnet.
+ Eine solche wird im Zuge dieser Arbeit als Programm implementiert.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Potentialströmungsprobleme die durch die Randelementmethode gelöst werden,
+ werden gewöhnlich als Panelmethoden bezeichnet.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Weitere numerische Möglichkeiten zur Berechnung sind die finite Differenzen-,
+ finite Elemente- und finite Volumen Methode, bei denen aber das gesamte
+ Strömungsfeld diskretisiert werden muss.
+ Diese sollen im Weiteren nicht näher behandelt werden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Herleitung der Oberflächenintegrale
+\end_layout
+
+\begin_layout Subsection
+Problemstellung
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ein allgemeines Strömungsproblem kann durch die Navierstokes gleichung beschrieb
+en werden.
+\end_layout
+
+\begin_layout Plain Layout
+Oft kann das Gebiet aufgeteilt werden in eine Viskose Grenzschicht und eine
+ reibungsfreie Außenströmung.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Bei hohen Reynoldszahlen ist die Grenzschicht sehr dünn und der Druck wird
+ von der Außenströmung aufgeprägt.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Dies gilt bspweise beim Gleitschirm.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Durch Kenntnis der reibungsfreien Außenströmung kann man die wichtigsten
+ Parameter zur Auslegung eines GS erlangen.
+ Die reibungsfreie Außenströmung kann durch eine Potentialströmung beschrieben
+ werden.
+ Die Potentialströmung ist gekennzeichnet durch Drehungsfreiheit.
+ Formel.
+ Diese kann zusammen mit der Kontinuitätsgleichung zu einer Potentialgleichung,
+ die durch den LaplaceOperator beschrieben wird, dargestelt werden.
+ (Geschwindigkeitspotential)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ausgangsbasis für die Panelmethode ist die Laplace-Gleichung.
+ Die Geschwindigkeit senkrecht auf die Oberfläche des umströmten Körpers
+ und die ungestörte Anströmung im Unendlichen sind die Randbedingungen,
+ die dabei erfüllt sein müssen.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Wrap figure
+lines 4
+placement l
+overhang 0in
+width "35col%"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../Abbildungen/png/01_randbedingungen.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Veranschaulichung der Randbedingungen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Formula 
+\begin{align}
+\Delta\Phi= & 0\\
+\text{Randbedingungen:}\nonumber \\
+\frac{\partial\Phi}{\partial n_{e}}\left(S_{K}\right)= & 0\\
+\nabla\Phi\left(r\rightarrow\infty\right)= & \mathbf{u}_{\infty}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Greensche Identität
+\end_layout
+
+\begin_layout Standard
+Die erste Greensche Identität folgt aus der Anwendung des Gaußschen Integralsatz
+es auf das Randintegral 
+\begin_inset Formula $\int\limits _{S}\phi\frac{\partial\psi}{\partial n}\mathrm{d}A$
+\end_inset
+
+.
+ Hier wird vorrausgesetzt, dass die Funktion 
+\begin_inset Formula $\psi$
+\end_inset
+
+ zwei mal stetig differenzierbar ist.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\int\limits _{S}\phi\frac{\partial\psi}{\partial n}\mathrm{d}A=\int\limits _{S}(\phi\,\nabla\psi)\cdot\vec{n}\,\mathrm{d}A=\int\limits _{V}\nabla\cdot(\phi\,\nabla\psi)\,\mathrm{d}V=\int\limits _{V}(\phi\nabla^{2}\psi+\nabla\phi\cdot\nabla\psi)\,\mathrm{d}V\\
+\int\limits _{V}(\phi\Delta\psi)dV=\int\limits _{S}\phi\frac{\partial\psi}{\partial n}\mathrm{d}A-\int\limits _{V}(\nabla\phi\cdot\nabla\psi)\,\mathrm{d}V
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Für die zweite Greensche Identität werden 
+\begin_inset Formula $\psi$
+\end_inset
+
+ und 
+\begin_inset Formula $\phi$
+\end_inset
+
+ in der obigen Formulierung vertauscht.
+ Hier wird von 
+\begin_inset Formula $\phi$
+\end_inset
+
+ zwei mal stetige Differenzierbarkeit gefordert.
+\begin_inset Newline newline
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula 
+\begin{align}
+\int\limits _{S}\psi\frac{\partial\phi}{\partial n}\mathrm{d}A=\int\limits _{S}(\psi\,\nabla\phi)\cdot\vec{n}\,\mathrm{d}A=\int\limits _{V}\nabla\cdot(\psi\,\nabla\phi)\,\mathrm{d}V=\int\limits _{V}(\psi\nabla^{2}\phi+\nabla\psi\cdot\nabla\phi)\,\mathrm{d}V\\
+\int\limits _{V}(\psi\Delta\phi)dV=\int\limits _{S}\psi\frac{\partial\phi}{\partial n}\mathrm{d}A-\int\limits _{V}(\nabla\phi\cdot\nabla\psi)\,\mathrm{d}V
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Durch Subtraktion von (9) - (7) erhät man die zweite Greensche Identität.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\int\limits _{V}(\psi\Delta\phi-\phi\Delta\psi)dV=\int\limits _{S}\left(\psi\frac{\partial\phi}{\partial n}-\phi\frac{\partial\psi}{\partial n}\right)\mathrm{d}A
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fordert man weiter, dass die Testfunktion selbst die Laplace-Gleichung erfüllt,
+ folgt:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\Delta\psi=0\\
+\int\limits _{V}(\psi\Delta\phi)dV=\int\limits _{S}\left(\phi\frac{\partial\psi}{\partial n}-\psi\frac{\partial\phi}{\partial n}\right)\mathrm{d}A=0
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Radialsymmetrische Lösung für die Testfunktion 
+\end_layout
+
+\begin_layout Standard
+Gesucht ist eine zwei mal stetig differenzierbare Testfunktion, die die
+ Laplace-Gleichung erfüllt.
+ Hierzu wird die Differentialgleichung in Kugelkoordinaten betrachtet und
+ die Lösung für ein radialsymetrisches Problem gesucht.
+\begin_inset Formula 
+\begin{align}
+\Delta\Psi=\frac{1}{r^{2}}\frac{\partial}{\partial r}(r^{2}\frac{\partial}{\partial r}\Psi)=0\\
+r^{2}\frac{\partial}{\partial r}\Psi=C_{1}\\
+\Psi'(r)=\frac{C_{1}}{r^{2}}\\
+\Psi(r)=\frac{-C_{1}}{r}+C_{2}
+\end{align}
+
+\end_inset
+
+Da 
+\begin_inset Formula $\Psi$
+\end_inset
+
+ keine Randbedingungen erfüllen muss, kann die zweite Konstante im Grunde
+ frei gewählt werden.
+ Da aber eine möglichst einfache Testfunktion gesucht wird, soll 
+\begin_inset Formula $C_{2}=0$
+\end_inset
+
+ gewählt werden.
+\begin_inset Newline newline
+\end_inset
+
+Des Weiteren soll aus physikalischer Sicht eine eingebrachte Störung am
+ Rand keinen Einfluss auf Punkte weit entfernt dieser Störung haben.
+ 
+\begin_inset Formula 
+\begin{align}
+\Psi(r\rightarrow\infty)=0\rightarrow C_{2}=0
+\end{align}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Gefordert wird weiters, dass der Einfluss der unmittelbaren Umgebung auf
+ einen Punkt genau dem Potential des Punktes entspricht.
+ Dazu wird eine Kugel mit dem Radius 
+\begin_inset Formula $r=\epsilon$
+\end_inset
+
+ und 
+\begin_inset Formula $\epsilon\rightarrow0$
+\end_inset
+
+ um einen Punkt mit dem Potential 
+\begin_inset Formula $\Phi_{\epsilon}$
+\end_inset
+
+ gelegt und der Einfluss der Kugelfläche auf den Punkt mittels der Randintegralg
+leichung (10) ermittelt.
+ Der Normalvektor auf die Oberfläche der Kugel zeigt dabei nach Innen.
+ 
+\begin_inset Formula $\left(\frac{\partial}{\partial r}=-\frac{\partial}{\partial n}\right)$
+\end_inset
+
+.
+ Das zweite Integral verschwindet aufgrund der Kontinuitätsgleichung (19).
+ Es folgt für den ersten Term die Konstante für die Testfunktion.
+ 
+\begin_inset Formula 
+\begin{align}
+\int\limits _{S_{\epsilon}}\Phi_{\epsilon}\frac{\partial\Psi}{\partial n}\mathrm{d}A-\int\limits _{S_{\epsilon}}\Psi\frac{\partial\Phi_{\epsilon}}{\partial n}\mathrm{d}A=\Phi_{\epsilon}\\
+\int\limits _{S_{\epsilon}}\Psi\frac{\partial\Phi_{\epsilon}}{\partial n}\mathrm{d}A=\Psi\int\limits _{S_{\epsilon}}\frac{\partial\Phi_{\epsilon}}{\partial n}\mathrm{d}A=\Psi\int\limits _{S_{\epsilon}}\mathbf{u}_{\epsilon}\cdot\mathbf{n}\mathrm{d}A=0\\
+\int\limits _{S_{\epsilon}}\Phi_{\epsilon}\frac{\partial\Psi}{\partial n}\mathrm{d}A=-\Phi_{p}\int\limits _{S_{\epsilon}}\frac{\partial\Psi}{\partial r}\mathrm{d}A=\Phi_{\epsilon} & \quad,\:aus\:(10)\\
+-1=\int\limits _{S_{\epsilon}}\frac{\partial\Psi}{\partial r}\mathrm{d}A=\frac{\partial\Psi}{\partial r}\int\limits _{S_{\epsilon}}\mathrm{d}A=C_{1}4\pi\\
+C_{1}=-\frac{1}{4\pi}\rightarrow\qquad\Psi=\frac{1}{4\pi r}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Durch diese Überlegung wurde die Testfunktion gleich der Fundamentallösung
+ der Laplace-Gleichung gewählt.
+ Es ist auch möglich, die Konstanten anders zu wählen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Aufteilung des Oberflächenintegrals
+\end_layout
+
+\begin_layout Standard
+Das Integral (12) wird auf die strömungsbeeinflussenden Flächen aufgeteilt.
+ Die Normale zeigt dabei immer weg von dem betrachteten Gebiet.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 44"
+key "LSA"
+
+\end_inset
+
+ Es ist darauf zu achten, diese Konvention stets einzuhalten.
+ Es werden folgende Teilgebiete betrachtet:
+\end_layout
+
+\begin_layout Enumerate
+eine Kugel mit Radius 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+, die das Potential 
+\begin_inset Formula $\Phi_{\epsilon}$
+\end_inset
+
+ in einem beliebigen Punkt im Strömungsfeld darstellt
+\end_layout
+
+\begin_layout Enumerate
+eine Kugel mit Radius 
+\begin_inset Formula $r_{\infty}$
+\end_inset
+
+ und Oberfläche 
+\begin_inset Formula $S_{\infty}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+die Kontur des Körpers 
+\begin_inset Formula $S_{K}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+der Nachlauf, der durch die Fläche 
+\begin_inset Formula $S_{W}$
+\end_inset
+
+ modelliert wird.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/02_gebiet.png
+	lyxscale 40
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Strömungsgebiet
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Einfluss eines Punktes auf sich selbst
+\end_layout
+
+\begin_layout Standard
+Die Testfunktion 
+\begin_inset Formula $\Psi$
+\end_inset
+
+ wurde gemäß (18) gewählt, damit der Einfluss einer Kugeloberfläche um einen
+ Punkt mit dem Radius 
+\begin_inset Formula $r=\epsilon$
+\end_inset
+
+ und 
+\begin_inset Formula $\epsilon\rightarrow0$
+\end_inset
+
+ genau dem Potential im Inneren entspricht.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Einfluss der Strömung weit entfernt vom Körper
+\end_layout
+
+\begin_layout Standard
+Weit entfernt vom umstömten Körper herrschen Anströmgbedingungen, die nicht
+ vom umströmten Körper beeinflusst werden.
+ Im einfachsten Fall ist dies eine konstante Geschwindigkeit 
+\begin_inset Formula $U_{\infty}$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Die Fundamentallösung 
+\begin_inset Formula $\Psi$
+\end_inset
+
+ ist eine radialsymmetrische Funktion.
+ Wird von einer Kugeloberfläche mit unendlicher Ausdehnung ausgegangen,
+ so kann
+\begin_inset Formula $\Psi$
+\end_inset
+
+ und 
+\begin_inset Formula $\frac{\partial\Psi}{\partial n}$
+\end_inset
+
+ vor das Integral gestellt werden.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\int\limits _{S_{\infty}}\left(\Phi_{\infty}\frac{\partial\Psi}{\partial n}-\Psi\frac{\partial\Phi_{\infty}}{\partial n}\right)\mathrm{d}A=\frac{\partial\Psi}{\partial n}\int\limits _{S_{\infty}}\Phi_{\infty}dA-\Psi\int\limits _{S_{\infty}}\frac{\partial\Phi_{\infty}}{\partial n}\mathrm{d}A
+\end{align}
+
+\end_inset
+
+Aufgrund der Kontinuitätsgleichung muss der aufsummierte Fluss über die
+ Oberfläche eines Kontrollvolumens verschwinden.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\Psi\int\limits _{S_{\infty}}\left(\mathbf{u_{\infty}}\cdot\mathbf{n}\right)\mathrm{d}A=\Psi\int\limits _{S_{\infty}}\frac{\partial\Phi_{\infty}}{\partial n}\mathrm{d}A=0
+\end{align}
+
+\end_inset
+
+Das Potential einer parallelen Anströmung kann durch ein Potential 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $\tilde{\Phi}_{\infty}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang ngerman
+ im Mittelpunkt der Kugel und ein variables Potential
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $\left(\mathbf{u_{\infty}}\cdot\mathbf{n}\right)r$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang ngerman
+ dargestellt werden, wobei der zweite Term wieder aus den oben genannten
+ Gründen (24) herausfällt.
+ 
+\begin_inset Formula 
+\begin{align}
+\frac{\partial\Psi}{\partial n}\int\limits _{S_{\infty}}\Phi_{\infty}\mathrm{d}s=\frac{\partial\Psi}{\partial n}\int\limits _{S_{\infty}}\left(\tilde{\Phi}_{\infty}+\left(\mathbf{u_{\infty}}\cdot\mathbf{n}\right)r\right)\mathrm{d}s=\tilde{\Phi}_{\infty}\frac{\partial\Psi}{\partial r}4\pi r^{2}=-\tilde{\Phi}_{\infty}
+\end{align}
+
+\end_inset
+
+Für das weitere Vorgehen soll der Einfluss des Potentials der Anströmung
+ 
+\begin_inset Formula $\tilde{\Phi}_{\infty}$
+\end_inset
+
+ wieder mit 
+\begin_inset Formula $\Phi_{\infty}$
+\end_inset
+
+ bezeichnet werden.
+\end_layout
+
+\begin_layout Subsubsection
+Einfluss des umströmten Körpers
+\end_layout
+
+\begin_layout Standard
+Die Oberfläche des umströmten Körpers wird durch eine nach außen orientierte
+ Fläche mit dem Potential 
+\begin_inset Formula $\Phi_{E}$
+\end_inset
+
+ und einer nach innen gerichteten Fläche mit dem Potential 
+\begin_inset Formula $\Phi_{I}$
+\end_inset
+
+ beschrieben.
+ Es ergibt sich mit 
+\begin_inset Formula $-\mu=\Phi_{E}-\Phi_{I}$
+\end_inset
+
+ und 
+\begin_inset Formula $-\sigma=\frac{\partial\Phi_{E}}{\partial n}-\frac{\partial\Phi_{I}}{\partial n}$
+\end_inset
+
+ mit Normalenvektor nach Innen gerichtet.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}-\sigma\Psi\right)\mathrm{d}A
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Einfluss des Nachlaufs auf die Strömung
+\end_layout
+
+\begin_layout Standard
+Da die Potentialströmung drehungsfrei ist, kann sie auch keinen Auftrieb
+ erzeugen 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S66 3.112"
+key "LSA"
+
+\end_inset
+
+.
+ Für diesen wäre das Vorhandensein einer Grenzschicht notwendig.
+ Um trotzdem rechnerisch einen Auftrieb zu erhalten, muss eine Abströmbedingung
+ in die Gleichung eingebaut werden.
+ Dies kann durch ein Modell des Nachlaufs geschehen.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Der Nachlauf soll den Stomlinien folgen, deshalb darf keine Strömung normal
+ zum Nachlauf vorhanden sein.
+ Es muss 
+\begin_inset Formula $\frac{\partial\Phi_{W}}{\partial n}=\sigma_{W}=0$
+\end_inset
+
+ auf der Unter- und Oberseite gelten.
+ Weiters darf dieser keine Kräfte aufnehmen.
+ Daher muss 
+\begin_inset Formula $\frac{\partial\mu}{\partial t}=0$
+\end_inset
+
+ sein.
+ Das bedeutet, dass der Potentialsprung des Nachlaufs entlang einer Stromlinie
+ konstant sein muss.
+ Der Wert des Potentialsprungs entspricht dabei genau dem Sprung des Potentials
+ an der Hinterkante 
+\begin_inset Formula $\mu_{w}=\mu_{l}-\mu_{u}$
+\end_inset
+
+.
+ Der Nachlauf verhindert somit das Umströmen der Hinterkante.
+ Die Gleichung vereinfacht sich wie folgt:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\int\limits _{S_{W}}\left(\mu\frac{\partial\Psi}{\partial n}-\sigma\Psi\right)\mathrm{d}A=\int\limits _{S_{W}}\mu_{W}\left(\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Der gesamte Einfluss auf einen Punkt im Strömungsfeld ergibt sich somit
+ zu: 
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula 
+\begin{align}
+-\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}-\sigma\Psi\right)\mathrm{d}A-\int\limits _{S_{W}}\mu_{W}\left(\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A+\Phi_{\infty}=\Phi_{p}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Randbedingungen
+\end_layout
+
+\begin_layout Standard
+Normal auf die Oberfläche eines umströmten Körpers ohne Transpiration muss
+ die Geschwindigkeit verschwinden.
+ Diese Randbedingung kann auf zwei Arten in die Randintegral-Formulierung
+ eingebracht werden.
+\end_layout
+
+\begin_layout Enumerate
+Direkte Forderung von 
+\begin_inset Formula $\frac{\partial\Phi}{\partial n}=0$
+\end_inset
+
+.
+ Diese wird als 
+\series bold
+Neumann-Randbedingung
+\series default
+ bezeichnet.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Da die Änderung des Potentials über die Oberfläche Null und die Kontur des
+ Körpers geschlossen ist, kann die Randbedingung auch durch ein konstantes
+ Potential 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $\Phi_{I}=const$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang ngerman
+ im Inneren des umströmten Körpers erfüllt werden.
+ Diese wird als 
+\series bold
+Dirichlet-Randbedingung
+\series default
+ bezeichnet.
+\begin_inset Newline newline
+\end_inset
+
+Die einfachste Möglichkeit besteht darin, 
+\begin_inset Formula $\Phi_{I}$
+\end_inset
+
+ gleich Null zu setzen.
+\begin_inset Newline newline
+\end_inset
+
+Die Dirichlet-Randbedingung kann auch durch ein konstantes Potential 
+\begin_inset Formula $\left(\tilde{\Phi}_{I}=\tilde{\Phi}_{\infty}=0\right)$
+\end_inset
+
+ für eine raumfeste Betrachtung erfüllt werden.
+ Für eine mitbewegte Betrachtung bedeutet dies, dass man das innere Potential
+ dem Potential der Anströmung gleich setzt 
+\begin_inset Formula $\Phi_{I}=\Phi_{\infty}$
+\end_inset
+
+.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LSA"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Die in dieser Arbeit zur Problemlösung verwendeten Verfahren bauen auf der
+ Dirichlet-Randbedingung auf.
+ 
+\end_layout
+
+\begin_layout Subsection
+Wahl des Potentials im Inneren (Dirichlet-Randbedingung)
+\end_layout
+
+\begin_layout Standard
+Durch die Wahl des Potentials im Inneren kann für jeden Punkt unter der
+ Oberfläche
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Die Punkte, wo die Gleichungen aufgestellt werden, liegen unter der Oberfläche.
+ Der Abstand zur Oberfläche ist jedoch unendlich klein.
+\end_layout
+
+\end_inset
+
+ des umströmten Körpers eine Gleichung aufgestellt werden, die erfüllt sein
+ muss, um die Randbedingung zusammen mit der Differentialgleichung zu erfüllen.
+ Formuliert man diese Gleichung an allen Punkten, so erhält man ein Gleichungssy
+stem für alle unbekannten 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+ an der Oberfläche.
+ Sind diese bekannt, kann die Strömung im gesamten Gebiet ermittelt werden.
+ Die Wahl soll wie im Unterkapitel 2.5 unter Punkt 2 beschrieben auf zwei
+ Arten geschehen:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Phi_{I}=0$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\sigma=\frac{\partial\Phi_{a}}{\partial n}=0\nonumber \\
+\int\limits _{S_{K}}\mu\frac{\partial\Psi}{\partial n}\mathrm{d}A+\int\limits _{S_{W}}\mu\frac{\partial\Psi}{\partial n}\mathrm{d}A=\Phi_{\infty}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Phi_{I}=\Phi_{\infty}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula 
+\begin{align}
+\sigma=-\left(\frac{\partial\Phi_{a}}{\partial n}-\frac{\partial\Phi_{\infty}}{\partial n}\right)=\frac{\partial\Phi_{\infty}}{\partial n}=\mathbf{u_{\infty}}\mathbf{\cdot}\mathbf{n}\nonumber \\
+-\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}-\left(\mathbf{u_{\infty}}\mathbf{\cdot n}\right)\Psi\right)\mathrm{d}A-\int\limits _{S_{W}}\mu\frac{\partial\Psi}{\partial n}\mathrm{d}A+\Phi_{\infty}=\Phi_{\infty}\nonumber \\
+\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A+\int\limits _{S_{W}}\left(\mu\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A=\int\limits _{S_{K}}\left(\mathbf{u_{\infty}}\mathbf{\cdot n}\right)\cdot\Psi\mathrm{d}A
+\end{align}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Es gibt noch weitere Möglichkeiten, das Potential im Inneren vorzugeben.
+ Diese haben aber keine nennenswerten Vereinfachungen zur Folge und sollen
+ deshalb hier nicht weiter behandelt werden.
+\end_layout
+
+\begin_layout Section
+Numerische Implementation 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/03_panels.png
+	lyxscale 20
+	scale 17
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diskretisierung der umströmten Geometrie und des Nachlaufs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Erstellen der Panels
+\end_layout
+
+\begin_layout Standard
+Zunächst werden die Oberflächen in 
+\begin_inset Formula $N$
+\end_inset
+
+ Teilflächen, sogenannte Panels, unterteilt.
+ Für die Berechnung der Einflussfaktoren wird von ebenen Panels ausgegangen,
+ deshalb sollten diese möglichst planar sein.
+ Die Gestalt der Flächen ist jedoch beliebig.
+ Es gibt keine Einschränkung bezüglich Eckpunkteanzahl und Winkel der Panels,
+ jedoch ist es durch die Wahl des Potentials (konstant auf jedem Panel)
+ sinnvoll, die Seitenverhältnisse möglichst ausgeglichen zu halten.
+ Dies spielt vor allem für die spätere Gradienteninterpolation eine Rolle.
+\end_layout
+
+\begin_layout Standard
+Die Umlaufrichtung der Panelpunkte muss so erfolgen, dass mittels der 
+\begin_inset Quotes eld
+\end_inset
+
+Rechten-Hand-Regel
+\begin_inset Quotes erd
+\end_inset
+
+ eine Normale aus dem Schirm erzeugt wird.
+ Intern wird jedoch, wie in Punkt Unterkapitel 2.5 erläutert, mit einer Normalen,
+ die in das umströmte Objekt zeigt, gerechnet.
+ 
+\end_layout
+
+\begin_layout Standard
+Um einen glatten Abfluss an der Hinterkante zu erzwingen (Kutta Bedingung),
+ wird ein Nachlauf  ausgehend von der Endkante des Tragflügels gebildet.
+ Richtung, Größe und Länge der Nachlaufpanels kann vorgegeben werden.
+ Standardmäßig folgt der Nachlauf aber der Anströmung und hat eine gewisse
+ Länge, die groß gegenüber der Erstreckung des Flügels in Anströmrichtung
+ ist.
+ Die Anzahl der Nachlaufpanels wird mit 
+\begin_inset Formula $N_{W}$
+\end_inset
+
+ bezeichnet.
+\end_layout
+
+\begin_layout Subsection
+Randintegralgleichung
+\end_layout
+
+\begin_layout Itemize
+Es wird gefordert, dass die Randintegralgleichung nur in jedem Panel-Mittelpunkt
+ erfüllt wird.
+ An allen anderen Punkten des Panels wird die Erfüllung der Gleichung nicht
+ erzwungen, und es kann zu Fehlern kommen.
+ Dies wird vor allem bei der reinen Dipol-Methode (
+\begin_inset Formula $\Phi_{I}=0$
+\end_inset
+
+) ersichtlich, da sich eine konstante Dipolverteilung eines planaren Panels
+ equivalent zu einem Wirbelring verhält.
+ (
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 248, 249, Abb. 10.15"
+key "LSA"
+
+\end_inset
+
+) Dadurch kommt es an den Kanten zu großen Geschwindigkeiten, die auch eine
+ Normalkomponente enthalten.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\sum_{j=1}^{N}\left(\mu_{j}\int\limits _{P_{Kj}}\frac{\partial\Psi_{j}}{\partial n}\mathrm{d}A\right)+\sum_{k=1}^{N_{W}}\left(\mu_{k}\int\limits _{P_{Wk}}\frac{\partial\Psi_{k}}{\partial n}\mathrm{d}A\right)=-\Phi_{\infty j}
+\end{align}
+
+\end_inset
+
+Um dieses Verfahren stabiler zu machen, wird der Potentialsprung 
+\begin_inset Formula $\mu_{j}$
+\end_inset
+
+, der dem lokalen Potential 
+\begin_inset Formula $\Phi_{j}$
+\end_inset
+
+ entspricht, in ein Potential der Anströmung 
+\begin_inset Formula $\Phi_{j\infty}$
+\end_inset
+
+ und ein unbekanntes 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $\tilde{\Phi}_{j}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang ngerman
+ aufgespalten.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\sum_{j=1}^{N}\left(\tilde{\Phi}_{j}\int\limits _{P_{Kj}}\frac{\partial\Psi_{j}}{\partial n}\mathrm{d}A\right)+\sum_{k=1}^{N_{W}}\left(\mu_{k}\int\limits _{P_{Wk}}\frac{\partial\Psi_{k}}{\partial n}\mathrm{d}A\right)=-\Phi_{\infty}-\sum_{j=1}^{N}\left(\Phi_{\infty j}\int\limits _{P_{Kj}}\frac{\partial\Psi_{j}}{\partial n}\mathrm{d}A\right)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Die Gleichung kann um eine Quellenverteilung erweitert werden, um die Dipolstärk
+e des Panels klein zu halten.
+ Das erreicht man, wie im Unterkapitel (2.6) gezeigt, durch ein inneres Potential
+ 
+\begin_inset Formula $\Phi_{I}=\Phi_{\infty}$
+\end_inset
+
+.
+ Daraus resultiert eine Randintegralgleichung der folgenden Form:
+\begin_inset Formula 
+\begin{align}
+\sum_{j=1}^{N}\left(\mu_{j}\int\limits _{P_{Kj}}\frac{\partial\Psi_{j}}{\partial n}\mathrm{d}A\right)+\sum_{k=1}^{N_{W}}\left(\mu_{k}\int\limits _{P_{Wk}}\frac{\partial\Psi_{k}}{\partial n}\mathrm{d}A\right)=\sum_{j=1}^{N}\left(\left(\mathbf{u_{\infty}}\cdot\mathbf{n}_{j}\right)\int\limits _{P_{Kj}}\Psi_{j}\mathrm{d}A\right)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Panel mit konstanter Dipolstärke
+\end_layout
+
+\begin_layout Standard
+Um die numerische Implementation einfach zu halten, wird der Einfluss der
+ Panels durch konstante Dipol bzw.
+ Quellflächen beschrieben, wobei sich die Konstanz auf die Quell- bzw Dipolstärk
+en 
+\begin_inset Formula $\mu$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ bezieht.
+ Durch diese Vereinfachung können diese Terme vor das Integral gestellt
+ werden und es muss nur noch das Integral über 
+\begin_inset Formula $\Psi$
+\end_inset
+
+ bzw.
+ 
+\begin_inset Formula $\frac{\partial\Psi}{\partial n}$
+\end_inset
+
+ gelöst werden.
+\end_layout
+
+\begin_layout Standard
+Anm.: Es werden einige Möglichkeiten für die Berechnung eines konstanten
+ Dipolpanels erläutert.
+ Das Quellenpanel soll dabei aber nicht genauer untersucht werden, da es
+ in der anfänglichen Aufgabenstellung nicht vorgekommen ist.
+ Es wird auf die Quellen verwiesen, die eine Lösung zur Verfügung stellen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/04_dreieck-panel.png
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Geometrie eines Panels
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Frag den Prof.
+ wegen Skizzenunverständnis 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\frac{\partial\Psi}{\partial n}\mid_{n=0}=\frac{\partial\Psi}{\partial r}\frac{\partial r}{\partial n}\mid_{n=0}\\
+\nonumber \\
+\frac{\partial r}{\partial n}\bigg|_{n=0}=\frac{\mathbf{n}\cdot\mathbf{r}}{\mid\mathbf{r}\mid}=\frac{r_{n}}{r}\nonumber \\
+\int\limits _{P}\left(\Phi\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A=-\Phi_{P}\int\limits _{P}\left(\frac{r_{n}}{4\pi r^{3}}\right)\mathrm{d}A=-\frac{r_{n}}{4\pi}\Phi_{P}\int\limits _{P}\frac{1}{r^{3}}\mathrm{d}A
+\end{align}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial r}{\partial n}\bigg|_{n=0}=\frac{pn}{\sqrt{\left(pn\right)^{2}+s^{2}}}=\frac{pn}{r}\\
+\frac{\partial\Psi}{\partial r}=-\frac{1}{4\pi r^{2}}\\
+\frac{\partial\Psi}{\partial n}\bigg|_{n=0}=-\frac{pn}{4\pi r^{3}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Methode 1
+\end_layout
+
+\begin_layout Standard
+Das Gebiet kann in Dreiecke aufgeteilt werden, sodass jeweils eine Seite
+ des Panels mit dem auf die Ebene projizierten Punkt verbunden wird.
+ Je nach dem in welchem Umlauf das Panel durchlaufen wird, wird es positiv
+ oder negativ gezählt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/05_1_dreieck-methode.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename ../Abbildungen/png/05_2_dreieck-methode.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Summierung und Skizze des Integrals
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+r_{n}\int\limits _{P}\left(\frac{1}{r^{3}}\right)\mathrm{d}A=\sum_{i=1}^{N_{C}}r_{n}\intop_{l=0}^{s}\intop_{m=l\cdot c_{1}}^{l\cdot c_{2}}\left(\frac{1}{\sqrt{m^{2}+l^{2}+r_{n}^{2}}^{3}}\right)dm\,dl
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+\intop_{m=l\cdot c_{1}}^{l\cdot c_{2}}\left(\frac{1}{\sqrt{m^{2}+l^{2}+pn^{2}}^{3}}\right)dm=\frac{l}{\left(l^{2}+pn^{2}\right)}\left(\frac{c_{2}}{\sqrt{l^{2}+pn^{2}+l^{2}c_{2}^{2}}}-\frac{c_{1}}{\sqrt{l^{2}+pn^{2}+l^{2}c_{1}^{2}}}\right)\\
+pn\intop_{l=0}^{s}\frac{l}{\left(l^{2}+pn^{2}\right)}\frac{c_{2}}{\sqrt{l^{2}+pn^{2}+l^{2}c_{2}^{2}}}dl=tan^{-1}\left(\frac{\sqrt{\left(c_{2}^{2}+1\right)s^{2}+pn^{2}}}{c_{2}pn}\right)-tan^{-1}\left(\frac{\sqrt{pn^{2}}}{c_{2}pn}\right)=\\
+=tan^{-1}\left(\frac{R_{2}^{2}/pn}{c_{2}}\right)+tan^{-1}\left(\frac{-1}{c_{2}}\right)=tan^{-1}\left((R_{2}^{2}/pn-1)\cdot c_{2},c_{2}^{2}+R_{2}^{2}/pn\right)\\
+pn\intop_{l=0}^{s}-\frac{l}{\left(l^{2}+pn^{2}\right)}\frac{c_{1}}{\sqrt{l^{2}+pn^{2}+l^{2}c_{1}^{2}}}dl=tan^{-1}\left(1-R_{1}^{2}/pn,\:c_{1}-R_{1}^{2}/pn\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Methode 2 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 34, 35"
+key "vsaero"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Das Integral über das Panel kann durch parallel begrenzte Streifen, die
+ alle in der Panelebene liegen dargestellt werden.
+ Dadurch ergibt sich ein unendlich langer Streifen, der durch die Vorgabe
+ der Funktion 
+\begin_inset Formula $\frac{1}{2r^{3}}$
+\end_inset
+
+ oberhalb und 
+\begin_inset Formula $-\frac{1}{2r^{3}}$
+\end_inset
+
+ unterhalb der Seitenkante aufsummiert über alle Panelkanten nur im Bereich
+ des Panels Werte ungleich Null liefert.
+\begin_inset Newline newline
+\end_inset
+
+Dadurch kann man das Integral für jeden Streifen einzeln betrachten und
+ es folgt:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+-\Phi_{P}\frac{r_{n}}{4\pi}\int\limits _{P}\left(\frac{1}{r^{3}}\right)\mathrm{d}A=-\Phi_{P}\frac{r_{n}}{4\pi}\sum_{i=1}^{N_{C}}\frac{1}{2}\cdot\left(\int\limits _{S^{+}}\left(\frac{1}{r^{3}}\right)\mathrm{d}A-\int\limits _{S^{-}}\left(\frac{1}{r^{3}}\right)\mathrm{d}A\right)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Lösung für dieses Integral ist im Theorie Dokument zum Programm VSAERO
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vsaero"
+
+\end_inset
+
+ angegeben.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../Abbildungen/png/06_01_vsaero-methode.png
+	lyxscale 10
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../Abbildungen/png/06_02_vsaero-methode.png
+	lyxscale 10
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../Abbildungen/png/06_03_vsaero-methode.png
+	lyxscale 10
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../Abbildungen/png/06_04_vsaero-methode.png
+	lyxscale 10
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../Abbildungen/png/06_05_vsaero-methode.png
+	lyxscale 10
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../Abbildungen/png/06_06_vsaero-methode.png
+	lyxscale 10
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Aufsummieren der parallelen Streifen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Darstellungen/integral_geometriesvg.svg
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Mögliche Konfiguration für das Integral
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Eventuell ausführen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Methode 3 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "panel_gauss"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Das betrachtete Dipol Integral kann so umgeformt werden, dass es mittels
+ des Integralsatzes von Gauß auf ein Linienintegral gebracht wird.
+ Hierfür wird der Integrand 
+\begin_inset Formula $\frac{pn}{r^{3}}$
+\end_inset
+
+ einer Funktion 
+\begin_inset Formula $W$
+\end_inset
+
+, auf die der Laplaceoperator in Panelebene angewendet wird, gleichgesetzt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\int\limits _{P}\left(\frac{r_{n}}{r^{3}}\right)\mathrm{d}A=\int\limits _{P}\Delta W\mathrm{\cdot d}A=\intop_{C}\frac{\partial W}{\partial n}dl\\
+\frac{1}{s}\frac{\partial}{\partial s}\left(s\frac{\partial W}{\partial s}\right)=\frac{r_{n}}{\sqrt{s^{2}+r_{n}^{2}}^{3}}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+R\frac{\partial W}{\partial R}=-\intop\frac{R\cdot pn}{\sqrt{R^{2}+pn^{2}}^{3}}dR=\frac{pn}{\sqrt{R^{2}+pn^{2}}}\\
+W=\intop\frac{pn}{R\cdot\sqrt{R^{2}+pn^{2}}}dr=ln(R)-ln\left(pn^{2}+pn\cdot r\right)=\frac{pn}{\mid pn\mid}ln\left(\frac{r-pn}{R}\right)\\
+A_{ki}=D\left(p_{1},q,pn\right)-D\left(p_{2},q,pn\right)\\
+\frac{\partial W}{\partial n}=\frac{\partial W}{\partial R}\cdot\frac{\partial R}{\partial n}=\frac{\partial W}{\partial R}\cdot\frac{R.n}{R}D=2\cdot sgn\left(pn\right)\cdot tan^{-1}\left(\frac{p-\left|pn\right|-\sqrt{p^{2}+q^{2}+pn^{2}}}{q}\right) & \frac{\partial W}{\partial s}=sgn\left(pn\right)\cdot\frac{R.s}{R}\left(\left(\frac{1}{\left(\left(r-\left|pn\right|\right)\cdot r\right)}\right)-\frac{1}{R^{2}}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Methode 4 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 115"
+key "Newm1985"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Da sich der Einfluss der Dipolstärke eines Panels genau gleich verhält,
+ wie die Änderung des Einflusses einer Quelle auf das Panel in Normalenrichtung,
+ und außerdem der Fluss der Quelle über einen Raumwinkel konstant ist, kann
+ das Panel auf eine Einheitskugel projiziert werden.
+ Es ergeben sich folgende Vereinfachungen.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\intop_{S_{P}}\frac{\partial\Psi}{\partial n_{P}}dA=\intop_{S_{P}}\frac{\partial\Psi_{K}}{\partial n_{P}}dA=\intop_{S_{K}}\frac{\partial\Psi_{K}}{\partial n_{K}}dA=sign(\mathbf{n}\cdot\mathbf{r})\frac{\partial\Psi_{K}}{\partial r}\bigg|_{r=1}\intop_{S_{K}}dA
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/07_kugel-methode.png
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raumwinkel
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Das verbleibende Integral stellt die Fläche des projizierten Panels dar
+ und kann auch als Raumwinkel interpretiert werden.
+ Um diesen zu berechnen, kann man für jede Seite ein Dreieck mit einem Referenzp
+unkt aufspannen und für dieses den Raumwinkel berechnen.
+ Je nach Lage des Referenzpunktes wird die Fläche positiv bzw.
+ negativ gezählt.
+ Der Raumwinkel 
+\begin_inset Formula $\Omega$
+\end_inset
+
+, einer durch drei Strahlen aufgespannten Pyramide, lässt sich mit einem
+ Ergebnis von Oostrom und Strackee (1983) wie folgt berechnen:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+tan\frac{\Omega}{2}=\frac{\mathbf{u}_{1}\times\mathbf{u}_{2}\cdot\mathbf{u}_{3}}{1+\mathbf{u}_{2}\cdot\mathbf{u}_{3}+\mathbf{u}_{3}\cdot\mathbf{u}_{1}+\mathbf{u}_{1}\cdot\mathbf{u}_{2}}
+\end{align}
+
+\end_inset
+
+Hierbei stellt 
+\begin_inset Formula $\mathbf{u}$
+\end_inset
+
+ einen normierten Strahl dar.
+ 
+\end_layout
+
+\begin_layout Standard
+Somit ergibt sich der gesamte Dipoleinfluss eines Panels zu:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\Phi_{P}=-\frac{1}{4\pi}\sum_{i=1}^{N_{C}}\pm\Omega
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Panel mit konstanter Quellenstärke
+\end_layout
+
+\begin_layout Standard
+Für den Einfluss einer konstanten Quellenverteilung auf einen Punkt muss
+ das folgende Integral gelöst werden.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\int\limits _{P_{Aj}}\Psi_{j}\mathrm{d}s=\frac{1}{4\pi}\int\limits _{P_{Aj}}\frac{1}{r}\mathrm{d}A
+\end{align*}
+
+\end_inset
+
+Dieses Integral kann auch als Integral des Dipoleinflusses geschrieben werden
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "119"
+key "Newm1985"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+---> ab hier weiter
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\int\limits _{P_{Aj}}\Psi_{j}\mathrm{d}A=-\int\limits _{n=r_{n}}^{\infty}\int\limits _{P_{Aj}}\left(\frac{\partial\Psi_{j}}{\partial n}\right)\mathrm{d}A\;dn
+\end{align*}
+
+\end_inset
+
+Durch Anwendung von partieller Integration erhält man 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "(3.2)"
+key "Newm1985"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\int\limits _{P_{Aj}}\Psi_{j}\mathrm{d}A=\int\limits _{n=r_{n}}^{\infty}n\cdot d\left(\int\limits _{P_{Aj}}\left(\frac{\partial\Psi_{j}}{\partial n}\right)dA\right)+r_{n}\cdot\int\limits _{P_{Aj}}\left(\frac{\partial\Psi_{j}}{\partial n}\right)dA
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Die Variable z steht für den Normalabstand vom Punkt zum Panel.
+ 
+\end_layout
+
+\end_inset
+
+Der zweite Term kann direkt aus dem Dipoleinfluss bestimmt werden.
+ Der erste Term wird in einer der herangezogenen Quellen 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Newm1985"
+
+\end_inset
+
+ behandelt.
+ Für die um die Quellen erweiterte Panelmethode wird die in VSAERO 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 40"
+key "vsaero"
+
+\end_inset
+
+ beschriebene Lösung für das Integral verwendet.
+ 
+\end_layout
+
+\begin_layout Subsection
+Paneleinfluss im Fernfeld
+\end_layout
+
+\begin_layout Standard
+Der Einfluss von Singularitäten auf Punkte, die weit entfernt von einem
+ Panel sind, ist sehr gering.
+ Dieser kann durch eine numerische Integration über das Panel oder durch
+ eine Multipolentwicklung 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "Gleichung 6.1"
+key "Newm1985"
+
+\end_inset
+
+ vereinfacht werden.
+ Für das Programm wurde ein einfacher Fall gewählt und das Integral im Mittelpun
+kt multipliziert mit der Panelfläche ausgewertet.
+ Die 
+\emph on
+Abbildungen 8
+\emph default
+ und 
+\emph on
+9
+\emph default
+ zeigen beispielsweise den Fehler, der durch die Vereinfachung gemacht wird.
+ Man sieht, dass der Fehler sowohl für ein Quellenpanel als auch ein Dipolpanel
+ im Fernfeld gegen Null strebt.
+ Über einen Fernfeldfaktor wird im Programm der Übergang von Nahbereich
+ zum Fernfeld bestimmt.
+ Dieser Faktor beschreibt zusammen mit der Größe des Panels den Radius einer
+ Kugel, innerhalb derer sich alle Panels befinden, deren Einflüsse mit der
+ Nahfeldberechnung ermittelt werden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../../../ppm_tests/plots/results/3d/far_vs_near_doublet.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../../../ppm_tests/plots/results/3d/far_error_doublet.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vergleich Fernfeld-, Nahbereichberechnung für ein Dipolpanel
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../../../ppm_tests/plots/results/3d/far_vs_near_source.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../../../ppm_tests/plots/results/3d/far_error_source.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vergleich Fernfeld-, Nahbereichberechnung für ein Quellenpanel
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Mit dieser Zerlegung in Nahbereich und Fernfeld können auch noch weitere
+ numerische Verbesserungen erreicht werden.
+ Eine Möglichkeit ist es, die Panels zu 
+\begin_inset Quotes eld
+\end_inset
+
+Clustern
+\begin_inset Quotes erd
+\end_inset
+
+ zusammenzufassen.
+ Dadurch können die Einflussfaktoren von weit entfernten Panels durch Einflussfa
+ktoren der Cluster ausgedrückt werden.
+ Die Gesamtzahl an einflussnehmenden Panels / Clustern pro Gleichung reduziert
+ sich dadurch, was den Aufwand der Panelmethode wesentlich verringert.
+ Eine effiziente Umsetzung dieser Idee findet man in sogenannten Multipolmethode
+n.
+ Durch diese wird es möglich mit einer höheren Anzahl an Panels zu rechnen,
+ da das Gleichungssystem nicht mehr voll besetzt ist.
+\end_layout
+
+\begin_layout Section
+Geschwindigkeitsverteilung
+\end_layout
+
+\begin_layout Subsection
+Berechnung der Geschwindigkeit auf der Oberfläche
+\end_layout
+
+\begin_layout Standard
+Die Geschwindigkeit auf der Oberfläche kann direkt aus dem Gradienten des
+ Potentials ermittelt werden.
+ Im Weiteren wird eine Möglichkeit verwendet, die neben viereckigen auch
+ andere Panels zulässt.
+ Dazu wird eine Ebene so aufgespannt, dass sie das Potential des betrachteten
+ Panels und seiner Nachbarpanels
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Nachbarpanels sind all jene Panels, die über Kanten mit dem betrachteten
+ Panel verbunden sind.
+\end_layout
+
+\end_inset
+
+ bestmöglich interpoliert.
+ Die Geschwindigkeit im Mittelpunkt des Panels ergibt sich aus dem Gradienten
+ der ermittelten Ebene.
+\end_layout
+
+\begin_layout Standard
+Die 
+\emph on
+Abbildung 10
+\emph default
+ zeigt die Vorgehensweise.
+ Nachbarpanels werden in die Panel-Ebene geklappt und das Potential wird
+ mittels Linearer Ausgleichsrechnung (Least-Square Methode) durch eine lineare
+ bzw.
+ quadratische Funktion interpoliert.
+ Der Gradient wird anschließend im Punkt 
+\begin_inset Formula $m=0$
+\end_inset
+
+ und 
+\begin_inset Formula $l=0$
+\end_inset
+
+ ermittelt.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+u_{l}=\frac{\partial\Phi}{\partial l},\:u_{m}=\frac{\partial\Phi}{\partial m},\:u_{n}=\frac{\partial\Phi}{\partial n}=0\\
+\mathbf{u}_{lokal}=\left(\begin{array}{c}
+u_{l}\\
+u_{m}\\
+u_{n}
+\end{array}\right),\quad\mathbf{u}_{global}=\left(\begin{array}{ccc}
+l_{x} & m_{x} & n_{x}\\
+l_{y} & m_{y} & n_{y}\\
+l_{z} & m_{z} & n_{z}
+\end{array}\right)\cdot\mathbf{u}_{lokal}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/10_geschwindigkeit.pdf
+	lyxscale 80
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Veranschaulichung der Gradientenberechnung
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Berechnung der Geschwindigkeit im Strömungsfeld
+\end_layout
+
+\begin_layout Standard
+Die Geschwindigkeit um den umströmten Körper kann durch direkte Bildung
+ des Gradienten der Einflussfunktionen der Randelemente erlangt werden.
+ Hierzu wird der Geschwindigkeitseinfluss jedes Panels 
+\begin_inset Formula $j$
+\end_inset
+
+ auf einen Punkt im Feld aufsummiert.
+ Exemplarisch wird hier der Geschwindigkeitseinfluss eines Dipol-Panels
+ ermittelt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\mathbf{u}=\nabla\int\limits _{S}\Phi\frac{\partial\Psi}{\partial n}dA\\
+\mathbf{u}=\sum_{i=1}^{N}\Phi_{i}\intop_{S}\nabla\left(\frac{\partial\Psi}{\partial n}\right)_{j}dA=\Phi_{i}\intop_{S}\nabla\left(\mathbf{n}\cdot\nabla\Psi_{i}\right)dA\nonumber \\
+\mathbf{u}_{i}=\Phi_{i}\intop_{S}\left(\nabla\times\mathbf{n}\right)\times\nabla\Psi_{i}dA
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Diese Formulierung kann mittels des Satzes von Stokes auf ein Linienintegral
+ gebracht werden.
+ Das Ergebnis ist equivalent zu einem geschlossenem Wirbelring 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 248f., Abb. 10.15"
+key "LSA"
+
+\end_inset
+
+.
+ Die Gleichungen wurden aus VSAERO 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 41f."
+key "vsaero"
+
+\end_inset
+
+ entnommen und um Zwischenschritte erweitert.
+ Die verwendeten Symbole sind in Abbildung 11 dargestellt.
+ Das gezeigte Panel wird durch 
+\begin_inset Formula $N_{c,j}$
+\end_inset
+
+ Linien begrenzt und es wird eine Summe (Gleichung 43) über alle Seiten
+ 
+\begin_inset Formula $C_{i}$
+\end_inset
+
+ gebildet.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/11_geschwindigkeit.pdf
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Notation für Variablenbenennung 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\intop_{S}\left(\nabla\times\mathbf{n}\right)\times\nabla\left(\Psi_{i}\right)dA=\ointop_{C}\nabla\left(\Psi_{i}\right)\times d\mathbf{l}=\frac{1}{4\pi}\ointop_{C}\nabla\left(\frac{1}{r}\right)\times d\mathbf{l}=\nonumber \\
+=\frac{1}{4\pi}\ointop_{C}\frac{\mathbf{r}\times\mathbf{l}}{r^{3}l}dl=\sum_{j=1}^{N_{ci}}\frac{1}{4\pi}\frac{\mathbf{r}\times\mathbf{l}}{l}\intop_{C_{j}}\frac{1}{r^{3}}dx\\
+\frac{\mathbf{r}\times\mathbf{l}}{l}\intop_{C_{j}}\frac{1}{r^{3}}dx=\frac{\mathbf{r}\times\mathbf{l}}{l}\intop_{x_{1}}^{x_{2}}\frac{1}{\sqrt{x^{2}+y^{2}}^{3}}dx=\frac{\mathbf{r}\times\mathbf{l}}{y^{2}l}\bigg|\frac{x}{r\left(x\right)}\bigg|_{x_{1}}^{x_{2}}\nonumber \\
+\mathbf{l}=\mathbf{a-b}\quad y=\frac{\mid\mathbf{a}\times\mathbf{b}\mid}{l}\nonumber \\
+x_{1}=\frac{\mathbf{a}\cdot\mathbf{l}}{l}\quad x_{2}=\frac{\mathbf{b}\cdot\mathbf{l}}{l}\nonumber 
+\end{align}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\frac{\mathbf{r}\times\mathbf{l}}{y^{2}l}=-\frac{\mathbf{a}\times\mathbf{b}}{l}\frac{l^{2}}{\mid\mathbf{a}\times\mathbf{b}\mid^{2}}=-\frac{l\left(\mathbf{a}\times\mathbf{b}\right)}{\mid\mathbf{a}\times\mathbf{b}\mid^{2}}=-\frac{l\left(\mathbf{a}\times\mathbf{b}\right)}{a^{2}b^{2}-\mathbf{\left(\mathbf{a\cdot}b\right)}^{2}}=-\frac{l\left(\mathbf{a}\times\mathbf{b}\right)}{\left(ab+\mathbf{\mathbf{a\cdot}b}\right)\left(ab-\mathbf{\mathbf{a\cdot}b}\right)}\\
+\bigg|\frac{x}{r\left(x\right)}\bigg|_{x_{1}}^{x_{2}}=\frac{\mathbf{b}\cdot\mathbf{l}}{b\,l}-\frac{\mathbf{a}\cdot\mathbf{l}}{a\,l}=\frac{\mathbf{l}}{l}\cdot\left(\frac{\mathbf{b}}{b}-\frac{\mathbf{a}}{a}\right)=\frac{\mathbf{b}-\mathbf{a}}{l}\cdot\left(\frac{\mathbf{b}}{b}-\frac{\mathbf{a}}{a}\right)=\left(\frac{b+a}{l}\right)\left(\frac{ab-\mathbf{a}\cdot\mathbf{b}}{ab}\right)\\
+\text{(42, 43, 44, 45): }\mathbf{\quad u}_{i}=-\frac{\Phi_{i}}{4\pi}\sum_{j=1}^{N_{c,i}}\frac{\left(\mathbf{a}\times\mathbf{b}\right)}{\mid\mathbf{a}\times\mathbf{b}\mid^{2}}\left(\mathbf{l}\cdot\left(\frac{\mathbf{b}}{b}-\frac{\mathbf{a}}{a}\right)\right)=-\frac{\Phi_{i}}{4\pi}\sum_{j=1}^{N_{c,i}}\frac{\left(\mathbf{a}\times\mathbf{b}\right)\left(a+b\right)}{\left(ab+\mathbf{\mathbf{a\cdot}b}\right)\left(ab\right)}
+\end{align}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+=\frac{a\times b}{\mid a\times b\mid^{2}}\left(\frac{-b.b+a.b}{\mid b\mid}-\frac{-a.b+a.a}{\mid a\mid}\right)=\frac{a\times b}{\mid a\times b\mid^{2}}\left(-\left(\mid b\mid+\mid a\mid\right)+a.b\left(\frac{\mid a\mid+\mid b\mid}{\mid b\mid\mid a\mid}\right)\right)=\\
+\frac{a\times b\cdot\left(\mid b\mid+\mid a\mid\right)}{\mid a\times b\mid^{2}}\cdot\frac{a.b-\mid b\mid\mid a\mid}{\mid b\mid\mid a\mid}\\
+mit\;\left(a\times b\right)\cdot\left(a\times b\right)=\left(a+b-a\cdot b\right)\left(A\cdot B+a.b\right)\\
+u_{i}=\frac{1}{4\pi}\frac{a\times b\cdot\left(\mid a\mid+\mid b\mid\right)}{\mid a\mid\cdot\mid b\mid\left(\mid a\mid\cdot\mid b\mid\right)}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Druck, Kräfte und Momente
+\end_layout
+
+\begin_layout Subsection
+Druckbeiwert
+\end_layout
+
+\begin_layout Standard
+Ist die Geschwindigkeit bekannt, kann aus der Bernoulligleichung der Druck
+ auf jedes Panel berechnet werden.
+ Es ergibt sich der Druck zu 
+\begin_inset Formula $p=\frac{\left(u_{\infty}^{2}-\mathbf{u}\cdot\mathbf{u}\right)\cdot\rho}{2}+p_{\infty}$
+\end_inset
+
+ und der Druckbeiwert lautet 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $c_{P}=\frac{2\cdot(p-p_{\infty})}{\rho\cdot U_{\infty}^{2}}=1-\frac{\mathbf{u}\cdot\mathbf{u}}{u_{\infty}^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Auftriebskraft und induzierter Widerstand
+\end_layout
+
+\begin_layout Itemize
+Aufsummieren der Drücke über das Panel liefert die resultierende Kraft,
+ die in Auftrieb 
+\begin_inset Formula $F_{A}$
+\end_inset
+
+ und induzierten Widerstand 
+\begin_inset Formula $F_{Wi}$
+\end_inset
+
+ aufgeteilt werden kann.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Diese Methode hat leider einige Schwierigkeiten den induzierten Widerstand
+ zu bestimmen.
+ Dies ist hauptsächlich durch die Geschwindigkeitsberechnung mittels der
+ Gradientenmethode zu begründen.
+\end_layout
+
+\begin_layout Itemize
+Eine andere Möglichkeit stellt die Berechnung der Kräfte über die Trefftz-Ebene
+ dar.
+ Hierbei wird eine Box um den umströmten Körper gelegt und der Impulssatz
+ für diese aufgestellt.
+ Durch einige Vereinfachungen kann die Berechnung ausschließlich an der
+ Schnittlinie von Nachlauf und der Box erfolgen.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S 201ff"
+key "LSA"
+
+\end_inset
+
+ (
+\emph on
+Abbildung 12
+\emph default
+)
+\begin_inset Newline newline
+\end_inset
+
+Für eine korrekte Implementierung müsste der Nachlauf 
+\begin_inset Quotes eld
+\end_inset
+
+aufgerollt
+\begin_inset Quotes erd
+\end_inset
+
+ werden, sodass er die in 2.5 (4) eingeführte Bedingung (Parallelität zur
+ Stromlinie) erfüllt.
+ Im erstellten Programm wird aber mit einem unverformten Nachlauf gerechnet.
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/12_trefftz.png
+	lyxscale 30
+	scale 15
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Trefftz Ebene
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Momente
+\end_layout
+
+\begin_layout Standard
+Die Momente werden aus der Druckkraft auf ein Panel und dem Abstand zu einem
+ Referenzpunkt gebildet.
+ Die Summe liefert das resultierende Moment, welches in die drei Komponenten
+ Nickmoment 
+\begin_inset Formula $M_{N}$
+\end_inset
+
+ in y-Richtung, Giermoment in z-Richtung und Rollmoment in x-Richtung aufgeteilt
+ werden kann.
+ (vgl.
+ 
+\emph on
+Abbildung 14
+\emph default
+)
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Abbildung 13 
+\emph default
+zeigt einige Möglichkeiten den Nachlauf zu modellieren.
+ Die Auftriebs- und Widerstandswerte wurden durch Aufsummieren des Drucks
+ am Körper ermittelt.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Kräfte!!!
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../Abbildungen/png/13_1_wake-parallel-vinf.png
+	lyxscale 20
+	scale 9
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../Abbildungen/png/13_2_wake-parallel-x.png
+	lyxscale 20
+	scale 9
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../Abbildungen/png/13_2_wake-rollup.png
+	lyxscale 20
+	scale 9
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{A}[N]=995.13$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{A}[N]=974.28$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{A}[N]=970.85$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{Wi}[N]=61.95$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{Wi}[N]=63.28$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+\begin_inset Formula $F_{Wi}[N]=62.61$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Verschiedene Modelle für den Nachlauf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Dimensionslose Beiwerte
+\end_layout
+
+\begin_layout Standard
+Um die Ergebnisse besser vergleichen zu können, werden die Kräfte und Momente
+ dimensionslos gemacht.
+ Die Referenzgrößen sind die Anströmgeschwindigkeit 
+\begin_inset Formula $U_{\infty}$
+\end_inset
+
+, der Druck weit entfernt vom Körper 
+\begin_inset Formula $p_{\infty},$
+\end_inset
+
+ und eine Referenzfläche 
+\begin_inset Formula $A_{R}$
+\end_inset
+
+, die zumeist die projizierte Fläche eines Flügels ist.
+ Momente werden zusätzlich noch auf eine charakteristische Länge 
+\begin_inset Formula $L$
+\end_inset
+
+ bezogen.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+In dieser Arbeit werden Momente mit einer Länge 
+\begin_inset Formula $L=1$
+\end_inset
+
+ normiert.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Mit diesen Referenzdaten ergeben sich die folgenden für die Aufgabenstellung
+ relevanten Beiwerte.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "aero_skript"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\text{Widerstandsbeiwert: } & c_{W}=\frac{F_{W}}{\frac{\rho}{2}u_{\infty}^{2}A_{R}}\\
+\text{Auftriebsbeiwert: } & c_{A}=\frac{F_{A}}{\frac{\rho}{2}u_{\infty}^{2}A_{R}}\\
+\text{Nickmomentbeiwert: } & c_{N}=\frac{M_{N}}{\frac{\rho}{2}U_{\infty}^{2}A_{R}L}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Validierung der Panel-Methode gegen Analytische Lösungen der Potentialströmung
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+hier eine überleitung von panelmethode zur analytischen analyse der potentialstr
+ömung!!!!!!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In den vorangegangenen Abschnitten wurde eine Panel-Methode theoretisch
+ beschrieben.
+ Diese wurde in einem Programm umgesetzt welches die Potentialstömung um
+ auftriebsbehaftete geschlossene Konturen berechnet.
+ Zusätzlich können auch ebene Problemstellungen, die im theoretischen Teil
+ dieser Arbeit nicht behandelt wurden, eingebaut werden.
+ Mit dem erstellten Programm lassen sich Geschwindigkeits- und Druckverteilung
+ an der Oberfläche wie auch in der Umgebung eines umströmten Körpers berechnen.
+ Weiters können Auftrieb, Momente und der induzierte Widerstand ermittelt
+ werden.
+ Damit steht ein Werkzeug zur schnellen Ermittlung von wichtigen Parametern
+ für den Entwurf von Gleitschirmen zur Verfügung.
+ Dieses soll im zweiten Teil an einem Referenzgleitschirm zur Anwendung
+ kommen.
+ Zur Sicherstellung der Zuverlässigkeit wird zunächst das erstellte Programm
+ mittels bekannter Lösungen für Potentialströmung validiert.
+\end_layout
+
+\begin_layout Subsection
+Konforme Abbildungen
+\end_layout
+
+\begin_layout Subsubsection
+Joukowsky Abbildung
+\end_layout
+
+\begin_layout Standard
+Die Joukowsky Abbildung ist eine konforme Abbildung, die einen Kreis auf
+ ein Tragflügelprofil abbildet.
+ Das Profil wird durch zwei Parameter, die den Mittelpunkt des Kreises beschreib
+en, variiert.
+ Die Imaginär-Komponente des Mittelpunktes verändert die Wölbung und der
+ Realteil die Dicke.
+\end_layout
+
+\begin_layout Standard
+Die verwendete Abbildungsfunktion lautet: 
+\begin_inset Formula $\boldsymbol{\zeta}=f(\mathbf{z})=\mathbf{z}+\frac{1}{\mathbf{z}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/14_joukowsky.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Darstellung eines Kreises in der 
+\begin_inset Formula $\mathbf{z}$
+\end_inset
+
+-Ebene und seiner konformen Abbildung in der 
+\begin_inset Formula $\boldsymbol{\zeta}$
+\end_inset
+
+-Ebene
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Geschwindigkeit
+\end_layout
+
+\begin_layout Standard
+Das komplexe Geschwindigkeitspotential für den Zylinder erhält man durch
+ Überlagern eines Dipols, einer Parallelströmung und eines Wirbels.
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "S. 60 ff."
+key "LSA"
+
+\end_inset
+
+ Die Dipolstärke wird so gewählt, dass die Normal-Komponente der Geschwindigkeit
+ auf der Kreiskontur verschwindet.
+ Das Geschwindigkeitspotential 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 129, (6.25)"
+key "LSA"
+
+\end_inset
+
+ ergibt sich zu:
+\begin_inset Formula 
+\begin{align}
+\mathbf{W}\left(\mathbf{z}\right)=u_{\infty}e^{-i\alpha}\mathbf{z}+u_{\infty}e^{i\alpha}\frac{r_{K}^{2}}{\mathbf{z}-\mathbf{m}}+i\frac{\Gamma}{2\pi}ln\left(\mathbf{z}-\mathbf{m}\right)\\
+\frac{d\mathbf{W}}{d\mathbf{z}}=u_{\infty}e^{-i\alpha}-u_{\infty}e^{i\alpha}\frac{r_{K}^{2}}{\left(\mathbf{z}-\mathbf{m}\right)^{2}}+i\frac{\Gamma}{2\pi}\frac{1}{\mathbf{z}-\mathbf{m}}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Geschwindigkeit in der 
+\begin_inset Formula $\boldsymbol{\zeta}$
+\end_inset
+
+-Ebene erhält man durch Ableiten des komplexen Geschwindigkeitspotentials
+ 
+\begin_inset Formula $W$
+\end_inset
+
+ nach 
+\begin_inset Formula $\boldsymbol{\zeta}$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\begin{align}
+\frac{d\mathbf{W}}{d\zeta}=\frac{d\mathbf{W}}{d\mathbf{z}}\frac{d\mathbf{z}}{d\zeta}\\
+\frac{d\mathbf{z}}{d\boldsymbol{\zeta}}=\frac{1}{\frac{d\boldsymbol{\zeta}}{d\mathbf{z}}}=\frac{1}{\frac{\mathbf{z}^{2}-1}{\mathbf{z}^{2}}}=\frac{\mathbf{z}^{2}}{\mathbf{z}^{2}-1}\\
+\frac{d\mathbf{W}}{d\boldsymbol{\zeta}}=\frac{\mathbf{z}^{2}}{\mathbf{z}^{2}-1}\left(u_{\infty}e^{-i\alpha}-u_{\infty}e^{i\alpha}\frac{r_{K}^{2}}{\left(\mathbf{z}-\mathbf{m}\right)^{2}}+i\frac{\Gamma}{2\pi}\frac{1}{\mathbf{z}-\mathbf{m}}\right)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Kutta Bedingung
+\end_layout
+
+\begin_layout Standard
+Die Auftriebskraft wird über die Erfüllung der Kutta-Bedingung errechnet.
+ Diese Bedingung fordert einen glatten Abfluss der Strömung an der Hinterkante,
+ damit die Geschwindigkeit an der Hinterkante nicht unendlich wird.
+ Daher fordert man 
+\begin_inset Formula $\frac{d\mathbf{W}}{d\mathbf{z}}\mid_{\mathbf{z}-\mathbf{m}=r_{K}e^{-i\beta}}=0$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\begin{align}
+\frac{d\mathbf{W}}{d\mathbf{z}}\mid_{\mathbf{z}-\mathbf{m}=r_{K}\cdot e^{-i\beta}}=u_{\infty}e^{-i\alpha}-u_{\infty}e^{i\alpha}\frac{1}{e^{-2i\beta}}+i\frac{\Gamma}{2\pi}\frac{1}{r_{K}e^{-i\beta}}=0\\
+\Gamma=\frac{2\pi r_{K}}{i}u_{\infty}\left(-e^{-i\alpha}e^{-i\beta}+e^{i\alpha}e^{i\beta}\right)=\frac{2\pi r_{K}}{i}u_{\infty}\left(-e^{-i\left(\alpha+\beta\right)}+e^{i\left(\alpha+\beta\right)}\right)=\nonumber \\
+=\frac{2\pi r_{K}}{i}u_{\infty}\left(cos\left(\alpha+\beta\right)+i\:sin\left(\alpha+\beta\right)-cos\left(\alpha+\beta\right)+i\:sin\left(\alpha+\beta\right)\right)\nonumber \\
+\Gamma=4\pi r_{K}u_{\infty}sin\left(\alpha+\beta\right)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Geschwindigkeitsverteilung in der 
+\begin_inset Formula $\boldsymbol{\zeta}$
+\end_inset
+
+-Ebene ist nun gegeben durch:
+\begin_inset Formula 
+\begin{align}
+\frac{d\mathbf{W}}{d\boldsymbol{\zeta}}=u_{\infty}\frac{\mathbf{z}^{2}}{\mathbf{z}^{2}-1}\left(e^{-i\alpha}-e^{i\alpha}\frac{r_{K}^{2}}{\left(\mathbf{z}-\mathbf{m}\right)^{2}}+i\frac{2\cdot r_{K}sin\left(\alpha+\beta\right)}{\mathbf{z}-\boldsymbol{m}}\right)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Geschwindigkeit auf der Kreiskontur 
+\begin_inset Formula $\mathbf{z}-\mathbf{m}=r_{K}\,e^{i\chi}$
+\end_inset
+
+ ergibt sich zu:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\frac{d\mathbf{W}}{d\mathbf{z}}\bigg|_{\mathbf{z}=\mathbf{m}+r_{K}\,e^{i\chi}}=u_{\infty}\left(e^{-i\alpha}-e^{i\alpha}e^{-2i\chi}+2\,i\,sin\left(\alpha+\beta\right)e^{-i\chi}\right)=\nonumber \\
+=u_{\infty}e^{-i\chi}\left(e^{-i\left(\alpha-\chi\right)}-e^{i\left(\alpha-\chi\right)}+2\,i\,sin\left(\alpha+\beta\right)\right)=\nonumber \\
+=u_{\infty}e^{-i\chi}\left(2\,i\,sin\left(\alpha-\chi\right)+2\,i\,sin\left(\alpha+\beta\right)\right)=\nonumber \\
+=2\,i\,u_{\infty}e^{-i\chi}\left(-sin\left(\alpha-\chi\right)+sin\left(\alpha+\beta\right)\right)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Geschwindigkeit für die Joukowsky Abbildung lautet damit:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\frac{d\mathbf{W}}{d\mathbf{z}}\frac{d\mathbf{z}}{d\boldsymbol{\zeta}}\bigg|_{\mathbf{z}=\mathbf{m}+r\cdot e^{i\chi}}=2\,i\,u_{\infty}e^{-i\chi}\left(-sin\left(\alpha-\chi\right)+sin\left(\alpha+\beta\right)\right)\frac{\left(\mathbf{m}+r_{K}\,e^{i\chi}\right)^{2}}{\left(\mathbf{m}+r_{K}\,e^{i\chi}\right)^{2}-1}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Geschwindigkeit an der Hinterkante kann mit der Regel von L’Hospital
+ ermittelt werden.
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "S 130"
+key "LSA"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\lim_{\mathbf{z}\rightarrow1}\frac{d\mathbf{W}}{d\mathbf{z}}\frac{d\mathbf{z}}{d\boldsymbol{\zeta}}=\lim_{\mathbf{z}\rightarrow1}\frac{d^{2}\mathbf{W}}{d\mathbf{z}^{2}}/\frac{d^{2}\boldsymbol{\zeta}}{d\mathbf{z}^{2}}\\
+\frac{d^{2}\mathbf{W}}{d\mathbf{z}^{2}}\bigg|_{\mathbf{z}=1}=u_{\infty}\left(\frac{2\,e^{i\alpha}\,r_{K}^{2}}{\left(r_{K}\,e^{-i\beta}\right)^{3}}-i\frac{2\,r_{K}\,sin\left(\alpha+\beta\right)}{\left(r_{K}\,e\right)^{2}}\right)=\frac{2}{r_{K}}\frac{u_{\infty}}{e^{-2i\beta}}\left(e^{i\left(\alpha+\beta\right)}-i\,sin\left(\alpha+\beta\right)\right)\nonumber \\
+\frac{d^{2}\boldsymbol{\zeta}}{d\mathbf{z}^{2}}\bigg|_{\mathbf{z}=1}=\frac{2}{\mathbf{z}^{3}}\bigg|_{\mathbf{z}=1}=2\nonumber \\
+\lim_{\mathbf{z}\rightarrow1}\frac{d\mathbf{W}}{d\mathbf{z}}\frac{d\mathbf{z}}{d\boldsymbol{\zeta}}=u_{\infty}\cdot e^{2i\beta}\left(e^{i\left(\alpha+\beta\right)}-i\cdot sin(\alpha+\beta)\right)\frac{1}{r_{K}}=u_{\infty}\cdot e^{2i\beta}\cdot cos\left(\alpha+\beta\right)\frac{1}{r_{K}}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die 
+\emph on
+Abbildung 15
+\emph default
+ zeigt die berechnete Geschwindigkeitsverteilung für ein Joukowsky Profil
+ unter einem Anstellwinkel von 
+\begin_inset Formula $10\text{°}$
+\end_inset
+
+.
+ Die Methode mit Dirichletrandbedingung und konstanten Dipolpanels weist
+ eine deutliche Abweichung von der analytischen Lösung auf.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../../../ppm_tests/plots/results/2d/joukowsky.png
+	lyxscale 50
+	scale 54
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vergleich analytische Lösung mit div.
+ Panelmethoden
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An der ebenen Geschwindigkeitsverteilung 
+\emph on
+Abbildung 16
+\emph default
+ wird ersichtlich, wie diese Abweichung zustande kommt.
+ Durch die dünne Endkante an den Joukowsky-Profilen beeinflussen sich die
+ dort platzierten Wirbel.
+ Zwar wird im Mittelpunkt jedes Panels die Randbedingung erfüllt, dazwischen
+ sieht man aber starke Abweichungen welche eine Abströmung nicht parallel
+ zur Hinterkante zur Folge haben.
+ Dadurch kommt es zu einem erhöhten Auftrieb welcher in 
+\emph on
+Abbildung 15
+\emph default
+ zu sehen ist.
+ Dieser Fehler kann verringert werden, indem man die horizontale Position
+ der Panelendpunkte an Ober- und Unterseite gleich wählt.
+\begin_inset Newline newline
+\end_inset
+
+Die Methode mit zusätzlichen Quellen-Panels zeigt ein besseres Verhalten,
+ was durch geringere Wirbelstärken begründet ist.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/16_joukowsky_fehler.png
+	lyxscale 10
+	scale 25
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fehler durch eine schmale Hinterkante
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Analytische Lösung für die Umströmung einer Kugel
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/17_kugel-analytisch.png
+	lyxscale 40
+	scale 200
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Umströmung einer Kugel
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Überlagerung von Einzelströmungen
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Durch Überlagern mehrerer Einzellösungen der Laplace-Gleichung kann ein
+ Strömungsfeld um eine Kugel analytisch berechnet werden.
+ Gesucht wird dabei eine Geschwindigkeitsverteilung, gemäß derer die Stromlinien
+ genau der Kugeloberfläche folgen und weit entfernt von der Kugel eine Parallels
+trömung vorliegt, das heißt 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+hier noch zum Symbolverzeichnis symbole hinzufügen
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{align}
+\Delta\Phi=0\nonumber \\
+r=\sqrt{x^{2}+y^{2}+z^{2}}\nonumber \\
+\frac{\partial\Phi}{\partial x}\bigg|_{r\rightarrow\infty}=u_{\infty}\qquad\frac{\partial\Phi}{\partial y}\bigg|_{r\rightarrow\infty}=0\qquad\frac{\partial\Phi}{\partial z}\bigg|_{r\rightarrow\infty}=0\qquad\frac{\partial\Phi}{\partial r}\mid_{r=r_{K}}=0
+\end{align}
+
+\end_inset
+
+Die Lösung kann aus einer Parallelströmung und einem Dipol zusammengesetzt
+ werden.
+ Beide sind sie Lösungen der Laplace-Gleichung.
+\begin_inset Formula 
+\begin{align}
+\Phi=u_{\infty}cos\theta\,r+\frac{\mu\,cos\theta}{4\pi r}
+\end{align}
+
+\end_inset
+
+Die Dipolstärke lässt sich über die Randbedingung errechnen:
+\begin_inset Formula 
+\begin{align}
+\frac{\partial\Phi}{\partial r}\bigg|_{r=r_{K}}=u_{\infty}cos\left(\theta\right)-\frac{\mu\,cos\theta}{2\pi r^{3}}\bigg|_{r=r_{K}}=\nonumber \\
+=u_{\infty}cos\left(\theta\right)-\frac{\mu}{2\pi r_{K}^{3}}cos\theta=0\nonumber \\
+\mu=2\,u_{\infty}r_{K}^{3}\pi
+\end{align}
+
+\end_inset
+
+Das Potential ist somit gegeben durch:
+\begin_inset Formula 
+\begin{align}
+\Phi=u_{\infty}cos\theta(r+\frac{r_{K}^{3}}{2r^{2}})
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Lösung mittels Trennung der Veränderlichen
+\end_layout
+
+\begin_layout Standard
+Die Laplace-Gleichung in Kugelkoordinaten lautet:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\Delta\Phi=\frac{1}{r^{2}}\frac{\partial}{\partial r}\left(r^{2}\frac{\partial\Phi}{\partial r}\right)+\frac{1}{r^{2}sin\chi}\frac{\partial}{\partial\chi}\left(sin\chi\frac{\partial\Phi}{\partial\chi}\right)+\frac{1}{r^{2}sin^{2}\chi}\frac{\partial^{2}\Phi}{\partial\theta^{2}}=0
+\end{align}
+
+\end_inset
+
+Gesucht wird eine axialsymmetrische Lösung 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\frac{\partial\Phi}{\partial\theta}=0$
+\end_inset
+
+ .
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\Delta\Phi=\frac{\partial}{\partial r}\left(r^{2}\frac{\partial\Phi}{\partial r}\right)+\frac{1}{sin\chi}\frac{\partial}{\partial\chi}\left(sin\chi\frac{\partial\Phi}{\partial\chi}\right)=0\\
+2r\frac{\partial\Phi}{\partial r}+r^{2}\frac{\partial^{2}\Phi}{\partial r^{2}}+\frac{1}{sin\chi}\left(cos\chi\frac{\partial\Phi}{\partial\chi}+sin\chi\frac{\partial^{2}\Phi}{\partial\chi^{2}}\right)=0
+\end{align}
+
+\end_inset
+
+Durch den Ansatz 
+\begin_inset Formula $\Phi=P\left(r\right)F\left(\chi\right)$
+\end_inset
+
+ kann man die Gleichung in zwei Terme aufspalten, die jeweils nur von einer
+ Variablen abhängen.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\frac{2rP'\left(r\right)+r^{2}P''\left(r\right)}{P\left(r\right)}+\frac{cos\chi\,F'\left(\chi\right)+sin\chi\,F''\left(\chi\right)}{sin\theta\,F\left(\chi\right)}=0
+\end{align}
+
+\end_inset
+
+Die Randbedingung weit entfernt vom umströmten Körper 
+\begin_inset Formula $\Phi_{r\rightarrow\infty}=r\,u_{\infty}cos\chi$
+\end_inset
+
+ muss von 
+\begin_inset Formula $\Phi$
+\end_inset
+
+ und somit von dem Produkt 
+\begin_inset Formula $P\left(r\rightarrow\infty\right)F\left(\chi\right)$
+\end_inset
+
+ erfüllt werden.
+ Ein Vergleich der beiden Seiten liefert: 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+P\left(r\rightarrow\infty\right)=r,\:F\left(\chi\right)=u_{\infty}cos\chi
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $F\left(\chi\right)$
+\end_inset
+
+ ist somit bestimmt als 
+\begin_inset Formula $cos\chi$
+\end_inset
+
+ und kann in den Ansatz (69) eingesetzt werden.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\frac{cos\chi F'\left(\chi\right)+sin\chi F''\left(\chi\right)}{sin\chi F\left(\chi\right)}=-2
+\end{align}
+
+\end_inset
+
+Damit bleibt nur noch der erste Teil der Differentialgleichung zu lösen.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+2r\cdot P'\left(r\right)+r^{2}P''\left(r\right)-2P\left(r\right)=0
+\end{align}
+
+\end_inset
+
+Diese gewöhnliche Differentialgleichung kann durch den Ansatz 
+\begin_inset Formula $P\left(r\right)=r^{c}\cdot C_{1}$
+\end_inset
+
+ gelöst werden.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+P\left(r\right)=r^{c}\cdot C_{1}\\
+P'\left(r\right)=c\cdot r^{c-1}\cdot C_{1}\\
+P''\left(r\right)=\left(c^{2}-c\right)\cdot r^{c-2}\cdot C_{1}
+\end{align}
+
+\end_inset
+
+Dieser Ansatz führt zu der Gleichung 
+\begin_inset Formula $c^{2}-c+2c-2=0$
+\end_inset
+
+, deren Lösung 
+\begin_inset Formula $c_{1}=1\quad c_{2}=-2$
+\end_inset
+
+ zu folgendem Ergebnis führt:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+P\left(r\right)=r\,C_{1}+\frac{C_{2}}{r^{2}}
+\end{align}
+
+\end_inset
+
+Mit (70) folgt:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+P\left(r\rightarrow\infty\right)=r\,C_{1}=r\rightarrow C_{1}=1
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Weiters soll die Normalgeschwindigkeit am Körper verschwinden:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+P'\left(r=r_{s}\right)=1-\frac{2C_{2}}{r^{3}}=0\rightarrow C_{2}=\frac{r_{K}^{3}}{2}
+\end{align}
+
+\end_inset
+
+Dies führt zum selben Ergebnis, das durch Überlagerung von Dipol und Parallelstr
+ömung (65) berechnet wurde:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\Phi=P\left(r\right)F\left(\chi\right)=u_{\infty}cos\chi(r+\frac{r_{K}^{3}}{2r^{2}})
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Geschwindigkeit und Druck auf der Oberfläche
+\end_layout
+
+\begin_layout Standard
+Ausgehend vom Potential auf der Oberfläche wird die Geschwindigkeit in Tangentia
+lrichtung berechnet.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\Phi_{r=R}=u_{\infty}cos\chi(r_{s}+\frac{r_{s}}{2})=u_{\infty}cos\chi\frac{3r_{s}}{2}\nonumber \\
+u_{\chi}=\frac{1}{r}\frac{\partial\Phi}{\partial\chi}\mid_{r=r_{s}}=-\frac{3}{2}u_{\infty}sin\chi
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nun kann der Druckbeiwert aus der Bernoulli-Gleichung ermittelt werden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Quelle Herleitung für BGL
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+p\left(\chi\right)+\frac{u\left(\chi\right){}^{2}\cdot\rho}{2}=p_{\infty}+\frac{u_{\infty}^{2}\cdot\rho}{2}\\
+p\left(\chi\right)-p_{\infty}=\frac{(u_{\infty}^{2}-u\left(\chi\right){}^{2})\cdot\rho}{2}\\
+c_{P}=\frac{2\cdot(p\left(\chi\right)-p_{\infty})}{\rho\cdot u_{\infty}^{2}}=1-\frac{u\left(\chi\right){}^{2}}{u_{\infty}^{2}}\\
+c_{p}=1-\frac{\frac{9}{4}\cdot u_{\infty}^{2}\:sin^{2}\chi\:R^{2}}{u_{\infty}^{2}}=1-\frac{9}{4}sin^{2}\chi
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Um dieses Ergebnis mit der Panelmethode vergleichen zu können wird zunächst
+ die Geometrie der Kugel durch Dreiecke approximiert.
+ Diese Vernetzung besteht aus 320 Panels und ist in 
+\emph on
+Abbildung 18
+\emph default
+ ersichtlich.
+ Die Lösung wird mittels der reinen Dipolmethode (konstantes 
+\begin_inset Formula $\mu$
+\end_inset
+
+ auf jedem Panel) berechnet.
+ 
+\emph on
+Abbildung 19
+\emph default
+ zeigt die Abweichungen des numerischen Ergebnisses verglichen mit der analytisc
+hen Lösung.
+ Für die Fehler ist einerseits die mit 320 Panels relativ geringe Genauigkeit
+ der Geometrie verantwortlich, anderseits kommt es auch durch die Gradientenbere
+chnung zu Abweichungen von der analytischen Lösung.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/18_kugel-numerisch.png
+	lyxscale 15
+	scale 15
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Geometrie und berechnete Geschwindigkeitsverteilung für eine mittels Dreiecken
+ approximierte Kugeloberfläche
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/lo/projects/pm/ppm_tests/plots/results/3d/sphere_error_pot.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/lo/projects/pm/ppm_tests/plots/results/3d/sphere_error_vel.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/lo/projects/pm/ppm_tests/plots/results/3d/sphere_error_cp.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vergleich der Panelmethode mit der analytischen Lösung für eine Kugel
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Praktischer Einsatz der Methode für Gleitschirme
+\end_layout
+
+\begin_layout Standard
+Im zweiten Teil dieser Arbeit soll das erarbeitete Programm zur Berechnung
+ der Umströmung von Gleitschirmen verwendet werden.
+ Hierfür wird ein gewähltes Referenzobjekt erstellt und mithilfe des Programmes
+ auf zwei Kriterien untersucht.
+ Es wird das dynamische Verhalten des Schirms bei Anstellwinkelveränderungen
+ analysiert.
+ Außerdem wird die Minimierung des induzierten Widerstands durch Variation
+ der Geometrie betrachtet.
+\end_layout
+
+\begin_layout Section
+Referenzobjekt
+\end_layout
+
+\begin_layout Subsection
+Basisdaten
+\end_layout
+
+\begin_layout Standard
+Zunächst soll ein Referenzobjekt definiert werden.
+ Es wird ein Gleitschirm mit geringer Streckung
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Die Streckung ist eine Kenngröße, die die Schlankheit eines Tragflügels
+ angibt.
+ Sie wird durch das Verhältnis von Spannweite zum Quadrat zur Fläche gebildet.
+\end_layout
+
+\end_inset
+
+ und geringer Zellenzahl gewählt.
+ Die folgenden Daten werden als gegeben angenommen.
+ Sie entsprechen den Anforderungen an einen Gleitschirm, der als möglichst
+ leichter und sicherer Schirm für Bergtouren Anwendung finden könnte.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Wrap figure
+lines 1
+placement r
+overhang 1in
+width "70col%"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align left
+\begin_inset Graphics
+	filename ../Abbildungen/png/20_referenzmodell.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modell des Referenzobjektes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Masse gesamt: 
+\begin_inset Formula $m=100kg$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Basisgeschwindigkeit: 
+\begin_inset Formula $u_{\infty}=11\frac{m}{s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Fläche des flach ausgebreiteten Schirms 
+\begin_inset Formula $A=23m^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Streckung 
+\begin_inset Formula $\Lambda=5$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Zellenanzahl: 
+\begin_inset Formula $n_{Z}=35$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ziel Gleitzahl
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Die Gleitzahl entspricht dem Verhältnis von horizontaler und vertikaler
+ Geschwindigkeit.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\epsilon=8$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Wirkung der Seile und des Piloten wird nicht berücksichtigt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Auswirkung von Anstellwinkeländerungen auf Gleitschirmsysteme
+\end_layout
+
+\begin_layout Standard
+Eine Änderung des Anstellwinkels hat eine Änderung der wirkenden Kräfte
+ und Momente zur Folge.
+ Für den Gleitschirm ist unter anderem das Verhalten des Nickmoments interessant.
+ Das Nickmoment bezeichnet das resultierende Moment aller am Schirm wirkenden
+ Kräfte um die Querachse
+\emph on
+.
+ In Abbildung 21
+\emph default
+ erkennt man die Richtung des Nickmomentes und die Position des Referenzpunktes.
+ Dieser wird unterhalb des Schirms auf Einhänghöhe des Piloten gesetzt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/21_nickmoment.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Referenzpunkt und Nickmomentrichtung
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Im nächsten Schritt wird der Nickmomentverlauf exemplarisch für das Referenzmode
+ll analysiert.
+ Die in 
+\emph on
+Abbildung 22
+\emph default
+ gezeigten Ergebnisse sind mit Hilfe der erarbeiteten Panelmethode berechnet.
+ Die Kurven bilden daher nicht den Einfluss von Reibungswiderständen auf
+ das Flugverhalten ab.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../../../ppm_tests/openglider/results/cLcDcM.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Beiwerte bei variiertem Anströmwinkel für das Referenzmodell
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die grüne Kurve zeigt den Nickmomentbeiwert in Abhängigkeit vom Anströmwinkel.
+ Die Werte sind auf die ausgelegte Fläche des Schirms 
+\begin_inset Formula $A$
+\end_inset
+
+ und 
+\begin_inset Formula $1m$
+\end_inset
+
+ Länge bezogen.
+ Der Referenzpunkt befindet sich ca.
+ 
+\begin_inset Formula $6m$
+\end_inset
+
+ unterhalb des Schirms.
+ Die Änderung des Nickmomentes um den Auslegungspunkt (
+\begin_inset Formula $c_{A}\thickapprox0.6$
+\end_inset
+
+) bei Anstellwinkelerhöhung ist negativ.
+ Dies wird als stabiles Verhalten bezeichnet.
+ Bei Anstellwinkelverringerung erhöht sich zunächst das Nickmoment, was
+ wiederum stabilisierend wirkt.
+ Ab einem gewissen Auftriebsbeiwert (
+\begin_inset Formula $c_{A}\approx0.1$
+\end_inset
+
+) ändert sich dieses Verhalten und eine Verringerung des Anstellwinkels
+ hat wieder eine negative Änderung des Moments zur Folge.
+ Es würde im Realfall zum Einklappen des Schirms kommen.
+\end_layout
+
+\begin_layout Section
+Optimale Form für einen Gleitschirm
+\end_layout
+
+\begin_layout Standard
+Um eine hohe Gleitleistung erreichen zu können, muss die Summe aller Widerstände
+ möglichst klein gehalten werden.
+ Zu diesen gehört auch der induzierte Widerstand, der mittels der Panelmethode
+ berechnet werden kann.
+ Wird dieser reduziert kann die Gleitleistung verbessert werden.
+ Um die Bedeutung einer Minimierung des induzierten Widerstands zu zeigen,
+ soll das Verhältnis des induzierten Widerstands zum Gesamtwiderstand abgeschäzt
+ werden.
+ 
+\end_layout
+
+\begin_layout Subsection
+Abschätzung des induzierten Widerstands am Gleitschirm
+\end_layout
+
+\begin_layout Standard
+Für einen zeitgemäßen Gleitschirm mit einer mittleren Sicherheitseinstufung
+ ist eine Gleitzahl von 
+\begin_inset Formula $\epsilon=8$
+\end_inset
+
+ bei einer Basisgeschwindigkeit von 
+\begin_inset Formula $11\frac{m}{s}$
+\end_inset
+
+ üblich.
+ Für den Referenzschirm ergibt sich ein Auftriebsbeiwert bezogen auf die
+ ausgelegte Fläche von 
+\begin_inset Formula $c_{A}=\frac{F_{A}}{\frac{\rho}{2}u_{\infty}^{2}A_{R}}\approx\frac{981}{\frac{1.2}{2}11^{2}23}\approx0.6$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Der geringste induzierte Widerstand soll mit der elliptischen Zirkulationsvertei
+lung abgeschätzt werden und ergibt sich mit 
+\begin_inset Formula $c_{Wi}=\frac{c{}_{A}^{2}}{\Lambda\pi}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 175, 8.37"
+key "LSA"
+
+\end_inset
+
+ zu 
+\begin_inset Formula $c_{Wi}\approx0.023$
+\end_inset
+
+.
+ 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Hier wird angenommen, dass der Effekt des induzierten Widerstands bei gekrümmten
+ Flügeln geringer ist.
+ Daher wird nicht mit der projezierten Streckung gerechnet.
+ Die Abschätzung liegt jedoch um einiges unterhalb der später mit der Panelmetho
+de berechneten Werte.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Der Gesamtwiderstand kann über die angenommene Gleitzahl und den Auftriebsbeiwer
+t berechnet werden.
+ 
+\begin_inset Formula $c_{Wges}=\frac{c_{A}}{\epsilon}=0.076$
+\end_inset
+
+.
+ Der Anteil des induzierten Widerstands ergibt sich damit zu 
+\begin_inset Formula $\frac{c{}_{Wi}}{c{}_{Wges}}\approx32\%$
+\end_inset
+
+.
+ Dies zeigt die Bedeutung des induzierten Widerstands für Gleitschirme mit
+ moderater Streckung.
+ 
+\end_layout
+
+\begin_layout Standard
+Der induzierte Widerstand kann durch eine Erhöhung der Streckung 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ oder durch Optimierung der Zirkulationsverteilung über den Schirm verbessert
+ werden.
+ Da eine Erhöhung der Streckung zumeist eine Verschlechterung des Extremflugverh
+altens zur Folge hat, soll im Weiteren nur die Optimierung durch Variierung
+ der Zirkulationsverteilung über die Tiefenverteilung am Schirm behandelt
+ werden.
+\end_layout
+
+\begin_layout Subsection
+Parametrisierung der Tiefenverteilung
+\end_layout
+
+\begin_layout Standard
+Die Parametrisierung der Tiefenverteilung erfolgt durch Bezierekurven.
+ Diese werden durch symmetrische Kontrollpunkte erzeugt.
+ Insgesamt wird die Kurve durch vier dieser Kontrollpunkte bestimmt (
+\emph on
+Abbildung 23
+\emph default
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../Abbildungen/png/22_parametrisierung.png
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Parametrisierung der ausgelegten Form
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Zielfunktion
+\end_layout
+
+\begin_layout Standard
+Das Ziel der Optimierung ist die Minimierung des induzierten Widerstands
+ bei konstantem Auftriebsbeiwert und konstanter Streckung.
+ Dazu werden für jede Variation der Kontrollpunkte die Beiwerte für verschiedene
+ Anströmrichtungen ermittelt.
+ Anschließend wird durch Interpolation der induzierte Widerstand für den
+ Auslegungsauftrieb berechnet.
+ Die Variation der Zielfunktion wird durch Veränderung der horizontalen
+ Position der inneren Kontrollpunkte 
+\emph on
+(Abbildung 24)
+\emph default
+ erreicht.
+ Die Fläche und Streckung des Schirms werden dabei möglichst konstant gehalten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../../../ppm_tests/openglider/results/vtk_opt/induced_drag.png
+	lyxscale 60
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+induzierter Widerstand für verschiedene Tiefenverteilungen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Ergebnisse
+\end_layout
+
+\begin_layout Standard
+Der Verlauf des induzierten Widerstandes
+\emph on
+ 
+\emph default
+unter Variation der Kontrollpunkte ist in
+\emph on
+ Abbildung 24
+\emph default
+ dargestellt.
+ Man kann deutlich einen optimalen Punkt feststellen.
+ Die daraus resultierende Verbesserung der Gleitleistung ist aber so gering
+ 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Die maximale Differenz des induzierten Widerstands bezogen auf den Gesamtwiderst
+and für die hier dargestellten Tiefenverteilungen liegt im Bereich von 
+\begin_inset Formula $\thicksim0.4\%$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+, dass sie im Flug kaum spürbar sein wird.
+ Daraus kann gefolgert werden, dass eine geringe Abweichung von der optimalen
+ Zirkulationsverteilung keinen gravierenden Einfluss auf die Gleitleistung
+ hat.
+ In 
+\emph on
+Abbildung 25
+\emph default
+ ist die resultierende Form zu sehen.
+ Das Optimum zeigt sich bei einer typischen Gleitschirmform.
+\end_layout
+
+\begin_layout Standard
+Das Ergebnis ist stark von den anderen Geometrieparametern wie Anstellwinkelvert
+eilung und Profilform abhängig.
+ Auch diese Parameter können zur Optimierung verwendet werden.
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../../../ppm_tests/openglider/results/vtk_opt/shapes.png
+	lyxscale 60
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Resultierende Form durch Variation der Kontrollpunkte
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Ermittlung einer optimalen Zirkulationverteilung lässt sich auch über
+ das Traglinienverfahren erreichen.
+ Hierbei wird der Flügel durch eine Wirbellinie modelliert.
+ Da sich die Wirbelstärke über die Spannweite ändert und ein Wirbel im Raum
+ nicht enden darf, müssen nach hinten abgehende Wirbellinien, equivalent
+ zum Nachlauf, zum Modell hinzugefügt werden.
+ Durch dieses vereinfachte Modell kann die optimale Zirkulationsverteilung
+ direkt aus einem linearen Ausgleichsproblem ermittelt werden.
+ (vgl.
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "opt_circ"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Ist diese optimale Zirkulationverteilung bekannt, so kann eine Geometrie
+ durch mehrere Iterationsschritte so angepasst werden, dass die Ergebnisse
+ für die Zirkulationsverteilung aus der Panelmethode mit der optimalen Zirkulati
+onsverteilung möglichst gut übereinstimmen.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+In Abbildung 26
+\emph default
+ wurden die Zirkulationsverteilung des mittels der Panelmethode optimierten
+ Schirms (
+\emph on
+Abbildung 24
+\emph default
+) mit dem Ergebnis des Traglinienverfahrens verglichen.
+ Die blaue Kurve stellt die Hinterkante des Schirms aus der Verfolgerperspektive
+ dar.
+ Die Zirkulationsverteilung sind qualitativ normal zur Hinterkante aufgetragen.
+ Ersichtlich wird, dass die optimale Zirkulationsverteilung von der elliptischen
+ Verteilung für den ausgelegten Flügel abweicht.
+ Dies kann dadurch begründet werden, dass die an den Flügelenden wirkenden
+ Druckkräfte trotz etwa gleichem Einfluss auf den induzierten Widerstand
+ einen kleineren Beitrag zum Gesamtauftrieb leisten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename ../../../ppm_tests/openglider/results/vtk_opt/circulation_comparison.png
+	lyxscale 80
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Veranschaulichung der Zirkulationverteilung
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+\begin_inset Newpage newpage
+\end_inset
+
+Zusammenfassung und Ausblick
+\end_layout
+
+\begin_layout Standard
+Im der vorliegenden Arbeit wurden einige Methoden behandelt, die zur Berechnung
+ der Potentialströmung um ebene und dreidimensionale Konturen dienen.
+ Die Implementierung erfolgte in den Programmiersprachen C++ und Python
+ und benötigt das Modul 
+\begin_inset Quotes eld
+\end_inset
+
+Eigen
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://eigen.tuxfamily.org
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ für Matrix- und Vektorberechnungen.
+ Um den vollen Umfang des Programms nutzen zu können werden zusätzliche
+ Module und Bibliotheken wie 
+\begin_inset Quotes eld
+\end_inset
+
+Openglider
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/hiaselhans/OpenGlider
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Matplotlib
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://matplotlib.org/
+\end_layout
+
+\end_inset
+
+,
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Numpy
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.numpy.org/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ und Eigen benötigt.
+\end_layout
+
+\begin_layout Standard
+Die vorgestellte Panelmethode ist gut geeignet zur Berechnung der Umströmungspro
+blemen von typischen Flügelstrukturen bei hohen Reynoldszahlen und kleinen
+ Machzahlen.
+ Insbesondere für Gleitschirme stellt dieses Verfahren eine Möglichkeit
+ dar, um möglichst schnell Aussagen über aerodynamische Eigenschaften treffen
+ zu können.
+ Speziell können mit der Methode der induzierte Widerstand, der Auftrieb
+ und die daraus resultierenden Momente berechnet werden.
+ Diese Ergebnisse werden für die Auslegung (Position des Aufhängepunktes,
+ Leinenkräfte, Leistungsabschätzung) benötigt.
+ Allerdings bleiben Reibungswiderstände vernachlässigt.
+ Um diese zu berücksichtigen, kann die Methode mit einer Grenzschichtbetrachtung
+\series bold
+ 
+\series default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mod_stab_gleitschirm"
+
+\end_inset
+
+ erweitert werden.
+ 
+\end_layout
+
+\begin_layout Standard
+Wie im Abschnitt 
+\emph on
+Paneleinfluss im Fernfeld
+\emph default
+ (3.5) beschrieben, kann durch die Aufteilung in Nahbereich und Fernfeld
+ eine Zeitreduktion bei der Aufstellung des Gleichungssystems erreicht werden.
+ Wie dort angedeutet, kann auch eine Multipolmethode zum Lösen der Randintegralg
+leichung eingesetzt werden.
+\end_layout
+
+\begin_layout Standard
+Die am Panel als konstant angenommenen Quellen- und Dipolstärken können
+ auf lineare oder quadratische Funktionen erweitert werden.
+ Die Berechnung der Einflussfunktionen erschwert sich dadurch 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Newm1985"
+
+\end_inset
+
+, allerdings verschwinden die konkreten Wirbellinien für eine quadratische
+ Verteilungen der Dipolstärken.
+ Ein weiterer Vorteil wäre die direkte Berechnung der Geschwindigkeit am
+ Panel ohne dabei die Nachbarpanels betrachten zu müssen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Die Arbeit zeigt, dass die Form des Gleitschirms ein relevanter Parameter
+ für die Gleitleistung ist.
+ Da weitere geometrische Eigenschaften wie Profilformen, Wölbung der Zellen,
+ Verwindungsverteilung Einfluss auf die Zirkulationsverteilung, Auftrieb
+ und induzierten Widerstand haben, sind die Ergebnisse nur als Optimum bezüglich
+ eines Parameters zu sehen.
+ Für ein globales Optimum wäre die Variation aller einflussnehmenden Parameter
+ notwendig.
+ Weiters müssen für das Optimierungsverfahren die Ergebnisse im Hinblick
+ auf reales Flugverhalten bewertet werden.
+ Dies zeigt die Komplexität der Optimierung und verdeutlicht die Wichtigkeit
+ von realen Prototypen für die Entwicklung eines neuen Gleitschirms.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Zusammenfassung und Ausblick}  
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintAll"
+bibfiles "/home/lo/projects/pm/doc/latex_doc/tex/Quellen"
+options "bibtotoc,unsrt"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
