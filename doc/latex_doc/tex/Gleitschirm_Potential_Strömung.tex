@@ -37,7 +37,7 @@
 
 
 \renewcommand{\nomgroup}[1]{%
-\ifthenelse{\equal{#1}{A}}{\item[\textbf{Latainisch}]}{%
+\ifthenelse{\equal{#1}{A}}{\item[\textbf{Lateinisch}]}{%
 \ifthenelse{\equal{#1}{B}}{\item[\textbf{Griechisch}]}{%
 \ifthenelse{\equal{#1}{C}}{\item[\textbf{Indizes}]}
 {}
@@ -228,13 +228,13 @@ die dabei erfüllt sein müssen. \\
 \subsection{Greensche Identität}
 
 Die erste Greensche Identität folgt aus der Anwendung des Gaußschen
-Integralsatzes auf das Randintegral $\int\limits _{S}\phi\frac{\partial\psi}{\partial n}\mathrm{d}A$.
+Integralsatzes auf das Randintegral $\int\limits _{S}\phi\frac{\partial\psi}{\partial n}dA$.
 Hier wird vorausgesetzt, dass die Funktion $\psi$ zwei mal stetig
 differenzierbar ist.
 
 \begin{align}
-\int\limits _{S}\phi\frac{\partial\psi}{\partial n}\mathrm{d}A=\int\limits _{S}(\phi\,\nabla\psi)\cdot\vec{n}\,\mathrm{d}A=\int\limits _{V}\nabla\cdot(\phi\,\nabla\psi)\,\mathrm{d}V=\int\limits _{V}(\phi\nabla^{2}\psi+\nabla\phi\cdot\nabla\psi)\,\mathrm{d}V\\
-\int\limits _{V}(\phi\Delta\psi)dV=\int\limits _{S}\phi\frac{\partial\psi}{\partial n}\mathrm{d}A-\int\limits _{V}(\nabla\phi\cdot\nabla\psi)\,\mathrm{d}V
+\int\limits _{S}\phi\frac{\partial\psi}{\partial n}dA=\int\limits _{S}(\phi\,\nabla\psi)\cdot\vec{n}\,dA=\int\limits _{V}\nabla\cdot(\phi\,\nabla\psi)\,dV=\int\limits _{V}(\phi\nabla^{2}\psi+\nabla\phi\cdot\nabla\psi)\,dV\\
+\int\limits _{V}(\phi\Delta\psi)dV=\int\limits _{S}\phi\frac{\partial\psi}{\partial n}dA-\int\limits _{V}(\nabla\phi\cdot\nabla\psi)\,dV
 \end{align}
 
 
@@ -243,15 +243,15 @@ obigen Formulierung vertauscht. Hier wird von $\phi$ zwei mal stetige
 Differenzierbarkeit gefordert.\\
 \foreignlanguage{english}{
 \begin{align}
-\int\limits _{S}\psi\frac{\partial\phi}{\partial n}\mathrm{d}A=\int\limits _{S}(\psi\,\nabla\phi)\cdot\vec{n}\,\mathrm{d}A=\int\limits _{V}\nabla\cdot(\psi\,\nabla\phi)\,\mathrm{d}V=\int\limits _{V}(\psi\nabla^{2}\phi+\nabla\psi\cdot\nabla\phi)\,\mathrm{d}V\\
-\int\limits _{V}(\psi\Delta\phi)dV=\int\limits _{S}\psi\frac{\partial\phi}{\partial n}\mathrm{d}A-\int\limits _{V}(\nabla\phi\cdot\nabla\psi)\,\mathrm{d}V
+\int\limits _{S}\psi\frac{\partial\phi}{\partial n}dA=\int\limits _{S}(\psi\,\nabla\phi)\cdot\vec{n}\,dA=\int\limits _{V}\nabla\cdot(\psi\,\nabla\phi)\,dV=\int\limits _{V}(\psi\nabla^{2}\phi+\nabla\psi\cdot\nabla\phi)\,dV\\
+\int\limits _{V}(\psi\Delta\phi)dV=\int\limits _{S}\psi\frac{\partial\phi}{\partial n}\mathrm{d}A-\int\limits _{V}(\nabla\phi\cdot\nabla\psi)\,dV
 \end{align}
 }
 
 Durch Subtraktion von (9) - (7) erhält man die zweite Greensche Identität.
 
 \begin{align}
-\int\limits _{V}(\psi\Delta\phi-\phi\Delta\psi)dV=\int\limits _{S}\left(\psi\frac{\partial\phi}{\partial n}-\phi\frac{\partial\psi}{\partial n}\right)\mathrm{d}A
+\int\limits _{V}(\psi\Delta\phi-\phi\Delta\psi)dV=\int\limits _{S}\left(\psi\frac{\partial\phi}{\partial n}-\phi\frac{\partial\psi}{\partial n}\right)dA
 \end{align}
 
 
@@ -259,7 +259,7 @@ Fordert man weiter, dass die Testfunktion selbst die Laplace-Gleichung
 erfüllt, folgt:\\
 \begin{align}
 \Delta\psi=0\\
-\int\limits _{V}(\psi\Delta\phi)dV=\int\limits _{S}\left(\phi\frac{\partial\psi}{\partial n}-\psi\frac{\partial\phi}{\partial n}\right)\mathrm{d}A=0
+\int\limits _{V}(\psi\Delta\phi)dV=\int\limits _{S}\left(\phi\frac{\partial\psi}{\partial n}-\psi\frac{\partial\phi}{\partial n}\right)dA=0
 \end{align}
 
 
@@ -295,10 +295,10 @@ dabei nach innen $\left(\frac{\partial}{\partial r}=-\frac{\partial}{\partial n}
 Das zweite Integral verschwindet aufgrund der Kontinuitätsgleichung
 (19). Es folgt für den ersten Term die Konstante für die Testfunktion.
 \begin{align}
-\int\limits _{S_{\epsilon}}\Phi_{\epsilon}\frac{\partial\Psi}{\partial n}\mathrm{d}A-\int\limits _{S_{\epsilon}}\Psi\frac{\partial\Phi_{\epsilon}}{\partial n}\mathrm{d}A=\Phi_{\epsilon}\\
-\int\limits _{S_{\epsilon}}\Psi\frac{\partial\Phi_{\epsilon}}{\partial n}\mathrm{d}A=\Psi\int\limits _{S_{\epsilon}}\frac{\partial\Phi_{\epsilon}}{\partial n}\mathrm{d}A=\Psi\int\limits _{S_{\epsilon}}\mathbf{u}_{\epsilon}\cdot\mathbf{n}\mathrm{d}A=0\\
-\int\limits _{S_{\epsilon}}\Phi_{\epsilon}\frac{\partial\Psi}{\partial n}\mathrm{d}A=-\Phi_{p}\int\limits _{S_{\epsilon}}\frac{\partial\Psi}{\partial r}\mathrm{d}A=\Phi_{\epsilon} & \quad,\:aus\:(10)\\
--1=\int\limits _{S_{\epsilon}}\frac{\partial\Psi}{\partial r}\mathrm{d}A=\frac{\partial\Psi}{\partial r}\int\limits _{S_{\epsilon}}\mathrm{d}A=C_{1}4\pi\\
+\int\limits _{S_{\epsilon}}\Phi_{\epsilon}\frac{\partial\Psi}{\partial n}dA-\int\limits _{S_{\epsilon}}\Psi\frac{\partial\Phi_{\epsilon}}{\partial n}dA=\Phi_{\epsilon}\\
+\int\limits _{S_{\epsilon}}\Psi\frac{\partial\Phi_{\epsilon}}{\partial n}dA=\Psi\int\limits _{S_{\epsilon}}\frac{\partial\Phi_{\epsilon}}{\partial n}dA=\Psi\int\limits _{S_{\epsilon}}\mathbf{u}_{\epsilon}\cdot\mathbf{n}dA=0\\
+\int\limits _{S_{\epsilon}}\Phi_{\epsilon}\frac{\partial\Psi}{\partial n}dA=-\Phi_{p}\int\limits _{S_{\epsilon}}\frac{\partial\Psi}{\partial r}dA=\Phi_{\epsilon} & \quad,\:aus\:(10)\\
+-1=\int\limits _{S_{\epsilon}}\frac{\partial\Psi}{\partial r}dA=\frac{\partial\Psi}{\partial r}\int\limits _{S_{\epsilon}}dA=C_{1}4\pi\\
 C_{1}=-\frac{1}{4\pi}\rightarrow\qquad\Psi=\frac{1}{4\pi r}
 \end{align}
 
@@ -351,12 +351,12 @@ Wird von einer Kugeloberfläche mit unendlicher Ausdehnung ausgegangen,
 so kann$\Psi$ und $\frac{\partial\Psi}{\partial n}$ vor das Integral
 gestellt werden. \\
 \begin{align}
-\int\limits _{S_{\infty}}\left(\Phi_{\infty}\frac{\partial\Psi}{\partial n}-\Psi\frac{\partial\Phi_{\infty}}{\partial n}\right)\mathrm{d}A=\frac{\partial\Psi}{\partial n}\int\limits _{S_{\infty}}\Phi_{\infty}dA-\Psi\int\limits _{S_{\infty}}\frac{\partial\Phi_{\infty}}{\partial n}\mathrm{d}A
+\int\limits _{S_{\infty}}\left(\Phi_{\infty}\frac{\partial\Psi}{\partial n}-\Psi\frac{\partial\Phi_{\infty}}{\partial n}\right)dA=\frac{\partial\Psi}{\partial n}\int\limits _{S_{\infty}}\Phi_{\infty}dA-\Psi\int\limits _{S_{\infty}}\frac{\partial\Phi_{\infty}}{\partial n}dA
 \end{align}
 Aufgrund der Kontinuitätsgleichung muss der aufsummierte Fluss über
 die Oberfläche eines Kontrollvolumens verschwinden.\\
 \begin{align}
-\Psi\int\limits _{S_{\infty}}\left(\mathbf{u_{\infty}}\cdot\mathbf{n}\right)\mathrm{d}A=\Psi\int\limits _{S_{\infty}}\frac{\partial\Phi_{\infty}}{\partial n}\mathrm{d}A=0
+\Psi\int\limits _{S_{\infty}}\left(\mathbf{u_{\infty}}\cdot\mathbf{n}\right)dA=\Psi\int\limits _{S_{\infty}}\frac{\partial\Phi_{\infty}}{\partial n}dA=0
 \end{align}
 Das Potential einer parallelen Anströmung kann durch ein Potential
 \foreignlanguage{english}{$\tilde{\Phi}_{\infty}$} im Mittelpunkt
@@ -364,7 +364,7 @@ der Kugel und ein variables Potential\foreignlanguage{english}{$\left(\mathbf{u_
 dargestellt werden, wobei der zweite Term wieder aus den oben genannten
 Gründen (24) herausfällt. 
 \begin{align}
-\frac{\partial\Psi}{\partial n}\int\limits _{S_{\infty}}\Phi_{\infty}\mathrm{d}s=\frac{\partial\Psi}{\partial n}\int\limits _{S_{\infty}}\left(\tilde{\Phi}_{\infty}+\left(\mathbf{u_{\infty}}\cdot\mathbf{n}\right)r\right)\mathrm{d}s=\tilde{\Phi}_{\infty}\frac{\partial\Psi}{\partial r}4\pi r^{2}=-\tilde{\Phi}_{\infty}
+\frac{\partial\Psi}{\partial n}\int\limits _{S_{\infty}}\Phi_{\infty}ds=\frac{\partial\Psi}{\partial n}\int\limits _{S_{\infty}}\left(\tilde{\Phi}_{\infty}+\left(\mathbf{u_{\infty}}\cdot\mathbf{n}\right)r\right)ds=\tilde{\Phi}_{\infty}\frac{\partial\Psi}{\partial r}4\pi r^{2}=-\tilde{\Phi}_{\infty}
 \end{align}
 Für das weitere Vorgehen soll der Einfluss des Potentials der Anströmung
 $\tilde{\Phi}_{\infty}$ wieder mit $\Phi_{\infty}$ bezeichnet werden.
@@ -378,7 +378,7 @@ Fläche mit dem Potential $\Phi_{I}$ beschrieben. Es ergibt sich mit
 $-\mu=\Phi_{E}-\Phi_{I}$ und $-\sigma=\frac{\partial\Phi_{E}}{\partial n}-\frac{\partial\Phi_{I}}{\partial n}$
 mit Normalenvektor nach innen gerichtet:\\
 \begin{align}
-\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}-\sigma\Psi\right)\mathrm{d}A
+\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}-\sigma\Psi\right)dA
 \end{align}
 
 
@@ -400,7 +400,7 @@ genau dem Sprung des Potentials an der Hinterkante $\mu_{w}=\mu_{l}-\mu_{u}$.
 Der Nachlauf verhindert somit das Umströmen der Hinterkante. Die Gleichung
 vereinfacht sich wie folgt:\\
 \begin{align}
-\int\limits _{S_{W}}\left(\mu\frac{\partial\Psi}{\partial n}-\sigma\Psi\right)\mathrm{d}A=\int\limits _{S_{W}}\mu_{W}\left(\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A
+\int\limits _{S_{W}}\left(\mu\frac{\partial\Psi}{\partial n}-\sigma\Psi\right)dA=\int\limits _{S_{W}}\mu_{W}\left(\frac{\partial\Psi}{\partial n}\right)dA
 \end{align}
 
 
@@ -408,7 +408,7 @@ Der gesamte Einfluss auf einen Punkt im Strömungsfeld ergibt sich
 somit zu: 
 
 \begin{align}
--\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}-\sigma\Psi\right)\mathrm{d}A-\int\limits _{S_{W}}\mu_{W}\left(\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A+\Phi_{\infty}=\Phi_{p}
+-\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}-\sigma\Psi\right)dA-\int\limits _{S_{W}}\mu_{W}\left(\frac{\partial\Psi}{\partial n}\right)dA+\Phi_{\infty}=\Phi_{p}
 \end{align}
 
 
@@ -454,14 +454,14 @@ auf zwei Arten geschehen:
 \item $\Phi_{I}=0$
 \begin{align}
 \sigma=\frac{\partial\Phi_{a}}{\partial n}=0\nonumber \\
-\int\limits _{S_{K}}\mu\frac{\partial\Psi}{\partial n}\mathrm{d}A+\int\limits _{S_{W}}\mu\frac{\partial\Psi}{\partial n}\mathrm{d}A=\Phi_{\infty}
+\int\limits _{S_{K}}\mu\frac{\partial\Psi}{\partial n}dA+\int\limits _{S_{W}}\mu\frac{\partial\Psi}{\partial n}dA=\Phi_{\infty}
 \end{align}
 
 \item $\Phi_{I}=\Phi_{\infty}$\foreignlanguage{english}{
 \begin{align}
 \sigma=-\left(\frac{\partial\Phi_{E}}{\partial n}-\frac{\partial\Phi_{\infty}}{\partial n}\right)=\frac{\partial\Phi_{\infty}}{\partial n}=\mathbf{u_{\infty}}\mathbf{\cdot}\mathbf{n}\nonumber \\
--\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}-\left(\mathbf{u_{\infty}}\mathbf{\cdot n}\right)\Psi\right)\mathrm{d}A-\int\limits _{S_{W}}\mu\frac{\partial\Psi}{\partial n}\mathrm{d}A+\Phi_{\infty}=\Phi_{\infty}\nonumber \\
-\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A+\int\limits _{S_{W}}\left(\mu\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A=\int\limits _{S_{K}}\left(\mathbf{u_{\infty}}\mathbf{\cdot n}\right)\cdot\Psi\mathrm{d}A
+-\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}-\left(\mathbf{u_{\infty}}\mathbf{\cdot n}\right)\Psi\right)dA-\int\limits _{S_{W}}\mu\frac{\partial\Psi}{\partial n}dA+\Phi_{\infty}=\Phi_{\infty}\nonumber \\
+\int\limits _{S_{K}}\left(\mu\frac{\partial\Psi}{\partial n}\right)dA+\int\limits _{S_{W}}\left(\mu\frac{\partial\Psi}{\partial n}\right)dA=\int\limits _{S_{K}}\left(\mathbf{u_{\infty}}\mathbf{\cdot n}\right)\cdot\Psi dA
 \end{align}
 }\\
 
@@ -515,14 +515,14 @@ zu einem Wirbelring verhält \citep[S. 248, 249, Abb. 10.15]{LSA}.
 Dadurch kommt es an den Kanten zu großen Geschwindigkeiten, die auch
 eine Normalkomponente enthalten.\\
 \begin{align}
-\sum_{j=1}^{N}\left(\mu_{j}\int\limits _{P_{j}}\frac{\partial\Psi_{j}}{\partial n}\mathrm{d}A\right)+\sum_{k=1}^{N_{W}}\left(\mu_{k}\int\limits _{P_{k}}\frac{\partial\Psi_{k}}{\partial n}\mathrm{d}A\right)=-\Phi_{\infty}
+\sum_{j=1}^{N}\left(\mu_{j}\int\limits _{P_{j}}\frac{\partial\Psi_{j}}{\partial n}dA\right)+\sum_{k=1}^{N_{W}}\left(\mu_{k}\int\limits _{P_{k}}\frac{\partial\Psi_{k}}{\partial n}dA\right)=-\Phi_{\infty}
 \end{align}
 Um dieses Verfahren stabiler zu machen, wird der Potentialsprung $\mu_{j}$,
 der dem lokalen Potential $\Phi_{j}$ entspricht, in ein Potential
 der Anströmung $\Phi_{j\infty}$ und ein unbekanntes \foreignlanguage{english}{$\tilde{\Phi}_{j}$}
 aufgespalten.\\
 \begin{align}
-\sum_{j=1}^{N}\left(\tilde{\Phi}_{j}\int\limits _{P_{j}}\frac{\partial\Psi_{j}}{\partial n}\mathrm{d}A\right)+\sum_{k=1}^{N_{W}}\left(\mu_{k}\int\limits _{P_{k}}\frac{\partial\Psi_{k}}{\partial n}\mathrm{d}A\right)=-\Phi_{\infty i}-\sum_{j=1}^{N}\left(\Phi_{\infty j}\int\limits _{P_{j}}\frac{\partial\Psi_{j}}{\partial n}\mathrm{d}A\right)
+\sum_{j=1}^{N}\left(\tilde{\Phi}_{j}\int\limits _{P_{j}}\frac{\partial\Psi_{j}}{\partial n}dA\right)+\sum_{k=1}^{N_{W}}\left(\mu_{k}\int\limits _{P_{k}}\frac{\partial\Psi_{k}}{\partial n}dA\right)=-\Phi_{\infty i}-\sum_{j=1}^{N}\left(\Phi_{\infty j}\int\limits _{P_{j}}\frac{\partial\Psi_{j}}{\partial n}dA\right)
 \end{align}
 
 \item Die Gleichung kann um eine Quellenverteilung erweitert werden, um
@@ -530,7 +530,7 @@ die Dipolstärke des Panels klein zu halten. Das erreicht man durch
 ein inneres Potential $\Phi_{I}=\Phi_{\infty}$(vgl. Unterkapitel
 2.5). Daraus resultiert eine Randintegralgleichung der folgenden Form:
 \begin{align}
-\sum_{j=1}^{N}\left(\mu_{j}\int\limits _{P_{j}}\frac{\partial\Psi_{j}}{\partial n}\mathrm{d}A\right)+\sum_{k=1}^{N_{W}}\left(\mu_{k}\int\limits _{P_{k}}\frac{\partial\Psi_{k}}{\partial n}\mathrm{d}A\right)=\sum_{j=1}^{N}\left(\left(\mathbf{u_{\infty}}\cdot\mathbf{n}_{j}\right)\int\limits _{P_{j}}\Psi_{j}\mathrm{d}A\right)
+\sum_{j=1}^{N}\left(\mu_{j}\int\limits _{P_{j}}\frac{\partial\Psi_{j}}{\partial n}dA\right)+\sum_{k=1}^{N_{W}}\left(\mu_{k}\int\limits _{P_{k}}\frac{\partial\Psi_{k}}{\partial n}dA\right)=\sum_{j=1}^{N}\left(\left(\mathbf{u_{\infty}}\cdot\mathbf{n}_{j}\right)\int\limits _{P_{j}}\Psi_{j}dA\right)
 \end{align}
 
 \end{itemize}
@@ -557,7 +557,7 @@ zur Verfügung stellen.
 \begin{align}
 \frac{\partial\Psi}{\partial n}\mid_{n=0}=\frac{\partial\Psi}{\partial r}\frac{\partial r}{\partial n}\mid_{n=0}\\
 \frac{\partial r}{\partial n}\bigg|_{n=0}=\frac{\mathbf{n}\cdot\mathbf{r}}{\mid\mathbf{r}\mid}=\frac{r_{n}}{r}\nonumber \\
-\int\limits _{P}\left(\Phi\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A=-\Phi_{P}\int\limits _{P}\left(\frac{r_{n}}{4\pi r^{3}}\right)\mathrm{d}A=-\frac{r_{n}}{4\pi}\Phi_{P}\int\limits _{P}\frac{1}{r^{3}}\mathrm{d}A
+\int\limits _{P}\left(\Phi\frac{\partial\Psi}{\partial n}\right)dA=-\Phi_{P}\int\limits _{P}\left(\frac{r_{n}}{4\pi r^{3}}\right)dA=-\frac{r_{n}}{4\pi}\Phi_{P}\int\limits _{P}\frac{1}{r^{3}}dA
 \end{align}
 
 
@@ -686,17 +686,17 @@ Somit ergibt sich der gesamte Dipoleinfluss eines Panels zu:
 Zur Bestimmung des Einflusses eines Panels mit konstanter Quellenstärke
 auf einen Punkt muss das folgende Integral gelöst werden.
 \begin{align*}
-\int\limits _{S_{P}}\Psi\mathrm{d}s=\frac{1}{4\pi}\int\limits _{S_{P}}\frac{1}{r}\mathrm{d}A
+\int\limits _{S_{P}}\Psi ds=\frac{1}{4\pi}\int\limits _{S_{P}}\frac{1}{r}dA
 \end{align*}
 Dieses Integral kann auch als Integral des Dipoleinflusses geschrieben
 werden \citep[119]{Newm1985}.
 \begin{align*}
-\int\limits _{S_{P}}\Psi\mathrm{d}A=-\int\limits _{n=r_{n}}^{\infty}\int\limits _{S_{P}}\left(\frac{\partial\Psi}{\partial n}\right)\mathrm{d}A\;dn
+\int\limits _{S_{P}}\Psi dA=\int\limits _{n=r_{n}}^{\infty}\int\limits _{S_{P}}\left(\frac{\partial\Psi}{\partial n}\right)dA\;dn
 \end{align*}
 Durch Anwendung von partieller Integration erhält man \citep[(3.2)]{Newm1985}:
 
 \begin{align*}
-\int\limits _{S_{P}}\Psi\mathrm{d}A=\int\limits _{n=r_{n}}^{\infty}n\cdot d\left(\int\limits _{S_{P}}\left(\frac{\partial\Psi}{\partial n}\right)dA\right)+r_{n}\cdot\int\limits _{S_{P}}\left(\frac{\partial\Psi}{\partial n}\right)dA
+\int\limits _{S_{P}}\Psi dA=\int\limits _{n=r_{n}}^{\infty}n\cdot d\left(\int\limits _{S_{P}}\left(\frac{\partial\Psi}{\partial n}\right)dA\right)+r_{n}\cdot\int\limits _{S_{P}}\frac{\partial\Psi}{\partial n}\bigg|_{n=r}dA
 \end{align*}
 \\
 Der zweite Term kann direkt aus dem Dipoleinfluss bestimmt werden.
@@ -1546,8 +1546,8 @@ der Dipolstärken. Ein weiterer Vorteil wäre die direkte Berechnung
 der Geschwindigkeit am Panel ohne dabei die Nachbarpanels betrachten
 zu müssen.\\
 Die Arbeit zeigt, dass die Optimierung der Gleitleistung eines Gleitschirms
-durch Variation der Form mittel einer Panel-Methode möglich ist. Da
-aber weitere geometrische Eigenschaften wie Profilformen, Wölbung
+durch Variation der Form mittels einer Panel-Methode möglich ist.
+Da aber weitere geometrische Eigenschaften wie Profilformen, Wölbung
 der Zellen, Verwindungsverteilung Einfluss auf die Zirkulationsverteilung,
 den Auftrieb und den induzierten Widerstand haben, sind die Ergebnisse
 nur als Optimum bezüglich eines Parameters zu sehen. Für ein globales

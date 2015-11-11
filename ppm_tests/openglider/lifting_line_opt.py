@@ -86,9 +86,6 @@ label = (
     u"Zirkulationsverteilung für den optimierten Schirm",
     u"Elliptische Zirkulation für den flach ausgebreiteten Schirm")
 
-plt.ylabel("z [m]")
-plt.xlabel("y [m]")
-
 plt.axes().set_aspect("equal", "datalim")
 plt.ylim([-2, 4])
 plt.plot(y,z)
