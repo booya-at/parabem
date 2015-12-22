@@ -760,8 +760,6 @@ Polar3 DirichletDoublet0Source0Case3::polars(vector<Vector3> vinf_range)
         for (WakePanel3* wake_panel: this->get_all_wake_panels()){
             double p_u = wake_panel->get_upper_operating_panel()->get_mue();
             double p_l = wake_panel->get_lower_operating_panel()->get_mue();
-            p_u += this->freeflow_influence(wake_panel->get_upper_operating_panel(), vinf_);
-            p_l += this->freeflow_influence(wake_panel->get_lower_operating_panel(), vinf_);
             wake_panel->set_mue(-p_l + p_u);
         }
         for (int i = 0; i < this->mat_size; i++)
