@@ -52,10 +52,10 @@ $1 ../test_it.py vtk_parallel_flow.py
 $1 ../test_it.py vtk_symmetric.py
 $1 ../test_it.py vtk_vortex_2.py
 
-cd ../openglider
+# cd ../openglider
 
-$1 ../test_it.py alpha_cL_cD.py
-$1 ../test_it.py shape_cl_cd.py
-$1 ../test_it.py lifting_line_opt.py
-$1 ../test_it.py vtk_glider.py
-$1 ../test_it.py wake_models.py
+# $1 ../test_it.py alpha_cL_cD.py
+# $1 ../test_it.py shape_cl_cd.py
+# $1 ../test_it.py lifting_line_opt.py
+# $1 ../test_it.py vtk_glider.py
+# $1 ../test_it.py wake_models.py
