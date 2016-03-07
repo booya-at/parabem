@@ -15,6 +15,7 @@ ADD_DEFINITIONS(-std=c++11)
 set(Python_ADDITIONAL_VERSIONS ${py})
 find_package(PythonInterp ${py})
 find_package(PythonLibs ${py})
+find_package(PyEigen)
 
 IF (NOT boost)
   find_package( Boost COMPONENTS "python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}")

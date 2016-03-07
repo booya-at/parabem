@@ -4,7 +4,7 @@ add_library( pm SHARED element_influence.cpp panel3.cpp panel2.cpp case3.cpp cas
 PYTHON_ADD_MODULE(_ppm SHARED ppm_wrap.cpp ppm_ext.cpp)
 set_target_properties(_ppm PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/ppm)
 set_target_properties(_ppm PROPERTIES PREFIX "")
-target_link_libraries(_ppm ${Boost_LIBRARIES} pm )
+target_link_libraries(_ppm ${PY_EIGEN} ${Boost_LIBRARIES} pm )
 
 add_executable(main main.cpp)
 target_link_libraries(main pm)
