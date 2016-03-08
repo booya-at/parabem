@@ -30,8 +30,6 @@ public:
   double b();
   Vector3* v1;
   Vector3* v2;
-  Vector3 py_v1(); //for the python module
-  Vector3 py_v2();
   Vector3 mid;
   Vector3 n;
   Vector3 t = Vector3(1,0,0);
@@ -45,8 +43,8 @@ public:
   vector<LineSegment*> segments;
   vector<Vector3> lifting_line;
   Vector3 v_inf = Vector3(1, 0, 0);
-  void append_point(Vector3 v);
-  void initialize(Vector3 v_inf);
+  void append_point(Vector3& v);
+  void initialize(Vector3& v_inf);
   void best_gamma(double cL);			// least square methode for minimizing cl/cdi for a given cL
 };
 

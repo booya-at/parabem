@@ -65,5 +65,7 @@ for more information look into the ipython notebook (tutorial.ipynb) which is
 located in the docs directory.
 """
 
-from ._ppm import Vector2, Vector3, PanelVector2, PanelVector3, Panel3, Panel2
+from ._ppm import PanelVector2, PanelVector3, Panel3, Panel2
+from ._ppm import vector2 as Vector2
+from ._ppm import vector3 as Vector3
 from .utils import Vector

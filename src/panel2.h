@@ -26,6 +26,7 @@ public:
     Panel2(){};
     ~Panel2(){};
     Panel2(PanelVector2*, PanelVector2*);
+    Panel2(vector<PanelVector2*>);
     vector<PanelVector2*> points;
     virtual vector<PanelVector2*> get_points();
     void append_point(PanelVector2*);

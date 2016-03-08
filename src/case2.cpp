@@ -175,7 +175,7 @@ double DirichletDoublet0Case2::off_body_potential(Vector2& vec)
     }
     for (PanelWakeVertex wake_point: this->wake_vertices)
     {
-        pot += vortex_2(vec, *wake_point.panel_vector) *
+        pot += vortex_2(vec, *wake_point.panel_vector, this->v_inf) *
                 (wake_point.upper_operating_panel->potential -
                  wake_point.lower_operating_panel->potential);
     }
@@ -325,7 +325,7 @@ double NeumannDoublet0Case2::off_body_potential(Vector2& vec)
     }
     for (PanelWakeVertex wake_point: this->wake_vertices)
     {
-        pot -= vortex_2(vec, *wake_point.panel_vector) *
+        pot -= vortex_2(vec, *wake_point.panel_vector, this->v_inf) *
                     (wake_point.upper_operating_panel->mue -
                      wake_point.lower_operating_panel->mue);
     }
@@ -417,7 +417,7 @@ double DirichletDoublet0Source0Case2::off_body_potential(Vector2& vec)
     }
     for (PanelWakeVertex wake_point: this->wake_vertices)
     {
-        pot -= vortex_2(vec, *wake_point.panel_vector) *
+        pot -= vortex_2(vec, *wake_point.panel_vector, this->v_inf) *
                     (wake_point.upper_operating_panel->mue -
                      wake_point.lower_operating_panel->mue);
     }
@@ -507,7 +507,7 @@ double DirichletDoublet1Case2::surface_influence(Vector2& target, PanelVector2* 
 
 double DirichletDoublet1Case2::wake_influence(Vector2& target, Vector2& source)
 {
-    return vortex_2(target, source);
+    return vortex_2(target, source, this->v_inf);
 }
 
 
@@ -593,7 +593,7 @@ double DirichletDoublet1Case2::off_body_potential(Vector2& target)
     for (PointWakeVertex wake_point: this->linear_wake_vertices)
     {
         target_pot -= (wake_point.upper_point->potential - wake_point.lower_point->potential) *
-                        vortex_2(target, *wake_point.upper_point);
+                        vortex_2(target, *wake_point.upper_point, this->v_inf);
     }
     target_pot += this->freeflow_influence(target);
     return target_pot;

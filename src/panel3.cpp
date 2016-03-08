@@ -11,6 +11,15 @@ typedef Eigen::Matrix<double, 5, 5> Matrix5d;
 Panel3::Panel3()
 {}
 
+Panel3::Panel3(std::vector< PanelVector3* > points)
+{
+    for (PanelVector3*& vec: points)
+    {
+        this->append_point(vec);
+    }
+}
+
+
 
 void Panel3::append_point(PanelVector3* v)
 {

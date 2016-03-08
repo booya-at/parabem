@@ -54,16 +54,16 @@ vector< string > AeroCoef3::labels()
 vector<vector<double>> Polar3::as_matrix()
 {
     vector<vector<double>> mat;
-    for(int i = 0; i < this->size(); i++)
+    for(int i = 0; i < this->values.size(); i++)
     {
-        mat.push_back(this->at(i).as_vector());
+        mat.push_back(this->values[i].as_vector());
     }
     return mat;
 }
 
 vector<string> Polar3::labels()
 {
-    return this->at(0).labels();
+    return this->values[0].labels();
 }
 
 
@@ -91,11 +91,27 @@ Case3::Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge)
     }
 }
 
+Case3::Case3(vector<Panel3*> panels)
+{
+    for(Panel3*& panel: panels){
+        this->append_panel(panel);
+    }
+    for(Panel3*& panel: this->get_all_panels()){
+        panel->set_neighbours();
+    }
+}
+
 DirichletDoublet0Case3::DirichletDoublet0Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge):
     Case3(panels, trailing_edge){}
 
+DirichletDoublet0Case3::DirichletDoublet0Case3(vector<Panel3*> panels):
+    Case3(panels){}
+
 DirichletDoublet0Source0Case3::DirichletDoublet0Source0Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge):
     DirichletDoublet0Case3(panels, trailing_edge){}
+    
+DirichletDoublet0Source0Case3::DirichletDoublet0Source0Case3(vector<Panel3*> panels):
+    DirichletDoublet0Case3(panels){}
 
 void Case3::append_panel(Panel3* p)
 {
@@ -241,10 +257,7 @@ void Case3::sum_forces(Vector3 vinf_)
 }
 
 
-void Case3::create_wake(double length, int count, Vector3 direction){
-    if (direction == Vector3(0,0,0)){
-        direction = this->v_inf;
-    }
+void Case3::create_wake(double length, int count, Vector3& direction){
     direction.normalize();
     this->wake_panels.clear();
     this->wake_streams.clear();
@@ -424,7 +437,7 @@ Vector3 Case3::off_body_wake_velocity_vec(Vector3& point)
 }
 
 
-vector<Vector3> Case3::flow_path(Vector3 start, double inc, int count)
+vector<Vector3> Case3::flow_path(Vector3& start, double inc, int count)
 {
     PanelVector3 v1(start);
     vector<Vector3> path;
@@ -586,7 +599,7 @@ Polar3 DirichletDoublet0Case3::polars(vector<Vector3> vinf_range)
             panel_i->compute_pressure(vinf_);
         }
         this->sum_forces(vinf_);
-        polars.push_back(AeroCoef3(*this, vinf_));
+        polars.values.push_back(AeroCoef3(*this, vinf_));
     }
     this->write_to_verts();
     return polars;
@@ -771,7 +784,7 @@ Polar3 DirichletDoublet0Source0Case3::polars(vector<Vector3> vinf_range)
             this->panels[i]->compute_pressure(vinf_);
         }
         this->sum_forces(vinf_);
-        polars.push_back(AeroCoef3(*this, vinf_));
+        polars.values.push_back(AeroCoef3(*this, vinf_));
     }
     this->write_to_verts();
     return polars;

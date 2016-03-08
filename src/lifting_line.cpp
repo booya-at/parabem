@@ -25,16 +25,6 @@ Vector3 LineSegment::ind_influence(Vector3& point, double gamma)
             ) * gamma;
 }
 
-Vector3 LineSegment::py_v1()
-{
-    return *v1;
-}
-
-Vector3 LineSegment::py_v2()
-{
-    return *v2;
-}
-
 double LineSegment::ca()
 {
     return this->best_gamma * this->b();
@@ -45,13 +35,13 @@ double LineSegment::b()
     return (*this->v1 - *this->v2).norm();
 }
 
-void LiftingLine::append_point(Vector3 v)
+void LiftingLine::append_point(Vector3& v)
 {
     this->lifting_line.push_back(v);
 }
 
 
-void LiftingLine::initialize(Vector3 v_inf)
+void LiftingLine::initialize(Vector3& v_inf)
 {
     this->v_inf = v_inf;
     for (int i = 0; i < this->lifting_line.size() - 1; i++){

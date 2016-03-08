@@ -17,13 +17,6 @@ find_package(PythonInterp ${py})
 find_package(PythonLibs ${py})
 find_package(PyEigen)
 
-IF (NOT boost)
-  find_package( Boost COMPONENTS "python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}")
-ELSE()
-  find_package( Boost COMPONENTS ${boost})
-ENDIF()
-
-message($PYTHON_EXECUTABLE)
 EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c 
   "from distutils.sysconfig import get_python_lib; print(get_python_lib())"
   OUTPUT_VARIABLE python_libs OUTPUT_STRIP_TRAILING_WHITESPACE )
@@ -44,9 +37,8 @@ endif()
 SET(python_install_dir ${python_libs}/ppm)
 
 #include drectories
-include_directories( ${Boost_INCLUDE_DIR})
-include_directories( ${PYTHON_INCLUDE_DIRS})
-include_directories( ${EIGEN3_INCLUDE_DIR})
+include_directories( ${PYTHON_INCLUDE_DIRS})    # pyeigen, python.h
+include_directories( ${EIGEN3_INCLUDE_DIR})     # eigen3
 
 
 add_subdirectory(ppm)

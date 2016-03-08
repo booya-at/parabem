@@ -64,22 +64,20 @@ Vector3 doublet_3_v(Vector3& target, Vector3& source, Vector3& normal);
 /************************-2D ELEMENT INFLUENCE-*********************/
 
 double source_2(Vector2& target, Vector2& source);
-double vortex_2(Vector2& target, Vector2& source, Vector2 direction = Vector2(1, 0));
-double doublet_2(Vector2& target, Vector2& source, Vector2 direction = Vector2(1, 0));
+double vortex_2(Vector2& target, Vector2& source, Vector2& direction);
+double doublet_2(Vector2& target, Vector2& source, Vector2& direction);
 double source_2_0(Vector2& target, Panel2& source);
 double doublet_2_0(Vector2& target, Panel2& source);
-double doublet_2_1(Vector2& target, Panel2& source, bool left = true);
-double source_2_1(Vector2& target, Panel2& source, bool left = true);
+double doublet_2_1(Vector2& target, Panel2& source, bool left);
+double source_2_1(Vector2& target, Panel2& source, bool left);
 
 Vector2 source_2_v(Vector2& target, Vector2& source);
-Vector2 doublet_2_v(Vector2& target, Vector2& source, Vector2 direction = Vector2(1, 0));
+Vector2 doublet_2_v(Vector2& target, Vector2& source, Vector2& direction);
 Vector2 vortex_2_v(Vector2& target, Vector2& source);
 Vector2 source_2_0_v(Vector2& target, Panel2& source);
 Vector2 doublet_2_0_v(Vector2& target, Panel2& source);
-Vector2 doublet_2_1_v(Vector2& target, Panel2& source, bool left = true);
-double source_2_1_v(Vector2& target, Panel2& source, bool left = true);
-
-
+Vector2 doublet_2_1_v(Vector2& target, Panel2& source, bool left);
+Vector2 source_2_1_v(Vector2& target, Panel2& source, bool left);
 
 
 #endif //element_influence_H

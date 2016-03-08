@@ -50,9 +50,10 @@ public:
     vector<string> labels();
 };
 
-class Polar3: public vector<AeroCoef3>
+class Polar3
 {
 public:
+    vector<AeroCoef3> values;
     vector<vector<double>> as_matrix();
     vector<string> labels();
 };
@@ -65,6 +66,7 @@ public:
 class Case3{
 public:
     Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge);
+    Case3(vector<Panel3*> panels);
     
     Eigen::MatrixXd matrix;
     Eigen::MatrixXd rhs;
@@ -109,8 +111,15 @@ public:
     void append_wakepoint(PanelVector3*);
     void write_to_verts();
     
-    void create_wake(double length=100, int count=10, Vector3 direction = Vector3(0,0,0));
-    void relax_wake(int iterations=1, double smoothening=1);
+    void create_wake(double length, int count, Vector3& direction);
+    void create_wake(double length, int count){this->create_wake(length, count, this->v_inf);}
+    void create_wake(double length){this->create_wake(length, 10, this->v_inf);}
+    void create_wake(){this->create_wake(100, 10, this->v_inf);}
+
+    void relax_wake(int iterations, double smoothening);
+    void relax_wake(int iterations){this->relax_wake(iterations, 1);}
+    void relax_wake(){this->relax_wake(1, 1);}
+    
     
     void sum_forces(Vector3 vinf_);
     vector<Edge> trefftz_cut();
@@ -133,7 +142,7 @@ public:
     virtual void off_body_potential(PanelVector3&);
     virtual void off_body_velocity(PanelVector3& point);
     virtual void off_body_wake_velocity(PanelVector3& point);
-    virtual vector<Vector3> flow_path(Vector3 start, double inc, int count);
+    virtual vector<Vector3> flow_path(Vector3& start, double inc, int count);
     virtual vector<Vector3> body_flow_path(Panel3* start, int num_traverse);
     //####################################################################
 };
@@ -155,6 +164,7 @@ protected:
 
 public:
     DirichletDoublet0Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge);
+    DirichletDoublet0Case3(vector<Panel3*> panels);
     virtual Polar3 polars(vector<Vector3> vinf_range);
     virtual void off_body_potential(PanelVector3&);
     virtual void off_body_velocity(PanelVector3&);
@@ -172,6 +182,7 @@ protected:
     void surface_influence(Panel3* pan_i, Panel3* pan_j, vector<Vector3> vinf_range);
 public:
     DirichletDoublet0Source0Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge);
+    DirichletDoublet0Source0Case3(vector<Panel3*> panels);
     virtual Polar3 polars(vector<Vector3> vinf_range);
     virtual void off_body_potential(PanelVector3&);
     virtual void off_body_velocity(PanelVector3&);

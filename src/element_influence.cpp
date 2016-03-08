@@ -408,7 +408,7 @@ Vector2 source_2_0_v(Vector2& target, Panel2& source)
     return (u + w) / M_PI / 2;
 }
 
-double vortex_2(Vector2& target, Vector2& source, Vector2 direction)
+double vortex_2(Vector2& target, Vector2& source, Vector2& direction)
 {
     direction.normalize();
     double pn = (target - source).dot(normal2(direction));
@@ -505,12 +505,10 @@ double source_2_1(Vector2& target, Panel2& source, bool left)
 }
 
 
-double source_2_1_v(Vector2& target, Panel2& source, bool left)
+Vector2 source_2_1_v(Vector2& target, Panel2& source, bool left)
 {
 
 }
-
-
 
 
 double source_2(Vector2& target, Vector2& source)
@@ -524,14 +522,15 @@ Vector2 source_2_v(Vector2& target, Vector2& source)
     return 1. / 2. / M_PI * r / r.dot(r);
 }
 
-double doublet_2(Vector2& target, Vector2& source, Vector2 direction)
+double doublet_2(Vector2& target, Vector2& source, Vector2& direction)
 {
     Vector2 r = target - source;
     direction.normalize();
     return - 1. / 2. / M_PI * direction.dot(r) / r.dot(r);
 }
 
-Vector2 doublet_2_v(Vector2& target, Vector2& source, Vector2 direction)
+
+Vector2 doublet_2_v(Vector2& target, Vector2& source, Vector2& direction)
 {
     direction.normalize();
     Vector2 r = (target - source);

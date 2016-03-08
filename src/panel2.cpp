@@ -13,6 +13,14 @@ Panel2::Panel2(PanelVector2* p1, PanelVector2* p2)
     this->calc_geo();
 }
 
+Panel2::Panel2(vector<PanelVector2*> points)
+{
+    for (PanelVector2*& point: points)
+    {
+        this->append_point(point);
+    }
+    this->calc_geo();
+}
 
 vector< PanelVector2* > Panel2::get_points()
 {

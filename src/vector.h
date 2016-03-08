@@ -16,7 +16,7 @@ class Panel2;
  * A 2D Vector from the Eigen library -> http://eigen.tuxfamily.org/index.php?title=Main_Page.
 */
 
-typedef Eigen::Matrix<double, 2, 1, Eigen::DontAlign> Vector2;
+typedef Eigen::Vector2d Vector2;
 
 
 /**

@@ -37,6 +37,10 @@ protected:
     bool neighbours_set = false;
     
 public:
+    
+    Panel3();
+    ~Panel3(){};
+    Panel3(vector<PanelVector3*>);
     virtual string type() {return "Panel3";}
     vector<PanelVector3*> points;                       //Maybe protected
     virtual vector<PanelVector3*> get_points();
@@ -77,7 +81,6 @@ public:
     void compute_gradient(Vector3& v_inf);
     void compute_pressure(Vector3& v_inf);
 
-    Panel3();
     string tostring();
     int aligned(PanelVector3*, PanelVector3*);
     bool is_inside(Vector3&);
