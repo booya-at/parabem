@@ -10,7 +10,7 @@ PPM is the python binding for PM. it is used to for the tests and exdents the pa
 ##Dependencies
 * C++11:
     - [eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page "Eigen")
-    - [boost python](http://www.boost.org/doc/libs/1_58_0/libs/python/doc/ "boost python")
+    - [pybind11](https://pybind11.readthedocs.org/en/latest/ "pybind11")
     - [open_mp](http://openmp.org/wp/ "open mp")
     - [cmake](http://www.cmake.org/ "cmake")
 * python:
