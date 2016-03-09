@@ -1,5 +1,5 @@
 import ppm
-from ppm.pan3d import doublet_3_0_vsaero, doublet_3_0_vsaero_v
+from ppm.pan3d import doublet_3_0_vsaero, doublet_3_0_vsaero_v, doublet_3_0_sphere
 from ppm.vtk_export import VtkWriter
 import numpy
 from ppm.utils import check_path
@@ -18,7 +18,7 @@ n = 50
 a = numpy.linspace(-1, 1, n).tolist()
 b = [ppm.PanelVector3(i, j, k) for i in a for j in a for k in a]
 
-pot = [doublet_3_0_vsaero(i, p) for i in b]
+pot = [doublet_3_0_sphere(i, p) for i in b]
 vel = [doublet_3_0_vsaero_v(i, p) for i in b]
 
 writer = VtkWriter()

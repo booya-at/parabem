@@ -196,13 +196,9 @@ PYBIND11_PLUGIN(_ppm) {
         .def_readwrite("drag_calc", &Case3::drag_calc)
         .def_readwrite("trefftz_cut_pos", &Case3::trefftz_cut_pos)
         .def("trefftz_cut", &Case3::trefftz_cut)
-        .def("create_wake", (void (Case3::*)(double, int, Vector3&)) &Case3::create_wake)
-        .def("create_wake", (void (Case3::*)(double, int)) &Case3::create_wake)
-        .def("create_wake", (void (Case3::*)(double)) &Case3::create_wake)
-        .def("create_wake", (void (Case3::*)()) &Case3::create_wake)
-        .def("relax_wake", (void (Case3::*)(int, double)) &Case3::relax_wake)
-        .def("relax_wake", (void (Case3::*)(int)) &Case3::relax_wake)
-        .def("relax_wake", (void (Case3::*)()) &Case3::relax_wake)
+        .def("create_wake", (void (Case3::*)(double, int, Vector3&)) &Case3::create_wake, "create wake",
+             py::arg("length") = 100., py::arg("count") = 10, py::arg("direction") = Vector3(0, 0, 0))
+        .def("relax_wake", &Case3::relax_wake, "relax the wake", py::arg("iterations")=1, py::arg("smoothening")=1)
         .def_readwrite("symmetric_plane_n", &Case3::symmetric_plane_n)
         .def_readwrite("symmetric_plane_p", &Case3::symmetric_plane_p)
         .def_readonly("vertices", &Case3::vertices)
@@ -223,8 +219,8 @@ PYBIND11_PLUGIN(_ppm) {
         .def("off_body_potential",&Case3::off_body_potential)
         .def("flow_path", &Case3::flow_path)
         .def("body_flow_path", &Case3::body_flow_path)
-        .def("run", &Case3::run);
-//         .def("polars", &py_case::polar3);
+        .def("run", &Case3::run)
+        .def("polars", &Case3::polars);
         
     py::class_<DirichletDoublet0Case3>(m, "DirichletDoublet0Case3", py::base<Case3>())
         .def(py::init<vector<Panel3*>>())
@@ -248,10 +244,11 @@ PYBIND11_PLUGIN(_ppm) {
         .def_readonly("lift_factor", &LineSegment::lift_factor);
 
     py::class_<LiftingLine>(m, "LiftingLine")
-        .def("append_point", &LiftingLine::append_point)
-        .def("initialize", &LiftingLine::initialize)
-        .def_readonly("segments", &LiftingLine::segments)
-        .def("best_gamma", &LiftingLine::best_gamma);
+        .def(py::init<vector<Vector3*>>())
+        .def_readwrite("v_inf", &LiftingLine::v_inf)
+        .def_property_readonly("segments", &LiftingLine::get_segments)
+        .def_property_readonly("points", &LiftingLine::get_points)
+        .def("solve_for_best_gamma", &LiftingLine::solve_for_best_gamma);
 
     /************************-3D SINGULARITY ELEMENTS-************************/
     m.def("doublet_3_0_vsaero", &wrap_doublet_3_0_vsaero);

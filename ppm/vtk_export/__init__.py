@@ -96,7 +96,7 @@ class CaseToVTK():
     @property
     def vertices(self):
         """set the vertex numbers"""
-        return self.case.vertices.values
+        return self.case.vertices
 
     @property
     def wake_vertices(self):
@@ -124,7 +124,7 @@ class CaseToVTK():
 
     @property
     def vert_vel(self):
-        return [vert.velocity for vert in self.case.vertices.values]
+        return [vert.velocity for vert in self.case.vertices]
 
     @property
     def pan_cp(self):
@@ -132,7 +132,7 @@ class CaseToVTK():
 
     @property
     def vert_cp(self):
-        return [vert.cp for vert in self.case.vertices.values]
+        return [vert.cp for vert in self.case.vertices]
 
     @property
     def wake_pot(self):
@@ -144,7 +144,7 @@ class CaseToVTK():
 
     @property
     def vert_pot(self):
-        return [vert.potential for vert in self.case.vertices.values]
+        return [vert.potential for vert in self.case.vertices]
 
     def _stream_lines(self, start_points=[[0, 0, 0]], interval=0.01, numpoints=100):
         if not isinstance(start_points[0], ppm.Vector3):
@@ -156,7 +156,7 @@ class CaseToVTK():
         i = 0
         for fp in flow_paths:
             fpwi = []
-            for vertex in fp.values:
+            for vertex in fp:
                 vertices.append(vertex)
                 fpwi.append(i)
                 i += 1
@@ -170,7 +170,7 @@ class CaseToVTK():
         i = 0
         for fp in flow_paths:
             fpwi = []
-            for vertex in fp.values:
+            for vertex in fp:
                 vertices.append(vertex)
                 fpwi.append(i)
                 i += 1

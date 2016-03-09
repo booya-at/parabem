@@ -10,7 +10,7 @@ v4 = ppm.PanelVector3(-0.5, 0.5, 0)
 
 p = ppm.Panel3([v1, v2, v3, v4])
 
-v5 = ppm.Vector3(0.5,0,0.5)
+v5 = ppm.Vector3(0.5, 0, 0.5)
 v6 = ppm.Vector3(0.4999, 0 , 0)
 v7 = ppm.Vector3(0.5, 0.0 , 0)
 v8 = ppm.Vector3(0.5001, 0 , 0)

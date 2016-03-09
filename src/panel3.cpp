@@ -17,6 +17,7 @@ Panel3::Panel3(std::vector< PanelVector3* > points)
     {
         this->append_point(vec);
     }
+    this->calc_geo();
 }
 
 

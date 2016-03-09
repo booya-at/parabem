@@ -15,7 +15,7 @@ lin = np.linspace(-0.5, 0.5, 5)
 grid = [[-2, k, j] for j in lin for k in lin]
 
 vtk_writer = CaseToVTK(case, "results/vtk_test_case")
-vtk_writer.write_panels(data_type="cell")
+vtk_writer.write_panels(data_type="point")
 # vtk_writer.write_wake_panels()
-# vtk_writer.write_body_stream(mesh.panels, 50)
+vtk_writer.write_body_stream(mesh.panels, 50)
 vtk_writer.write_field([-2, 2, 100], [-2, 2, 100], [-1, 1, 3])

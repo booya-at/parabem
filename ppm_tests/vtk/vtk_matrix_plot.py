@@ -20,9 +20,9 @@ n = case.mat_size
 space = numpy.linspace(-2, 2, n).tolist()
 index_pos = [[x, y, 0] for y in space for x in space]
 
-mat = case.matrix.values
+mat = case.matrix
 mat_flat = []
-for row in mat:
+for row in mat.to_list():
     for value in row:
         if abs(value) < 1:
             mat_flat.append(value)

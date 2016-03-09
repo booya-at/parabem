@@ -111,14 +111,9 @@ public:
     void append_wakepoint(PanelVector3*);
     void write_to_verts();
     
-    void create_wake(double length, int count, Vector3& direction);
     void create_wake(double length, int count){this->create_wake(length, count, this->v_inf);}
-    void create_wake(double length){this->create_wake(length, 10, this->v_inf);}
-    void create_wake(){this->create_wake(100, 10, this->v_inf);}
-
-    void relax_wake(int iterations, double smoothening);
-    void relax_wake(int iterations){this->relax_wake(iterations, 1);}
-    void relax_wake(){this->relax_wake(1, 1);}
+    void create_wake(double length, int count, Vector3& direction);
+    void relax_wake(int iterations=1, double smoothening=1);
     
     
     void sum_forces(Vector3 vinf_);
@@ -138,7 +133,7 @@ public:
     
     
     //######################### OVERWRITE ################################
-    virtual Polar3 polars(vector<Vector3> vinf_range);
+    virtual Polar3 polars(vector<Vector3*> vinf_range);
     virtual void off_body_potential(PanelVector3&);
     virtual void off_body_velocity(PanelVector3& point);
     virtual void off_body_wake_velocity(PanelVector3& point);
@@ -156,8 +151,8 @@ public:
 
 class DirichletDoublet0Case3: public Case3{
 protected:
-    void surface_influence(Panel3* pan_i, Panel3* pan_j, vector<Vector3> vinf_range);
-    void wake_influence(Panel3* pan_i, WakePanel3* pan_j, vector<Vector3> vinf_range);
+    void surface_influence(Panel3* pan_i, Panel3* pan_j, vector<Vector3*> vinf_range);
+    void wake_influence(Panel3* pan_i, WakePanel3* pan_j, vector<Vector3*> vinf_range);
     double freeflow_influence(Panel3* pan_i, Vector3 vinf_);
     double freeflow_influence(Panel3* pan_i);
     double freeflow_influence(Vector3 vec);
@@ -165,7 +160,7 @@ protected:
 public:
     DirichletDoublet0Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge);
     DirichletDoublet0Case3(vector<Panel3*> panels);
-    virtual Polar3 polars(vector<Vector3> vinf_range);
+    virtual Polar3 polars(vector<Vector3*> vinf_range);
     virtual void off_body_potential(PanelVector3&);
     virtual void off_body_velocity(PanelVector3&);
     virtual void off_body_wake_velocity(PanelVector3& point);
@@ -179,11 +174,11 @@ public:
 
 class DirichletDoublet0Source0Case3: public DirichletDoublet0Case3{
 protected:
-    void surface_influence(Panel3* pan_i, Panel3* pan_j, vector<Vector3> vinf_range);
+    void surface_influence(Panel3* pan_i, Panel3* pan_j, vector<Vector3*> vinf_range);
 public:
     DirichletDoublet0Source0Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge);
     DirichletDoublet0Source0Case3(vector<Panel3*> panels);
-    virtual Polar3 polars(vector<Vector3> vinf_range);
+    virtual Polar3 polars(vector<Vector3*> vinf_range);
     virtual void off_body_potential(PanelVector3&);
     virtual void off_body_velocity(PanelVector3&);
 };
