@@ -2,17 +2,15 @@ dist: trusty
 language: cpp
 compiler: g++
 python:
-  - "2.7.6"
+  - "3.4"
 addons:
   apt:
     packages:
-    - libpython2.7
-    - libpython2.7-dev
-    - libboost-python*
-    - libboost-all-dev
-    - libeigen3-dev
+    - libpython3.4
+    - libpython3.4-dev
     - python-numpy
     - python-matplotlib
+    - python-setuptools
     - texlive-latex-base
     - texlive-latex-recommended
     - texlive-lang-german
@@ -23,16 +21,24 @@ before_install:
   - git clone https://github.com/hiaselhans/OpenGlider.git
   - cd OpenGlider
   - sudo pip install -e .
-  - cd .. 
-
+  - cd ..
+  - hg clone https://bitbucket.org/eigen/eigen
+  - sudo mkdir /usr/include/eigen3/
+  - sudo cp eigen/Eigen/  /usr/include/eigen3/Eigen -r
+  - sudo cp eigen/signature_of_eigen3_matrix_library /usr/include/eigen3/
+  - git clone https://github.com/pybind/pybind11.git
+  - sudo cp pybind11/include/pybind11 /usr/include/python3.4/ -r
+  - git clone https://github.com/looooo/py-eigen.git
+  - cd py-eigen
+  - mkdir build && cd build && cmake .. -Dpy=3.4
+  - sudo make install && cd ../..
 install:
-  - mkdir build && cd build && cmake ../ 
-    -DPYTHON_EXECUTABLE=/usr/bin/python
+  - mkdir build && cd build && cmake .. -Dpy=3.4
 
 script:
   - sudo make -j2 install
-  - sh ../run_all.sh /usr/bin/python
-  # - sh ../create_doc.sh
+  - sh ../run_all.sh python3.4
+  - sh ../create_doc.sh
 branches:
   only:
     - master

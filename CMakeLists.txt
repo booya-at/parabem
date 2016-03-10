@@ -37,9 +37,9 @@ endif()
 SET(python_install_dir ${python_libs}/ppm)
 
 #include drectories
-include_directories( ${PYTHON_INCLUDE_DIRS})    # pyeigen, python.h
+include_directories( ${PYTHON_INCLUDE_DIRS})    # python.h
 include_directories( ${EIGEN3_INCLUDE_DIR})     # eigen3
-
+include_directories( ${PY_EIGEN_DIR_PATH})     # py-eigen3
 
 add_subdirectory(ppm)
 add_subdirectory(src)

@@ -66,6 +66,7 @@ Vector3 wrap_vortex_3_0_v(Vector3& target, Vector3& p1, Vector3& p2){
 Vector3 wrap_vortex_3_0_edge_v(Vector3& target, Edge& e){
     return vortex_3_0_v(target, e);}
 
+
 PYBIND11_PLUGIN(_ppm) {
     py::module m("_ppm", "pybind11 example plugin");
     init_eigen(m);
@@ -142,6 +143,7 @@ PYBIND11_PLUGIN(_ppm) {
 
     py::class_<Panel3>(m, "Panel3")
         .def(py::init<vector<PanelVector3*>>())
+        .def(py::init<>())
         .def("append_point", &Panel3::append_point)
         .def_readonly("center", &Panel3::center)
         .def_readonly("m", &Panel3::m)
@@ -153,19 +155,24 @@ PYBIND11_PLUGIN(_ppm) {
         .def_property_readonly("mue", &Panel3::get_mue)
         .def_property_readonly("velocity", &Panel3::get_velocity)
         .def_property_readonly("cp", &Panel3::get_cp)
-        .def_property_readonly("points", &Panel3::get_points)
+        .def_readonly("points", &Panel3::points)
+        .def("get_points", &Panel3::get_points, "", py::return_value_policy::copy)
         .def("set_symmetric", &Panel3::set_symmetric);
-        
-        
+
     py::class_<Edge>(m, "Edge")
         .def_readonly("v1", &Edge::v1)
         .def_readonly("v2", &Edge::v2)
         .def_readonly("vorticity", &Edge::vorticity)
         .def_property_readonly("center", &Edge::center);
-        
-    py::class_<WakePanel3>(m, "WakePanel3",  py::base<Panel3>());
-//         .add_property<>("upper_operating_Panel3", &WakePanel3::get_upper_operating_panel)
-//         .add_property<>("lower_operating_Panel3", &WakePanel3::get_lower_operating_panel);
+
+// workaround because subclassing messed things up (double frees, ...)
+    py::class_<WakePanel3>(m, "WakePanel3")
+        .def("get_points", [](WakePanel3& pan){return pan.get_points();}, "", py::return_value_policy::copy)
+        .def_property_readonly("n", [](WakePanel3& pan){return pan.n;})
+        .def_property("potential", [](WakePanel3& pan){return pan.get_potential();}, 
+                                   [](WakePanel3& pan, double pot){pan.set_potential(pot);})
+        .def_property_readonly("upper_operating_Panel", &WakePanel3::get_upper_operating_panel)
+        .def_property_readonly("lower_operating_Panel", &WakePanel3::get_lower_operating_panel);
     
     py::class_<AeroCoef3>(m, "AeroCoef3")
         .def_property_readonly("alpha", &AeroCoef3::alpha)
