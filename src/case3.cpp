@@ -266,7 +266,7 @@ void Case3::create_wake(double length, int count, Vector3& direction){
     this->first_wake_row.clear();
     this->sym_wake_panels.clear();
     int edge_len = this->trailing_edge.size();
-    for (PanelVector3*& trailing_point: this->trailing_edge){
+    for (PanelVector3* trailing_point: this->trailing_edge){
         vector<PanelVector3*> stream_line;
         for (int k = 0; k < count; k++){
             if (k == 0){
@@ -276,7 +276,7 @@ void Case3::create_wake(double length, int count, Vector3& direction){
             PanelVector3* point = new PanelVector3(*trailing_point + direction * (length / count * k));
             stream_line.push_back(point);
         }
-        }
+    }
     this->wake_streams.push_back(stream_line);
     }
     for (int i = 0; i < edge_len -1; i++)

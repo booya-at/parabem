@@ -11,7 +11,7 @@ with open("../openglider/glider/referenz_schirm_berg.json") as _file:
 case = Case(panels[1], panels[2])
 case.v_inf = ppm.Vector(glider.v_inf)
 case.drag_calc = "on_body"
-case.A_ref = glider.flat_area
+case.A_ref = glider.shape.area
 
 #wake parallel to the x axis
 print("*    wake parallel to the x-axis")

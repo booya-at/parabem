@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 from openglider.jsonify import load
 from openglider.glider.in_out.export_3d import ppm_Panels
-from openglider.airfoil import Profile2D
+from openglider.utils.distribution import Distribution
 
 import ppm
 from ppm._ppm import Case3
@@ -20,15 +20,15 @@ count = 0
 #   load the glider
 with open("results/glider/optimized.json") as _file:
     glider2d = load(_file)["data"]
-    area = glider2d.flat_area
-    aspect_ratio = glider2d.aspect_ratio
+    area = glider2d.shape.area
+    aspect_ratio = glider2d.shape.aspect_ratio
 
 glider3d = glider2d.get_glider_3d()
 verts, panels, trailing_edge = ppm_Panels(glider3d,
                         midribs=0,
                         profile_numpoints=20,
                         symmetric=False,
-                        distribution=Profile2D.nose_cos_distribution(0.5),
+                        distribution=Distribution.nose_cos_distribution(0.5),
                         num_average=0)
 
 case = DirichletDoublet0Source0Case3(panels, trailing_edge)
@@ -36,25 +36,23 @@ case.v_inf = ppm.Vector3(*glider2d.v_inf)
 case.create_wake(1000, 100)
 case.trefftz_cut_pos = case.v_inf * 20
 case.run()
-gamma_pan = -np.array([edge.vorticity for edge in case.trailing_edge.values])
+gamma_pan = -np.array([edge.vorticity for edge in case.trailing_edge])
 
 
 
 ######################LiftingLine############################
-lifting_line = LiftingLine()
-for i in trailing_edge:
-    lifting_line.append_point(ppm.Vector3(0, i.y, i.z))
-
-lifting_line.initialize(case.v_inf)
-lifting_line.best_gamma(1)
-gamma = [line.best_gamma for line in lifting_line.segments.values]
+te_line = [ppm.Vector3(0, i.y, i.z) for i in trailing_edge]
+lifting_line = LiftingLine(te_line)
+lifting_line.v_inf = case.v_inf
+lifting_line.solve_for_best_gamma(1)
+gamma = [line.best_gamma for line in lifting_line.segments]
 gamma_max = max(gamma)
 gamma_pan *= gamma_max / max(gamma_pan)
 
-line_segment_length = np.array([0] + [line.b for line in lifting_line.segments.values])
+line_segment_length = np.array([0] + [line.b for line in lifting_line.segments])
 line_segment_length = line_segment_length.cumsum()
 spw = max(line_segment_length)
-spw_proj = abs(lifting_line.segments.values[0].v1.y) * 2
+spw_proj = abs(lifting_line.segments[0].v1.y) * 2
 line_segment_length -= spw / 2
 
 
@@ -63,7 +61,7 @@ line_segment_length -= spw / 2
 
 x, y, z, nx, ny, nz = np.transpose(
     np.array([np.array([i.mids.x, i.mids.y, i.mids.z, i.n.x, i.n.y, i.n.z])
-    for i in lifting_line.segments.values]))
+    for i in lifting_line.segments]))
 l = np.sqrt(np.diff(y) ** 2 + np.diff(z) ** 2)
 l = l.cumsum()
 l = np.insert(l, 0, 0)

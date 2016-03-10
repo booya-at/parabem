@@ -4,10 +4,10 @@ import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 
-from openglider.glider import glider_2d
+# from openglider.glider.parametric import ParametricGlider
 from openglider.jsonify import dump, load
 from openglider.glider.in_out.export_3d import ppm_Panels
-from openglider.airfoil import Profile2D
+from openglider.utils.distribution import Distribution
 
 import ppm
 from ppm.pan3d import DirichletDoublet0Source0Case3 as Case
@@ -18,23 +18,23 @@ count = 0
 #   load the glider
 with open("glider/referenz_schirm_berg.json") as _file:
     glider2d = load(_file)["data"]
-    area = glider2d.flat_area
-    aspect_ratio = glider2d.aspect_ratio
+    area = glider2d.shape.area
+    aspect_ratio = glider2d.shape.aspect_ratio
 
 
 def glider_set_controlpoint(glider2d, x):
-    c = deepcopy(glider2d.front.controlpoints)
+    c = deepcopy(glider2d.shape.front_curve.controlpoints)
     c[0, 0] = x
-    glider2d.front.controlpoints = list(c)
-    c = deepcopy(glider2d.back.controlpoints)
+    glider2d.shape.front_curve.controlpoints = list(c)
+    c = deepcopy(glider2d.shape.back_curve.controlpoints)
     c[0, 0] = x
-    glider2d.back.controlpoints = list(c)
-    glider2d.set_aspect_ratio(aspect_ratio, "span")
+    glider2d.shape.back_curve.controlpoints = list(c)
+    glider2d.shape.set_aspect_ratio(aspect_ratio, "span")
     # glider2d.set_flat_area(area, "aspect_ratio")
-    glider2d.set_const_cell_dist()
+    glider2d.shape.set_const_cell_dist()
 
 def shape_plot(glider2d):
-    shape = glider2d.shape()
+    shape = glider2d.shape.get_shape()
     line = list(shape.front) + list(shape.back[::-1]) + [shape.front[0]]
     x, y = zip(*line)
     middle = sum(y) / len(y)
@@ -51,7 +51,7 @@ def min_func(x):
                         midribs=0,
                         profile_numpoints=40,
                         symmetric=True,
-                        distribution=Profile2D.nose_cos_distribution(0.2),
+                        distribution=Distribution.nose_cos_distribution(0.2),
                         num_average=0)
     case = Case(panels[1], panels[2])
     case.farfield = 5
@@ -73,16 +73,23 @@ def min_func(x):
     return np.interp(0.6, cL, cD)
 
 
-y_positions = np.linspace(-6, 10, 30)
+y_positions = np.linspace(-6, 10, 20)
 cD = [min_func(i) for i in y_positions]
 # plt.show()
-plt.figure(figsize=(10,4))
+plt.figure(figsize=(10, 4))
 plt.plot(y_positions, cD, marker="x")
 plt.xlabel('y-Position der Kontrollpunkte [m]', fontsize=15)
 plt.ylabel('induzierter Widerstandsbeiwert $c_{Wi}$', fontsize=15)
 plt.grid(True)
 plt.savefig(check_path('results/vtk_opt/induced_drag.png'),  bbox_inches='tight')
 # # plt.show()
+plt.close()
+plt.figure(figsize=(10, 4))
+plt.plot(y_positions, 0.6 / np.array(cD), marker="x")
+plt.xlabel('y-Position der Kontrollpunkte [m]', fontsize=15)
+plt.ylabel('Gleitzahl $\\epsilon$', fontsize=15)
+plt.grid(True)
+plt.savefig(check_path('results/vtk_opt/glide.png'),  bbox_inches='tight')
 plt.close()
 
 

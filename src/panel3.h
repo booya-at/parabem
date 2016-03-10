@@ -114,7 +114,7 @@ public:
     virtual Vector3 get_velocity();
     virtual double get_mue(){return this->parent->get_mue();}
     virtual double get_potential(){return this->parent->get_potential();}
-    vector< PanelVector3* > get_points();
+    virtual vector< PanelVector3* > get_points();
     int get_nr();
     void calc_geo();
     virtual void set_neighbours();
@@ -129,7 +129,7 @@ public:
     SymmetricWakePanel3(WakePanel3* parent, Vector3 plane_n, Vector3 plane_p);;
     void calc_geo();
     int get_nr();
-    virtual vector< PanelVector3* > get_points();
+    virtual vector<PanelVector3*> get_points();
     Panel3* get_lower_operating_panel();
     Panel3* get_upper_operating_panel();
 };
