@@ -8,9 +8,9 @@ addons:
     packages:
     - libpython3.4
     - libpython3.4-dev
-    - python-numpy
-    - python-matplotlib
-    - python-setuptools
+    - python3-numpy
+    - python3-matplotlib
+    - python3-setuptools
     - texlive-latex-base
     - texlive-latex-recommended
     - texlive-lang-german
