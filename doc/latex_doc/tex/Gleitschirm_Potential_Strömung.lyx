@@ -4979,8 +4979,28 @@ Die Interpretersprache Python wird mit dem C++ Module
 \begin_inset Quotes eld
 \end_inset
 
-Boost-Python
+PyBind11
 \begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://pybind11.readthedocs.org
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
  angebunden.
