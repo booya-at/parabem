@@ -167,7 +167,8 @@ PYBIND11_PLUGIN(_ppm) {
 
 // workaround because subclassing messed things up (double frees, ...)
     py::class_<WakePanel3>(m, "WakePanel3")
-        .def("get_points", [](WakePanel3& pan){return pan.get_points();}, "", py::return_value_policy::copy)
+        .def_property_readonly("points", py::cpp_function([](WakePanel3& pan){return pan.get_points();}, 
+                                         py::return_value_policy::copy))
         .def_property_readonly("n", [](WakePanel3& pan){return pan.n;})
         .def_property("potential", [](WakePanel3& pan){return pan.get_potential();}, 
                                    [](WakePanel3& pan, double pot){pan.set_potential(pot);})

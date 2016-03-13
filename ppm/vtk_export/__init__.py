@@ -100,7 +100,7 @@ class CaseToVTK():
 
     @property
     def wake_vertices(self):
-        return [vert for pan in self.case.wake_panels for vert in pan.get_points()]
+        return [vert for pan in self.case.wake_panels for vert in pan.points]
 
     @property
     def panels(self):
@@ -112,7 +112,7 @@ class CaseToVTK():
         i = 0
         for pan in self.case.wake_panels:
             verts_nr = []
-            for vert in pan.get_points():
+            for vert in pan.points:
                 verts_nr.append(i)
                 i += 1
             pans_nr.append(verts_nr)
