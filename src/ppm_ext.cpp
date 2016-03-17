@@ -69,7 +69,7 @@ Vector3 wrap_vortex_3_0_edge_v(Vector3& target, Edge& e){
 
 PYBIND11_PLUGIN(_ppm) {
     py::module m("_ppm", "pybind11 example plugin");
-    init_eigen(m);
+    // init_eigen(m);
     
     py::class_<PanelVector2>(m, "PanelVector2", py::base<Vector2>())
         .def(py::init<double, double>())
