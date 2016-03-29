@@ -10,7 +10,7 @@ def libs():
 
 
 def extra_link_args():
-    return ['-lgomp', '-l:eigen.so']
+    return ['-lgomp']
 
 
 include_dirs = ['/usr/include/eigen3',
