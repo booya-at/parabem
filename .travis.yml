@@ -22,7 +22,7 @@ before_install:
   - sudo apt-get update
   - git clone https://github.com/hiaselhans/OpenGlider.git
   - cd OpenGlider
-  - sudo python2.7 setup.py install
+  - sudo python setup.py install
   - cd ..
   - hg clone https://bitbucket.org/eigen/eigen
   - sudo mkdir /usr/include/eigen3/
@@ -32,10 +32,10 @@ before_install:
   - sudo cp pybind11/include/pybind11 /usr/include/python2.7/ -r
   - git clone https://github.com/looooo/py-eigen.git
   - cd py-eigen
-  - sudo python2.7 setup.py install
+  - sudo python setup.py install
   - cd ..
 install:
-  - mkdir build && cd build && cmake .. -Dpy=2.7
+  - sudo python setup.py install
 
 script:
   - sudo make -j2 install

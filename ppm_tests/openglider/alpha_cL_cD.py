@@ -27,7 +27,7 @@ _, panels, trailing_edge = ppm_Panels(
 
 v_inf = [8, 0, 1]
 
-case = Case(panels, trailing_edge)
+case = Case(panels)
 case.mom_ref_point = ppm.Vector3(1.25, 0, -6)
 case.A_ref = parametricGlider.shape.area
 case.farfield = 5

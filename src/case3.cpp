@@ -80,33 +80,36 @@ CoordSys::CoordSys(Vector3 v_inf, Vector3 lift_ref)
 
 Case3::Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge)
 {
-    for(Panel3*& panel: panels){
+    for(Panel3* panel: panels){
         this->append_panel(panel);
     }
-    for(PanelVector3*& trailing_point: trailing_edge){
+    for(PanelVector3* trailing_point: trailing_edge){
         this->append_wakepoint(trailing_point);
     }
-    for(Panel3*& panel: this->get_all_panels()){
+    for(Panel3* panel: this->get_all_panels()){
         panel->set_neighbours();
     }
 }
 
 Case3::~Case3(){
-    for (SymmetricPanel3* pan: this->sym_panels)
+    //  adding a clean referenc counting for proper destructor handling
+    //  or use shared_ptr
+    for (auto pan: this->sym_panels)
         delete pan;
-    for (WakePanel3* pan: this->wake_panels)
+    for (auto pan: this->wake_panels)
         delete pan;    
-    for (SymmetricWakePanel3* pan: this->sym_wake_panels)
+    for (auto pan: this->sym_wake_panels)
         delete pan;
-    cout << "delete case" << endl;
+    for (auto vec: cut_line)            // decref also in edges!
+        delete vec;
 }
 
 Case3::Case3(vector<Panel3*> panels)
 {
-    for(Panel3*& panel: panels){
+    for(Panel3* panel: panels){
         this->append_panel(panel);
     }
-    for(Panel3*& panel: this->get_all_panels()){
+    for(Panel3* panel: this->get_all_panels()){
         panel->set_neighbours();
     }
 }
@@ -142,16 +145,15 @@ void Case3::append_panel(Panel3* p)
     }
 }
 
+void Case3::append_panel(WakePanel3* p)
+{
+    this->wake_panels.push_back(p);
+}
 
 void Case3::append_wakepoint(PanelVector3* v)
 {
-  this->trailing_edge.push_back(v);
-  v->wake_vertex = 1;
-}
-
-void Case3::append_panel(WakePanel3* p)
-{
-  this->wake_panels.push_back(p);
+    this->trailing_edge.push_back(v);
+    v->wake_vertex = 1;
 }
 
 vector<Panel3*> Case3::get_all_panels()
@@ -181,10 +183,10 @@ vector<WakePanel3*> Case3::get_all_wake_panels()
 
 void Case3::write_to_verts()
 {
-    for (PanelVector3*& point: this->vertices)
+    for (PanelVector3* point: this->vertices)
     {
         point->reset_properties();
-        for (Panel3*& panel: point->panels)
+        for (Panel3* panel: point->panels)
         {
         point->potential += panel->get_potential() / point->owner;
         point->velocity +=  panel->get_velocity() / point->owner;
@@ -311,7 +313,8 @@ void Case3::create_wake(double length, int count, Vector3& direction){
             w->calc_geo();
             if (e.p1->is_symmetric() and e.p2->is_symmetric()){
                 w->set_symmetric();
-                SymmetricWakePanel3* sym_wake_pan = new SymmetricWakePanel3(w, this->symmetric_plane_n, this->symmetric_plane_p);
+                SymmetricWakePanel3* sym_wake_pan = 
+                    new SymmetricWakePanel3(w, this->symmetric_plane_n, this->symmetric_plane_p);
                 sym_wake_pan->calc_geo();
                 this->sym_wake_panels.push_back(sym_wake_pan);
             }
@@ -370,7 +373,6 @@ void Case3::relax_wake(int iterations, double smoothening)
 vector< Edge > Case3::trefftz_cut()
 {
     int i, j, k;
-    vector<PanelVector3*> cut_line;
     vector<Edge> segments;
     bool found_cut = false;
 
@@ -381,7 +383,7 @@ vector< Edge > Case3::trefftz_cut()
             double lambda = e.lambda_cut(this->trefftz_cut_pos, this->v_inf);
             if (0 <= lambda && lambda <=1){
                 PanelVector3* cut_pos = new PanelVector3(e.lambda_pos(lambda));
-                cut_line.push_back(cut_pos);
+                this->cut_line.push_back(cut_pos);
                 found_cut = true;
                 break;
             }
@@ -392,8 +394,8 @@ vector< Edge > Case3::trefftz_cut()
         }
     }
 //   creating the edges
-    for (k = 1; k < cut_line.size(); k++){
-        Edge e(cut_line[k - 1], cut_line[k]);
+    for (k = 1; k < this->cut_line.size(); k++){
+        Edge e(this->cut_line[k - 1], this->cut_line[k]);
         e.vorticity = this->first_wake_row[k - 1]->get_mue();
         e.is_symmetric = this->first_wake_row[k - 1]->is_symmetric();
         segments.push_back(e);
@@ -539,7 +541,7 @@ double Case3::get_surface_area()
 double Case3::get_projected_area()
 {
     double proj_area = 0;
-    for (Panel3*& panel: this->get_all_panels())
+    for (Panel3* panel: this->get_all_panels())
     {
         proj_area += (panel->n.z() > 0) * panel->n.z() * panel->area;
     }
@@ -595,14 +597,14 @@ Polar3 DirichletDoublet0Case3::polars(vector<Vector3*> v_inf_range)
             panel_i->reset_properties();
             panel_i->set_mue(this->result(panel_i->get_nr(), h));
         }
-        for (WakePanel3*& wake_panel: this->wake_panels){
+        for (WakePanel3* wake_panel: this->wake_panels){
             double p_u = wake_panel->get_upper_operating_panel()->get_mue();
             double p_l = wake_panel->get_lower_operating_panel()->get_mue();
             p_u += this->freeflow_influence(wake_panel->get_upper_operating_panel(), v_inf_);
             p_l += this->freeflow_influence(wake_panel->get_lower_operating_panel(), v_inf_);
             wake_panel->set_mue(-p_l + p_u);
         }
-        for (Panel3*& panel_i: this->panels)
+        for (Panel3* panel_i: this->panels)
         {
             panel_i->compute_gradient(v_inf_);
             panel_i->add_velocity(v_inf_);                                                //freestream contribution
@@ -710,7 +712,7 @@ void DirichletDoublet0Case3::off_body_velocity(PanelVector3& point){
 void DirichletDoublet0Case3::off_body_wake_velocity(PanelVector3& point)
 {
     // adding velocity influence from the wake
-    for (WakePanel3*& panel: this->get_all_wake_panels()){
+    for (WakePanel3* panel: this->get_all_wake_panels()){
         Vector3 velocity(0,0,0);
         doublet_3_0_vsaero_v(point, panel, velocity); 
         point.velocity += velocity * panel->get_mue();
@@ -778,7 +780,7 @@ Polar3 DirichletDoublet0Source0Case3::polars(vector<Vector3*> v_inf_range)
     for (int h = 0; h < v_inf_range.size() - (v_inf_range.size() != 1); h++)
     {
         Vector3 v_inf_ = *v_inf_range[h];
-        for (Panel3*& panel: this->panels)
+        for (Panel3* panel: this->panels)
         {
             panel->set_mue(this->result(panel->get_nr(), h));
             panel->set_sigma(v_inf_.dot(panel->n));

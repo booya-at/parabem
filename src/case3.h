@@ -64,6 +64,9 @@ public:
  */
 
 class Case3{
+private:
+    vector<PanelVector3*> cut_line;
+
 public:
     Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge);
     Case3(vector<Panel3*> panels);
