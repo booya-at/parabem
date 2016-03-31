@@ -406,7 +406,6 @@ PanelVector3* SymmetricPanel3::mirror_point(PanelVector3* point)
     *mirrored_point = *point - (plane_n.dot(*point - plane_p)) * plane_n * 2;
     if ((*mirrored_point - *point).norm() < 0.00000000000001)
     {
-        cout << "delete point" << endl;
         delete mirrored_point;
         return point;
     }

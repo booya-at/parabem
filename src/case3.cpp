@@ -41,7 +41,7 @@ vector< string > AeroCoef3::labels()
 {
     vector<string> labels = 
     {
-        "alpha", "v_inf.x" "v_inf.y" "v_inf.z",
+        "alpha", "v_inf.x", "v_inf.y", "v_inf.z",
         "force.x", "force.y", "force.z",
         "cop.x", "cop.y", "cop.z",
         "cL", "cD", "cS", "cR", "cP",
@@ -190,13 +190,13 @@ Vector3 Case3::mirror(Vector3& vec)
 }
 
 
-void Case3::sum_forces(Vector3 vinf_)
+void Case3::sum_forces(Vector3 v_inf_)
 {
     int i, j, k;
     double sign, l;
     double cD_factor = 1;
     Vector3 induced_velocity, a, center, locale_force;
-    CoordSys sys(vinf_, Vector3(0, 0, 1));
+    CoordSys sys(v_inf_, Vector3(0, 0, 1));
     this->cD = 0;
     this->cL = 0;
     this->cS = 0;
@@ -415,8 +415,8 @@ void Case3::calc_geo()
 
 void Case3::run()
 {
-    vector<Vector3*> vinf_range;
-    this->polars(vinf_range);
+    vector<Vector3*> v_inf_range;
+    this->polars(v_inf_range);
 }
 Polar3 Case3::polars(vector<Vector3*> v_inf){}
 void Case3::off_body_potential(PanelVector3& point){}
@@ -538,9 +538,9 @@ double Case3::get_projected_area()
 
 
 /************************-DIRICHLET DOUBLET0 CASE-************************/
-Polar3 DirichletDoublet0Case3::polars(vector<Vector3*> vinf_range)
+Polar3 DirichletDoublet0Case3::polars(vector<Vector3*> v_inf_range)
 {
-    vinf_range.push_back(&this->v_inf); // adding v_inf for visualization
+    v_inf_range.push_back(&this->v_inf); // adding v_inf for visualization
     this->mat_size = panels.size();
     cout << "CALCULATE GEOMETRY" << endl;
     for (Panel3* panel: this->get_all_panels()){
@@ -551,9 +551,9 @@ Polar3 DirichletDoublet0Case3::polars(vector<Vector3*> vinf_range)
     cout << "NUMBER OF PANELS = " << this->mat_size << endl;
     this->matrix.resize(this->mat_size, this->mat_size);
     this->matrix.setZero();
-    this->rhs.resize(this->mat_size, vinf_range.size());
+    this->rhs.resize(this->mat_size, v_inf_range.size());
     this->rhs.setZero();
-    this->result.resize(this->mat_size, vinf_range.size());
+    this->result.resize(this->mat_size, v_inf_range.size());
     this->result.setZero();
     Polar3 polars;
 
@@ -562,14 +562,14 @@ Polar3 DirichletDoublet0Case3::polars(vector<Vector3*> vinf_range)
     for (int i = 0; i < this->mat_size; i++){
         Panel3* panel_i = this->panels[i];
         for (Panel3* panel_j: this->get_all_panels()){
-            this->surface_influence(panel_i, panel_j, vinf_range);
+            this->surface_influence(panel_i, panel_j, v_inf_range);
         }
         for (WakePanel3* panel_k: this->get_all_wake_panels()){
-            this->wake_influence(panel_i, panel_k, vinf_range);
+            this->wake_influence(panel_i, panel_k, v_inf_range);
         }
-        for (int h = 0; h < vinf_range.size(); h++)
+        for (int h = 0; h < v_inf_range.size(); h++)
         {
-            this->rhs(panel_i->get_nr(), h) -= this->freeflow_influence(panel_i, *vinf_range[h]);
+            this->rhs(panel_i->get_nr(), h) -= this->freeflow_influence(panel_i, *v_inf_range[h]);
         }
     }
 
@@ -577,9 +577,9 @@ Polar3 DirichletDoublet0Case3::polars(vector<Vector3*> vinf_range)
     Eigen::setNbThreads(omp_get_num_procs());
     this->result = this->matrix.lu().solve(this->rhs);
     cout << "COMPUTE VELOCITY & SUM FORCES" << endl;
-    for (int h = 0; h < vinf_range.size() - (vinf_range.size() != 1); h++)
+    for (int h = 0; h < v_inf_range.size() - (v_inf_range.size() != 1); h++)
     {
-        Vector3 vinf_ = *vinf_range[h];
+        Vector3 v_inf_ = *v_inf_range[h];
         for (Panel3*& panel_i: this->panels)
         {
             panel_i->reset_properties();
@@ -588,28 +588,29 @@ Polar3 DirichletDoublet0Case3::polars(vector<Vector3*> vinf_range)
         for (WakePanel3*& wake_panel: this->wake_panels){
             double p_u = wake_panel->get_upper_operating_panel()->get_mue();
             double p_l = wake_panel->get_lower_operating_panel()->get_mue();
-            p_u += this->freeflow_influence(wake_panel->get_upper_operating_panel(), vinf_);
-            p_l += this->freeflow_influence(wake_panel->get_lower_operating_panel(), vinf_);
+            p_u += this->freeflow_influence(wake_panel->get_upper_operating_panel(), v_inf_);
+            p_l += this->freeflow_influence(wake_panel->get_lower_operating_panel(), v_inf_);
             wake_panel->set_mue(-p_l + p_u);
         }
         for (Panel3*& panel_i: this->panels)
         {
-            panel_i->compute_gradient(vinf_);
-            panel_i->add_velocity(vinf_);                                                //freestream contribution
-            panel_i->add_velocity(- panel_i->n * vinf_.dot(panel_i->n));
-            panel_i->set_potential(panel_i->get_mue() + this->freeflow_influence(panel_i, vinf_));          //doublet contribution
-            panel_i->compute_pressure(vinf_);
+            panel_i->compute_gradient(v_inf_);
+            panel_i->add_velocity(v_inf_);                                                //freestream contribution
+            panel_i->add_velocity(- panel_i->n * v_inf_.dot(panel_i->n));
+            panel_i->set_potential(panel_i->get_mue() + this->freeflow_influence(panel_i, v_inf_));          //doublet contribution
+            panel_i->compute_pressure(v_inf_);
         }
-        this->sum_forces(vinf_);
-        polars.values.push_back(AeroCoef3(*this, vinf_));
+        this->sum_forces(v_inf_);
+        polars.values.push_back(AeroCoef3(*this, v_inf_));
     }
     this->write_to_verts();
+    this->matrix = Eigen::MatrixXf(0, 0);
     return polars;
 }
 
 
 
-void DirichletDoublet0Case3::surface_influence(Panel3* pan_i, Panel3* pan_j, vector<Vector3*> vinf_range)
+void DirichletDoublet0Case3::surface_influence(Panel3* pan_i, Panel3* pan_j, vector<Vector3*> v_inf_range)
 {
     double influence = 0;
     if ((pan_i->center - pan_j->center).norm() > (this->farfield * pan_j->side_sum / 4)){
@@ -619,14 +620,14 @@ void DirichletDoublet0Case3::surface_influence(Panel3* pan_i, Panel3* pan_j, vec
         doublet_3_0_vsaero(pan_i->center, pan_j, influence);
     }
     this->matrix(pan_i->get_nr(), pan_j->get_nr()) += influence;
-    for (int h = 0; h < vinf_range.size(); h++)
+    for (int h = 0; h < v_inf_range.size(); h++)
     {
-        this->rhs(pan_i->get_nr(), h) -= influence * this->freeflow_influence(pan_j, *vinf_range[h]);
+        this->rhs(pan_i->get_nr(), h) -= influence * this->freeflow_influence(pan_j, *v_inf_range[h]);
     }
 }
 
 
-void DirichletDoublet0Case3::wake_influence(Panel3* pan_i, WakePanel3* pan_k, vector<Vector3*> vinf_range)
+void DirichletDoublet0Case3::wake_influence(Panel3* pan_i, WakePanel3* pan_k, vector<Vector3*> v_inf_range)
 {
     double influence = 0;
     if ((pan_i->center -pan_k->center).norm() > (this->farfield * pan_k->side_sum / 4))
@@ -640,10 +641,10 @@ void DirichletDoublet0Case3::wake_influence(Panel3* pan_i, WakePanel3* pan_k, ve
     this->matrix(pan_i->get_nr(), pan_k->get_upper_operating_panel()->get_nr()) += influence;
     this->matrix(pan_i->get_nr(), pan_k->get_lower_operating_panel()->get_nr()) -= influence;
     
-    for (int h = 0; h < vinf_range.size(); h++)
+    for (int h = 0; h < v_inf_range.size(); h++)
     {
-        this->rhs(pan_i->get_nr(), h) -= influence * this->freeflow_influence(pan_k->get_upper_operating_panel(), *vinf_range[h]);
-        this->rhs(pan_i->get_nr(), h) += influence * this->freeflow_influence(pan_k->get_lower_operating_panel(), *vinf_range[h]);
+        this->rhs(pan_i->get_nr(), h) -= influence * this->freeflow_influence(pan_k->get_upper_operating_panel(), *v_inf_range[h]);
+        this->rhs(pan_i->get_nr(), h) += influence * this->freeflow_influence(pan_k->get_lower_operating_panel(), *v_inf_range[h]);
 
     }
 }
@@ -712,9 +713,9 @@ double DirichletDoublet0Case3::freeflow_influence(Vector3 vec)
     return this->v_inf.dot(vec);
 }
 
-double DirichletDoublet0Case3::freeflow_influence(Panel3* pan_i, Vector3 vinf_)
+double DirichletDoublet0Case3::freeflow_influence(Panel3* pan_i, Vector3 v_inf_)
 {
-    return vinf_.dot(pan_i->center);
+    return v_inf_.dot(pan_i->center);
 }
 
 double DirichletDoublet0Case3::freeflow_influence(Panel3* pan_i)
@@ -726,9 +727,9 @@ double DirichletDoublet0Case3::freeflow_influence(Panel3* pan_i)
 
 /************************-DIRICHLET-DOUBLE0-SOURCE0-************************/
 
-Polar3 DirichletDoublet0Source0Case3::polars(vector<Vector3*> vinf_range)
+Polar3 DirichletDoublet0Source0Case3::polars(vector<Vector3*> v_inf_range)
 {
-    vinf_range.push_back(&this->v_inf); // adding v_inf for visualization
+    v_inf_range.push_back(&this->v_inf); // adding v_inf for visualization
     this->mat_size = panels.size();
     cout << "CALCULATE GEOMETRY" << endl;
     for (Panel3* panel: this->get_all_panels()){
@@ -739,9 +740,9 @@ Polar3 DirichletDoublet0Source0Case3::polars(vector<Vector3*> vinf_range)
     cout << "NUMBER OF PANELS = " << this->mat_size << endl;
     this->matrix.resize(this->mat_size, this->mat_size);
     this->matrix.setZero();
-    this->rhs.resize(this->mat_size, vinf_range.size());
+    this->rhs.resize(this->mat_size, v_inf_range.size());
     this->rhs.setZero();
-    this->result.resize(this->mat_size, vinf_range.size());
+    this->result.resize(this->mat_size, v_inf_range.size());
     this->result.setZero();
     Polar3 polars;
     
@@ -750,10 +751,10 @@ Polar3 DirichletDoublet0Source0Case3::polars(vector<Vector3*> vinf_range)
     for (int i = 0; i < this->mat_size; i++){
         Panel3* panel_i = this->panels[i];
         for (Panel3* panel_j: this->get_all_panels()){
-            this->surface_influence(panel_i, panel_j, vinf_range);
+            this->surface_influence(panel_i, panel_j, v_inf_range);
         }
         for (WakePanel3* panel_k: this->get_all_wake_panels()){
-            this->wake_influence(panel_i, panel_k, vinf_range);
+            this->wake_influence(panel_i, panel_k, v_inf_range);
         }
     }
     
@@ -764,13 +765,13 @@ Polar3 DirichletDoublet0Source0Case3::polars(vector<Vector3*> vinf_range)
     cout << "COMPUTE VELOCITY" << endl;
     cout << "SUM FORCES" << endl;
 
-    for (int h = 0; h < vinf_range.size() - (vinf_range.size() != 1); h++)
+    for (int h = 0; h < v_inf_range.size() - (v_inf_range.size() != 1); h++)
     {
-        Vector3 vinf_ = *vinf_range[h];
+        Vector3 v_inf_ = *v_inf_range[h];
         for (Panel3*& panel: this->panels)
         {
             panel->set_mue(this->result(panel->get_nr(), h));
-            panel->set_sigma(vinf_.dot(panel->n));
+            panel->set_sigma(v_inf_.dot(panel->n));
         }
         for (WakePanel3* wake_panel: this->get_all_wake_panels()){
             double p_u = wake_panel->get_upper_operating_panel()->get_mue();
@@ -779,20 +780,21 @@ Polar3 DirichletDoublet0Source0Case3::polars(vector<Vector3*> vinf_range)
         }
         for (int i = 0; i < this->mat_size; i++)
         {
-            this->panels[i]->compute_gradient(vinf_);
-            this->panels[i]->add_velocity(vinf_);
+            this->panels[i]->compute_gradient(v_inf_);
+            this->panels[i]->add_velocity(v_inf_);
             this->panels[i]->add_velocity(- this->panels[i]->n * this->panels[i]->get_sigma());
-            this->panels[i]->set_potential(this->panels[i]->get_mue() + this->freeflow_influence(this->panels[i], vinf_));
-            this->panels[i]->compute_pressure(vinf_);
+            this->panels[i]->set_potential(this->panels[i]->get_mue() + this->freeflow_influence(this->panels[i], v_inf_));
+            this->panels[i]->compute_pressure(v_inf_);
         }
-        this->sum_forces(vinf_);
-        polars.values.push_back(AeroCoef3(*this, vinf_));
+        this->sum_forces(v_inf_);
+        polars.values.push_back(AeroCoef3(*this, v_inf_));
     }
     this->write_to_verts();
+    this->matrix = Eigen::MatrixXf(0,0);
     return polars;
 }
 
-void DirichletDoublet0Source0Case3::surface_influence(Panel3* pan_i, Panel3* pan_j, vector<Vector3*> vinf_range)
+void DirichletDoublet0Source0Case3::surface_influence(Panel3* pan_i, Panel3* pan_j, vector<Vector3*> v_inf_range)
 {
     double dip = 0;
     double src = 0;
@@ -805,9 +807,9 @@ void DirichletDoublet0Source0Case3::surface_influence(Panel3* pan_i, Panel3* pan
         doublet_src_3_0_vsaero(pan_i->center, pan_j, dip, src);
     }
     this->matrix(pan_i->get_nr(), pan_j->get_nr()) += dip;
-    for (int h = 0; h < vinf_range.size(); h++)
+    for (int h = 0; h < v_inf_range.size(); h++)
     {
-        this->rhs(pan_i->get_nr(), h) += pan_j->n.dot(*vinf_range[h]) * src;
+        this->rhs(pan_i->get_nr(), h) += pan_j->n.dot(*v_inf_range[h]) * src;
     }
 }
 

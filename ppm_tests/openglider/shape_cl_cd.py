@@ -12,7 +12,7 @@ from openglider.utils.distribution import Distribution
 import ppm
 from ppm.pan3d import DirichletDoublet0Source0Case3 as Case
 from ppm.vtk_export import CaseToVTK
-from ppm.utils import check_path, vinf_deg_range3
+from ppm.utils import check_path, v_inf_deg_range3
 
 count = 0
 #   load the glider
@@ -44,6 +44,7 @@ def shape_plot(glider2d):
 def min_func(x):
     global count
     count += 1
+    print("\niteration: " + count)
     _glider2d = deepcopy(glider2d)
     glider_set_controlpoint(_glider2d, x)
     glider3d = _glider2d.get_glider_3d()
@@ -61,7 +62,7 @@ def min_func(x):
     case.create_wake(length=10000, count=5)
     case.v_inf = ppm.Vector3(8, 0, 1)
     case.trefftz_cut_pos = case.v_inf * 50
-    alpha = vinf_deg_range3(case.v_inf, 5, 9, 20)
+    alpha = v_inf_deg_range3(case.v_inf, 5, 9, 20)
     polars = case.polars(alpha)
     vtk_writer = CaseToVTK(case, "results/vtk_opt", suffix=str(count))
     vtk_writer.write_panels(data_type="point")

@@ -45,10 +45,10 @@ void case_from_json(ifstream &inputfile, Case3* c){
     *panels = (Panel*)malloc(sizeof(Panel) * config->panel_number);
 
     //V_INF
-Json::Value json_vinf = json_config["v_inf"];
+Json::Value json_v_inf = json_config["v_inf"];
 config->v_inf = Eigen::Vector3d();
 for (int index=0; index<3; index++)
-    config->v_inf[index] = json_vinf[index].asDouble();
+    config->v_inf[index] = json_v_inf[index].asDouble();
 
     //READ NODES
     for (int i=0; i<config->node_number; i++) {
@@ -92,7 +92,7 @@ for (int index=0; index<3; index++)
 
 
 
-    //CASES [vinf1, vinf2,...]
+    //CASES [v_inf1, v_inf2,...]
     //CONFIG: requests, farfield_factor, 
 
 

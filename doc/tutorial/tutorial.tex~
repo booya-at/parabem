@@ -566,7 +566,7 @@ Parallel-Strömung}\label{zylinder-umstruxf6mung-durch-uxfcberlagerung-eines-dip
          \PY{k}{def} \PY{n+nf}{cylinder\PYZus{}field}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{circulation}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{r}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{v\PYZus{}inf}\PY{o}{=}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{:}
              
              \PY{n}{direction} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}         \PY{c}{\PYZsh{} direction of doublet (\PYZhy{}v\PYZus{}inf)}
-             \PY{n}{mu} \PY{o}{=} \PY{n}{v\PYZus{}inf}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{r}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}   \PY{c}{\PYZsh{} solve mu * doublet\PYZus{}2\PYZus{}v(t, s) + v\PYZus{}vinf == 0}
+             \PY{n}{mu} \PY{o}{=} \PY{n}{v\PYZus{}inf}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{r}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}   \PY{c}{\PYZsh{} solve mu * doublet\PYZus{}2\PYZus{}v(t, s) + v\PYZus{}v_inf == 0}
              \PY{k}{return} \PY{p}{(}
                      \PY{c}{\PYZsh{} potential influence}
                      \PY{n}{mu} \PY{o}{*} \PY{n}{doublet\PYZus{}2}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{source}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{v\PYZus{}inf}\PY{p}{)} \PY{o}{+} 
@@ -890,7 +890,7 @@ Gleitschirms}\label{umstruxf6mung-eines-gleitschirms}
          \PY{k+kn}{from} \PY{n+nn}{openglider.airfoil} \PY{k+kn}{import} \PY{n}{Profile2D}
          \PY{k+kn}{from} \PY{n+nn}{openglider.glider.in\PYZus{}out.export\PYZus{}3d} \PY{k+kn}{import} \PY{n}{ppm\PYZus{}Panels}
          
-         \PY{k+kn}{from} \PY{n+nn}{ppm.utils} \PY{k+kn}{import} \PY{n}{vinf\PYZus{}deg\PYZus{}range3}
+         \PY{k+kn}{from} \PY{n+nn}{ppm.utils} \PY{k+kn}{import} \PY{n}{v_inf\PYZus{}deg\PYZus{}range3}
          
          
          \PY{c}{\PYZsh{} load glider}
@@ -932,7 +932,7 @@ Gleitschirms}\label{umstruxf6mung-eines-gleitschirms}
          \PY{n}{case}\PY{o}{.}\PY{n}{trefftz\PYZus{}cut\PYZus{}pos} \PY{o}{=} \PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf} \PY{o}{*} \PY{l+m+mi}{100}
          
          \PY{c}{\PYZsh{} run the case with fixed wake for different aoa (v\PYZus{}inf)}
-         \PY{n}{polars} \PY{o}{=} \PY{n}{case}\PY{o}{.}\PY{n}{polars}\PY{p}{(}\PY{n}{vinf\PYZus{}deg\PYZus{}range3}\PY{p}{(}\PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{)}
+         \PY{n}{polars} \PY{o}{=} \PY{n}{case}\PY{o}{.}\PY{n}{polars}\PY{p}{(}\PY{n}{v_inf\PYZus{}deg\PYZus{}range3}\PY{p}{(}\PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
     \subsection{Polaren}\label{polaren}

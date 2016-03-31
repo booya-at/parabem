@@ -10,7 +10,7 @@ from openglider.glider.in_out.export_3d import ppm_Panels
 import ppm
 from ppm.pan3d import DirichletDoublet0Source0Case3 as Case
 from ppm.vtk_export import CaseToVTK
-from ppm.utils import vinf_deg_range3, check_path
+from ppm.utils import v_inf_deg_range3, check_path
 
 with open("glider/referenz_schirm_berg.json") as _file:
     parametricGlider = load(_file)["data"]
@@ -20,7 +20,7 @@ with open("glider/referenz_schirm_berg.json") as _file:
 _, panels, trailing_edge = ppm_Panels(
     glider,
     midribs=0,
-    profile_numpoints=20,
+    profile_numpoints=50,
     distribution=Distribution.cos_2_distribution,
     num_average=0,
     symmetric=False)
@@ -36,11 +36,11 @@ case.trefftz_cut_pos = case.v_inf * 800
 
 case.v_inf = ppm.Vector3(v_inf)
 case.create_wake(length=10000, count=4)    # length, count
-polars = case.polars(vinf_deg_range3(case.v_inf, -5, 12, 30))
+polars = case.polars(v_inf_deg_range3(case.v_inf, -5, 12, 30))
 
 
 vtk_writer = CaseToVTK(case, "results/vtk_glider_case")
-vtk_writer.write_panels(data_type="point")
+vtk_writer.write_panels(data_type="cell")
 vtk_writer.write_wake_panels()
 vtk_writer.write_body_stream(panels, 100)
 

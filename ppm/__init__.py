@@ -1,5 +1,5 @@
 """
-ppm (python panel method) = python bindings to pm (panel method)
+paraBEM (python panel method) = python bindings to pm (panel method)
 =================================================================
 
 This package provides 2d and 3d panelmethodes and other utils to
@@ -9,12 +9,12 @@ following example:
 
 Code snippets are indicated by three greater-than signs:
 
->>> import ppm
+>>> import paraBEM
 
 
 Use the built-in ``help`` function to view a function's docstring:
 
->>> help(ppm)
+>>> help(paraBEM)
 
 The code below shows the way how the package works. The example calculate the
 potential flow arround a cylinder computed with a Panelmethode which uses
@@ -32,17 +32,17 @@ Dirichlet boundary condition with constant doublet (dipol) panels.
 
 2. now map the geometry to PanelVecvtors and create Panels from the PanelVectors:
 
->>> import ppm
->>> coordinates = [ppm.PanelVector2(*i) for i in xy]
+>>> import paraBEM
+>>> coordinates = [paraBEM.PanelVector2(*i) for i in xy]
 >>> coordinates += [coordinates[0]]
->>> panels = [ppm.Panel2([vec, coordinates[i+1]]) for i, vec in enumerate(coordinates[:-1])]
+>>> panels = [paraBEM.Panel2([vec, coordinates[i+1]]) for i, vec in enumerate(coordinates[:-1])]
 
 
 3. setup the Case and run it:
 
->>> from ppm.pan2d import DirichletDoublet0Case2 as Case
+>>> from paraBEM.pan2d import DirichletDoublet0Case2 as Case
 >>> case = Case(panels)
->>> case.v_inf = ppm.Vector2(1, 0)
+>>> case.v_inf = paraBEM.Vector2(1, 0)
 >>> case.run()
 
 

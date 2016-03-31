@@ -44,7 +44,6 @@ $1 ../test_it.py vtk_airfoil_vandevooren.py
 $1 ../test_it.py vtk_coordinates_not_aligned.py
 $1 ../test_it.py vtk_cylinder_linear_dirichlet.py
 $1 ../test_it.py vtk_element_vortex.py
-$1 ../test_it.py vtk_matrix_plot.py
 $1 ../test_it.py vtk_pan3d_obj.py
 $1 ../test_it.py vtk_panel_doublet.py
 $1 ../test_it.py vtk_panel_source.py

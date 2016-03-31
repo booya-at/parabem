@@ -15,7 +15,6 @@ ADD_DEFINITIONS(-std=c++11)
 set(Python_ADDITIONAL_VERSIONS ${py})
 find_package(PythonInterp ${py})
 find_package(PythonLibs ${py})
-find_package(PyEigen)
 
 EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c 
   "from distutils.sysconfig import get_python_lib; print(get_python_lib())"
@@ -39,7 +38,6 @@ SET(python_install_dir ${python_libs}/ppm)
 #include drectories
 include_directories( ${PYTHON_INCLUDE_DIRS})    # python.h
 include_directories( ${EIGEN3_INCLUDE_DIR})     # eigen3
-include_directories( ${PY_EIGEN_DIR_PATH})     # py-eigen3
 
 add_subdirectory(ppm)
 add_subdirectory(src)

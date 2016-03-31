@@ -7,7 +7,7 @@ from openglider.glider.in_out.export_3d import ppm_Panels
 import ppm
 from ppm.pan3d import DirichletDoublet0Source0Case3 as Case
 from ppm.vtk_export import CaseToVTK
-from ppm.utils import vinf_deg_range3
+from ppm.utils import v_inf_deg_range3
 
 n_x = 30
 
@@ -34,7 +34,7 @@ case.drag_calc = "on_body"
 
 case.v_inf = ppm.Vector3(v_inf)
 case.create_wake(length=10000, count=4)    # length, count
-polars = case.polars(vinf_deg_range3(case.v_inf, -5, 15, 50))
+polars = case.polars(v_inf_deg_range3(case.v_inf, -5, 15, 50))
 
 
 vtk_writer = CaseToVTK(case, "results/vtk_glider_case")

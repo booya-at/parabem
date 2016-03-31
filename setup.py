@@ -1,17 +1,7 @@
 from distutils.core import setup, Extension
-import os
 
 
-def libs():
-    import eigen
-    libraries = set()
-    libraries.add(os.path.dirname(eigen.__file__))
-    return list(libraries)
-
-
-def extra_link_args():
-    return ['-lgomp']
-
+extra_link_args = ['-lgomp']
 
 include_dirs = ['/usr/include/eigen3',
                 '/usr/local/include/eigen3']
@@ -40,8 +30,6 @@ setup(name='ppm._ppm',
       packages=files,
       ext_modules=[Extension('ppm._ppm',
                    sources=src,
-                   # library_dirs=libs(),
-                   # runtime_library_dirs=libs(),
                    include_dirs=include_dirs,
                    extra_compile_args=['-std=c++11', '-fopenmp'],
-                   extra_link_args=extra_link_args())])
+                   extra_link_args=extra_link_args)])

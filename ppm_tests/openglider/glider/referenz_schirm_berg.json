@@ -1052,7 +1052,7 @@
                                 "upper_node": 15, 
                                 "layer": "", 
                                 "lower_node": 22, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1063,7 +1063,7 @@
                                 "upper_node": 19, 
                                 "layer": "", 
                                 "lower_node": 22, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1074,7 +1074,7 @@
                                 "upper_node": 60, 
                                 "layer": "", 
                                 "lower_node": 22, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1085,7 +1085,7 @@
                                 "upper_node": 28, 
                                 "layer": "", 
                                 "lower_node": 56, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1096,7 +1096,7 @@
                                 "upper_node": 33, 
                                 "layer": "", 
                                 "lower_node": 56, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1107,7 +1107,7 @@
                                 "upper_node": 29, 
                                 "layer": "", 
                                 "lower_node": 56, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1118,7 +1118,7 @@
                                 "upper_node": 22, 
                                 "layer": "", 
                                 "lower_node": 16, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": 4.0
                             }
                         }, 
@@ -1129,7 +1129,7 @@
                                 "upper_node": 56, 
                                 "layer": "", 
                                 "lower_node": 16, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": 4.0
                             }
                         }, 
@@ -1569,7 +1569,7 @@
                                 "upper_node": 37, 
                                 "layer": "", 
                                 "lower_node": 59, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1580,7 +1580,7 @@
                                 "upper_node": 53, 
                                 "layer": "", 
                                 "lower_node": 59, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1591,7 +1591,7 @@
                                 "upper_node": 44, 
                                 "layer": "", 
                                 "lower_node": 59, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1602,7 +1602,7 @@
                                 "upper_node": 35, 
                                 "layer": "", 
                                 "lower_node": 18, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1613,7 +1613,7 @@
                                 "upper_node": 9, 
                                 "layer": "", 
                                 "lower_node": 18, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1624,7 +1624,7 @@
                                 "upper_node": 11, 
                                 "layer": "", 
                                 "lower_node": 32, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1635,7 +1635,7 @@
                                 "upper_node": 46, 
                                 "layer": "", 
                                 "lower_node": 32, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": null
                             }
                         }, 
@@ -1646,7 +1646,7 @@
                                 "upper_node": 32, 
                                 "layer": "", 
                                 "lower_node": 55, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": 1.0
                             }
                         }, 
@@ -1657,7 +1657,7 @@
                                 "upper_node": 18, 
                                 "layer": "", 
                                 "lower_node": 55, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": 1.0
                             }
                         }, 
@@ -1668,7 +1668,7 @@
                                 "upper_node": 59, 
                                 "layer": "", 
                                 "lower_node": 42, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": 2.0
                             }
                         }, 
@@ -1679,7 +1679,7 @@
                                 "upper_node": 55, 
                                 "layer": "", 
                                 "lower_node": 42, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": 1.0
                             }
                         }, 
@@ -1690,7 +1690,7 @@
                                 "upper_node": 42, 
                                 "layer": "", 
                                 "lower_node": 6, 
-                                "line_type": "liros160", 
+                                "line_type": "liros.ltc160", 
                                 "target_length": 3.0
                             }
                         }
