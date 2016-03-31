@@ -7,8 +7,17 @@ using namespace std;
 typedef Eigen::Matrix<double, 5, 1> Vector5d;
 typedef Eigen::Matrix<double, 5, 5> Matrix5d;
 
-Panel3::Panel3()
-{}
+Panel3::~Panel3()
+{
+    for (PanelVector3* vec: this->points)
+    {
+        vec->owner -= 1;
+        if (vec->owner == 0)
+            delete vec;
+    }
+}
+
+Panel3::Panel3(){};
 
 Panel3::Panel3(std::vector< PanelVector3* > points)
 {

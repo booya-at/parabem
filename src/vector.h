@@ -40,6 +40,7 @@ public:
         this->Vector2::operator=(other);
         return *this;
     }
+    int owner = 0;
     int nr = -1;
     double potential = 0.;
     bool wake_vertex = false;
@@ -56,11 +57,12 @@ public:
 
 class PanelVector3: public Vector3{
 public:
-    PanelVector3():Vector3(){}
-    PanelVector3(double x, double y, double z):Vector3(x, y, z){}
-    template<typename OtherDerived> PanelVector3(const Eigen::MatrixBase<OtherDerived>& other):Vector3(other){};
+    PanelVector3():Vector3(){owner ++;}
+    PanelVector3(double x, double y, double z):Vector3(x, y, z){this->owner += 1;}
+    template<typename OtherDerived> PanelVector3(const Eigen::MatrixBase<OtherDerived>& other):Vector3(other){this->owner += 1;}
     template<typename OtherDerived> PanelVector3& operator=(const Eigen::MatrixBase <OtherDerived>& other){
         this->Vector3::operator=(other);
+        this->owner += 1;
         return *this;
     }
     

@@ -20,7 +20,7 @@ with open("glider/referenz_schirm_berg.json") as _file:
 _, panels, trailing_edge = ppm_Panels(
     glider,
     midribs=0,
-    profile_numpoints=50,
+    profile_numpoints=20,
     distribution=Distribution.cos_2_distribution,
     num_average=0,
     symmetric=False)
@@ -36,7 +36,7 @@ case.trefftz_cut_pos = case.v_inf * 800
 
 case.v_inf = ppm.Vector3(v_inf)
 case.create_wake(length=10000, count=4)    # length, count
-polars = case.polars(v_inf_deg_range3(case.v_inf, -5, 12, 30))
+polars = case.polars(v_inf_deg_range3(case.v_inf, -5, 12, 5))
 
 
 vtk_writer = CaseToVTK(case, "results/vtk_glider_case")

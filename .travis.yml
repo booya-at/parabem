@@ -19,6 +19,7 @@ addons:
     - texlive-latex-extra 
 
 before_install:
+  - sudo apt-get update
   - git clone https://github.com/hiaselhans/OpenGlider.git
   - cd OpenGlider
   - sudo python2.7 setup.py install

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-AeroCoef3::AeroCoef3(Case3 c, Vector3 v_inf)
+AeroCoef3::AeroCoef3(Case3& c, Vector3 v_inf)
 {
     this->v_inf = v_inf;
     this->cop = c.center_of_pressure;
@@ -89,6 +89,16 @@ Case3::Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge)
     for(Panel3*& panel: this->get_all_panels()){
         panel->set_neighbours();
     }
+}
+
+Case3::~Case3(){
+    for (SymmetricPanel3* pan: this->sym_panels)
+        delete pan;
+    for (WakePanel3* pan: this->wake_panels)
+        delete pan;    
+    for (SymmetricWakePanel3* pan: this->sym_wake_panels)
+        delete pan;
+    cout << "delete case" << endl;
 }
 
 Case3::Case3(vector<Panel3*> panels)

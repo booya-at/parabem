@@ -35,7 +35,7 @@ class Case3;
 class AeroCoef3
 {
 public:
-    AeroCoef3(Case3 c, Vector3 v_inf);
+    AeroCoef3(Case3& c, Vector3 v_inf);
     Vector3 v_inf;
     Vector3 force;
     Vector3 cop;
@@ -67,6 +67,7 @@ class Case3{
 public:
     Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge);
     Case3(vector<Panel3*> panels);
+    ~Case3();
     
     Eigen::MatrixXf matrix;
     Eigen::MatrixXf rhs;

@@ -39,7 +39,7 @@ protected:
 public:
     
     Panel3();
-    ~Panel3(){};
+    ~Panel3();
     Panel3(vector<PanelVector3*>);
     virtual string type() {return "Panel3";}
     vector<PanelVector3*> points;                       //Maybe protected
