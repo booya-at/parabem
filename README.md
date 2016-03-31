@@ -1,5 +1,5 @@
 #PM-PanelMethod
-[![Build Status](https://travis-ci.org/looooo/panel-method.svg?branch=master)](https://travis-ci.org/looooo/panel-method)
+[![Build Status](https://travis-ci.org/looooo/paraBEM.svg?branch=master)](https://travis-ci.org/looooo/paraBEM)
 
 PM is a package which provides some functionality to calculate the potentialflow with low order panel-methodes. The methodes are for 2d and 3d lifting and non lifting problems.
 
