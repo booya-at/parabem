@@ -19,10 +19,10 @@ addons:
     - texlive-latex-extra 
 
 before_install:
-  # - git clone https://github.com/hiaselhans/OpenGlider.git
-  # - cd OpenGlider
-  # - sudo python2.7 setup.py install
-  # - cd ..
+  - git clone https://github.com/hiaselhans/OpenGlider.git
+  - cd OpenGlider
+  - sudo python2.7 setup.py install
+  - cd ..
   - hg clone https://bitbucket.org/eigen/eigen
   - sudo mkdir /usr/include/eigen3/
   - sudo cp eigen/Eigen/  /usr/include/eigen3/Eigen -r
