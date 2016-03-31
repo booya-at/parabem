@@ -32,7 +32,6 @@ before_install:
   - git clone https://github.com/looooo/py-eigen.git
   - cd py-eigen
   - sudo python2.7 setup.py install
-  - sudo make install && cd ../..
 install:
   - mkdir build && cd build && cmake .. -Dpy=2.7
 
