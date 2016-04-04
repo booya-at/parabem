@@ -12,13 +12,11 @@ requirements:
   build:
     - python
     - distutils
-    - eigen3
-
-requirements:
+    - pybind11
   run:
     - python
-    - matplotlib
     - numpy
+    - matplotlib
 
 about:
   summary: potential flow with boundary elements.
