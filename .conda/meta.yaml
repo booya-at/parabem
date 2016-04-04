@@ -1,0 +1,24 @@
+package:
+  name: parabem
+  version: 0.0.1
+
+build:
+  number: 0
+
+source:
+  path: ../
+
+requirements:
+  build:
+    - python
+    - distutils
+    - eigen3
+
+requirements:
+  run:
+    - python
+    - matplotlib
+    - numpy
+
+about:
+  summary: potential flow with boundary elements.
