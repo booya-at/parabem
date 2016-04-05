@@ -1,11 +1,9 @@
-#PM-PanelMethod
+#paraBEM
 [![Build Status](https://travis-ci.org/looooo/paraBEM.svg?branch=master)](https://travis-ci.org/looooo/paraBEM)
 
-PM is a package which provides some functionality to calculate the potentialflow with low order panel-methodes. The methodes are for 2d and 3d lifting and non lifting problems.
+paraBEM is a python module which can be used to caldulate potential flow over 2D and 3D meshes with boundary-elements (panel-method)
 
-
-##PPM
-PPM is the python binding for PM. it is used to for the tests and exdents the package with some extra functionality like airfoils, mesh import, export for post-processing.
+the c++ code is wrapped with pybind11 to python. This allows fast computation (eigen) with a high-level interface.
 
 ##Dependencies
 * C++11:
@@ -24,7 +22,7 @@ PPM is the python binding for PM. it is used to for the tests and exdents the pa
 ```bash
 mkdir build && cd build
 cmake ..
-use cmake-gui to fix not find packages or wrong versions (eg. boost-python)
+use cmake-gui to fix not find packages or wrong versions (eg. pybind11)
 ```
 
 ### build and install
