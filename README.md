@@ -1,7 +1,7 @@
 #paraBEM
 [![Build Status](https://travis-ci.org/looooo/paraBEM.svg?branch=master)](https://travis-ci.org/looooo/paraBEM)
 
-paraBEM is a python module which can be used to caldulate potential flow over 2D and 3D meshes with boundary-elements (panel-method)
+paraBEM is a python module which provides methods to calculate the potential flow over 2D and 3D meshes with boundary-elements (panel-method)
 
 the c++ code is wrapped with pybind11 to python. This allows fast computation (eigen) with a high-level interface.
 
@@ -34,8 +34,8 @@ sudo make install  -j2
 
 ##Using the package (with python)
 ```python
-<<< import PPM
-<<< help(PPM)
+<<< import paraBEM
+<<< help(paraBEM)
 ```
 
 
