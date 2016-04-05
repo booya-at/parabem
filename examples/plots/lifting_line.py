@@ -3,10 +3,10 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import ppm
+import paraBEM
 
-from ppm.liftingline import LiftingLine
-from ppm.utils import check_path
+from paraBEM.liftingline import LiftingLine
+from paraBEM.utils import check_path
 
 
 # WingGeometry
@@ -21,11 +21,11 @@ z = [i**2 * z_fac_1 + i**6 * z_fac_2 for i in y]
 mirror = lambda xyz: [xyz[0], -xyz[1], xyz[2]]
 wing = list(zip(x, y, z))
 wing = list(map(mirror, wing))[::-1] + list(wing)[1:]
-wing = [ppm.Vector3(*i) for i in wing]
+wing = [paraBEM.Vector3(*i) for i in wing]
 
 # LiftingLine
 lifting_line = LiftingLine(wing)
-lifting_line.v_inf = ppm.Vector3(1, 0, 0)
+lifting_line.v_inf = paraBEM.Vector3(1, 0, 0)
 lifting_line.solve_for_best_gamma(1)
 gamma = [i.best_gamma for i in lifting_line.segments]
 gamma_max = max(gamma)

@@ -1,8 +1,8 @@
 import numpy as np
 
-from ppm.airfoil.conformal_mapping import JoukowskyAirfoil
-from ppm.vtk_export import VtkWriter
-from ppm.utils import check_path
+from paraBEM.airfoil.conformal_mapping import JoukowskyAirfoil
+from paraBEM.vtk_export import VtkWriter
+from paraBEM.utils import check_path
 
 ####################################################
 #      analytic solution of joukowsky-airfoils     #

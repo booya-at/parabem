@@ -1,22 +1,22 @@
-import ppm
-from ppm.pan3d import doublet_3_0_vsaero, doublet_3_0_vsaero_v, doublet_3_0_sphere
-from ppm.vtk_export import VtkWriter
+import paraBEM
+from paraBEM.pan3d import doublet_3_0_vsaero, doublet_3_0_vsaero_v, doublet_3_0_sphere
+from paraBEM.vtk_export import VtkWriter
 import numpy
-from ppm.utils import check_path
+from paraBEM.utils import check_path
 
-v1 = ppm.PanelVector3(-0.5, -0.5, 0)
-v2 = ppm.PanelVector3(0.5, -0.5, 0)
-v3 = ppm.PanelVector3(0.5, 0.5, 0)
-v4 = ppm.PanelVector3(-0.5,  0.5, 0)
+v1 = paraBEM.PanelVector3(-0.5, -0.5, 0)
+v2 = paraBEM.PanelVector3(0.5, -0.5, 0)
+v3 = paraBEM.PanelVector3(0.5, 0.5, 0)
+v4 = paraBEM.PanelVector3(-0.5,  0.5, 0)
 
-p = ppm.Panel3([v1, v2, v3, v4])
-# p = ppm.Panel3([v1, v2, v3])   # triangle
+p = paraBEM.Panel3([v1, v2, v3, v4])
+# p = paraBEM.Panel3([v1, v2, v3])   # triangle
 p.potential = 1.
 
 n = 50
 
 a = numpy.linspace(-1, 1, n).tolist()
-b = [ppm.PanelVector3(i, j, k) for i in a for j in a for k in a]
+b = [paraBEM.PanelVector3(i, j, k) for i in a for j in a for k in a]
 
 pot = [doublet_3_0_sphere(i, p) for i in b]
 vel = [doublet_3_0_vsaero_v(i, p) for i in b]

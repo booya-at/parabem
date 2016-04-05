@@ -11,7 +11,7 @@ pdflatex $FILENAME.tex
 bibtex $FILENAME
 makeindex $FILENAME.nlo -s nomencl.ist -o $FILENAME.nls
 pdflatex $FILENAME.tex
-rm *.aux *.ilg *.log *.nls *.toc *.nlo *.bbl *blg
+rm *.aux *.ilg *.log *.toc *.nlo *.bbl *.blg # *.nls 
 mv $FILENAME.pdf ../../../$OUTDIR
 
 cd ../../..

@@ -1,13 +1,13 @@
 import matplotlib
 matplotlib.use('Agg')import matplotlib.pyplot as plt
 import numpy as np
-import ppm
-from ppm.vtk_export import CaseToVTK
-from ppm.pan3d import DirichletDoublet0Source0Case3 as Case
-from ppm.airfoil import Airfoil
+import paraBEM
+from paraBEM.vtk_export import CaseToVTK
+from paraBEM.pan3d import DirichletDoublet0Source0Case3 as Case
+from paraBEM.airfoil import Airfoil
 
 def rib3d(airfoil, y_pos):
-    out = [ppm.PanelVector3(coo[0], y_pos, coo[1]) for coo in airfoil.coordinates[:-1]]
+    out = [paraBEM.PanelVector3(coo[0], y_pos, coo[1]) for coo in airfoil.coordinates[:-1]]
     out.append(out[0])
     out[0].wake_vertex = True
     return out
@@ -24,12 +24,12 @@ ribs = [rib3d(a, y) for y in np.linspace(-5, 5, n_y)]
 panels = []
 for i in range(n_y)[:-1]:
     for j in range(n_x):
-        panels.append(ppm.Panel3([ribs[i][j], ribs[i + 1][j], ribs[i + 1][j + 1], ribs[i][j + 1]]))
+        panels.append(paraBEM.Panel3([ribs[i][j], ribs[i + 1][j], ribs[i + 1][j + 1], ribs[i][j + 1]]))
 te = [rib[0] for rib in ribs]
 print(te)
 case = Case(panels, te)
 case.farfield = 5
-case.v_inf = ppm.Vector3(1, 0, 0.0)
+case.v_inf = paraBEM.Vector3(1, 0, 0.0)
 case.create_wake(length=10000, count=3)    # length, count
 case.run()
 

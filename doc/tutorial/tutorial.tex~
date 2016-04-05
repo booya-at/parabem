@@ -235,11 +235,11 @@ Dies erfolgt in Python mit dem import Befehl.
         \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}       \PY{c}{\PYZsh{} plotting}
         \PY{k+kn}{from} \PY{n+nn}{IPython.display} \PY{k+kn}{import} \PY{n}{SVG}       \PY{c}{\PYZsh{} showing svg}
         
-        \PY{k+kn}{import} \PY{n+nn}{ppm}                            \PY{c}{\PYZsh{} python panel methode package}
-        \PY{k+kn}{from} \PY{n+nn}{ppm.vtk\PYZus{}export} \PY{k+kn}{import} \PY{n}{VtkWriter}  \PY{c}{\PYZsh{} export to vtk file format}
-        \PY{k+kn}{from} \PY{n+nn}{ppm.utils} \PY{k+kn}{import} \PY{n}{check\PYZus{}path}      \PY{c}{\PYZsh{} check path and create directory}
-        \PY{k+kn}{import} \PY{n+nn}{ppm.pan2d} \PY{k+kn}{as} \PY{n+nn}{pan2d}             \PY{c}{\PYZsh{} 2d panel\PYZhy{}methods and solution\PYZhy{}elements}
-        \PY{k+kn}{import} \PY{n+nn}{ppm.pan3d} \PY{k+kn}{as} \PY{n+nn}{pan3d}             \PY{c}{\PYZsh{} 3d panel\PYZhy{}methodes and solution\PYZhy{}elements}
+        \PY{k+kn}{import} \PY{n+nn}{paraBEM}                            \PY{c}{\PYZsh{} python panel methode package}
+        \PY{k+kn}{from} \PY{n+nn}{paraBEM.vtk\PYZus{}export} \PY{k+kn}{import} \PY{n}{VtkWriter}  \PY{c}{\PYZsh{} export to vtk file format}
+        \PY{k+kn}{from} \PY{n+nn}{paraBEM.utils} \PY{k+kn}{import} \PY{n}{check\PYZus{}path}      \PY{c}{\PYZsh{} check path and create directory}
+        \PY{k+kn}{import} \PY{n+nn}{paraBEM.pan2d} \PY{k+kn}{as} \PY{n+nn}{pan2d}             \PY{c}{\PYZsh{} 2d panel\PYZhy{}methods and solution\PYZhy{}elements}
+        \PY{k+kn}{import} \PY{n+nn}{paraBEM.pan3d} \PY{k+kn}{as} \PY{n+nn}{pan3d}             \PY{c}{\PYZsh{} 3d panel\PYZhy{}methodes and solution\PYZhy{}elements}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -273,10 +273,10 @@ Einige davon werden hier gezeigt:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{from} \PY{n+nn}{\PYZus{}\PYZus{}future\PYZus{}\PYZus{}} \PY{k+kn}{import} \PY{n}{division}       \PY{c}{\PYZsh{} enable python3 division}
-        \PY{n}{v1} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
-        \PY{n}{v2} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
-        \PY{n}{v3} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
-        \PY{n}{v4} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{v1} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{v2} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{v3} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{v4} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
 \end{Verbatim}
 
     \subsubsection{Basis Operatoren}\label{basis-operatoren}
@@ -323,8 +323,8 @@ umgekehrt. Die Operatoren können aber immer nur auf Vektoren der glchen
 Dimension angewendet werden.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{print}\PY{p}{(}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{n}{v1}\PY{p}{)}\PY{p}{)}
-        \PY{k}{print}\PY{p}{(}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{v3}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{print}\PY{p}{(}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{n}{v1}\PY{p}{)}\PY{p}{)}
+        \PY{k}{print}\PY{p}{(}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{v3}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -356,8 +356,8 @@ sind zum Beispiel die Länge \textbf{l}, die Ausrichtung \textbf{n, t}
 und der Mittelpunkt \textbf{center}.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{]}
-        \PY{n}{p} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Panel2}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{]}
+        \PY{n}{p} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Panel2}\PY{p}{(}\PY{n}{l}\PY{p}{)}
         \PY{n}{p}\PY{o}{.}\PY{n}{l}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{t}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{n}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{center}
 \end{Verbatim}
 
@@ -377,10 +377,10 @@ sind zum Beispiel die Fläche \textbf{area}, die Ausrichtung \textbf{n,
 m, l} und der Mittelpunkt \textbf{center}.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} 
-             \PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector3}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} 
-             \PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector3}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}
-        \PY{n}{p} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Panel3}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} 
+             \PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector3}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} 
+             \PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector3}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}
+        \PY{n}{p} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Panel3}\PY{p}{(}\PY{n}{l}\PY{p}{)}
         \PY{n}{p}\PY{o}{.}\PY{n}{area}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{n}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{l}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{m}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{center}
 \end{Verbatim}
 
@@ -415,15 +415,15 @@ werden.
     
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{k+kn}{import} \PY{n+nn}{ppm.pan2d} \PY{k+kn}{as} \PY{n+nn}{pan2d}
+{\color{incolor}In [{\color{incolor}11}]:} \PY{k+kn}{import} \PY{n+nn}{paraBEM.pan2d} \PY{k+kn}{as} \PY{n+nn}{pan2d}
          
-         \PY{n}{target} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
-         \PY{n}{source\PYZus{}point} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
-         \PY{n}{source\PYZus{}point\PYZus{}1} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
-         \PY{n}{source\PYZus{}panel} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Panel2}\PY{p}{(}\PY{p}{[}\PY{n}{source\PYZus{}point}\PY{p}{,} \PY{n}{source\PYZus{}point\PYZus{}1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{target} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{source\PYZus{}point} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{source\PYZus{}point\PYZus{}1} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{source\PYZus{}panel} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Panel2}\PY{p}{(}\PY{p}{[}\PY{n}{source\PYZus{}point}\PY{p}{,} \PY{n}{source\PYZus{}point\PYZus{}1}\PY{p}{]}\PY{p}{)}
          
          \PY{k}{print}\PY{p}{(}\PY{n}{pan2d}\PY{o}{.}\PY{n}{source\PYZus{}2}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{source\PYZus{}point}\PY{p}{)}\PY{p}{)}
-         \PY{k}{print}\PY{p}{(}\PY{n}{pan2d}\PY{o}{.}\PY{n}{doublet\PYZus{}2}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{source\PYZus{}point}\PY{p}{,} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n}{pan2d}\PY{o}{.}\PY{n}{doublet\PYZus{}2}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{source\PYZus{}point}\PY{p}{,} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
          \PY{k}{print}\PY{p}{(}\PY{n}{pan2d}\PY{o}{.}\PY{n}{doublet\PYZus{}2\PYZus{}0}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{source\PYZus{}panel}\PY{p}{)}\PY{p}{)}
          \PY{k}{print}\PY{p}{(}\PY{n}{pan2d}\PY{o}{.}\PY{n}{doublet\PYZus{}2\PYZus{}0\PYZus{}v}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{source\PYZus{}panel}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
@@ -485,13 +485,13 @@ Quellenpanels}\label{zylinderumstruxf6mung-mittels-neumannrandbedingung-und-kons
     \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  Erstellen der \textbf{Panels} aus den Geometriedaten (ppm)
+  Erstellen der \textbf{Panels} aus den Geometriedaten (paraBEM)
 \end{itemize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{points} \PY{o}{=} \PY{p}{[}\PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)} \PY{k}{for} \PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o+ow}{in} \PY{n}{xy}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{points} \PY{o}{=} \PY{p}{[}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)} \PY{k}{for} \PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o+ow}{in} \PY{n}{xy}\PY{p}{]}
          \PY{n}{points} \PY{o}{+}\PY{o}{=} \PY{p}{[}\PY{n}{points}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
-         \PY{n}{panels} \PY{o}{=} \PY{p}{[}\PY{n}{ppm}\PY{o}{.}\PY{n}{Panel2}\PY{p}{(}\PY{p}{[}\PY{n}{point}\PY{p}{,} \PY{n}{points}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)} 
+         \PY{n}{panels} \PY{o}{=} \PY{p}{[}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Panel2}\PY{p}{(}\PY{p}{[}\PY{n}{point}\PY{p}{,} \PY{n}{points}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)} 
                    \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{point} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{points}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{]}
 \end{Verbatim}
 
@@ -503,7 +503,7 @@ Quellenpanels}\label{zylinderumstruxf6mung-mittels-neumannrandbedingung-und-kons
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}15}]:} \PY{n}{case} \PY{o}{=} \PY{n}{pan2d}\PY{o}{.}\PY{n}{NeumannDoublet0Case2}\PY{p}{(}\PY{n}{panels}\PY{p}{)}
-         \PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
          \PY{n}{case}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
@@ -536,12 +536,12 @@ Quellenpanels}\label{zylinderumstruxf6mung-mittels-neumannrandbedingung-und-kons
          \PY{n}{ny} \PY{o}{=} \PY{l+m+mi}{200}
          \PY{n}{space\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{nx}\PY{p}{)}
          \PY{n}{space\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ny}\PY{p}{)}
-         \PY{n}{grid} \PY{o}{=} \PY{p}{[}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)} \PY{k}{for} \PY{n}{y} \PY{o+ow}{in} \PY{n}{space\PYZus{}y} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{space\PYZus{}x}\PY{p}{]}
+         \PY{n}{grid} \PY{o}{=} \PY{p}{[}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)} \PY{k}{for} \PY{n}{y} \PY{o+ow}{in} \PY{n}{space\PYZus{}y} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{space\PYZus{}x}\PY{p}{]}
          
          \PY{n}{velocity} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n}{case}\PY{o}{.}\PY{n}{off\PYZus{}body\PYZus{}velocity}\PY{p}{,} \PY{n}{grid}\PY{p}{)}\PY{p}{)}
          \PY{n}{pot} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n}{case}\PY{o}{.}\PY{n}{off\PYZus{}body\PYZus{}potential}\PY{p}{,} \PY{n}{grid}\PY{p}{)}\PY{p}{)}
          
-         \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{n}{check\PYZus{}path}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/ppm\PYZus{}results/cylinder/field.vtk}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{n}{check\PYZus{}path}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/paraBEM\PYZus{}results/cylinder/field.vtk}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{\PYZus{}file}\PY{p}{:}
              \PY{n}{writer} \PY{o}{=} \PY{n}{VtkWriter}\PY{p}{(}\PY{p}{)}
              \PY{n}{writer}\PY{o}{.}\PY{n}{structed\PYZus{}grid}\PY{p}{(}\PY{n}{\PYZus{}file}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{cylinder}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{p}{[}\PY{n}{nx}\PY{p}{,} \PY{n}{ny}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
@@ -558,14 +558,14 @@ Quellenpanels}\label{zylinderumstruxf6mung-mittels-neumannrandbedingung-und-kons
 Parallel-Strömung}\label{zylinder-umstruxf6mung-durch-uxfcberlagerung-eines-dipols-mit-einer-parallel-struxf6mung}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{k+kn}{from} \PY{n+nn}{ppm.pan2d} \PY{k+kn}{import} \PY{n}{doublet\PYZus{}2}\PY{p}{,} \PY{n}{doublet\PYZus{}2\PYZus{}v}\PY{p}{,} \PY{n}{vortex\PYZus{}2}\PY{p}{,} \PY{n}{vortex\PYZus{}2\PYZus{}v}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k+kn}{from} \PY{n+nn}{paraBEM.pan2d} \PY{k+kn}{import} \PY{n}{doublet\PYZus{}2}\PY{p}{,} \PY{n}{doublet\PYZus{}2\PYZus{}v}\PY{p}{,} \PY{n}{vortex\PYZus{}2}\PY{p}{,} \PY{n}{vortex\PYZus{}2\PYZus{}v}
          
          
-         \PY{n}{source} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}                 \PY{c}{\PYZsh{} center of the circle}
+         \PY{n}{source} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}                 \PY{c}{\PYZsh{} center of the circle}
          
-         \PY{k}{def} \PY{n+nf}{cylinder\PYZus{}field}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{circulation}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{r}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{v\PYZus{}inf}\PY{o}{=}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+         \PY{k}{def} \PY{n+nf}{cylinder\PYZus{}field}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{circulation}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{r}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{v\PYZus{}inf}\PY{o}{=}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{:}
              
-             \PY{n}{direction} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}         \PY{c}{\PYZsh{} direction of doublet (\PYZhy{}v\PYZus{}inf)}
+             \PY{n}{direction} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}         \PY{c}{\PYZsh{} direction of doublet (\PYZhy{}v\PYZus{}inf)}
              \PY{n}{mu} \PY{o}{=} \PY{n}{v\PYZus{}inf}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{r}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}   \PY{c}{\PYZsh{} solve mu * doublet\PYZus{}2\PYZus{}v(t, s) + v\PYZus{}v_inf == 0}
              \PY{k}{return} \PY{p}{(}
                      \PY{c}{\PYZsh{} potential influence}
@@ -576,7 +576,7 @@ Parallel-Strömung}\label{zylinder-umstruxf6mung-durch-uxfcberlagerung-eines-dip
                      \PY{n}{mu} \PY{o}{*} \PY{n}{doublet\PYZus{}2\PYZus{}v}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{source}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{v\PYZus{}inf}\PY{p}{)} \PY{o}{+} 
                      \PY{n}{v\PYZus{}inf} \PY{o}{+} \PY{n}{vortex\PYZus{}2\PYZus{}v}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{source}\PY{p}{)} \PY{o}{*} \PY{n}{circulation}
                  \PY{p}{)}
-         \PY{k}{def} \PY{n+nf}{\PYZus{}cp}\PY{p}{(}\PY{n}{velocity}\PY{p}{,} \PY{n}{v\PYZus{}inf}\PY{o}{=}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+         \PY{k}{def} \PY{n+nf}{\PYZus{}cp}\PY{p}{(}\PY{n}{velocity}\PY{p}{,} \PY{n}{v\PYZus{}inf}\PY{o}{=}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{:}
              \PY{k}{return} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{velocity}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{velocity}\PY{p}{)} \PY{o}{/} \PY{n}{v\PYZus{}inf}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{v\PYZus{}inf}\PY{p}{)}    
 \end{Verbatim}
 
@@ -588,7 +588,7 @@ Oberfläche}\label{druckverteilung-an-der-oberfluxe4che}
          \PY{n}{x} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{phi}\PY{p}{)} \PY{o}{+} \PY{n}{source}\PY{o}{.}\PY{n}{x}\PY{p}{)}
          \PY{n}{y} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{phi}\PY{p}{)} \PY{o}{+} \PY{n}{source}\PY{o}{.}\PY{n}{y}\PY{p}{)}
          \PY{n}{xy} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{)}
-         \PY{n}{pot}\PY{p}{,} \PY{n}{vel} \PY{o}{=} \PY{n+nb}{zip}\PY{p}{(}\PY{o}{*}\PY{p}{[}\PY{n}{cylinder\PYZus{}field}\PY{p}{(}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{xi}\PY{p}{,} \PY{n}{yi}\PY{p}{)}\PY{p}{)} \PY{k}{for} \PY{n}{xi}\PY{p}{,} \PY{n}{yi} \PY{o+ow}{in} \PY{n}{xy}\PY{p}{]}\PY{p}{)}
+         \PY{n}{pot}\PY{p}{,} \PY{n}{vel} \PY{o}{=} \PY{n+nb}{zip}\PY{p}{(}\PY{o}{*}\PY{p}{[}\PY{n}{cylinder\PYZus{}field}\PY{p}{(}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{xi}\PY{p}{,} \PY{n}{yi}\PY{p}{)}\PY{p}{)} \PY{k}{for} \PY{n}{xi}\PY{p}{,} \PY{n}{yi} \PY{o+ow}{in} \PY{n}{xy}\PY{p}{]}\PY{p}{)}
          \PY{n}{cp} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n}{\PYZus{}cp}\PY{p}{,} \PY{n}{vel}\PY{p}{)}\PY{p}{)}
          \PY{n}{vel} \PY{o}{=} \PY{p}{[}\PY{n}{v}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{p}{)} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{vel}\PY{p}{]}
          
@@ -616,11 +616,11 @@ Raum}\label{potential--und-geschwindigkeitsverteilung-im-raum}
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}20}]:} \PY{n}{x\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
          \PY{n}{y\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
-         \PY{n}{grid} \PY{o}{=} \PY{p}{[}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{x\PYZus{}grid} \PY{k}{for} \PY{n}{y} \PY{o+ow}{in} \PY{n}{y\PYZus{}grid}\PY{p}{]}
+         \PY{n}{grid} \PY{o}{=} \PY{p}{[}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{x\PYZus{}grid} \PY{k}{for} \PY{n}{y} \PY{o+ow}{in} \PY{n}{y\PYZus{}grid}\PY{p}{]}
          \PY{n}{pot}\PY{p}{,} \PY{n}{vel} \PY{o}{=} \PY{n+nb}{zip}\PY{p}{(}\PY{o}{*}\PY{p}{[}\PY{n}{cylinder\PYZus{}field}\PY{p}{(}\PY{n}{point}\PY{p}{)} \PY{k}{for} \PY{n}{point} \PY{o+ow}{in} \PY{n}{grid}\PY{p}{]}\PY{p}{)}
          \PY{n}{writer} \PY{o}{=} \PY{n}{VtkWriter}\PY{p}{(}\PY{p}{)}
          
-         \PY{n}{filename} \PY{o}{=} \PY{n}{check\PYZus{}path}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/ppm\PYZus{}results/cylinder.vtk}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{filename} \PY{o}{=} \PY{n}{check\PYZus{}path}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/paraBEM\PYZus{}results/cylinder.vtk}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{\PYZus{}file}\PY{p}{:}
              \PY{n}{writer} \PY{o}{=} \PY{n}{VtkWriter}\PY{p}{(}\PY{p}{)}
              \PY{n}{writer}\PY{o}{.}\PY{n}{structed\PYZus{}grid}\PY{p}{(}\PY{n}{\PYZus{}file}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{z\PYZus{}plane}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
@@ -640,7 +640,7 @@ mittels konformer
 Abbildung.}\label{druckverteilung-an-der-oberfluxe4che-eines-joukowsky-profil-mittels-konformer-abbildung.}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{k+kn}{from} \PY{n+nn}{ppm.airfoil.conformal\PYZus{}mapping} \PY{k+kn}{import} \PY{n}{JoukowskyAirfoil}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{k+kn}{from} \PY{n+nn}{paraBEM.airfoil.conformal\PYZus{}mapping} \PY{k+kn}{import} \PY{n}{JoukowskyAirfoil}
          \PY{n}{airfoil} \PY{o}{=} \PY{n}{JoukowskyAirfoil}\PY{p}{(}\PY{n}{midpoint}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.1} \PY{o}{+} \PY{l+m+mf}{0.05j}\PY{p}{)}
          
          \PY{n}{alpha} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{deg2rad}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
@@ -679,15 +679,15 @@ Oberfläche}\label{druckverteilung-an-der-oberfluxe4che}
          \PY{n}{coordiantes} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}
                  \PY{n}{airfoil}\PY{o}{.}\PY{n}{coordinates}\PY{p}{(}\PY{n}{num}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}\PY{o}{.}\PY{n}{real}\PY{p}{,} 
                  \PY{n}{airfoil}\PY{o}{.}\PY{n}{coordinates}\PY{p}{(}\PY{n}{num}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}\PY{o}{.}\PY{n}{imag}\PY{p}{)}\PY{p}{)}
-         \PY{n}{vertices} \PY{o}{=} \PY{p}{[}\PY{n}{ppm}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{o}{*}\PY{n}{v}\PY{p}{)} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{coordiantes}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}
+         \PY{n}{vertices} \PY{o}{=} \PY{p}{[}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{PanelVector2}\PY{p}{(}\PY{o}{*}\PY{n}{v}\PY{p}{)} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{coordiantes}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}
          \PY{n}{vertices}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{wake\PYZus{}vertex} \PY{o}{=} \PY{n+nb+bp}{True}
-         \PY{n}{panels} \PY{o}{=} \PY{p}{[}\PY{n}{ppm}\PY{o}{.}\PY{n}{Panel2}\PY{p}{(}\PY{p}{[}\PY{n}{vertices}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} 
+         \PY{n}{panels} \PY{o}{=} \PY{p}{[}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Panel2}\PY{p}{(}\PY{p}{[}\PY{n}{vertices}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} 
                                \PY{n}{vertices}\PY{p}{[}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)} 
                    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{vertices}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{]}
-         \PY{n}{panels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{ppm}\PY{o}{.}\PY{n}{Panel2}\PY{p}{(}\PY{p}{[}\PY{n}{vertices}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{vertices}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n}{panels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Panel2}\PY{p}{(}\PY{p}{[}\PY{n}{vertices}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{vertices}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}
          
          \PY{n}{case} \PY{o}{=} \PY{n}{pan2d}\PY{o}{.}\PY{n}{DirichletDoublet0Source0Case2}\PY{p}{(}\PY{n}{panels}\PY{p}{)}
-         \PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{alpha}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{alpha}\PY{p}{)}\PY{p}{)}
+         \PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{alpha}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{alpha}\PY{p}{)}\PY{p}{)}
          \PY{n}{case}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{p}{)}
          
          \PY{n}{pan\PYZus{}center\PYZus{}x} \PY{o}{=} \PY{p}{[}\PY{n}{panel}\PY{o}{.}\PY{n}{center}\PY{o}{.}\PY{n}{x} \PY{k}{for} \PY{n}{panel} \PY{o+ow}{in} \PY{n}{panels}\PY{p}{]}
@@ -720,12 +720,12 @@ Raum}\label{potential--und-geschwindigkeitsverteilung-im-raum}
          \PY{n}{ny} \PY{o}{=} \PY{l+m+mi}{200}
          \PY{n}{space\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{nx}\PY{p}{)}
          \PY{n}{space\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ny}\PY{p}{)}
-         \PY{n}{grid} \PY{o}{=} \PY{p}{[}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)} \PY{k}{for} \PY{n}{y} \PY{o+ow}{in} \PY{n}{space\PYZus{}y} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{space\PYZus{}x}\PY{p}{]}
+         \PY{n}{grid} \PY{o}{=} \PY{p}{[}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector2}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)} \PY{k}{for} \PY{n}{y} \PY{o+ow}{in} \PY{n}{space\PYZus{}y} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{space\PYZus{}x}\PY{p}{]}
          
          \PY{n}{velocity} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n}{case}\PY{o}{.}\PY{n}{off\PYZus{}body\PYZus{}velocity}\PY{p}{,} \PY{n}{grid}\PY{p}{)}\PY{p}{)}
          \PY{n}{pot} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n}{case}\PY{o}{.}\PY{n}{off\PYZus{}body\PYZus{}potential}\PY{p}{,} \PY{n}{grid}\PY{p}{)}\PY{p}{)}
          
-         \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{n}{check\PYZus{}path}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/ppm\PYZus{}results/airfoil\PYZus{}2d\PYZus{}linear/field.vtk}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{n}{check\PYZus{}path}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/paraBEM\PYZus{}results/airfoil\PYZus{}2d\PYZus{}linear/field.vtk}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{\PYZus{}file}\PY{p}{:}
              \PY{n}{writer} \PY{o}{=} \PY{n}{VtkWriter}\PY{p}{(}\PY{p}{)}
              \PY{n}{writer}\PY{o}{.}\PY{n}{structed\PYZus{}grid}\PY{p}{(}\PY{n}{\PYZus{}file}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{airfoil}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{p}{[}\PY{n}{nx}\PY{p}{,} \PY{n}{ny}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
@@ -744,17 +744,17 @@ Raum}\label{potential--und-geschwindigkeitsverteilung-im-raum}
 Parallelströmung}\label{uxfcberlagerung-eines-dipols-und-einer-parallelstruxf6mung}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{k+kn}{from} \PY{n+nn}{ppm.pan3d} \PY{k+kn}{import} \PY{n}{doublet\PYZus{}3}\PY{p}{,} \PY{n}{doublet\PYZus{}3\PYZus{}v}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{k+kn}{from} \PY{n+nn}{paraBEM.pan3d} \PY{k+kn}{import} \PY{n}{doublet\PYZus{}3}\PY{p}{,} \PY{n}{doublet\PYZus{}3\PYZus{}v}
          
          
-         \PY{k}{def} \PY{n+nf}{sphere\PYZus{}field}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{r}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{v\PYZus{}inf}\PY{o}{=}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-             \PY{n}{source} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+         \PY{k}{def} \PY{n+nf}{sphere\PYZus{}field}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{r}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{v\PYZus{}inf}\PY{o}{=}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{source} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
              \PY{n}{mu} \PY{o}{=} \PY{n}{v\PYZus{}inf}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{r}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{*} \PY{l+m+mi}{2}
              \PY{k}{return} \PY{p}{(}
                  \PY{n}{mu} \PY{o}{*} \PY{n}{doublet\PYZus{}3}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{source}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{v\PYZus{}inf}\PY{p}{)} \PY{o}{+} \PY{n}{v\PYZus{}inf}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{target}\PY{p}{)}\PY{p}{,}
                  \PY{n}{mu} \PY{o}{*} \PY{n}{doublet\PYZus{}3\PYZus{}v}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{source}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{v\PYZus{}inf}\PY{p}{)} \PY{o}{+} \PY{n}{v\PYZus{}inf}
                  \PY{p}{)}
-         \PY{k}{def} \PY{n+nf}{cp\PYZus{}}\PY{p}{(}\PY{n}{velocity}\PY{p}{,} \PY{n}{v\PYZus{}inf}\PY{o}{=}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+         \PY{k}{def} \PY{n+nf}{cp\PYZus{}}\PY{p}{(}\PY{n}{velocity}\PY{p}{,} \PY{n}{v\PYZus{}inf}\PY{o}{=}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{:}
              \PY{k}{return} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{velocity}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{velocity}\PY{p}{)} \PY{o}{/} \PY{n}{v\PYZus{}inf}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{v\PYZus{}inf}\PY{p}{)}  
 \end{Verbatim}
 
@@ -766,7 +766,7 @@ Raum}\label{potential--und-geschwindigkeitsverteilung-im-raum}
          \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{phi}\PY{p}{)}
          \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{phi}\PY{p}{)}
          \PY{n}{pot}\PY{p}{,} \PY{n}{vel} \PY{o}{=} \PY{n+nb}{zip}\PY{p}{(}\PY{o}{*}\PY{p}{[}\PY{n}{sphere\PYZus{}field}\PY{p}{(}
-                     \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}
+                     \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}
                          \PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{,} 
                          \PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{,}
                          \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)} \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{phi}\PY{p}{]}\PY{p}{)}
@@ -799,13 +799,13 @@ Raum}\label{potential--und-geschwindigkeitsverteilung-im-raum}
          \PY{n}{x\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{nx}\PY{p}{)}
          \PY{n}{y\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ny}\PY{p}{)}
          \PY{n}{z\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{nz}\PY{p}{)}
-         \PY{n}{grid} \PY{o}{=} \PY{p}{[}\PY{n}{ppm}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{k}{for} \PY{n}{z} \PY{o+ow}{in} \PY{n}{z\PYZus{}grid}
+         \PY{n}{grid} \PY{o}{=} \PY{p}{[}\PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{k}{for} \PY{n}{z} \PY{o+ow}{in} \PY{n}{z\PYZus{}grid}
                                      \PY{k}{for} \PY{n}{y} \PY{o+ow}{in} \PY{n}{y\PYZus{}grid} 
                                      \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{x\PYZus{}grid}\PY{p}{]}
          \PY{n}{pot}\PY{p}{,} \PY{n}{vel} \PY{o}{=} \PY{n+nb}{zip}\PY{p}{(}\PY{o}{*}\PY{p}{[}\PY{n}{sphere\PYZus{}field}\PY{p}{(}\PY{n}{point}\PY{p}{)} \PY{k}{for} \PY{n}{point} \PY{o+ow}{in} \PY{n}{grid}\PY{p}{]}\PY{p}{)}
          \PY{n}{writer} \PY{o}{=} \PY{n}{VtkWriter}\PY{p}{(}\PY{p}{)}
          
-         \PY{n}{filename} \PY{o}{=} \PY{n}{check\PYZus{}path}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/ppm\PYZus{}results/sphere.vtk}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{filename} \PY{o}{=} \PY{n}{check\PYZus{}path}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/paraBEM\PYZus{}results/sphere.vtk}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{\PYZus{}file}\PY{p}{:}
              \PY{n}{writer} \PY{o}{=} \PY{n}{VtkWriter}\PY{p}{(}\PY{p}{)}
              \PY{n}{writer}\PY{o}{.}\PY{n}{structed\PYZus{}grid}\PY{p}{(}\PY{n}{\PYZus{}file}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{points}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{p}{[}\PY{n}{nx}\PY{p}{,} \PY{n}{ny}\PY{p}{,} \PY{n}{nz}\PY{p}{]}\PY{p}{)}
@@ -821,17 +821,17 @@ Raum}\label{potential--und-geschwindigkeitsverteilung-im-raum}
     \section{3D Panelmethode Kugel}\label{d-panelmethode-kugel}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}27}]:} \PY{k+kn}{from} \PY{n+nn}{ppm.mesh} \PY{k+kn}{import} \PY{n}{mesh\PYZus{}object}
-         \PY{k+kn}{from} \PY{n+nn}{ppm.vtk\PYZus{}export} \PY{k+kn}{import} \PY{n}{CaseToVTK}
+{\color{incolor}In [{\color{incolor}27}]:} \PY{k+kn}{from} \PY{n+nn}{paraBEM.mesh} \PY{k+kn}{import} \PY{n}{mesh\PYZus{}object}
+         \PY{k+kn}{from} \PY{n+nn}{paraBEM.vtk\PYZus{}export} \PY{k+kn}{import} \PY{n}{CaseToVTK}
          
          \PY{c}{\PYZsh{} create panels from mesh}
-         \PY{n}{mesh} \PY{o}{=} \PY{n}{mesh\PYZus{}object}\PY{o}{.}\PY{n}{from\PYZus{}OBJ}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{../../ppm\PYZus{}tests/mesh/sphere\PYZus{}low\PYZus{}tri.obj}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{mesh} \PY{o}{=} \PY{n}{mesh\PYZus{}object}\PY{o}{.}\PY{n}{from\PYZus{}OBJ}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{../../paraBEM\PYZus{}tests/mesh/sphere\PYZus{}low\PYZus{}tri.obj}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          
          \PY{c}{\PYZsh{} create case from panels}
          \PY{n}{case} \PY{o}{=} \PY{n}{pan3d}\PY{o}{.}\PY{n}{DirichletDoublet0Case3}\PY{p}{(}\PY{n}{mesh}\PY{o}{.}\PY{n}{panels}\PY{p}{)}
          
          \PY{c}{\PYZsh{} set boundary conditon far away from the body}
-         \PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.}\PY{p}{)}
+         \PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.}\PY{p}{)}
          
          \PY{c}{\PYZsh{} solve for constant potential inside the object}
          \PY{n}{case}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{p}{)}
@@ -872,7 +872,7 @@ Raum}\label{potential--und-geschwindigkeitsverteilung-im-raum}
 {\color{incolor}In [{\color{incolor}29}]:} \PY{n}{lin} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
          \PY{n}{grid} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n}{lin} \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n}{lin}\PY{p}{]}
          
-         \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/ppm\PYZus{}results/sphere\PYZus{}case}\PY{l+s}{\PYZdq{}}
+         \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/paraBEM\PYZus{}results/sphere\PYZus{}case}\PY{l+s}{\PYZdq{}}
          \PY{n}{vtk\PYZus{}writer} \PY{o}{=} \PY{n}{CaseToVTK}\PY{p}{(}\PY{n}{case}\PY{p}{,} \PY{n}{file\PYZus{}name}\PY{p}{)}
          \PY{n}{vtk\PYZus{}writer}\PY{o}{.}\PY{n}{write\PYZus{}panels}\PY{p}{(}\PY{n}{data\PYZus{}type}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{cell}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{vtk\PYZus{}writer}\PY{o}{.}\PY{n}{write\PYZus{}field}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{]}\PY{p}{)}
@@ -888,20 +888,20 @@ Gleitschirms}\label{umstruxf6mung-eines-gleitschirms}
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}30}]:} \PY{k+kn}{from} \PY{n+nn}{openglider.jsonify} \PY{k+kn}{import} \PY{n}{load}
          \PY{k+kn}{from} \PY{n+nn}{openglider.airfoil} \PY{k+kn}{import} \PY{n}{Profile2D}
-         \PY{k+kn}{from} \PY{n+nn}{openglider.glider.in\PYZus{}out.export\PYZus{}3d} \PY{k+kn}{import} \PY{n}{ppm\PYZus{}Panels}
+         \PY{k+kn}{from} \PY{n+nn}{openglider.glider.in\PYZus{}out.export\PYZus{}3d} \PY{k+kn}{import} \PY{n}{paraBEM\PYZus{}Panels}
          
-         \PY{k+kn}{from} \PY{n+nn}{ppm.utils} \PY{k+kn}{import} \PY{n}{v_inf\PYZus{}deg\PYZus{}range3}
+         \PY{k+kn}{from} \PY{n+nn}{paraBEM.utils} \PY{k+kn}{import} \PY{n}{v_inf\PYZus{}deg\PYZus{}range3}
          
          
          \PY{c}{\PYZsh{} load glider}
-         \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{../../ppm\PYZus{}tests/openglider/glider/referenz\PYZus{}schirm\PYZus{}berg.json}\PY{l+s}{\PYZdq{}}
+         \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{../../paraBEM\PYZus{}tests/openglider/glider/referenz\PYZus{}schirm\PYZus{}berg.json}\PY{l+s}{\PYZdq{}}
          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{p}{)} \PY{k}{as} \PY{n}{\PYZus{}file}\PY{p}{:}
              \PY{n}{glider\PYZus{}2d} \PY{o}{=} \PY{n}{load}\PY{p}{(}\PY{n}{\PYZus{}file}\PY{p}{)}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{data}\PY{l+s}{\PYZdq{}}\PY{p}{]}
              \PY{n}{glider\PYZus{}2d}\PY{o}{.}\PY{n}{set\PYZus{}const\PYZus{}cell\PYZus{}dist}\PY{p}{(}\PY{p}{)}
              \PY{n}{glider} \PY{o}{=} \PY{n}{glider\PYZus{}2d}\PY{o}{.}\PY{n}{get\PYZus{}glider\PYZus{}3d}\PY{p}{(}\PY{p}{)}
          
          \PY{c}{\PYZsh{} create the panels and get the trailing edge}
-         \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{panels}\PY{p}{,} \PY{n}{trailing\PYZus{}edge} \PY{o}{=} \PY{n}{ppm\PYZus{}Panels}\PY{p}{(}
+         \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{panels}\PY{p}{,} \PY{n}{trailing\PYZus{}edge} \PY{o}{=} \PY{n}{paraBEM\PYZus{}Panels}\PY{p}{(}
              \PY{n}{glider}\PY{p}{,}
              \PY{n}{midribs}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}
              \PY{n}{profile\PYZus{}numpoints}\PY{o}{=}\PY{l+m+mi}{80}\PY{p}{,}
@@ -913,13 +913,13 @@ Gleitschirms}\label{umstruxf6mung-eines-gleitschirms}
          \PY{n}{case} \PY{o}{=} \PY{n}{pan3d}\PY{o}{.}\PY{n}{DirichletDoublet0Source0Case3}\PY{p}{(}\PY{n}{panels}\PY{p}{,} \PY{n}{trailing\PYZus{}edge}\PY{p}{)}
          
          \PY{c}{\PYZsh{} set the boundarycondition far away from the wing}
-         \PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{o}{*}\PY{n}{glider\PYZus{}2d}\PY{o}{.}\PY{n}{v\PYZus{}inf}\PY{p}{)}
+         \PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{o}{*}\PY{n}{glider\PYZus{}2d}\PY{o}{.}\PY{n}{v\PYZus{}inf}\PY{p}{)}
          
          \PY{c}{\PYZsh{} create the wake (length, number of wake panels per column)}
          \PY{n}{case}\PY{o}{.}\PY{n}{create\PYZus{}wake}\PY{p}{(}\PY{n}{length}\PY{o}{=}\PY{l+m+mi}{10000}\PY{p}{,} \PY{n}{count}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
          
          \PY{c}{\PYZsh{} set reference values}
-         \PY{n}{case}\PY{o}{.}\PY{n}{mom\PYZus{}ref\PYZus{}point} \PY{o}{=} \PY{n}{ppm}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mf}{1.25}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{case}\PY{o}{.}\PY{n}{mom\PYZus{}ref\PYZus{}point} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mf}{1.25}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{)}
          \PY{n}{case}\PY{o}{.}\PY{n}{A\PYZus{}ref} \PY{o}{=} \PY{n}{glider\PYZus{}2d}\PY{o}{.}\PY{n}{flat\PYZus{}area}
          
          \PY{c}{\PYZsh{} set farfield\PYZhy{}factor}
@@ -965,7 +965,7 @@ Gleitschirms}\label{umstruxf6mung-eines-gleitschirms}
     \subsection{Visualisierung}\label{visualisierung}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/ppm\PYZus{}results/vtk\PYZus{}glider\PYZus{}case}\PY{l+s}{\PYZdq{}}
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{/tmp/paraBEM\PYZus{}results/vtk\PYZus{}glider\PYZus{}case}\PY{l+s}{\PYZdq{}}
          \PY{n}{vtk\PYZus{}writer} \PY{o}{=} \PY{n}{CaseToVTK}\PY{p}{(}\PY{n}{case}\PY{p}{,} \PY{n}{file\PYZus{}name}\PY{p}{)}
          \PY{n}{vtk\PYZus{}writer}\PY{o}{.}\PY{n}{write\PYZus{}panels}\PY{p}{(}\PY{n}{data\PYZus{}type}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{cell}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{vtk\PYZus{}writer}\PY{o}{.}\PY{n}{write\PYZus{}wake\PYZus{}panels}\PY{p}{(}\PY{p}{)}

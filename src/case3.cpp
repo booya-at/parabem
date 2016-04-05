@@ -375,6 +375,9 @@ vector< Edge > Case3::trefftz_cut()
     int i, j, k;
     vector<Edge> segments;
     bool found_cut = false;
+    for (auto obj: this->cut_line)
+        delete obj;
+    this->cut_line.clear();
 
     for (vector<PanelVector3*> stream: this->wake_streams){
         found_cut = false;

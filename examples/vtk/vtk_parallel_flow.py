@@ -1,18 +1,18 @@
 import numpy
 
-import ppm
-from ppm.pan2d import doublet_2_0, source_2_0, source_2_0_v
-from ppm.vtk_export import VtkWriter
-from ppm.utils import check_path
+import paraBEM
+from paraBEM.pan2d import doublet_2_0, source_2_0, source_2_0_v
+from paraBEM.vtk_export import VtkWriter
+from paraBEM.utils import check_path
 
-a = list(map(ppm.PanelVector2, [[-1, -1], [-1, 1]]))
-b = list(map(ppm.PanelVector2, [[1, -1], [1, 1]]))
-pan_a = ppm.Panel2(a)
-pan_b = ppm.Panel2(b)
+a = list(map(paraBEM.PanelVector2, [[-1, -1], [-1, 1]]))
+b = list(map(paraBEM.PanelVector2, [[1, -1], [1, 1]]))
+pan_a = paraBEM.Panel2(a)
+pan_b = paraBEM.Panel2(b)
 
 n = 100
 space = numpy.linspace(-2, 2, n)
-grid = [ppm.Vector2(x, y) for y in space for x in space]
+grid = [paraBEM.Vector2(x, y) for y in space for x in space]
 pot = [
     source_2_0(v, pan_a) -
     source_2_0(v, pan_b)

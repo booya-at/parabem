@@ -6,7 +6,7 @@ extra_link_args = ['-lgomp']
 include_dirs = ['/usr/include/eigen3',
                 '/usr/local/include/eigen3']
 
-src = ["src/ppm_ext.cpp",      "src/element_influence.cpp",
+src = ["src/paraBEM_ext.cpp",      "src/element_influence.cpp",
        "src/panel2.cpp",       "src/panel3.cpp",
        "src/case2.cpp",        "src/case3.cpp",
        "src/lifting_line.cpp"]
@@ -16,8 +16,8 @@ headers = ["src/element_influence.h",
            "src/panel3.h",         "src/case2.h",
            "src/case3.h",          "src/lifting_line.h"]
 
-files = ["ppm", "ppm.airfoil", "ppm.liftingline", "ppm.mesh",
-         "ppm.pan2d", "ppm.pan3d", "ppm.utils", "ppm.vtk_export"]
+files = ["paraBEM", "paraBEM.airfoil", "paraBEM.liftingline", "paraBEM.mesh",
+         "paraBEM.pan2d", "paraBEM.pan3d", "paraBEM.utils", "paraBEM.vtk_export"]
 
 
 setup(name='paraBEM._paraBEM',

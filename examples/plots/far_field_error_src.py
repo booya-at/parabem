@@ -4,21 +4,21 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-import ppm
-from ppm.pan3d import src_3_0_vsaero, src_3_0_n0
-from ppm.utils import check_path
+import paraBEM
+from paraBEM.pan3d import src_3_0_vsaero, src_3_0_n0
+from paraBEM.utils import check_path
 
-pnt1 = ppm.PanelVector3(-0.5, -0.5, 0)
-pnt2 = ppm.PanelVector3(0.5, -0.5, 0)
-pnt3 = ppm.PanelVector3(0.5, 0.5, 0)
-pnt4 = ppm.PanelVector3(-0.5, 0.5, 0)
+pnt1 = paraBEM.PanelVector3(-0.5, -0.5, 0)
+pnt2 = paraBEM.PanelVector3(0.5, -0.5, 0)
+pnt3 = paraBEM.PanelVector3(0.5, 0.5, 0)
+pnt4 = paraBEM.PanelVector3(-0.5, 0.5, 0)
 
-source = ppm.Panel3([pnt1, pnt2, pnt3, pnt4])
+source = paraBEM.Panel3([pnt1, pnt2, pnt3, pnt4])
 
 x = np.linspace(0, 5, 500)
 y = []
 for xi in x:
-    target = ppm.PanelVector3(xi, 0.0, 0.1)
+    target = paraBEM.PanelVector3(xi, 0.0, 0.1)
     panel_infl = src_3_0_vsaero(target, source)
     point_infl = src_3_0_n0(target, source)
     y.append([panel_infl, point_infl, abs(panel_infl - point_infl)])

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 
-import ppm
-from ppm.vtk_export import VtkWriter
-from ppm import PanelVector2, Vector2, Panel2
-from ppm.airfoil import Airfoil
-from ppm.pan2d import NeumannDoublet0Case2 as Case
-from ppm.utils import check_path
+import paraBEM
+from paraBEM.vtk_export import VtkWriter
+from paraBEM import PanelVector2, Vector2, Panel2
+from paraBEM.airfoil import Airfoil
+from paraBEM.pan2d import NeumannDoublet0Case2 as Case
+from paraBEM.utils import check_path
 
 airfoil = Airfoil.vandevooren(tau=np.deg2rad(20), epsilon=0.05)
 
@@ -23,9 +23,9 @@ ny = 200
 
 space_x = np.linspace(-1, 2, nx)
 space_y = np.linspace(-0.2, 0.2, ny)
-vec = lambda x: ppm.Vector2(x[0], x[1])
+vec = lambda x: paraBEM.Vector2(x[0], x[1])
 vec3 = lambda x: [x[0], x[1], 0]
-grid = [ppm.Vector2(x, y) for y in space_y for x in space_x]
+grid = [paraBEM.Vector2(x, y) for y in space_y for x in space_x]
 
 velocity = list(map(vec3, map(case.off_body_velocity, grid)))
 vel1 = [(i[0]**2 + i[1]**2)**(0.5) for i in velocity]

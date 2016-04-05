@@ -1,8 +1,8 @@
 import numpy as np
-import ppm
-from ppm.pan2d import DirichletDoublet1Case2 as Case
-from ppm.utils import check_path
-from ppm.vtk_export import VtkWriter
+import paraBEM
+from paraBEM.pan2d import DirichletDoublet1Case2 as Case
+from paraBEM.utils import check_path
+from paraBEM.vtk_export import VtkWriter
 
 # geometry
 numpoints = 100
@@ -12,20 +12,20 @@ y = np.sin(phi)[:-1]
 xy = np.transpose(np.array([x, y]))
 
 # mapping the geometry
-vector = [ppm.PanelVector2(*i) for i in xy]
+vector = [paraBEM.PanelVector2(*i) for i in xy]
 vector += [vector[0]]               # important for calculating the gradients
-panels = [ppm.Panel2([vec, vector[i+1]]) for i, vec in enumerate(vector[:-1])]
+panels = [paraBEM.Panel2([vec, vector[i+1]]) for i, vec in enumerate(vector[:-1])]
 vector[0].wake_vertex = True
 # setting up the case
 case = Case(panels)
-case.v_inf = ppm.Vector2(1, 0.5)
+case.v_inf = paraBEM.Vector2(1, 0.5)
 case.run()
 
 nx = 100
 ny = 100
 space_x = np.linspace(-2, 2, nx)
 space_y = np.linspace(-2, 2, ny)
-grid = [ppm.Vector2(x, y) for y in space_y for x in space_x]
+grid = [paraBEM.Vector2(x, y) for y in space_y for x in space_x]
 
 velocity = list(map(case.off_body_velocity, grid))
 pot = list(map(case.off_body_potential, grid))

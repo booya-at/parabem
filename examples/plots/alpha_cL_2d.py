@@ -3,10 +3,10 @@ matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 import numpy as np
 
-import ppm
-from ppm.pan2d import DirichletDoublet0Source0Case2 as Case
-from ppm.airfoil import Airfoil
-from ppm.utils import check_path
+import paraBEM
+from paraBEM.pan2d import DirichletDoublet0Source0Case2 as Case
+from paraBEM.airfoil import Airfoil
+from paraBEM.utils import check_path
 
 a = Airfoil.trefftz_kutta(-0.1+0.01j, np.deg2rad(2), 51)
 
@@ -18,8 +18,8 @@ xcp = []
 
 for alpha in alpha_list:
     case = Case(a.panels)
-    case.v_inf = ppm.Vector2(np.cos(alpha), np.sin(alpha))
-    case.mom_ref_point = ppm.Vector2(-0, -3)
+    case.v_inf = paraBEM.Vector2(np.cos(alpha), np.sin(alpha))
+    case.mom_ref_point = paraBEM.Vector2(-0, -3)
     case.run()
     cl.append(case.cl)
     cd.append(case.force.dot(case.v_inf) * 10)

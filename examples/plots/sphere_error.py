@@ -2,17 +2,17 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import ppm
-from ppm import pan3d
-from ppm.mesh import mesh_object
-from ppm.utils import check_path
+import paraBEM
+from paraBEM import pan3d
+from paraBEM.mesh import mesh_object
+from paraBEM.utils import check_path
 
 # plots the values of the numerical solution as a scatter plot.
 
 # running the case
 mesh = mesh_object.from_OBJ("../mesh/sphere_low_tri.obj")
 case = pan3d.DirichletDoublet0Case3(mesh.panels)
-case.v_inf = ppm.Vector3(1, 0, 0)
+case.v_inf = paraBEM.Vector3(1, 0, 0)
 case.run()
 
 #  plotting the analytic solution

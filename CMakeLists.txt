@@ -42,7 +42,7 @@ include_directories( ${EIGEN3_INCLUDE_DIR})     # eigen3
 add_subdirectory(paraBEM)
 add_subdirectory(src)
 
-install(DIRECTORY ppm DESTINATION ${python_libs} FILES_MATCHING
+install(DIRECTORY paraBEM DESTINATION ${python_libs} FILES_MATCHING
     PATTERN "*.py")
 
 MESSAGE(STATUS "installing to ${python_libs}")

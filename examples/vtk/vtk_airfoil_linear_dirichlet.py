@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 
-import ppm
-from ppm.airfoil import Airfoil
-from ppm.utils import check_path
-from ppm.vtk_export import VtkWriter
-from ppm.pan2d import DirichletDoublet1Case2 as Case
+import paraBEM
+from paraBEM.airfoil import Airfoil
+from paraBEM.utils import check_path
+from paraBEM.vtk_export import VtkWriter
+from paraBEM.pan2d import DirichletDoublet1Case2 as Case
 
 # geometry
 airfoil = Airfoil.trefftz_kutta(-0.1 + 0.0j, np.deg2rad(30))
 airfoil.numpoints = 50
-points = [ppm.PanelVector2(*i) for i in airfoil.coordinates[:-1]]
+points = [paraBEM.PanelVector2(*i) for i in airfoil.coordinates[:-1]]
 points[0].wake_vertex = True
-panels = [ppm.Panel2([coord, points[i+1]]) for i, coord in enumerate(points[:-1])]
-panels.append(ppm.Panel2([points[-1], points[0]]))
+panels = [paraBEM.Panel2([coord, points[i+1]]) for i, coord in enumerate(points[:-1])]
+panels.append(paraBEM.Panel2([points[-1], points[0]]))
 
 # panelmethode
 case = Case(panels)
-case.v_inf = ppm.Vector2(1, 0.3)
+case.v_inf = paraBEM.Vector2(1, 0.3)
 case.run()
 # plt.plot(np.array(case.matrix.values).T)
 # # plt.show()
@@ -26,7 +26,7 @@ nx = 200
 ny = 200
 space_x = np.linspace(-0.2, 1.5, nx)
 space_y = np.linspace(-0.5, 0.5, ny)
-grid = [ppm.Vector2(x, y) for y in space_y for x in space_x]
+grid = [paraBEM.Vector2(x, y) for y in space_y for x in space_x]
 
 velocity = list(map(case.off_body_velocity, grid))
 pot = list(map(case.off_body_potential, grid))

@@ -2,9 +2,9 @@ import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 import numpy as np
-import ppm
-from ppm.pan2d import DirichletDoublet0Case2 as Case
-from ppm.utils import check_path
+import paraBEM
+from paraBEM.pan2d import DirichletDoublet0Case2 as Case
+from paraBEM.utils import check_path
 
 # geometry
 numpoints = 30
@@ -14,13 +14,13 @@ y = np.sin(phi)[:-1]
 xy = np.transpose(np.array([x, y]))
 
 # mapping the geometry
-coordinates = [ppm.PanelVector2(*i) for i in xy]
+coordinates = [paraBEM.PanelVector2(*i) for i in xy]
 coordinates += [coordinates[0]]
-panels = [ppm.Panel2([vec, coordinates[i+1]]) for i, vec in enumerate(coordinates[:-1])]
+panels = [paraBEM.Panel2([vec, coordinates[i+1]]) for i, vec in enumerate(coordinates[:-1])]
 
 # setting up the case
 case = Case(panels)
-case.v_inf = ppm.Vector2(1, 0)
+case.v_inf = paraBEM.Vector2(1, 0)
 case.run()
 
 # visualisation

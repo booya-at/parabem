@@ -1,17 +1,17 @@
 from __future__ import division
 import numpy as np
-import ppm
-from ppm.pan2d import doublet_2_0, doublet_2_0_v, source_2_0, source_2_0_v
-from ppm.vtk_export import VtkWriter
-from ppm.utils import check_path
+import paraBEM
+from paraBEM.pan2d import doublet_2_0, doublet_2_0_v, source_2_0, source_2_0_v
+from paraBEM.vtk_export import VtkWriter
+from paraBEM.utils import check_path
 
-p1 = ppm.PanelVector2(-1, -10)
-p2 = ppm.PanelVector2(1, -10)
-p3 = ppm.PanelVector2(-1, 10)
-p4 = ppm.PanelVector2(1, 10)
+p1 = paraBEM.PanelVector2(-1, -10)
+p2 = paraBEM.PanelVector2(1, -10)
+p3 = paraBEM.PanelVector2(-1, 10)
+p4 = paraBEM.PanelVector2(1, 10)
 
-pan1 = ppm.Panel2([p1, p3])
-pan2 = ppm.Panel2([p4, p2])
+pan1 = paraBEM.Panel2([p1, p3])
+pan2 = paraBEM.Panel2([p4, p2])
 
 mat = np.zeros([2, 2])
 rhs = np.zeros([2])
@@ -54,7 +54,7 @@ x_grid = np.linspace(-3, 3, nx)
 y_grid = np.linspace(-3, 3, ny)
 
 
-grid = [ppm.Vector2(x, y) for y in y_grid for x in x_grid]
+grid = [paraBEM.Vector2(x, y) for y in y_grid for x in x_grid]
 temp_list = []
 for point in grid:
     t = 0
@@ -66,7 +66,7 @@ for point in grid:
 
 q_list = []
 for point in grid:
-    q = ppm.Vector2(0, 0)
+    q = paraBEM.Vector2(0, 0)
     q -= doublet_2_0_v(point, pan1) * sol[0] * R1 * l
     q -= doublet_2_0_v(point, pan2) * sol[1] * R2 * l
     q += source_2_0_v(point, pan1) * sol[0]

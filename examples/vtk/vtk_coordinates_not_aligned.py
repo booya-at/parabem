@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 
-import ppm
-from ppm.vtk_export import VtkWriter
-from ppm.pan2d import *
-from ppm import PanelVector2, Vector2, Panel2
-from ppm.airfoil.conformal_mapping import *
-from ppm.pan2d import DirichletDoublet0Case2 as Case
-from ppm.utils import check_path
+import paraBEM
+from paraBEM.vtk_export import VtkWriter
+from paraBEM.pan2d import *
+from paraBEM import PanelVector2, Vector2, Panel2
+from paraBEM.airfoil.conformal_mapping import *
+from paraBEM.pan2d import DirichletDoublet0Case2 as Case
+from paraBEM.utils import check_path
 
 airfoil = JoukowskyAirfoil(midpoint=-0.1 + 0.05j)
 
@@ -35,7 +35,7 @@ ny = 200
 
 space_x = np.linspace(-3, 7, nx)
 space_y = np.linspace(-2, 2, ny)
-vec = lambda x: ppm.Vector2(x[0], x[1])
+vec = lambda x: paraBEM.Vector2(x[0], x[1])
 vec3 = lambda x: [x[0], x[1], 0]
 grid = [[x, y, 0] for y in space_y for x in space_x]
 _grid = list(map(vec, grid))

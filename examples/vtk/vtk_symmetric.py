@@ -1,6 +1,6 @@
-from ppm.mesh import mesh_object
-from ppm.pan3d import DirichletDoublet0Source0Case3 as Case
-from ppm.vtk_export import CaseToVTK
+from paraBEM.mesh import mesh_object
+from paraBEM.pan3d import DirichletDoublet0Source0Case3 as Case
+from paraBEM.vtk_export import CaseToVTK
 
 
 mesh = mesh_object.from_OBJ("../mesh/sphere_half.obj")

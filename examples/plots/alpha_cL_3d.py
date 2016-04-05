@@ -3,15 +3,15 @@ import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 
-import ppm
-from ppm import pan3d
-from ppm.mesh import mesh_object
-from ppm.vtk_export import CaseToVTK
-from ppm.utils import check_path, v_inf_deg_range3
+import paraBEM
+from paraBEM import pan3d
+from paraBEM.mesh import mesh_object
+from paraBEM.vtk_export import CaseToVTK
+from paraBEM.utils import check_path, v_inf_deg_range3
 
 mesh = mesh_object.from_OBJ("../mesh/wing_lift.obj")
 alpha_0 = np.deg2rad(5)
-v_inf = ppm.Vector3(np.cos(alpha_0), 0, np.sin(alpha_0))
+v_inf = paraBEM.Vector3(np.cos(alpha_0), 0, np.sin(alpha_0))
 v_inf_range = v_inf_deg_range3(v_inf, -5, 10, 20)
 
 fz = []

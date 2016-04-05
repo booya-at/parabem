@@ -1,8 +1,8 @@
 import unittest
 import numpy as np
 from prettytable import PrettyTable
-from ppm.pan2d import *
-from ppm import Panel2, Vector2, PanelVector2
+from paraBEM.pan2d import *
+from paraBEM import Panel2, Vector2, PanelVector2
 
 
 def short(numbers):
