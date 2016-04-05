@@ -20,15 +20,15 @@ files = ["ppm", "ppm.airfoil", "ppm.liftingline", "ppm.mesh",
          "ppm.pan2d", "ppm.pan3d", "ppm.utils", "ppm.vtk_export"]
 
 
-setup(name='ppm._ppm',
+setup(name='paraBEM._paraBEM',
       version='0.0.1',
       author='Loooo',
       requires='eigen',
       author_email='sppedflyer@gmail.com',
       url="https://github.com/looooo/panelmethod",
-      description='Wrap PM using pybind11',
+      description='Wrap paraBEM using pybind11',
       packages=files,
-      ext_modules=[Extension('ppm._ppm',
+      ext_modules=[Extension('paraBEM._paraBEM',
                    sources=src,
                    include_dirs=include_dirs,
                    extra_compile_args=['-std=c++11', '-fopenmp'],

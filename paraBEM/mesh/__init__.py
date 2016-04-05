@@ -1,5 +1,5 @@
 from __future__ import division
-import ppm
+import paraBEM
 
 # exdent with other mesh formats (eg. stl)
 
@@ -81,8 +81,8 @@ class mesh_object(object):
         mesh = cls()
         vertices, panels, trailing_edges = load_obj_file(path)
         panels, vertices_set = sort_and_order(panels, vertices)
-        mesh.vertices = [ppm.PanelVector3(*vertex) for vertex in vertices_set]
-        mesh.panels = [ppm.Panel3([mesh.vertices[nr] for nr in pol]) for pol in panels]
+        mesh.vertices = [paraBEM.PanelVector3(*vertex) for vertex in vertices_set]
+        mesh.panels = [paraBEM.Panel3([mesh.vertices[nr] for nr in pol]) for pol in panels]
         if len(trailing_edges) > 0:
             trailing_edges = sort_wake(trailing_edges)
             wake_dict = wake_from_mesh(trailing_edges, vertices, vertices_set)

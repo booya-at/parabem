@@ -2599,7 +2599,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/plots/results/3d/far_vs_near_doublet.png
+	filename ../../../examples/plots/results/3d/far_vs_near_doublet.png
 	lyxscale 50
 	scale 55
 
@@ -2612,7 +2612,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/plots/results/3d/far_error_doublet.png
+	filename ../../../examples/plots/results/3d/far_error_doublet.png
 	lyxscale 50
 	scale 55
 
@@ -2650,7 +2650,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/plots/results/3d/far_vs_near_source.png
+	filename ../../../examples/plots/results/3d/far_vs_near_source.png
 	lyxscale 50
 	scale 55
 
@@ -2663,7 +2663,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/plots/results/3d/far_error_source.png
+	filename ../../../examples/plots/results/3d/far_error_source.png
 	lyxscale 50
 	scale 55
 
@@ -3691,7 +3691,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/plots/results/2d/joukowsky.png
+	filename ../../../examples/plots/results/2d/joukowsky.png
 	lyxscale 50
 	scale 50
 
@@ -4180,7 +4180,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/plots/results/3d/sphere_error_pot.png
+	filename ../../../examples/plots/results/3d/sphere_error_pot.png
 	lyxscale 50
 	scale 52
 
@@ -4193,7 +4193,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/plots/results/3d/sphere_error_vel.png
+	filename ../../../examples/plots/results/3d/sphere_error_vel.png
 	lyxscale 50
 	scale 52
 
@@ -4206,7 +4206,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/plots/results/3d/sphere_error_cp.png
+	filename ../../../examples/plots/results/3d/sphere_error_cp.png
 	lyxscale 50
 	scale 52
 
@@ -4472,7 +4472,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/openglider/results/cLcDcM.png
+	filename ../../../examples/openglider/results/cLcDcM.png
 	lyxscale 60
 	scale 60
 
@@ -4725,7 +4725,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/openglider/results/vtk_opt/induced_drag.png
+	filename ../../../examples/openglider/results/vtk_opt/induced_drag.png
 	lyxscale 60
 	scale 45
 
@@ -4810,7 +4810,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/openglider/results/vtk_opt/shapes.png
+	filename ../../../examples/openglider/results/vtk_opt/shapes.png
 	lyxscale 60
 	scale 50
 
@@ -4902,7 +4902,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../../ppm_tests/openglider/results/vtk_opt/circulation_comparison.png
+	filename ../../../examples/openglider/results/vtk_opt/circulation_comparison.png
 	lyxscale 80
 	scale 65
 

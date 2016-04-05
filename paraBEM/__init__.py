@@ -1,6 +1,6 @@
 """
-paraBEM (python panel method) = python bindings to pm (panel method)
-=================================================================
+paraBEM (python panel method)
+=============================
 
 This package provides 2d and 3d panelmethodes and other utils to
 calculate potential flow problems. To see how it works try the
@@ -64,7 +64,7 @@ from matplotlib import pyplot as plt
 for more information look into the ipython notebook (tutorial.ipynb) which is
 located in the docs directory.
 """
-from eigen import vector2 as Vector2
-from eigen import vector3 as Vector3
-from ._ppm import PanelVector2, PanelVector3, Panel3, Panel2
+from paraEigen import vector2 as Vector2
+from paraEigen import vector3 as Vector3
+from ._paraBEM import PanelVector2, PanelVector3, Panel3, Panel2
 from .utils import Vector

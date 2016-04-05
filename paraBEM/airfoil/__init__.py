@@ -4,7 +4,7 @@ from copy import copy
 import requests
 import numpy
 
-from ppm import Panel2, PanelVector2
+from paraBEM import Panel2, PanelVector2
 
 
 class Airfoil(object):
@@ -159,7 +159,7 @@ class Airfoil(object):
 
     @classmethod
     def joukowsky(cls, m=-0.1+0.1j, numpoints=100):
-        from ppm.airfoil.conformal_mapping import JoukowskyAirfoil
+        from paraBEM.airfoil.conformal_mapping import JoukowskyAirfoil
         airfoil = JoukowskyAirfoil(m)
         profile = [[c.real, c.imag] for c in airfoil.coordinates(numpoints)]
 
@@ -173,7 +173,7 @@ class Airfoil(object):
 
     @classmethod
     def vandevooren(cls, tau=0.05, epsilon=0.05, numpoints=100):
-        from ppm.airfoil.conformal_mapping import VanDeVoorenAirfoil
+        from paraBEM.airfoil.conformal_mapping import VanDeVoorenAirfoil
         airfoil = VanDeVoorenAirfoil(tau=tau, epsilon=epsilon)
         profile = [[c.real, c.imag] for c in airfoil.coordinates(numpoints)]
 
@@ -187,7 +187,7 @@ class Airfoil(object):
 
     @classmethod
     def trefftz_kutta(cls, m=-0.1+0.1j, tau=0.05, numpoints=100):
-        from ppm.airfoil.conformal_mapping import TrefftzKuttaAirfoil
+        from paraBEM.airfoil.conformal_mapping import TrefftzKuttaAirfoil
         airfoil = TrefftzKuttaAirfoil(midpoint=m, tau=tau)
         profile = [[c.real, c.imag] for c in airfoil.coordinates(numpoints)]
 

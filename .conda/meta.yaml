@@ -11,7 +11,8 @@ source:
 requirements:
   build:
     - python
-    - distutils
+    # - distutils
+    # - eigen
     - pybind11
   run:
     - python

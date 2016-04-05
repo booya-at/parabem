@@ -33,13 +33,13 @@ if(OPENMP_FOUND)
     set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   ${OpenMP_C_FLAGS}")
 endif()
 
-SET(python_install_dir ${python_libs}/ppm)
+SET(python_install_dir ${python_libs}/paraBEM)
 
 #include drectories
 include_directories( ${PYTHON_INCLUDE_DIRS})    # python.h
 include_directories( ${EIGEN3_INCLUDE_DIR})     # eigen3
 
-add_subdirectory(ppm)
+add_subdirectory(paraBEM)
 add_subdirectory(src)
 
 install(DIRECTORY ppm DESTINATION ${python_libs} FILES_MATCHING
