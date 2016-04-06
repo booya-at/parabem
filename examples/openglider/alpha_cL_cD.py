@@ -27,7 +27,7 @@ _, panels, trailing_edge = paraBEM_Panels(
 
 v_inf = [8, 0, 1]
 
-case = Case(panels)
+case = Case(panels, trailing_edge)
 case.mom_ref_point = paraBEM.Vector3(1.25, 0, -6)
 case.A_ref = parametricGlider.shape.area
 case.farfield = 5
@@ -36,7 +36,7 @@ case.trefftz_cut_pos = case.v_inf * 800
 
 case.v_inf = paraBEM.Vector3(v_inf)
 case.create_wake(length=10000, count=4)    # length, count
-polars = case.polars(v_inf_deg_range3(case.v_inf, -5, 12, 5))
+polars = case.polars(v_inf_deg_range3(case.v_inf, -5, 12, 15))
 
 
 vtk_writer = CaseToVTK(case, "results/vtk_glider_case")
