@@ -44,7 +44,7 @@ def shape_plot(glider2d):
 def min_func(x):
     global count
     count += 1
-    print("\niteration: " + count)
+    print("\niteration: " + str(count))
     _glider2d = deepcopy(glider2d)
     glider_set_controlpoint(_glider2d, x)
     glider3d = _glider2d.get_glider_3d()

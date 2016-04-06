@@ -3,6 +3,7 @@ import paraBEM
 from paraBEM.pan2d import DirichletDoublet1Case2 as Case
 from paraBEM.utils import check_path
 from paraBEM.vtk_export import VtkWriter
+import matplotlib.pyplot as plt
 
 # geometry
 numpoints = 100
@@ -15,11 +16,14 @@ xy = np.transpose(np.array([x, y]))
 vector = [paraBEM.PanelVector2(*i) for i in xy]
 vector += [vector[0]]               # important for calculating the gradients
 panels = [paraBEM.Panel2([vec, vector[i+1]]) for i, vec in enumerate(vector[:-1])]
-vector[0].wake_vertex = True
+# vector[0].wake_vertex = True
 # setting up the case
 case = Case(panels)
-case.v_inf = paraBEM.Vector2(1, 0.5)
+case.v_inf = paraBEM.Vector2(1, 1)
 case.run()
+
+plt.plot([p.potential for p in case.panels])
+plt.show()
 
 nx = 100
 ny = 100

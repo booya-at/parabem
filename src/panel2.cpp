@@ -119,6 +119,17 @@ PointWakeVertex::PointWakeVertex(PanelVector2* point1, PanelVector2* point2)
 {
     this->upper_point = point1;
     this->lower_point = point2;
+
+    if (point1 == point1->panels[0]->points[0])
+    {
+        this->upper_operating_panel = point1->panels[0];
+        this->lower_operating_panel = point1->panels[1];
+    }
+    else
+    {
+        this->upper_operating_panel = point1->panels[1];
+        this->lower_operating_panel = point1->panels[0];
+    }
 }
 
 

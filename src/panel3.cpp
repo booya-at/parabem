@@ -455,7 +455,6 @@ void Edge::setup_Edge()
     return;
   }
 //    ordering the panels (first Panel3 has [..., this->v1, this->v2, ...] order) (is aligned)
-  bool first = false;
   this->p1 = connected_panels[0];
   this->p2 = connected_panels[1];
   int l = this->p1->points.size();

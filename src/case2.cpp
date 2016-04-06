@@ -258,7 +258,7 @@ void NeumannDoublet0Case2::run()
 
 //   cout << "FILLING MATRIX & RHS" << endl;
 
-    for (Panel2*& panel_i: this->panels)
+    for (Panel2* panel_i: this->panels)
     {
         this->rhs(panel_i->nr) -= this->v_inf.dot(panel_i->n);
         for (Panel2* panel_j: this->panels)
@@ -473,14 +473,14 @@ vector< PanelVector2 > DirichletDoublet1Case2::collocation_points()
     PanelVector2 coll_point;
     vector<PanelVector2> collocation_points;
     int i = 0;
-    for (Panel2*& panel: this->panels)
+    for (Panel2* panel: this->panels)
     {
-        coll_point = panel->center + 0.533 * (panel->center - *panel->points[1]);
+        coll_point = panel->center; // + 0.533 * (panel->center - *panel->points[1]);
         coll_point.nr = i++;
         collocation_points.push_back(coll_point);
-        coll_point = panel->center + 0.533 * (panel->center - *panel->points[0]);
-        coll_point.nr = i++;
-        collocation_points.push_back(coll_point);
+        // coll_point = panel->center + 0.533 * (panel->center - *panel->points[0]);
+        // coll_point.nr = i++;
+        // collocation_points.push_back(coll_point);
 
     }
     return collocation_points;
@@ -538,15 +538,14 @@ Vector2 DirichletDoublet1Case2::surface_velocity_influence(Vector2& target, Pane
 void DirichletDoublet1Case2::run()
 {
     this->mat_size = this->get_all_points().size();
-    int row_size = this->collocation_points().size();
 
     for (Panel2*& panel: this->panels){
         panel->calc_geo();
     }
 
-    this->matrix.resize(row_size, this->mat_size);
+    this->matrix.resize(this->mat_size, this->mat_size);
     this->matrix.setZero();
-    this->rhs.resize(row_size);
+    this->rhs.resize(this->mat_size);
     this->rhs.setZero();
     this->result.resize(this->mat_size);
     this->result.setZero();
@@ -557,7 +556,9 @@ void DirichletDoublet1Case2::run()
         {
             double influence_j_i = this->surface_influence(coll_point, panel_point);
             this->matrix(coll_point.nr, panel_point->nr) = influence_j_i;
+            // cout << influence_j_i << ", ";
         };
+        // cout << endl;
         for (PointWakeVertex wake_point: this->linear_wake_vertices)
         {
             double influence = this->wake_influence(coll_point, *wake_point.upper_point );
@@ -567,10 +568,41 @@ void DirichletDoublet1Case2::run()
             matrix(coll_point.nr, nl) += influence;
         }
     }
-    this->result = this->matrix.colPivHouseholderQr().solve(this->rhs);   //LeastSquareSolve
-    for (PanelVector2*& point: this->get_all_points())
+    int count_wake_vertex = 0;
+    for (PointWakeVertex wake_point: this->linear_wake_vertices)
     {
-        point->potential = this->result(point->nr); // + this->freeflow_influence(*point);  // here mue = mue - phi_inf
+        int nu = wake_point.upper_point->nr;
+        int nl = wake_point.lower_point->nr;
+        int nu1 = wake_point.upper_operating_panel->points[0]->nr;
+        if (nu == nu1 or nu1 == nl)
+            nu1 = wake_point.upper_operating_panel->points[1]->nr;
+        int nl1 = wake_point.lower_operating_panel->points[0]->nr;
+        if (nl == nl1 or nl1 == nu)
+            nl1 = wake_point.lower_operating_panel->points[1]->nr;
+        double lu = wake_point.upper_operating_panel->l;
+        double ll = wake_point.lower_operating_panel->l;
+        int row = this->mat_size - 1 - count_wake_vertex;
+        cout << nl << " " << nl1 << " " << ll << endl;
+        cout << nu << " " << nu1 << " " << lu << endl;
+        cout << rhs(row) << endl;
+        cout << matrix(row, 0) << endl;
+        matrix(row, nu) += -1 / lu;
+        matrix(row, nu1) += 1 / lu;
+        matrix(row, nl) +=  1 / ll;
+        matrix(row, nl1) += -1 / ll;
+        count_wake_vertex ++;
+    }
+    for (int i = 0; i< this->mat_size; i++)
+        cout << matrix(this->mat_size - 1, i) << ", " ;
+    cout << endl;
+
+    this->result = this->matrix.fullPivHouseholderQr().solve(this->rhs);
+    cout << "result:\n" << this->result << endl;
+    cout << "rhs:\n" << this->rhs;
+    cout << "mat:\n" << this->matrix;
+    for (PanelVector2* point: this->get_all_points())
+    {
+        point->potential = this->result(point->nr);// this->freeflow_influence(*point);  // here mue = mue - phi_inf
     }
     for (Panel2*& panel: this->panels)
     {
@@ -592,7 +624,7 @@ double DirichletDoublet1Case2::off_body_potential(Vector2& target)
     }
     for (PointWakeVertex wake_point: this->linear_wake_vertices)
     {
-        target_pot -= (wake_point.upper_point->potential - wake_point.lower_point->potential) *
+        target_pot += (wake_point.upper_point->potential - wake_point.lower_point->potential) *
                         vortex_2(target, *wake_point.upper_point, this->v_inf);
     }
     target_pot += this->freeflow_influence(target);
@@ -608,7 +640,7 @@ Vector2 DirichletDoublet1Case2::off_body_velocity(Vector2& target)
     }
     for (PointWakeVertex wake_point: this->linear_wake_vertices)
     {
-        target_vel -= (wake_point.upper_point->potential - wake_point.lower_point->potential) *
+        target_vel += (wake_point.upper_point->potential - wake_point.lower_point->potential) *
                         vortex_2_v(target, *wake_point.upper_point) / 2;
     }
     target_vel += this->v_inf;
@@ -649,6 +681,14 @@ void NeumannSource0Case2::run()
             {
                 this->matrix(panel_i->nr, panel_j->nr) *= -1;
             }
+        }
+        for (PanelWakeVertex wake_point: this->wake_vertices)
+        {
+            double influence = this->wake_influence(*panel_i, *wake_point.panel_vector);
+            int nu = wake_point.upper_operating_panel->nr;
+            int nl = wake_point.lower_operating_panel->nr;
+            matrix(panel_i->nr, nu) -= influence;
+            matrix(panel_i->nr, nl) += influence;
         }
         this->rhs[panel_i->nr] += this->freeflow_influence(*panel_i);
     }
@@ -691,6 +731,12 @@ double NeumannSource0Case2::off_body_potential(Vector2& target)
     {
         pot -= panel->sigma * source_2_0(target, *panel);
     }
+    for (PanelWakeVertex wake_point: this->wake_vertices)
+    {
+        pot -= vortex_2(target, *wake_point.panel_vector, this->v_inf) *
+                    (wake_point.upper_operating_panel->sigma -
+                     wake_point.lower_operating_panel->sigma);
+    }
     pot += this->v_inf.dot(target);
     return pot;
 }
@@ -701,6 +747,12 @@ Vector2 NeumannSource0Case2::off_body_velocity(Vector2& target)
     for (Panel2*& panel: this->panels)
     {
         velocity -= panel->sigma * source_2_0_v(target, *panel);
+    }
+    for (PanelWakeVertex wake_point: this->wake_vertices)
+    {
+        velocity -= vortex_2_v(target, *wake_point.panel_vector) *
+                    (wake_point.upper_operating_panel->sigma -
+                     wake_point.lower_operating_panel->sigma);
     }
     velocity += this->v_inf;
     return velocity;

@@ -17,7 +17,6 @@ alpha = np.deg2rad(10)
 case = Case(airfoil.panels)
 case.v_inf = Vector2(np.cos(alpha), np.sin(alpha))
 case.run()
-print(np.array(case.matrix.values))
 nx = 300
 ny = 300
 

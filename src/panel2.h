@@ -70,6 +70,8 @@ public:
     ~PointWakeVertex(){};
     PanelVector2* upper_point;
     PanelVector2* lower_point;
+    Panel2* upper_operating_panel;
+    Panel2* lower_operating_panel;
 };
 
 
