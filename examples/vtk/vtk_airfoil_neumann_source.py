@@ -8,9 +8,10 @@ from paraBEM.airfoil import Airfoil
 from paraBEM.pan2d import NeumannSource0Case2 as Case
 from paraBEM.utils import check_path
 
-airfoil = Airfoil.joukowsky(m=-0.1 +0.1j)
+airfoil = Airfoil.vandevooren(tau=np.deg2rad(20), epsilon=0.05)
+# airfoil = Airfoil.joukowsky(m=-0.1 +0.1j)
 
-airfoil.numpoints = 50
+airfoil.numpoints = 100
 alpha = np.deg2rad(10)
 
 # panelmethode

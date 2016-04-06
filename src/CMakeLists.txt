@@ -12,4 +12,4 @@ add_executable(main main.cpp)
 target_link_libraries(main pm)
 
 install(TARGETS _paraBEM DESTINATION ${python_install_dir})
-install(TARGETS pm DESTINATION /usr/lib/)
+install(TARGETS pm DESTINATION lib/)

@@ -733,7 +733,7 @@ double NeumannSource0Case2::off_body_potential(Vector2& target)
     }
     for (PanelWakeVertex wake_point: this->wake_vertices)
     {
-        pot -= vortex_2(target, *wake_point.panel_vector, this->v_inf) *
+        pot += vortex_2(target, *wake_point.panel_vector, this->v_inf) *
                     (wake_point.upper_operating_panel->sigma -
                      wake_point.lower_operating_panel->sigma);
     }
@@ -750,7 +750,7 @@ Vector2 NeumannSource0Case2::off_body_velocity(Vector2& target)
     }
     for (PanelWakeVertex wake_point: this->wake_vertices)
     {
-        velocity -= vortex_2_v(target, *wake_point.panel_vector) *
+        velocity += vortex_2_v(target, *wake_point.panel_vector) *
                     (wake_point.upper_operating_panel->sigma -
                      wake_point.lower_operating_panel->sigma);
     }
