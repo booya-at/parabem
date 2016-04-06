@@ -3,7 +3,7 @@ package:
   version: 0.0.1
 
 build:
-  number: 0
+  number: 1
 
 source:
   path: ../
@@ -12,9 +12,10 @@ requirements:
   build:
     - cmake
     - python
-    - eigen
-    - pybind11
+    - eigen                 #   - https://conda.anaconda.org/rmg
+    - pybind11              #   - https://conda.anaconda.org/pybind
   run:
+    - paraeigen             #   - https://conda.anaconda.org/looooo
     - python
     - numpy
     - matplotlib
