@@ -1,1 +1,2 @@
-$PYTHON setup.py install
+cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} .
+make install
