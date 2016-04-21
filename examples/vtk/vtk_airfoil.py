@@ -7,8 +7,8 @@ from paraBEM.airfoil import Airfoil
 from paraBEM.utils import check_path
 
 airfoil = Airfoil.trefftz_kutta(-0.1 + 0.00j, np.deg2rad(10))
-airfoil.numpoints = 50
-coordinates = np.array(airfoil.coordinates[:-1]) + np.array([0.5, 0.3])
+airfoil.numpoints = 100
+coordinates = np.array(airfoil.coordinates[:-1]) + np.array([2.2, 0.0])
 coordinates = list(map(list, coordinates * 0.5))
 pan_vectors = list(map(paraBEM.PanelVector2, coordinates))
 pan_vectors[0].wake_vertex = True
@@ -18,7 +18,7 @@ panels += [paraBEM.Panel2([pan_vec, pan_vectors[i+1]])
     in enumerate(pan_vectors[:-1])]
 panels.append(paraBEM.Panel2([pan_vectors[-1], pan_vectors[0]]))
 case = Case(panels)
-case.v_inf = paraBEM.Vector2(1, 0.0)
+case.v_inf = paraBEM.Vector2(1, 0.5)
 case.run()
 
 nx = 200
