@@ -1,0 +1,24 @@
+package:
+  name: parabem
+  version: 0.0.1
+
+build:
+  number: 3
+
+source:
+  path: ../..
+
+requirements:
+  build:
+    - python
+    - cmake
+    - pybind11          #   - pybind
+    - eigen             #   - rmg
+  run:
+    - python
+    - paraeigen         #   - looooo
+    - numpy
+    - matplotlib
+
+about:
+  summary: potential flow with boundary elements.
