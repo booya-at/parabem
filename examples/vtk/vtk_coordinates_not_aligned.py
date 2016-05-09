@@ -6,7 +6,7 @@ from paraBEM.vtk_export import VtkWriter
 from paraBEM.pan2d import *
 from paraBEM import PanelVector2, Vector2, Panel2
 from paraBEM.airfoil.conformal_mapping import *
-from paraBEM.pan2d import DirichletDoublet0Case2 as Case
+from paraBEM.pan2d import DirichletDoublet0Source0Case2 as Case
 from paraBEM.utils import check_path
 
 airfoil = JoukowskyAirfoil(midpoint=-0.1 + 0.05j)
@@ -15,7 +15,7 @@ airfoil = JoukowskyAirfoil(midpoint=-0.1 + 0.05j)
 
 # airfoil = TrefftzKuttaAirfoil(midpoint=-0.1 + 0.05j, tau=np.deg2rad(10))
 
-num_pan = 30
+num_pan = 500
 alpha = np.deg2rad(10)
 
 # panelmethode
@@ -30,8 +30,8 @@ case = Case(panels)
 case.v_inf = Vector2(np.cos(alpha), np.sin(alpha))
 case.run()
 
-nx = 300
-ny = 200
+nx = 500
+ny = 500
 
 space_x = np.linspace(-3, 7, nx)
 space_y = np.linspace(-2, 2, ny)
