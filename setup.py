@@ -4,7 +4,8 @@ from distutils.core import setup, Extension
 extra_link_args = ['-lgomp']
 
 include_dirs = ['/usr/include/eigen3',
-                '/usr/local/include/eigen3']
+                '/usr/local/include/eigen3',
+                'src/headers']
 
 src = ["src/paraBEM_ext.cpp",      "src/element_influence.cpp",
        "src/panel2.cpp",       "src/panel3.cpp",
