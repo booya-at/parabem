@@ -7,7 +7,7 @@ permalink:           pretty
 title:               MY
 tagline:             'blog'
 description:         'browse the blog'
-url:                 http://booya-at.github.io/paraBEM/
+url:                 http://booya-at.github.io/
 baseurl:             '/paraBEM'
 
 gems:                [jekyll-paginate, jekyll-gist]
