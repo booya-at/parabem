@@ -22,7 +22,7 @@ baseurlknitr:  "/paraBEM/" # This will always be your baseurl plus an extra '/'
 url: "https://homerhanumat.github.io" # the base hostname & protocol for your site
 
 # set limit on number of post to appear on Home page
-homepostlimit: 4
+homepostlimit: 10
 
 # Disqus comments:
 disqus:           true
