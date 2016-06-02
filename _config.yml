@@ -8,7 +8,7 @@ title:               MY
 tagline:             'blog'
 description:         'browse the blog'
 url:                 http://booya-at.github.io/paraBEM/
-baseurl:             ''
+baseurl:             '/paraBEM'
 
 gems:                [jekyll-paginate, jekyll-gist]
 paginate:            5
