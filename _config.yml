@@ -1,23 +1,40 @@
+# Dependencies
+markdown:         kramdown
+
 # Permalinks
-#
-# Use of `relative_permalinks` ensures post links from the index work properly.
-permalink:           pretty
+permalink: /:year/:month/:day/:title.html
 # relative_permalinks: true
 
 # Setup
-title:               paraBEM
-tagline:             'Site'
-description:         ''
-url:                 http://lanyon.getpoole.com
-baseurl:             ''
-gems:                [jekyll-paginate]
-paginate:            5
+title:            My Lanyon Blog
+tagline:          ''
+description:      'Jekyll-powered, Lanyon-themed, knitr-ready.'
+baseurl: "/knitr-lanyon" # If you are making a gh-pages project blog, this is
+                        # the name of your project repo, preceded by a /'
+                        # Set it to just "/" if you are making a user page.
+                        
+                        # That trailing slash is important for proper storage
+                        # of figures gnerated from knitting.
+baseurlknitr:  "/knitr-lanyon/" # This will always be your baseurl plus an extra '/'
+                                # at the end.  It's used only when knitr renders
+                                # your R Markdown files.
+                        
+url: "https://homerhanumat.github.io" # the base hostname & protocol for your site
 
-# About/contact
+# set limit on number of post to appear on Home page
+homepostlimit: 4
+
+# Disqus comments:
+disqus:           true
+shortname:        homerhanumatgithubioknitrlanyon
+
+# Social Media
+twitter:          true # add a twitter button to each post
+facebook:         true # add a facebook share button to each post
+
 author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
+  name:           'Homer White'
+  url:            https://statistics.rainandrhino.org
 
-# Custom vars
-version:             1.0.0
+github:
+  repo:           https://github.com/homerhanumat/knitr-lanyon
