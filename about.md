@@ -1,5 +1,4 @@
 ---
-_sdfs
 layout: page
 title: About
 ---
