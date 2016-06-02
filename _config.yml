@@ -8,11 +8,10 @@ title:               Lanyon
 tagline:             'A Jekyll theme'
 description:         'nothing.'
 url:                 http://booya-at.github.io/paraBEM/
-baseurl:             ''
+baseurl:             '/paraBEM'
 
-gems:                [jekyll-paginate]
-paginate:            5
-paginate_path:       "page:num"
+# set limit on number of post to appear on Home page
+homepostlimit:        4
 
 # About/contact
 author:
