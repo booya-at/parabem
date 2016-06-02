@@ -10,8 +10,8 @@ description:         'nothing.'
 url:                 http://booya-at.github.io/paraBEM/
 baseurl:             '/paraBEM'
 
-# set limit on number of post to appear on Home page
-homepostlimit:        4
+gems:                [jekyll-paginate, jekyll-gist]
+paginate:            5
 
 # About/contact
 author:
