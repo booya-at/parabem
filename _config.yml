@@ -9,16 +9,16 @@ permalink: /:year/:month/:day/:title.html
 title:            My Lanyon Blog
 tagline:          ''
 description:      'Jekyll-powered, Lanyon-themed, knitr-ready.'
-baseurl: "/knitr-lanyon" # If you are making a gh-pages project blog, this is
+baseurl: "/paraBEM" # If you are making a gh-pages project blog, this is
                         # the name of your project repo, preceded by a /'
                         # Set it to just "/" if you are making a user page.
-                        
+
                         # That trailing slash is important for proper storage
                         # of figures gnerated from knitting.
-baseurlknitr:  "/knitr-lanyon/" # This will always be your baseurl plus an extra '/'
+baseurlknitr:  "/paraBEM/" # This will always be your baseurl plus an extra '/'
                                 # at the end.  It's used only when knitr renders
                                 # your R Markdown files.
-                        
+
 url: "https://homerhanumat.github.io" # the base hostname & protocol for your site
 
 # set limit on number of post to appear on Home page
@@ -29,8 +29,8 @@ disqus:           true
 shortname:        homerhanumatgithubioknitrlanyon
 
 # Social Media
-twitter:          true # add a twitter button to each post
-facebook:         true # add a facebook share button to each post
+twitter:          false # add a twitter button to each post
+facebook:         false # add a facebook share button to each post
 
 author:
   name:           'Homer White'
