@@ -1,40 +1,23 @@
-# Dependencies
-markdown:         kramdown
-
 # Permalinks
-permalink: /:year/:month/:day/:title.html
-# relative_permalinks: true
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+relative_permalinks: false
 
 # Setup
-title:            My Lanyon Blog
-tagline:          ''
-description:      'Jekyll-powered, Lanyon-themed, knitr-ready.'
-baseurl: "/paraBEM" # If you are making a gh-pages project blog, this is
-                        # the name of your project repo, preceded by a /'
-                        # Set it to just "/" if you are making a user page.
+title:               Lanyon
+tagline:             'A Jekyll theme'
+description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+url:                 http://lanyon.getpoole.com
+baseurl:             ''
+paginate:            5
+gems:                [jekyll-paginate]
 
-                        # That trailing slash is important for proper storage
-                        # of figures gnerated from knitting.
-baseurlknitr:  "/paraBEM/" # This will always be your baseurl plus an extra '/'
-                                # at the end.  It's used only when knitr renders
-                                # your R Markdown files.
-
-url: "https://homerhanumat.github.io" # the base hostname & protocol for your site
-
-# set limit on number of post to appear on Home page
-homepostlimit: 10
-
-# Disqus comments:
-disqus:           true
-shortname:        homerhanumatgithubioknitrlanyon
-
-# Social Media
-twitter:          false # add a twitter button to each post
-facebook:         false # add a facebook share button to each post
-
+# About/contact
 author:
-  name:           'Homer White'
-  url:            https://statistics.rainandrhino.org
+  name:              Mark Otto
+  url:               https://twitter.com/mdo
+  email:             markdotto@gmail.com
 
-github:
-  repo:           https://github.com/homerhanumat/knitr-lanyon
+# Custom vars
+version:             1.0.0
