@@ -4,19 +4,19 @@
 permalink:           pretty
 
 # Setup
-title:               Lanyon
-tagline:             'A Jekyll theme'
-description:         'nothing.'
+title:               MY
+tagline:             'blog'
+description:         'browse the blog'
 url:                 http://booya-at.github.io/paraBEM/
-baseurl:             '/paraBEM'
+baseurl:             ''
 
 gems:                [jekyll-paginate, jekyll-gist]
 paginate:            5
 
 # About/contact
 author:
-  name:              Mark Otto
-  email:             markdotto@gmail.com
+  name:              looooo
+  email:             sppedflyer@gmail.com
 
 # Custom vars
 version:             1.0.0
