@@ -19,9 +19,9 @@ with open("glider/referenz_schirm_berg.json") as _file:
 
 _, panels, trailing_edge = paraBEM_Panels(
     glider,
-    midribs=0,
-    profile_numpoints=20,
-    distribution=Distribution.cos_2_distribution,
+    midribs=10,
+    profile_numpoints=100,
+    distribution=Distribution.from_cos_2_distribution,
     num_average=0,
     symmetric=False)
 

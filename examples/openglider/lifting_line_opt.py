@@ -28,7 +28,7 @@ verts, panels, trailing_edge = paraBEM_Panels(glider3d,
                         midribs=0,
                         profile_numpoints=20,
                         symmetric=False,
-                        distribution=Distribution.nose_cos_distribution(0.5),
+                        distribution=Distribution.from_cos_2_distribution,
                         num_average=0)
 
 case = DirichletDoublet0Source0Case3(panels, trailing_edge)

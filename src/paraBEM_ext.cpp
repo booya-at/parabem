@@ -81,8 +81,8 @@ PYBIND11_PLUGIN(_paraBEM) {
         //docs: "Panel2 represents a straigth line which is used to approximate 2d geometry\n\
         //            constructor: Panel2([p1, p2])\n\n\
         //            p1, p2 -> PanelVector2 which have to be stored somewhere in python (list, variable,...)"
-        .def(py::init<PanelVector2*, PanelVector2*>())
-        .def(py::init<vector<PanelVector2*>>())
+        .def(py::init<PanelVector2*, PanelVector2*>(), py::keep_alive<1, 2>(), py::keep_alive<1, 3>())
+        .def(py::init<vector<PanelVector2*>>(), py::keep_alive<1, 2>())
         .def_readonly("l", &Panel2::l, "length of panel")
         .def_readonly("t", &Panel2::t, "panel direction")
         .def_readonly("n", &Panel2::n, "normal direction")
@@ -112,19 +112,19 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def("off_body_potential", &Case2::off_body_potential, "potetnial field");
         
     py::class_<DirichletDoublet0Case2>(m, "DirichletDoublet0Case2", py::base<Case2>())
-        .def(py::init<vector<Panel2*>>());
+        .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
         
     py::class_<NeumannDoublet0Case2>(m, "NeumannDoublet0Case2", py::base<Case2>())
-        .def(py::init<vector<Panel2*>>());
+        .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
         
     py::class_<NeumannSource0Case2>(m, "NeumannSource0Case2", py::base<Case2>())
-        .def(py::init<vector<Panel2*>>());
+        .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
     
     py::class_<DirichletDoublet0Source0Case2>(m, "DirichletDoublet0Source0Case2", py::base<DirichletDoublet0Case2>())
-        .def(py::init<vector<Panel2*>>());
+        .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
         
     py::class_<DirichletDoublet1Case2>(m, "DirichletDoublet1Case2", py::base<Case2>())
-        .def(py::init<vector<Panel2*>>());
+        .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
 
     py::class_<PanelVector3>(m, "PanelVector3", py::base<Vector3>())
     //           "Panel3 represents a straigth line which is used to approximate 2d geometry\n\
@@ -139,9 +139,9 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def_readonly("velocity", &PanelVector3::velocity);
 
     py::class_<Panel3>(m, "Panel3")
-        .def(py::init<vector<PanelVector3*>>())
+        .def(py::init<vector<PanelVector3*>>(), py::keep_alive<1, 2>())
         .def(py::init<>())
-        .def("append_point", &Panel3::append_point)
+        .def("append_point", &Panel3::append_point, py::keep_alive<1, 2>())
         .def_readonly("center", &Panel3::center)
         .def_readonly("m", &Panel3::m)
         .def_readonly("n", &Panel3::n)
@@ -227,12 +227,12 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def("polars", &Case3::polars);
         
     py::class_<DirichletDoublet0Case3>(m, "DirichletDoublet0Case3", py::base<Case3>())
-        .def(py::init<vector<Panel3*>>())
-        .def(py::init<vector<Panel3*>, vector<PanelVector3*>>());
+        .def(py::init<vector<Panel3*>>(), py::keep_alive<1, 2>())
+        .def(py::init<vector<Panel3*>, vector<PanelVector3*>>(), py::keep_alive<1, 2>(), py::keep_alive<1, 3>());
         
     py::class_<DirichletDoublet0Source0Case3>(m, "DirichletDoublet0Source0Case3", py::base<DirichletDoublet0Case3>())
-        .def(py::init<vector<Panel3*>>())
-        .def(py::init<vector<Panel3*>, vector<PanelVector3*>>());
+        .def(py::init<vector<Panel3*>>(), py::keep_alive<1, 2>())
+        .def(py::init<vector<Panel3*>, vector<PanelVector3*>>(), py::keep_alive<1, 2>(), py::keep_alive<1, 3>());
         
     py::class_<LineSegment>(m, "LineSegment")
         .def(py::init<Vector3&, Vector3&, Vector3&>())
