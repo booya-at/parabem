@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.4)
-project(pm)
+project(paraBEM)
 
 MESSAGE(STATUS "python version set: ${py}")
 
