@@ -17,11 +17,9 @@ set(CPP_FILES element_influence.cpp
 
 add_library(pm SHARED ${CPP_FILES} ${HEADER_FILES})
 
-# Build the python shared library
-add_library(_paraBEM SHARED paraBEM_ext.cpp)
-target_link_libraries(_paraBEM pm)
-set_target_properties(_paraBEM PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/paraBEM)
-set_target_properties(_paraBEM PROPERTIES PREFIX "")
+install(TARGETS pm DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 
-install(TARGETS _paraBEM DESTINATION ${python_install_dir})
-install(TARGETS pm DESTINATION lib)
+
+IF(BUILD_PYTHON_BINDINGS)
+	add_subdirectory(python)
+ENDIF(BUILD_PYTHON_BINDINGS)
