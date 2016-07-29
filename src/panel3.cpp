@@ -166,7 +166,9 @@ void Panel3::set_neighbours()
                 for (Panel3*& panel_m: this->points[j]->panels){
                     if (panel_k == panel_m){
                         if (panel_k != this){
-                            this->neighbours.push_back(panel_m);
+                            if (panel_k->n.dot(this->n) > 0.){  // not add sharp edge panels
+                                this->neighbours.push_back(panel_m);
+                            }
                         }
                     }
                 }
