@@ -52,7 +52,7 @@ def min_func(x):
                         midribs=0,
                         profile_numpoints=40,
                         symmetric=True,
-                        distribution=Distribution.nose_cos_distribution(0.2),
+                        distribution=Distribution.from_nose_cos_distribution(40, 0.2),
                         num_average=0)
     case = Case(panels[1], panels[2])
     case.farfield = 5
