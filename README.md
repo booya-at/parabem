@@ -1,7 +1,7 @@
 #paraBEM
 [![Build Status](https://travis-ci.org/looooo/paraBEM.svg?branch=master)](https://travis-ci.org/looooo/paraBEM)
 
-<img src="./doc/latex_doc/Abbildungen/png/14_2_wake-rollup.png" alt="result" style="width: 500;"/>
+<img src="./doc/latex_doc/Abbildungen/png/14_2_wake-rollup.png" alt="result" width="400"/>
 
 
 paraBEM is a python module which provides methods to calculate the potential flow over 2D and 3D meshes with boundary-elements (panel-method)
