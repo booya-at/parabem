@@ -30,8 +30,8 @@ before_install:
   - sudo cp eigen/signature_of_eigen3_matrix_library /usr/include/eigen3/
   - git clone https://github.com/pybind/pybind11.git
   - sudo cp pybind11/include/pybind11 /usr/include/python2.7/ -r
-  - git clone https://github.com/looooo/py-eigen.git
-  - cd py-eigen
+  - git clone https://github.com/looooo/paraEigen.git
+  - cd paraEigen
   - sudo python setup.py install
   - cd ..
 install:
