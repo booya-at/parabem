@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <tuple>
+#include <memory>
 
 #include "vector.h"
 #include "panel3.h"
@@ -69,7 +70,7 @@ PYBIND11_PLUGIN(_paraBEM) {
     py::module::import("paraEigen");
     py::module m("_paraBEM", "pybind11 example plugin");
     
-    py::class_<PanelVector2>(m, "PanelVector2", py::base<Vector2>())
+    py::class_<PanelVector2, std::shared_ptr<PanelVector2>>(m, "PanelVector2", py::base<Vector2>())
         .def(py::init<double, double>())
         .def("__init__", &from_python_list<PanelVector2>)
         .def_readwrite("wake_vertex", &PanelVector2::wake_vertex, "if true this point shades a wake")
@@ -126,7 +127,7 @@ PYBIND11_PLUGIN(_paraBEM) {
     py::class_<DirichletDoublet1Case2>(m, "DirichletDoublet1Case2", py::base<Case2>())
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
 
-    py::class_<PanelVector3>(m, "PanelVector3", py::base<Vector3>())
+    py::class_<PanelVector3, std::shared_ptr<PanelVector3>>(m, "PanelVector3", py::base<Vector3>())
     //           "Panel3 represents a straigth line which is used to approximate 2d geometry\n\
     //           constructor: Panel2([p1, p2, ...])\n\n\
     //           p1, p2... -> PanelVector2 which have to be stored somewhere in python (list, variable,...)")
