@@ -72,9 +72,9 @@ for (int index=0; index<3; index++)
                     thispanel->points[index] = *nodes + json_thispanel["nodes"][index].asInt();
             //is_wake
             thispanel->wake = json_thispanel["is_wake"].asBool();
-            if (not thispanel->wake){
-                    thispanel->position = j;
-                    j++;
+            if (! thispanel->wake){
+                thispanel->position = j;
+                j++;
             }
     //set neighbours
             for (int index=0; index<4; index++){

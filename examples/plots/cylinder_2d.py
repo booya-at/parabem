@@ -29,7 +29,7 @@ x2 = [[i.center.x, i.velocity.norm()] for i in case.panels]
 
 plt.axes().set_aspect("equal", "datalim")
 plt.grid=True
-plt.plot(*zip(*x1))
+plt.plot(*zip(*(x1 + [x1[0]])))
 plt.plot(*zip(*x2))
 plt.savefig(check_path("results/2d/cylinder_cp.png"))
 

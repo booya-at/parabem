@@ -362,7 +362,7 @@ double doublet_2_0(Vector2& target, Panel2& source)
     double pn = (target - source.center).dot(source.n);
     double dx1 = (*source.points[0] - target).dot(source.t);
     double dx2 = (*source.points[1] - target).dot(source.t);
-    if (pn * pn < coresize and (dx1 * dx1 + dx2 * dx2) <= (source.l * source.l))
+    if (pn * pn < coresize && (dx1 * dx1 + dx2 * dx2) <= (source.l * source.l))
     {
         return -0.5;
     }
@@ -448,7 +448,7 @@ double doublet_2_1(Vector2& target, Panel2& source, bool left)
     double phi2 = atan2(pn, dx2);
     if (pn * pn < coresize)
     {
-        if (r1_squared < (source.l * source.l) and
+        if (r1_squared < (source.l * source.l) &&
         r2_squared < (source.l * source.l))
         {
             if (left){return -0.5 * p2_t.norm() / source.l;}

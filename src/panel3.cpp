@@ -161,7 +161,7 @@ void Panel3::set_neighbours()
     int l = this->points.size();
     for (int i = 0; i < l ; i++){
         int j = (i == l-1 ? 0 : i+1);
-        if (not (this->points[i]->wake_vertex && this->points[j]->wake_vertex)){
+        if (! (this->points[i]->wake_vertex && this->points[j]->wake_vertex)){
             for (Panel3*& panel_k: this->points[i]->panels){
                 for (Panel3*& panel_m: this->points[j]->panels){
                     if (panel_k == panel_m){
@@ -283,7 +283,7 @@ int Panel3::aligned(PanelVector3* a, PanelVector3* b)
       break;
     }
   }
-  if (not found_a){
+  if (! found_a){
     cout << "not_found_a" << endl;
     return 0;
   };
@@ -294,7 +294,7 @@ int Panel3::aligned(PanelVector3* a, PanelVector3* b)
       break;
     }
   }
-  if (not found_b){
+  if (! found_b){
     cout << "not_found_b" << endl;
     return 0;
   }
@@ -318,7 +318,7 @@ int Panel3::aligned(PanelVector3* a, PanelVector3* b)
 
 bool WakePanel3::is_symmetric()
 {
-    return (this->upper_operating_panel->is_symmetric() and
+    return (this->upper_operating_panel->is_symmetric() &&
             this->lower_operating_panel->is_symmetric());
 }
 

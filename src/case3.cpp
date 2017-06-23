@@ -311,7 +311,7 @@ void Case3::create_wake(double length, int count, Vector3& direction){
                 this->first_wake_row.push_back(w);
             }
             w->calc_geo();
-            if (e.p1->is_symmetric() and e.p2->is_symmetric()){
+            if (e.p1->is_symmetric() && e.p2->is_symmetric()){
                 w->set_symmetric();
                 SymmetricWakePanel3* sym_wake_pan = 
                     new SymmetricWakePanel3(w, this->symmetric_plane_n, this->symmetric_plane_p);
@@ -391,7 +391,7 @@ vector< Edge > Case3::trefftz_cut()
                 break;
             }
         }
-        if (not found_cut){
+        if (! found_cut){
             cout << "trefftz plane not aligned with wake" << endl;
             break;
         }

@@ -495,7 +495,7 @@ double DirichletDoublet1Case2::surface_influence(Vector2& target, PanelVector2* 
         if (source->wake_vertex)
         {
 //             only one side of the panel will be handled, the other is corresponding to the other panel of the wake
-            if (panel->points[0] != source and panel->points[1] != source)
+            if (panel->points[0] != source && panel->points[1] != source)
             {
                 continue;
             }
@@ -524,7 +524,7 @@ Vector2 DirichletDoublet1Case2::surface_velocity_influence(Vector2& target, Pane
     {   if (source->wake_vertex)
             {
             // only one side of the panel will be handled, the other is corresponding to the other panel of the wake
-                if (panel->points[0] != source and panel->points[1] != source)
+                if (panel->points[0] != source && panel->points[1] != source)
                 {
                     continue;
                 }
