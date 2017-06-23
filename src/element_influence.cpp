@@ -1,8 +1,9 @@
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include "element_influence.h"
 #include "panel2.h"
 #include <stdlib.h> 
 #include <iostream>
-#include <math.h>
 
 using namespace std;
 double coresize = 0.0000000000000000000001;
