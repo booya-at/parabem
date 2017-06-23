@@ -433,7 +433,10 @@ void Case3::run()
     vector<Vector3*> v_inf_range;
     this->polars(v_inf_range);
 }
-Polar3 Case3::polars(vector<Vector3*> v_inf){}
+Polar3 Case3::polars(vector<Vector3*> v_inf){
+    Polar3 polars;
+    return polars;
+}
 void Case3::off_body_potential(PanelVector3& point){}
 void Case3::off_body_velocity(PanelVector3& point){}
 void Case3::off_body_wake_velocity(PanelVector3& point){}
