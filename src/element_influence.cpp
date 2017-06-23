@@ -502,13 +502,14 @@ double source_2_1(Vector2& target, Panel2& source, bool left)
     double r1_squared = p1_t.dot(p1_t);
     double r2_squared = p2_t.dot(p2_t);
     double phi1 = atan2(pn, dx1);
-    double phi2 = atan2(pn, dx2);    
+    double phi2 = atan2(pn, dx2);
+    return 0; /* not implemented*/
 }
 
 
 Vector2 source_2_1_v(Vector2& target, Panel2& source, bool left)
 {
-
+    return Vector2(0, 0); /* not implemented*/
 }
 
 
