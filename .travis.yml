@@ -32,13 +32,19 @@ before_install:
   - sudo cp pybind11/include/pybind11 /usr/include/python2.7/ -r
   - git clone https://github.com/looooo/paraEigen.git
   - cd paraEigen
-  - sudo python setup.py install
-  - cd ..
+  - mkdir build
+  - cd build
+  - cmake .. -DCMAKE_BUILD_TYPE=Release
+  - sudo make -j2 install
+  - cd ../..
 install:
-  - sudo python setup.py install
+  - mkdir build
+  - cd build
+  - cmake .. -DCMAKE_BUILD_TYPE=Release
+  - sudo make -j install
+  - cd ..
 
 script:
-  - sudo make -j2 install
   - sh ../run_all.sh python2.7
   - sh ../create_doc.sh
 branches:
