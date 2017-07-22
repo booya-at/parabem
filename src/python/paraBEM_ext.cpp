@@ -66,11 +66,11 @@ Vector3 wrap_vortex_3_0_edge_v(Vector3& target, Edge& e){
     return vortex_3_0_v(target, e);}
 
 
-PYBIND11_PLUGIN(_paraBEM) {
+py::module m("_paraBEM", "pybind11 example plugin");
+PYBIND11_MODULE(_paraBEM, m) {
     py::module::import("paraEigen");
-    py::module m("_paraBEM", "pybind11 example plugin");
     
-    py::class_<PanelVector2, std::shared_ptr<PanelVector2>>(m, "PanelVector2", py::base<std::shared_ptr<Vector2>>())
+    py::class_<PanelVector2, std::shared_ptr<PanelVector2>, Vector2>(m, "PanelVector2")
         .def(py::init<double, double>())
         .def("__init__", &from_python_list<PanelVector2>)
         .def_readwrite("wake_vertex", &PanelVector2::wake_vertex, "if true this point shades a wake")
@@ -112,22 +112,22 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def("off_body_velocity", &Case2::off_body_velocity, "velocity field")
         .def("off_body_potential", &Case2::off_body_potential, "potetnial field");
         
-    py::class_<DirichletDoublet0Case2>(m, "DirichletDoublet0Case2", py::base<Case2>())
+    py::class_<DirichletDoublet0Case2, Case2>(m, "DirichletDoublet0Case2")
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
         
-    py::class_<NeumannDoublet0Case2>(m, "NeumannDoublet0Case2", py::base<Case2>())
+    py::class_<NeumannDoublet0Case2, Case2>(m, "NeumannDoublet0Case2")
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
         
-    py::class_<NeumannSource0Case2>(m, "NeumannSource0Case2", py::base<Case2>())
+    py::class_<NeumannSource0Case2, Case2>(m, "NeumannSource0Case2")
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
     
-    py::class_<DirichletDoublet0Source0Case2>(m, "DirichletDoublet0Source0Case2", py::base<DirichletDoublet0Case2>())
+    py::class_<DirichletDoublet0Source0Case2, DirichletDoublet0Case2>(m, "DirichletDoublet0Source0Case2")
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
         
-    py::class_<DirichletDoublet1Case2>(m, "DirichletDoublet1Case2", py::base<Case2>())
+    py::class_<DirichletDoublet1Case2, Case2>(m, "DirichletDoublet1Case2")
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
 
-    py::class_<PanelVector3, std::shared_ptr<PanelVector3>>(m, "PanelVector3", py::base<std::shared_ptr<Vector3>>())
+    py::class_<PanelVector3, std::shared_ptr<PanelVector3>, Vector3>(m, "PanelVector3")
     //           "Panel3 represents a straigth line which is used to approximate 2d geometry\n\
     //           constructor: Panel2([p1, p2, ...])\n\n\
     //           p1, p2... -> PanelVector2 which have to be stored somewhere in python (list, variable,...)")
@@ -227,11 +227,11 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def("run", &Case3::run)
         .def("polars", &Case3::polars);
         
-    py::class_<DirichletDoublet0Case3>(m, "DirichletDoublet0Case3", py::base<Case3>())
+    py::class_<DirichletDoublet0Case3, Case3>(m, "DirichletDoublet0Case3")
         .def(py::init<vector<Panel3*>>(), py::keep_alive<1, 2>())
         .def(py::init<vector<Panel3*>, vector<PanelVector3*>>(), py::keep_alive<1, 2>(), py::keep_alive<1, 3>());
         
-    py::class_<DirichletDoublet0Source0Case3>(m, "DirichletDoublet0Source0Case3", py::base<DirichletDoublet0Case3>())
+    py::class_<DirichletDoublet0Source0Case3, Case3>(m, "DirichletDoublet0Source0Case3")
         .def(py::init<vector<Panel3*>>(), py::keep_alive<1, 2>())
         .def(py::init<vector<Panel3*>, vector<PanelVector3*>>(), py::keep_alive<1, 2>(), py::keep_alive<1, 3>());
         
@@ -283,7 +283,5 @@ PYBIND11_PLUGIN(_paraBEM) {
     m.def("source_2_0_v", &source_2_0_v);
     m.def("doublet_2_0_v", &doublet_2_0_v);
     m.def("doublet_2_1_v", &doublet_2_1_v);
-
-    return m.ptr();
 };
 
