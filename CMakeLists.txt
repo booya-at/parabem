@@ -4,6 +4,7 @@ project(paraBEM)
 MESSAGE(STATUS "python version set: ${py}")
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+SET(CMAKE_CXX_FLAGS_RELEASE "-O3")
 ADD_DEFINITIONS(-std=c++11)
 
 # OPTIONS

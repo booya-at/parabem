@@ -66,8 +66,9 @@ Vector3 wrap_vortex_3_0_edge_v(Vector3& target, Edge& e){
     return vortex_3_0_v(target, e);}
 
 
-py::module m("_paraBEM", "pybind11 example plugin");
-PYBIND11_MODULE(_paraBEM, m) {
+
+PYBIND11_PLUGIN(_paraBEM) {
+    py::module m("_paraBEM", "pybind11 example plugin");
     py::module::import("paraEigen");
     
     py::class_<PanelVector2, std::shared_ptr<PanelVector2>, Vector2>(m, "PanelVector2")
@@ -283,5 +284,7 @@ PYBIND11_MODULE(_paraBEM, m) {
     m.def("source_2_0_v", &source_2_0_v);
     m.def("doublet_2_0_v", &doublet_2_0_v);
     m.def("doublet_2_1_v", &doublet_2_1_v);
+
+    return m.ptr();
 };
 
