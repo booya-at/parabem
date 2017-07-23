@@ -13,11 +13,15 @@ addons:
     - python-pip
     - python-numpy
     - python-matplotlib
+    - python-requests
     - texlive-latex-base
     - texlive-latex-recommended
     - texlive-lang-german
     - texlive-fonts-recommended
     - texlive-latex-extra 
+
+virtualenv:
+  system_site_packages: true
 
 before_install:
   - sudo apt-get update
