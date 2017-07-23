@@ -45,8 +45,8 @@ install:
   - cd ..
 
 script:
-  - sh ../run_all.sh python2.7
-  - sh ../create_doc.sh
+  - sh ./run_all.sh python2.7
+  - sh ./create_doc.sh
 branches:
   only:
     - master
