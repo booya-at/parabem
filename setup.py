@@ -7,15 +7,15 @@ include_dirs = ['/usr/include/eigen3',
                 '/usr/local/include/eigen3',
                 'src/headers']
 
-src = ["src/paraBEM_ext.cpp",      "src/element_influence.cpp",
+src = ["src/python/paraBEM_ext.cpp",      "src/element_influence.cpp",
        "src/panel2.cpp",       "src/panel3.cpp",
        "src/case2.cpp",        "src/case3.cpp",
        "src/lifting_line.cpp"]
 
-headers = ["src/element_influence.h",
-           "src/vector.h",         "src/panel2.h",
-           "src/panel3.h",         "src/case2.h",
-           "src/case3.h",          "src/lifting_line.h"]
+headers = ["src/headers/element_influence.h",
+           "src/headers/vector.h",         "src/headers/panel2.h",
+           "src/headers/panel3.h",         "src/headers/case2.h",
+           "src/headers/case3.h",          "src/headers/lifting_line.h"]
 
 files = ["paraBEM", "paraBEM.airfoil", "paraBEM.liftingline", "paraBEM.mesh",
          "paraBEM.pan2d", "paraBEM.pan3d", "paraBEM.utils", "paraBEM.vtk_export"]
@@ -23,7 +23,7 @@ files = ["paraBEM", "paraBEM.airfoil", "paraBEM.liftingline", "paraBEM.mesh",
 
 setup(name='paraBEM._paraBEM',
       version='0.0.1',
-      author='Loooo',
+      author='looooo',
       requires='eigen',
       author_email='sppedflyer@gmail.com',
       url="https://github.com/looooo/panelmethod",
