@@ -1,27 +1,23 @@
 dist: trusty
 language:
-  - python
+  - cpp
 compiler: g++
 python:
-  - "2.7_with_system_site_packages"
+  - 2.7
 addons:
   apt:
     packages:
     - libpython2.7
     - libpython2.7-dev
-    - python-setuptools
-    - python-pip
-    - python-numpy
-    - python-matplotlib
-    - python-requests
     - texlive-latex-base
     - texlive-latex-recommended
     - texlive-lang-german
     - texlive-fonts-recommended
-    - texlive-latex-extra 
+    - texlive-latex-extra
 
 before_install:
   - sudo apt-get update
+  - sudo pip install pip setuptools numpy matplotlib requests
   - git clone https://github.com/hiaselhans/OpenGlider.git
   - cd OpenGlider
   - sudo python setup.py install
