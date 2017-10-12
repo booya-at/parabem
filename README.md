@@ -1,4 +1,4 @@
-#paraBEM
+# paraBEM
 [![Build Status](https://travis-ci.org/looooo/paraBEM.svg?branch=master)](https://travis-ci.org/looooo/paraBEM)
 
 <img src="./doc/latex_doc/Abbildungen/png/14_2_wake-rollup.png" alt="result" width="400"/>
@@ -8,7 +8,7 @@ paraBEM is a python module which provides methods to calculate the potential flo
 
 the c++ code is wrapped with pybind11 to python. This allows fast computation (eigen) with a high-level interface.
 
-##Dependencies
+## Dependencies
 * C++11:
     - [eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page "Eigen")
     - [pybind11](https://pybind11.readthedocs.org/en/latest/ "pybind11")
@@ -20,8 +20,8 @@ the c++ code is wrapped with pybind11 to python. This allows fast computation (e
     - [matplotlib](http://matplotlib.org/ "matplotlib")
     - [paraview](http://www.paraview.org/ "paraview")
 
-##Install
-###initialize
+## Install
+### initialize
 ```bash
 mkdir build && cd build
 cmake ..
@@ -35,7 +35,7 @@ sudo make install  -j2
 ```
 
 
-##Using the package (with python)
+## Using the package (with python)
 ```python
 <<< import paraBEM
 <<< help(paraBEM)
