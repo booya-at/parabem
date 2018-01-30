@@ -16,9 +16,9 @@ INCLUDE_DIRECTORIES( ${PYTHON_INCLUDE_DIRS})    # python.h
 # Build the python shared library
 PYTHON_ADD_MODULE(_paraBEM SHARED paraBEM_ext.cpp)
 set_target_properties(_paraBEM PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/paraBEM)
-set_target_properties(_paraBEM PROPERTIES PREFIX "")
-set_target_properties(_paraBEM PROPERTIES INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib)
-target_link_libraries(_paraBEM pm ${PYTHON_LIBRARIES})
 
 install(DIRECTORY "../../paraBEM/" DESTINATION ${PYTHON_INSTALL_DIR} FILES_MATCHING PATTERN "*.py")
 install(TARGETS _paraBEM DESTINATION ${PYTHON_INSTALL_DIR})
+
+
+target_link_libraries(_paraBEM pm ${PYTHON_LIBRARIES})
