@@ -1,8 +1,11 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <pybind11/operators.h>
+
 #include <iostream>
 #include "string.h"
 #include "Eigen/Core"
+#include "Eigen/Geometry"
 
 #include <vector>
 #include <tuple>
@@ -21,18 +24,195 @@ using std::cout;
 using std::endl;
 
 namespace py = pybind11;
+namespace eig = Eigen;
 
 template<typename Vector>
-void from_python_list(Vector& instance, vector<double> v){
-    if (v.size() != instance.size())
-        throw py::index_error("number of elements given, not match Vector size");
+void from_no_args(Vector& instance){
     new (&instance) Vector();
+    instance.setZero();
+}
+
+template<typename Vector>
+void from_constant(Vector& instance, double constant = 0){
+    new (&instance) Vector();
+    instance.setOnes();
+    instance *= constant;
+}
+
+
+template<typename Vector>
+void from_python_list(Vector& instance, vector<double> other){
+    new (&instance) Vector();
+    instance.setZero();
+    int smaller = instance.size();
+    if (smaller > other.size()){
+        smaller = other.size();
+    }
+    for (int i=0; i<smaller; i++){
+        instance[i] = other[i];
+    }
+}
+
+// template<typename Vector>
+// void from_python_list(Vector& instance, vector<double> v){
+//     if (v.size() != instance.size())
+//         throw py::index_error("number of elements given, not match Vector size");
+//     new (&instance) Vector();
+//     int i = 0;
+//     for (double vi: v){
+//         instance[i] = vi;
+//         i++;
+//     }
+// }
+
+template<typename vec_1, typename vec_2>
+void from_other(vec_1& instance, vec_2& other){
+    new (&instance) vec_1();
+    instance.setZero();
+    int smaller = instance.size();
+    if (smaller > other.size()){
+        smaller = other.size();
+    }
+    for (int i=0; i<smaller; i++){
+        instance[i] = other[i];
+    }
+}
+
+template<typename vec_2>
+void from_other_x(eig::VectorXd& instance, vec_2& other){
+    new (&instance) eig::VectorXd(other.size());
+    for (int i=0; i<other.size(); i++){
+        instance[i] = other[i];
+    }
+}
+
+template<typename Vector>
+void vector_from_buffer(Vector& instance, py::buffer b){
+    py::buffer_info info = b.request();
+    if (info.ndim != 1)
+        throw std::runtime_error("Incombatible buffer dimension");
+    if (info.size != instance.size())
+        throw py::index_error("number of values not matching vector size");
+    new (&instance) Vector();
+    memcpy(instance.data(), info.ptr, sizeof(double) * instance.size());
+}
+
+template<typename Vector>
+std::string vector_repr(Vector& self){
+    std::ostringstream out_str;
+    out_str << "Vector" << self.size() << "d(";
+    for (int i=0; i< self.size() - 1; i++)
+        out_str << self[i] << ", ";
+    out_str << self[self.size()-1] << ")";
+    return out_str.str();
+}
+
+template<typename Vector>
+double vector_getitem(Vector &self, size_t i) {
+    if (i >= self.size())
+        throw py::index_error("Vector3d index out of range");
+    return self(i);
+}
+
+template<typename Vector>
+Vector cross(Vector &self, Vector &other) {
+    return self.cross(other);
+}
+
+template<typename Vector>
+double dot(Vector &self, Vector &other) {
+    if (self.size() != other.size())
+        throw runtime_error("sizes not matching");
+    return self.dot(other);
+}
+
+template<typename Vector>
+Vector add(Vector &self, Vector &other) {
+    if (self.size() != other.size())
+        throw runtime_error("sizes not matching");
+    return self + other;
+}
+
+template<typename Vector>
+Vector radd(Vector &self, int other) {
+    return self;
+}
+
+
+template<typename Vector>
+Vector sub(Vector &self, Vector &other) {
+    if (self.size() != other.size())
+        throw runtime_error("sizes not matching");
+    return self - other;
+}
+
+template<typename Vector>
+Vector neg(Vector &self) {
+    return - self;
+}
+
+template<typename Vector>
+Vector pos(Vector &self) {
+    return self;
+}
+
+template<typename Vector>
+Vector mul(Vector &self, double value) {
+    return self * value;
+}
+
+template<typename Vector>
+Vector div(Vector &self, double value) {
+    return self / value;
+}
+
+void vectorx_from_python_list(eig::VectorXd& instance, vector<double> other){
+    new (&instance) eig::VectorXd(other.size());
     int i = 0;
-    for (double vi: v){
+    for (double vi: other){
         instance[i] = vi;
         i++;
     }
 }
+
+void vectorx_from_buffer(eig::VectorXd& instance, py::buffer b){
+    py::buffer_info info = b.request();
+    if (info.ndim != 1)
+        throw std::runtime_error("Incombatible buffer dimension");
+    new (&instance) eig::VectorXd(info.size);
+    memcpy(instance.data(), info.ptr, sizeof(double) * instance.size());
+}
+
+
+
+std::string vectorx_repr(eig::VectorXd& self){
+    std::ostringstream out_str;
+    out_str << "VectorXd(";
+    bool increment = (self.size()>(5*2));
+    int end = increment? 5:self.size()-1;
+    for (int i=0; i< end; i++)
+    {
+        out_str << self[i] << ", ";
+    }
+    if (increment){
+        out_str << "....., ";
+        for (int i=self.size() - end; i< self.size(); i++)
+        {
+            out_str << self[i] << ", ";
+        }
+    }
+    out_str << self[self.size()-1] << ")";
+    return out_str.str();
+}
+
+void vectorx_from_constant(eig::VectorXd& instance, int x, double value=1){
+    if (x < 2)
+        throw runtime_error("vector size is too small");
+    new (& instance) eig::VectorXd(x);
+    instance.setOnes();
+    instance *= value;
+}
+
 
 double wrap_doublet_3_0_vsaero(Vector3& target, Panel3* source){
     double output=0; doublet_3_0_vsaero(target, source, output); return output;}
@@ -65,12 +245,83 @@ Vector3 wrap_vortex_3_0_v(Vector3& target, Vector3& p1, Vector3& p2){
 Vector3 wrap_vortex_3_0_edge_v(Vector3& target, Edge& e){
     return vortex_3_0_v(target, e);}
 
+  template<typename t1, typename t2>
+    eig::VectorXd py_and(t1 & self, t2 & other){
+        eig::VectorXd new_vec(self.rows() + other.rows());
+        new_vec << self, other;
+        return new_vec;
+    }
 
+PYBIND11_MODULE(_paraBEM, m) {
+    m.doc() = "pybind11 example plugin";
 
-PYBIND11_PLUGIN(_paraBEM) {
-    py::module m("_paraBEM", "pybind11 example plugin");
-    py::module::import("paraEigen");
-    
+    py::class_<eig::Vector2d, std::shared_ptr<eig::Vector2d>>(m, "vector2")
+        .def(py::init<double, double>())
+        .def_property("x", [](eig::Vector2d &v){return v.x();},
+                           [](eig::Vector2d &v, double x){v.x() = x;})
+        .def_property("y", [](eig::Vector2d &v){return v.y();},
+                           [](eig::Vector2d &v, double y){v.y() = y;})
+        .def("__init__", &from_no_args<eig::Vector2d>)
+        .def("__init__", &from_constant<eig::Vector2d>)
+        .def("__init__", &from_python_list<eig::Vector2d>)
+        .def("__init__", &vector_from_buffer<eig::Vector2d>)
+        .def("__repr__", &vector_repr<eig::Vector2d>)
+        .def("__getitem__", &vector_getitem<eig::Vector2d>)
+        .def("__len__",[](eig::Vector2d &v){return v.size();})
+        .def("__abs__",[](eig::Vector2d &v){return v.norm();})
+        .def("__add__", &add<eig::Vector2d>)
+        .def("__and__", &py_and<eig::Vector2d, eig::VectorXd>)
+        .def("__and__", &py_and<eig::Vector2d, eig::Vector2d>)
+        .def("__and__", &py_and<eig::Vector2d, eig::Vector3d>)
+        .def("__and__", &py_and<eig::Vector2d, eig::Vector4d>)
+        .def("__radd__", &radd<eig::Vector2d>)
+        .def("__sub__", &sub<eig::Vector2d>)
+        .def("__neg__", &neg<eig::Vector2d>)
+        .def("__pos__", &pos<eig::Vector2d>)
+        .def("__mul__", &mul<eig::Vector2d>)
+        .def("__rmul__", &mul<eig::Vector2d>)
+        .def("__div__", &div<eig::Vector2d>)
+        .def("__truediv__", &div<eig::Vector2d>)
+        .def("norm",[](eig::Vector2d &v){return v.norm();})
+        .def_property_readonly("normal", [](eig::Vector2d &v){return eig::Vector2d(-v.y(), v.x());})
+        .def("normalize", [](eig::Vector2d &v){v.normalize(); return v;})
+        .def("dot", &dot<eig::Vector2d>);
+
+    py::class_<eig::Vector3d, std::shared_ptr<eig::Vector3d>>(m, "vector3")
+        .def(py::init<double, double, double>())
+        .def_property("x", [](eig::Vector3d &v){return v.x();},
+                           [](eig::Vector3d &v, double x){v.x() = x;})
+        .def_property("y", [](eig::Vector3d &v){return v.y();},
+                           [](eig::Vector3d &v, double y){v.y() = y;})
+        .def_property("z", [](eig::Vector3d &v){return v.z();},
+                           [](eig::Vector3d &v, double z){v.z() = z;})
+        .def("__init__", &from_no_args<eig::Vector3d>)
+        .def("__init__", &from_constant<eig::Vector3d>)
+        .def("__init__", &from_python_list<eig::Vector3d>)
+        .def("__init__", &vector_from_buffer<eig::Vector3d>)
+        .def("__repr__", &vector_repr<eig::Vector3d>)
+        .def("__getitem__", &vector_getitem<eig::Vector3d>)
+        .def("size", [](eig::Vector3d &v){return v.size();})
+        .def("__len__",[](eig::Vector3d &v){return v.size();})
+        .def("__abs__",[](eig::Vector3d &v){return v.norm();})
+        .def("__add__", &add<eig::Vector3d>)
+        .def("__and__", &py_and<eig::Vector3d, eig::VectorXd>)
+        .def("__and__", &py_and<eig::Vector3d, eig::Vector2d>)
+        .def("__and__", &py_and<eig::Vector3d, eig::Vector3d>)
+        .def("__and__", &py_and<eig::Vector3d, eig::Vector4d>)
+        .def("__radd__", &radd<eig::Vector3d>)
+        .def("__sub__", &sub<eig::Vector3d>)
+        .def("__neg__", &neg<eig::Vector3d>)
+        .def("__pos__", &pos<eig::Vector3d>)
+        .def("__mul__", &mul<eig::Vector3d>)
+        .def("__rmul__", &mul<eig::Vector3d>)
+        .def("__div__", &div<eig::Vector3d>)
+        .def("__truediv__", &div<eig::Vector3d>)
+        .def("norm",[](eig::Vector3d &v){return v.norm();})
+        .def("normalize", [](eig::Vector3d &v){v.normalize(); return v;})
+        .def("cross", &cross<eig::Vector3d>)
+        .def("dot", &dot<eig::Vector3d>);
+
     py::class_<PanelVector2, std::shared_ptr<PanelVector2>, Vector2>(m, "PanelVector2")
         .def(py::init<double, double>())
         .def("__init__", &from_python_list<PanelVector2>)
@@ -78,7 +329,7 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def_readwrite("potential", &PanelVector2::potential, "potential at this point (not all methodes set this value)")
         .def_readwrite("velocity", &PanelVector2::velocity, "velocity at this point (not all methodes set this value)")
         .def_readonly("nr", &PanelVector2::nr, "nr of this point");
-        
+
     py::class_<Panel2>(m, "Panel2")
         //docs: "Panel2 represents a straigth line which is used to approximate 2d geometry\n\
         //            constructor: Panel2([p1, p2])\n\n\
@@ -95,7 +346,7 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def_readwrite("sigma", &Panel2::sigma, "value is set from case")
         .def_readonly("cp", &Panel2::cp, "value is set from case")
         .def_readonly("velocity", &Panel2::velocity, "value is set from case");
-        
+
     py::class_<Case2>(m, "Case2")
         .def_readonly("panels", &Case2::panels, "panels of case")
         .def_property_readonly("points", &Case2::get_all_points, "all points")
@@ -112,19 +363,19 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def("run", &Case2::run, "run the case")
         .def("off_body_velocity", &Case2::off_body_velocity, "velocity field")
         .def("off_body_potential", &Case2::off_body_potential, "potetnial field");
-        
+
     py::class_<DirichletDoublet0Case2, Case2>(m, "DirichletDoublet0Case2")
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
-        
+
     py::class_<NeumannDoublet0Case2, Case2>(m, "NeumannDoublet0Case2")
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
-        
+
     py::class_<NeumannSource0Case2, Case2>(m, "NeumannSource0Case2")
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
-    
+
     py::class_<DirichletDoublet0Source0Case2, DirichletDoublet0Case2>(m, "DirichletDoublet0Source0Case2")
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
-        
+
     py::class_<DirichletDoublet1Case2, Case2>(m, "DirichletDoublet1Case2")
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
 
@@ -166,14 +417,14 @@ PYBIND11_PLUGIN(_paraBEM) {
 
 // workaround because subclassing messed things up (double frees, ...)
     py::class_<WakePanel3>(m, "WakePanel3")
-        .def_property_readonly("points", py::cpp_function([](WakePanel3& pan){return pan.get_points();}, 
+        .def_property_readonly("points", py::cpp_function([](WakePanel3& pan){return pan.get_points();},
                                          py::return_value_policy::copy))
         .def_property_readonly("n", [](WakePanel3& pan){return pan.n;})
-        .def_property("potential", [](WakePanel3& pan){return pan.get_potential();}, 
+        .def_property("potential", [](WakePanel3& pan){return pan.get_potential();},
                                    [](WakePanel3& pan, double pot){pan.set_potential(pot);})
         .def_property_readonly("upper_operating_Panel", &WakePanel3::get_upper_operating_panel)
         .def_property_readonly("lower_operating_Panel", &WakePanel3::get_lower_operating_panel);
-    
+
     py::class_<AeroCoef3>(m, "AeroCoef3")
         .def_property_readonly("alpha", &AeroCoef3::alpha)
         .def_readonly("v_inf", &AeroCoef3::v_inf)
@@ -214,7 +465,7 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def_readonly("force", &Case3::force)
         .def_readonly("center_of_pressure", &Case3::center_of_pressure)
         .def_readonly("cL", &Case3::cL, "scalar lift cooeficient: cL = L * 2 / (rho * u**2 * A_ref)")
-        .def_readonly("cD", &Case3::cD, "scalar drag cooeficient: cD = D * 2 / (rho * u**2 * A_ref)")        
+        .def_readonly("cD", &Case3::cD, "scalar drag cooeficient: cD = D * 2 / (rho * u**2 * A_ref)")
         .def_readonly("cS", &Case3::cS, "scalar side lift cooeficient: cS = S * 2 / (rho * u**2 * A_ref)")
         .def_readonly("cM", &Case3::cM, "Vector3 moment cooeficients: cM = M * 2 / (rho * u**2 * A_ref * 1)")
         .def_readonly("wake_panels", &Case3::wake_panels)
@@ -227,15 +478,15 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def("body_flow_path", &Case3::body_flow_path)
         .def("run", &Case3::run)
         .def("polars", &Case3::polars);
-        
+
     py::class_<DirichletDoublet0Case3, Case3>(m, "DirichletDoublet0Case3")
         .def(py::init<vector<Panel3*>>(), py::keep_alive<1, 2>())
         .def(py::init<vector<Panel3*>, vector<PanelVector3*>>(), py::keep_alive<1, 2>(), py::keep_alive<1, 3>());
-        
+
     py::class_<DirichletDoublet0Source0Case3, Case3>(m, "DirichletDoublet0Source0Case3")
         .def(py::init<vector<Panel3*>>(), py::keep_alive<1, 2>())
         .def(py::init<vector<Panel3*>, vector<PanelVector3*>>(), py::keep_alive<1, 2>(), py::keep_alive<1, 3>());
-        
+
     py::class_<LineSegment>(m, "LineSegment")
         .def(py::init<Vector3&, Vector3&, Vector3&>())
         .def_readonly("best_gamma", &LineSegment::best_gamma)
@@ -244,7 +495,7 @@ PYBIND11_PLUGIN(_paraBEM) {
         .def_readonly("n", &LineSegment::n)
         .def_readonly("t", &LineSegment::t)
         .def_property_readonly("b", &LineSegment::b)
-        .def_readonly("mids", &LineSegment::mid) 
+        .def_readonly("mids", &LineSegment::mid)
         .def_readonly("v1", &LineSegment::v1)
         .def_readonly("v2", &LineSegment::v2)
         .def_readonly("lift_factor", &LineSegment::lift_factor);
@@ -284,7 +535,4 @@ PYBIND11_PLUGIN(_paraBEM) {
     m.def("source_2_0_v", &source_2_0_v);
     m.def("doublet_2_0_v", &doublet_2_0_v);
     m.def("doublet_2_1_v", &doublet_2_1_v);
-
-    return m.ptr();
 };
-

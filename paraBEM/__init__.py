@@ -64,7 +64,7 @@ from matplotlib import pyplot as plt
 for more information look into the ipython notebook (tutorial.ipynb) which is
 located in the docs directory.
 """
-from paraEigen import vector2 as Vector2
-from paraEigen import vector3 as Vector3
+from ._paraBEM import vector2 as Vector2
+from ._paraBEM import vector3 as Vector3
 from ._paraBEM import PanelVector2, PanelVector3, Panel3, Panel2
 from .utils import Vector
