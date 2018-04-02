@@ -20,7 +20,7 @@ _, panels, trailing_edge = paraBEM_Panels(
     glider,
     midribs=3,
     profile_numpoints=n_x,
-    distribution=Distribution.cos_2_distribution,
+    distribution=Distribution.from_cos_2_distribution(n_x),
     num_average=0,
     symmetric=False)
 

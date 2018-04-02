@@ -33,7 +33,7 @@ plt.grid(True)
 plt.legend()
 plt.ylabel("Einfluss")
 plt.xlabel("x")
-plt.ylim(-0.1, 0.6)
+plt.ylim(0., 0.6)
 
 plt.savefig(check_path("results/3d/far_vs_near_source.png"))
 plt.close()
