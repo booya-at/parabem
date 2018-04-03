@@ -1,42 +1,27 @@
-dist: trusty
-language:
-  - python
-compiler: g++
+language: 
+    - python
+
 python:
-  - 2.7
-addons:
-  apt:
-    packages:
-    - libpython2.7
-    - libpython2.7-dev
-    - texlive-latex-base
-    - texlive-latex-recommended
-    - texlive-lang-german
-    - texlive-fonts-recommended
-    - texlive-latex-extra
+    - "2.7"
+    - "3.5"
+    - "3.6"
 
-before_install:
-  - sudo apt-get update
-  - sudo pip install pip setuptools numpy matplotlib requests
-  - git clone https://github.com/hiaselhans/OpenGlider.git
-  - cd OpenGlider
-  - sudo python setup.py install
-  - cd ..
-  - hg clone https://bitbucket.org/eigen/eigen
-  - sudo mkdir /usr/include/eigen3/
-  - sudo cp eigen/Eigen/  /usr/include/eigen3/Eigen -r
-  - sudo cp eigen/signature_of_eigen3_matrix_library /usr/include/eigen3/
-  - git clone https://github.com/pybind/pybind11.git
-  - sudo cp pybind11/include/pybind11 /usr/include/python2.7/ -r
-  - git clone https://github.com/looooo/paraEigen.git
-  - cd paraEigen
-  - sudo python setup.py install
-  - cd ..
 install:
-  - sudo python setup.py install
-  - sh ./run_all.sh python
-  - sh ./create_doc.sh
+    - sudo apt-get update
+    - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH="$HOME/miniconda/bin:$PATH"
+    - hash -r
+    - conda config --set always_yes yes --set changeps1 no
+    - conda config --add channels conda-forge
+    - conda config --add channels openglider
+    - conda update -q conda
+    - conda info -a
+    - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION cmake ninja boost pybind11 eigen openmpi 
+    - source activate test-environment
+    - mkdir build
+    - cd build
 
-branches:
-  only:
-    - master
+script:
+    - cmake .. -G "Ninja" -DCMAKE_INSTALL_PREFIX:FILEPATH=${PREFIX} -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-std=c++11 -fPIC"
+    - ninja install
