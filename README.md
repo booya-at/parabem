@@ -17,7 +17,7 @@ the c++ code is wrapped with pybind11 to python. This allows fast computation (e
 * python:
     - [openglider](https://github.com/hiaselhans/OpenGlider "OpenGlider")
     - [numpy](http://www.numpy.org/ "numpy")
-    - [numpy](https://www.scipy.org/ "scipy")
+    - [scipy](https://www.scipy.org/ "scipy")
     - [matplotlib](http://matplotlib.org/ "matplotlib")
     - [paraview](http://www.paraview.org/ "paraview")
 
