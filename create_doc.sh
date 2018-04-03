@@ -20,4 +20,4 @@ mv $FILENAME.pdf ../../../$OUTDIR
 cd ../../..
 cp doc/tutorial build/doc/ -r
 
-evince build/doc/$FILENAME.pdf &
+# evince build/doc/$FILENAME.pdf &
