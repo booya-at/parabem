@@ -1,5 +1,5 @@
 # paraBEM
-[![Build Status](https://travis-ci.org/looooo/paraBEM.svg?branch=master)](https://travis-ci.org/looooo/paraBEM)
+[![Build Status](https://travis-ci.org/booya-at/paraBEM.svg?branch=master)](https://travis-ci.org/booya-at/paraBEM)
 
 <img src="./doc/latex_doc/Abbildungen/png/14_2_wake-rollup.png" alt="result" width="400"/>
 

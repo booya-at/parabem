@@ -23,4 +23,4 @@ install:
 
 script:
     - cmake .. -DCMAKE_INSTALL_PREFIX:FILEPATH=${PREFIX} -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-std=c++11 -fPIC"
-    - make install
+    - make
