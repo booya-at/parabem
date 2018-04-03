@@ -26,7 +26,7 @@ the c++ code is wrapped with pybind11 to python. This allows fast computation (e
 ```bash
 mkdir build && cd build
 cmake ..
-use cmake-gui to fix not find packages or wrong versions (eg. pybind11)
+use cmake-gui to fix not found packages or wrong versions (eg. python, pybind11, ...)
 ```
 
 ### build and install
