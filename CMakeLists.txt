@@ -4,6 +4,7 @@ project(paraBEM)
 MESSAGE(STATUS "python version set: ${py}")
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # OPTIONS
 OPTION(BUILD_PYTHON_BINDINGS "create python bindings" ON)
@@ -13,7 +14,7 @@ if (BUILD_PYTHON_BINDINGS)
   set(Python_ADDITIONAL_VERSIONS ${py})
   find_package(PythonInterp ${py} REQUIRED)
   find_package(PythonLibs ${py} REQUIRED)
-  find_package(pybind11 REQUIRED)
+  find_package(pybind11 2.0 REQUIRED)
 endif()
 
 # FIND DEPENDENCIES
