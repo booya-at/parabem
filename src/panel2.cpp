@@ -47,7 +47,7 @@ Panel2* Panel2::get_neigbour(int nr, Panel2* pan1)
     pan = pan1->points[nr]->panels[1];
     if (pan == this){
       pan = pan1->points[1 - nr]->panels[0];
-      if (pan = pan1){
+      if (pan == pan1){
 	pan = pan1->points[1 - nr]->panels[1];
       }
     }

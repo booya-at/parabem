@@ -26,8 +26,10 @@ the c++ code is wrapped with pybind11 to python. This allows fast computation (e
 ```bash
 mkdir build && cd build
 cmake ..
-use cmake-gui to fix not found packages or wrong versions (eg. python, pybind11, ...)
+cmake -DPYTHON_EXECUTABLE=/usr/local/bin/python3 ..
 ```
+
+use cmake-gui to fix not found packages or wrong versions (eg. python, pybind11, ...)
 
 ### build and install
 if cmake doesn't complain, install the package. (the number at the end is the number of compile jobs)
