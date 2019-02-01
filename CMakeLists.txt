@@ -25,6 +25,8 @@ find_package(Eigen3 REQUIRED)
 MESSAGE(${EIGEN3_VERSION})
 INCLUDE_DIRECTORIES( ${EIGEN3_INCLUDE_DIR})     # eigen3
 
+
+find_package(OpenMP REQUIRED)
 ## OPENMP
 if(OPENMP_FOUND)
 
