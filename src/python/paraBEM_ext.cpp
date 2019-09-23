@@ -326,12 +326,12 @@ PYBIND11_MODULE(_paraBEM, m) {
         .def(py::init<double, double>())
         .def("__init__", &from_python_list<PanelVector2>)
         .def_readwrite("wake_vertex", &PanelVector2::wake_vertex, "if true this point shades a wake")
-        .def_readwrite("potential", &PanelVector2::potential, "potential at this point (not all methodes set this value)")
-        .def_readwrite("velocity", &PanelVector2::velocity, "velocity at this point (not all methodes set this value)")
+        .def_readwrite("potential", &PanelVector2::potential, "potential at this point (not all methods set this value)")
+        .def_readwrite("velocity", &PanelVector2::velocity, "velocity at this point (not all methods set this value)")
         .def_readonly("nr", &PanelVector2::nr, "nr of this point");
 
     py::class_<Panel2>(m, "Panel2")
-        //docs: "Panel2 represents a straigth line which is used to approximate 2d geometry\n\
+        //docs: "Panel2 represents a straight line which is used to approximate 2d geometry\n\
         //            constructor: Panel2([p1, p2])\n\n\
         //            p1, p2 -> PanelVector2 which have to be stored somewhere in python (list, variable,...)"
         .def(py::init<PanelVector2*, PanelVector2*>(), py::keep_alive<1, 2>(), py::keep_alive<1, 3>())
@@ -350,10 +350,10 @@ PYBIND11_MODULE(_paraBEM, m) {
     py::class_<Case2>(m, "Case2")
         .def_readonly("panels", &Case2::panels, "panels of case")
         .def_property_readonly("points", &Case2::get_all_points, "all points")
-        .def_readwrite("v_inf", &Case2::v_inf, "direction of parallell flow")
+        .def_readwrite("v_inf", &Case2::v_inf, "direction of parallel flow")
         .def_readwrite("A_ref", &Case2::A_ref, "reference Area")
         .def_readwrite("mom_ref_point", &Case2::mom_ref_point, "point to sum moment")
-        .def_readonly("result", &Case2::result, "solution of the linear sysem")
+        .def_readonly("result", &Case2::result, "solution of the linear system")
         .def_readonly("rhs", &Case2::rhs, "the right hand side of the equation")
         .def_readonly("mat_size", &Case2::mat_size, "size of the matrix")
         .def_readonly("force", &Case2::force, "sum of all panel-forces")
@@ -380,7 +380,7 @@ PYBIND11_MODULE(_paraBEM, m) {
         .def(py::init<vector<Panel2*>>(), py::keep_alive<1, 2>());
 
     py::class_<PanelVector3, std::shared_ptr<PanelVector3>, Vector3>(m, "PanelVector3")
-    //           "Panel3 represents a straigth line which is used to approximate 2d geometry\n\
+    //           "Panel3 represents a straight line which is used to approximate 2d geometry\n\
     //           constructor: Panel2([p1, p2, ...])\n\n\
     //           p1, p2... -> PanelVector2 which have to be stored somewhere in python (list, variable,...)")
         .def(py::init<double, double, double>())

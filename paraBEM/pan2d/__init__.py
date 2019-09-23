@@ -1,4 +1,4 @@
-__doc__ = "pan2d provides some panel methodes to compute the potential flow arround airfoils and other objects"
+__doc__ = "pan2d provides some panel methods to compute the potential flow around airfoils and other objects"
 
 from paraBEM._paraBEM import   (doublet_2_0, source_2_0, doublet_2_0_v, source_2_0_v, doublet_2_1,
                         doublet_2_1_v, vortex_2, vortex_2_v,

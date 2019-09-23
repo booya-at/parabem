@@ -2,7 +2,7 @@
 paraBEM (python panel method)
 =============================
 
-This package provides 2d and 3d panelmethodes and other utils to
+This package provides 2d and 3d Panelmethods and other utils to
 calculate potential flow problems. To see how it works try the
 following example:
 
@@ -17,7 +17,7 @@ Use the built-in ``help`` function to view a function's docstring:
 >>> help(paraBEM)
 
 The code below shows the way how the package works. The example calculate the
-potential flow arround a cylinder computed with a Panelmethode which uses
+potential flow around a cylinder computed with a Panelmethod which uses
 Dirichlet boundary condition with constant doublet (dipol) panels.
 
 
@@ -30,7 +30,7 @@ Dirichlet boundary condition with constant doublet (dipol) panels.
 >>> xy = np.transpose(np.array([x, y]))
 
 
-2. now map the geometry to PanelVecvtors and create Panels from the PanelVectors:
+2. now map the geometry to PanelVectors and create Panels from the PanelVectors:
 
 >>> import paraBEM
 >>> coordinates = [paraBEM.PanelVector2(*i) for i in xy]
@@ -61,7 +61,7 @@ from matplotlib import pyplot as plt
 >>> plt.plot(*zip(*x2))
 >>> plt.show()
 
-for more information look into the ipython notebook (tutorial.ipynb) which is
+for more information look into the iPython notebook (tutorial.ipynb) which is
 located in the docs directory.
 """
 from ._paraBEM import vector2 as Vector2

@@ -75,7 +75,7 @@ void Case2::sum_forces()
 
 /************************************************/
 void Case2::run(){}					/** solving the boundary integral equation*/
-double Case2::off_body_potential(Vector2&){return 0;}		/** return the potenial in the region of interest*/
+double Case2::off_body_potential(Vector2&){return 0;}		/** return the potential in the region of interest*/
 Vector2 Case2::off_body_velocity(Vector2&){return Vector2(0, 0);}		/** return the velocity in the region of interest*/
 /************************************************/
 

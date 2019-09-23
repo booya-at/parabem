@@ -30,7 +30,7 @@ class Airfoil(object):
     @x_values.setter
     def x_values(self, xval):
         """Set X-Values of airfoil to defined points."""
-        # assume that coordinates are allready ordered (-1, ..., 0, ... 1)
+        # assume that coordinates are already ordered (-1, ..., 0, ... 1)
         # self.coordinates ... numpy array
 
         coords = copy(self.coordinates)

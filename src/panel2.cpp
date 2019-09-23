@@ -64,7 +64,7 @@ void Panel2::compute_gradient()
 //   C0 + C1*(l1) + C2*l1^2 = p(-l1) = p1
 //   C0 + C1*l2 + C2*l2^2 = p(l2) = p2
 //   C1 = (l2^2*(p0 - p1) + l1^2*(-p0 + p2))/(l1*l2*(l1 - l2))
-//   if one corner of the panel is a wake-vertex the gradient the neigbours are choosen from
+//   if one corner of the panel is a wake-vertex the gradient the neighbours are chosen from
 //   one side only.
   Panel2* pan1;
   Panel2* pan2;

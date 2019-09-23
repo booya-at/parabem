@@ -39,7 +39,7 @@ class mesh_object(object):
             return panels, vertices_set
 
         def sort_wake(trailing_edges):
-            # makes a orderd list of the trailing_edge
+            # makes a ordered list of the trailing_edge
             w_temp = trailing_edges[0]
             trailing_edges.pop(0)
             i = 0
@@ -59,7 +59,7 @@ class mesh_object(object):
                     trailing_edges.pop(i)
                 i = int((i + 1) * (i < (len(trailing_edges) - 1)))
                 j += 1
-            # abbort if j == 10000: this means that the trailing_edge is not a single line
+            # abort if j == 10000: this means that the trailing_edge is not a single line
             # this has to be exdented to wakes consisting of more than one wake edge !!!
             return w_temp
 

@@ -1,5 +1,5 @@
 /**
-    Purpose: some 3D Panel-methodes
+    Purpose: some 3D Panel-methods
     @author L Lechner
 */
 
@@ -59,8 +59,8 @@ public:
 };
 
 /**
- * Case3 is the base class of all Panelmethodes in 3d space. it provides a mask 
- * for the differnt aproches. 
+ * Case3 is the base class of all Panelmethods in 3d space. it provides a mask 
+ * for the different approaches. 
  */
 
 class Case3{
@@ -78,8 +78,8 @@ public:
     
     vector<Panel3*> panels;                                // containing all panels make private + getter
     vector<PanelVector3*> trailing_edge;                   // make private + getter
-    vector<PanelVector3*> vertices;                        // containing only the non symetric vertices make private + getter 
-    vector<SymmetricPanel3*> sym_panels;                   // containing all symetric panels
+    vector<PanelVector3*> vertices;                        // containing only the non symmetric vertices make private + getter 
+    vector<SymmetricPanel3*> sym_panels;                   // containing all symmetric panels
     vector<WakePanel3*> wake_panels;                       // make private + getter 
     vector<SymmetricWakePanel3*> sym_wake_panels;          // make private + getter 
     vector<WakePanel3*> first_wake_row;                    // delete + getter  from wake_panels
@@ -173,7 +173,7 @@ public:
 /**
  * DirichletDoublet0Source0Case3 is a PanelelMethode for 3d objects which uses constant doublet and source panels.
  * The boundarycondition is applied in the boundaryintegral equationin. The inner 
- * potential is choosen to be equal to the onset flow. -> Low-Speed Aerodynamics 11.3.2 (p. 294)
+ * potential is chosen to be equal to the onset flow. -> Low-Speed Aerodynamics 11.3.2 (p. 294)
  */
 
 class DirichletDoublet0Source0Case3: public DirichletDoublet0Case3{

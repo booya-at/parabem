@@ -1,5 +1,5 @@
 /**
-    Purpose: some 2D Panel-methodes
+    Purpose: some 2D Panel-methods
     @author L Lechner
 */
 
@@ -21,8 +21,8 @@ using namespace std;
 
 
 /**
- * Case2 is the base class of all Panelmethodes in 2d space. it provides a mask 
- * for the differnt aproches. 
+ * Case2 is the base class of all Panelmethods in 2d space. it provides a mask 
+ * for the different approaches. 
  */
 
 class Case2
@@ -85,7 +85,7 @@ public:
 /**
  * DirichletDoublet0Source0Case2 is a PanelelMethode for 2d objects which uses constant doublet and source panels.
  * The boundarycondition is applied in the boundaryintegral equationin. The inner 
- * potential is choosen to be equal to the onset flow. -> Low-Speed Aerodynamics 11.3.2 (p. 294)
+ * potential is chosen to be equal to the onset flow. -> Low-Speed Aerodynamics 11.3.2 (p. 294)
  */
 
 class DirichletDoublet0Source0Case2: public DirichletDoublet0Case2{
@@ -118,9 +118,9 @@ public:
 /**
  * DirichletDoublet0Case2 is a PanelelMethode for 2d objects which uses linear doublet panels.
  * The boundarycondition is directly applied in the boundaryintegral equation and the inner 
- * potential is choosen to zero. -> Low-Speed Aerodynamics 11.3.2 (p. 294)
+ * potential is chosen to zero. -> Low-Speed Aerodynamics 11.3.2 (p. 294)
  * The unknowns live on the edges of the panels. The boundary integral equation is applied to gauss points 
- * This results in a m >n matrix and is solved withleast square methode.
+ * This results in a m >n matrix and is solved withleast square method.
  */
 //Not yet ready
 
