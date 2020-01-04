@@ -47,7 +47,7 @@ public:
     vector<LineSegment> get_segments();
     vector<Vector3*> get_points();
     Vector3 v_inf = Vector3(1, 0, 0);
-    void solve_for_best_gamma(double cL);	 // least square methode for minimizing cl/cdi for a given cL
+    void solve_for_best_gamma(double cL);	 // least square method for minimizing cl/cdi for a given cL
 };
 
 

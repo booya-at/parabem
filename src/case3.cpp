@@ -92,7 +92,7 @@ Case3::Case3(vector<Panel3*> panels, vector<PanelVector3*> trailing_edge)
 }
 
 Case3::~Case3(){
-    //  adding a clean referenc counting for proper destructor handling
+    //  adding a clean reference counting for proper destructor handling
     //  or use shared_ptr
     for (auto pan: this->sym_panels)
         delete pan;
@@ -497,7 +497,7 @@ vector< Vector3 > Case3::body_flow_path(Panel3* start, int num_traverse)
                 cut_pos = e.lambda_pos(lambda);
                 if ((cut_pos - current_point).dot(vel_dir) > 0.000001)
                 {
-                    // check if neigbour is available
+                    // check if neighbour is available
                     flow_path.push_back(cut_pos);
                     if (e.is_wake_edge())
                     {

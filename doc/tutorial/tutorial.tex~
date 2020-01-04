@@ -830,7 +830,7 @@ Raum}\label{potential--und-geschwindigkeitsverteilung-im-raum}
          \PY{c}{\PYZsh{} create case from panels}
          \PY{n}{case} \PY{o}{=} \PY{n}{pan3d}\PY{o}{.}\PY{n}{DirichletDoublet0Case3}\PY{p}{(}\PY{n}{mesh}\PY{o}{.}\PY{n}{panels}\PY{p}{)}
          
-         \PY{c}{\PYZsh{} set boundary conditon far away from the body}
+         \PY{c}{\PYZsh{} set boundary condition far away from the body}
          \PY{n}{case}\PY{o}{.}\PY{n}{v\PYZus{}inf} \PY{o}{=} \PY{n}{paraBEM}\PY{o}{.}\PY{n}{Vector3}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.}\PY{p}{)}
          
          \PY{c}{\PYZsh{} solve for constant potential inside the object}

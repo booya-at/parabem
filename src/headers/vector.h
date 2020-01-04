@@ -7,7 +7,7 @@
 #include <sstream>
 
 
-//forward decleration
+//forward declaration
 class Panel3;
 class Panel2;
 

@@ -22,7 +22,7 @@ the influence function
     [5] v... velocity
 
 the arguments
-    first argument is allways the target object (point in the space)
+    first argument is always the target object (point in the space)
     second argument is the perturbation object (panel, line, point)
 
 variable names

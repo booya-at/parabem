@@ -16,7 +16,7 @@
 #include "vector.h"
 using namespace std;
 
-// forward decleration
+// forward declaration
 class SymmetricPanel3;
 class Edge;
 

@@ -7,7 +7,7 @@ class JoukowskyAirfoil(object):
        1 + 1 / z at a circle which passes 1 + 0j and has the center point in the
        second quatrant of the complex-plane.
        the joukowsky airfoil is used to get an analytic solution to the potential
-       flow problem and is useful for the comparison to numeric methodes.'''
+       flow problem and is useful for the comparison to numeric methods.'''
 
     def __init__(self, midpoint):
         self.midpoint = midpoint
@@ -86,7 +86,7 @@ class JoukowskyAirfoil(object):
         return np.array([self.velocity(z, alpha) for z in self.circle(num)])
 
     def surface_cp(self, alpha, num=100):
-        '''return the presure coeficient cp on the surface of the airfoil
+        '''return the presure coefficient cp on the surface of the airfoil
            for a given angle of attack alpha'''
         return [1 - (v.real ** 2 + v.imag ** 2) for v in self.surface_velocity(alpha, num)]
 

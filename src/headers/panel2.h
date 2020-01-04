@@ -17,7 +17,7 @@ using namespace std;
 
 /**
  * The Panel2 is a line segment created from two points. It has some geometric properties which are set in
- * the calc_geo methode. 
+ * the calc_geo method. 
  */
 class Panel2{
 private:
@@ -60,8 +60,8 @@ public:
 };
 
 /**
- * A WakeVertex acting on a upper and lower PanelVector. Used for methodes where the unknowns
- * are located at the corners of the panel eg higher order methodes.
+ * A WakeVertex acting on a upper and lower PanelVector. Used for methods where the unknowns
+ * are located at the corners of the panel eg higher order methods.
  */
 class PointWakeVertex
 {
