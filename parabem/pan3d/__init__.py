@@ -1,4 +1,4 @@
-from paraBEM._paraBEM import (DirichletDoublet0Case3, DirichletDoublet0Source0Case3,
+from parabem._parabem import (DirichletDoublet0Case3, DirichletDoublet0Source0Case3,
                       doublet_3_0_vsaero, doublet_3_0_n0, src_3_0_vsaero_v,
                       doublet_3_0_sphere, doublet_src_3_0_vsaero_v,
                       doublet_src_3_0_vsaero, doublet_src_3_0_n0, vortex_3_0_v,

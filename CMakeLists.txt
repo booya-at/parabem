@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(paraBEM)
+project(parabem)
 MESSAGE(STATUS "python version set: ${py}")
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
@@ -37,7 +37,7 @@ if(OPENMP_FOUND)
     set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   ${OpenMP_C_FLAGS}")
 endif()
 
-add_subdirectory(paraBEM)
+add_subdirectory(parabem)
 add_subdirectory(src)
 
 MESSAGE(STATUS "installing to ${python_libs}")

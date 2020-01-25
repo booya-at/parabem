@@ -1,14 +1,14 @@
-import paraBEM
-from paraBEM.pan3d import doublet_3_0_vsaero_v, vortex_3_0_v
+import parabem
+from parabem.pan3d import doublet_3_0_vsaero_v, vortex_3_0_v
 
 
-v1 = paraBEM.PanelVector3(-0.5, -0.5, 0)
-v2 = paraBEM.PanelVector3(0.5, -0.5, 0)
-v3 = paraBEM.PanelVector3(0.5, 0.5, 0)
-v4 = paraBEM.PanelVector3(-0.5,  0.5, 0)
+v1 = parabem.PanelVector3(-0.5, -0.5, 0)
+v2 = parabem.PanelVector3(0.5, -0.5, 0)
+v3 = parabem.PanelVector3(0.5, 0.5, 0)
+v4 = parabem.PanelVector3(-0.5,  0.5, 0)
 
-source = paraBEM.Panel3([v1, v2, v3, v4])
-targets = [paraBEM.Vector3([0, 0, 0])]
+source = parabem.Panel3([v1, v2, v3, v4])
+targets = [parabem.Vector3([0, 0, 0])]
 
 for target in targets:
     print(doublet_3_0_vsaero_v(target, source))

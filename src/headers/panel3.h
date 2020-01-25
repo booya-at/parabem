@@ -62,7 +62,7 @@ public:
     double side_sum = 0.;
 
     Vector3 center, n, m, l;
-    Vector3 loc_coord(Vector3);
+    Vector3 local_coordinates(Vector3);
     
     void set_sigma(double sigma){this->sigma = sigma;}
     void set_mue(double mue){this->mue = mue;}

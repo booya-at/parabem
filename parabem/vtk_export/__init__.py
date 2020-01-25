@@ -1,6 +1,6 @@
 import os
 
-import paraBEM
+import parabem
 import numpy
 
 class CaseToVTK():
@@ -51,7 +51,7 @@ class CaseToVTK():
         x_grid = numpy.linspace(*x_seq)
         y_grid = numpy.linspace(*y_seq)
         z_grid = numpy.linspace(*z_seq)
-        vertices = [paraBEM.PanelVector3(x, y, z) for z in z_grid for y in y_grid for x in x_grid]
+        vertices = [parabem.PanelVector3(x, y, z) for z in z_grid for y in y_grid for x in x_grid]
         for vert in vertices:
             if pot:
                 self.case.off_body_potential(vert)
@@ -147,8 +147,8 @@ class CaseToVTK():
         return [vert.potential for vert in self.case.vertices]
 
     def _stream_lines(self, start_points=[[0, 0, 0]], interval=0.01, numpoints=100):
-        if not isinstance(start_points[0], paraBEM.Vector3):
-            start_points = list(map(paraBEM.Vector3, start_points))
+        if not isinstance(start_points[0], parabem.Vector3):
+            start_points = list(map(parabem.Vector3, start_points))
         print("COMPUTE STREAMLINES")
         flow_paths = [self.case.flow_path(i, interval, numpoints) for i in start_points]
         vertices = []
@@ -201,7 +201,7 @@ class VtkWriter():
     def points(self, _file, vertices):
         _file.write("POINTS " + str(len(vertices)) + " float\n")
         for point in vertices:
-            v = paraBEM.Vector3(point)
+            v = parabem.Vector3(point)
             _file.write(str(v[0]) + " " +
                         str(v[1]) + " " +
                         str(v[2]) + "\n")
@@ -249,7 +249,7 @@ class VtkWriter():
             _file.write("VECTORS " + name + " float\n")
             _file.write("\n")
             for point in data:
-                v = paraBEM.Vector3(point)
+                v = parabem.Vector3(point)
                 _file.write(
                     str(v[0]) + " " +
                     str(v[1]) + " " +

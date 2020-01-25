@@ -5,21 +5,21 @@ import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 
-import paraBEM
-from paraBEM.pan3d import doublet_3_0_sphere, doublet_3_0_n0
+import parabem
+from parabem.pan3d import doublet_3_0_sphere, doublet_3_0_n0
 
 x_range = [-1, 0, 1]
 y_range = [-1, 0, 1]
-points = [paraBEM.PanelVector3(x, y, 0) for y in y_range for x in x_range]
+points = [parabem.PanelVector3(x, y, 0) for y in y_range for x in x_range]
 panel_indices = [
     [0, 1, 4, 3],
     [1, 2, 5, 4],
     [3, 4, 7, 6],
     [4, 5, 8, 7]]
-panels = [paraBEM.Panel3([points[index] for index in indices]) for indices in panel_indices]
+panels = [parabem.Panel3([points[index] for index in indices]) for indices in panel_indices]
 mue = [1, 1, 1, 100]
 mue_mid = sum(mue) / 4
-mid_pan = paraBEM.Panel3([
+mid_pan = parabem.Panel3([
     points[0],
     points[2],
     points[8],
@@ -27,13 +27,13 @@ mid_pan = paraBEM.Panel3([
 
 def infl_near(point):
     out = 0
-    target = paraBEM.Vector3(*point)
+    target = parabem.Vector3(*point)
     for i, pan in enumerate(panels):
         out += mue[i] * doublet_3_0_sphere(target, pan)
     return out
 
 def infl_far(point):
-    return mue_mid * doublet_3_0_n0(paraBEM.Vector3(*point), mid_pan)
+    return mue_mid * doublet_3_0_n0(parabem.Vector3(*point), mid_pan)
 
 val_near = []
 val_far = []

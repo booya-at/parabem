@@ -125,7 +125,7 @@ void Panel3::ls_gradient()
         if (i != l)
         {
             proj = project_to_panel(*this->neighbours[i]);
-            loc_pos = this->loc_coord(proj);
+            loc_pos = this->local_coordinates(proj);
         }
         else
         {
@@ -146,7 +146,7 @@ void Panel3::ls_gradient()
     this->velocity = this->m * sol[1] + this->l * sol[2];
 }
 
-Vector3 Panel3::loc_coord(Vector3 a)
+Vector3 Panel3::local_coordinates(Vector3 a)
 {
     Vector3 point = a - this->center;
     Vector3 out (point.dot(this->m), point.dot(this->l), point.dot(this->n));

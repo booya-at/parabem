@@ -6,14 +6,14 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 from openglider.jsonify import load
-from openglider.glider.in_out.export_3d import paraBEM_Panels
+from openglider.glider.in_out.export_3d import parabem_Panels
 from openglider.utils.distribution import Distribution
 
-import paraBEM
-from paraBEM._paraBEM import Case3
-from paraBEM.liftingline import LiftingLine
-from paraBEM.pan3d import DirichletDoublet0Source0Case3
-from paraBEM.utils import check_path
+import parabem
+from parabem._parabem import Case3
+from parabem.liftingline import LiftingLine
+from parabem.pan3d import DirichletDoublet0Source0Case3
+from parabem.utils import check_path
 
 
 count = 0
@@ -24,7 +24,7 @@ with open("results/glider/optimized.json") as _file:
     aspect_ratio = glider2d.shape.aspect_ratio
 
 glider3d = glider2d.get_glider_3d()
-verts, panels, trailing_edge = paraBEM_Panels(glider3d,
+verts, panels, trailing_edge = parabem_Panels(glider3d,
                         midribs=0,
                         profile_numpoints=20,
                         symmetric=False,
@@ -32,7 +32,7 @@ verts, panels, trailing_edge = paraBEM_Panels(glider3d,
                         num_average=0)
 
 case = DirichletDoublet0Source0Case3(panels, trailing_edge)
-case.v_inf = paraBEM.Vector3(*glider2d.v_inf)
+case.v_inf = parabem.Vector3(*glider2d.v_inf)
 case.create_wake(1000, 100)
 case.trefftz_cut_pos = case.v_inf * 20
 case.run()
@@ -41,7 +41,7 @@ gamma_pan = -np.array([edge.vorticity for edge in case.trailing_edge])
 
 
 ######################LiftingLine############################
-te_line = [paraBEM.Vector3(0, i.y, i.z) for i in trailing_edge]
+te_line = [parabem.Vector3(0, i.y, i.z) for i in trailing_edge]
 lifting_line = LiftingLine(te_line)
 lifting_line.v_inf = case.v_inf
 lifting_line.solve_for_best_gamma(1)

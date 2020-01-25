@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 BASEDIR=$(dirname $0)
-cd $BASEDIR/paraBEM_tests
+cd $BASEDIR/parabem_tests
 
 rm plots/results -r
 rm vtk/results -r

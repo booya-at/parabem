@@ -6,13 +6,13 @@ from matplotlib import pyplot as plt
 
 # from openglider.glider.parametric import ParametricGlider
 from openglider.jsonify import dump, load
-from openglider.glider.in_out.export_3d import paraBEM_Panels
+from openglider.glider.in_out.export_3d import parabem_Panels
 from openglider.utils.distribution import Distribution
 
-import paraBEM
-from paraBEM.pan3d import DirichletDoublet0Source0Case3 as Case
-from paraBEM.vtk_export import CaseToVTK
-from paraBEM.utils import check_path, v_inf_deg_range3
+import parabem
+from parabem.pan3d import DirichletDoublet0Source0Case3 as Case
+from parabem.vtk_export import CaseToVTK
+from parabem.utils import check_path, v_inf_deg_range3
 
 count = 0
 #   load the glider
@@ -48,7 +48,7 @@ def min_func(x):
     _glider2d = deepcopy(glider2d)
     glider_set_controlpoint(_glider2d, x)
     glider3d = _glider2d.get_glider_3d()
-    panels = paraBEM_Panels(glider3d,
+    panels = parabem_Panels(glider3d,
                         midribs=0,
                         profile_numpoints=40,
                         symmetric=True,
@@ -60,7 +60,7 @@ def min_func(x):
     case.A_ref = 23
 
     case.create_wake(length=10000, count=5)
-    case.v_inf = paraBEM.Vector3(8, 0, 1)
+    case.v_inf = parabem.Vector3(8, 0, 1)
     case.trefftz_cut_pos = case.v_inf * 50
     alpha = v_inf_deg_range3(case.v_inf, 5, 9, 20)
     polars = case.polars(alpha)

@@ -1,13 +1,13 @@
-import paraBEM
-from paraBEM import pan3d
-from paraBEM.vtk_export import CaseToVTK
-from paraBEM.mesh import mesh_object
+import parabem
+from parabem import pan3d
+from parabem.vtk_export import CaseToVTK
+from parabem.mesh import mesh_object
 import numpy as np
 
 mesh = mesh_object.from_OBJ("../mesh/sphere_low_tri.obj")
 
 case = pan3d.DirichletDoublet0Case3(mesh.panels)
-case.v_inf = paraBEM.Vector3(1, 0, 0.)
+case.v_inf = parabem.Vector3(1, 0, 0.)
 case.farfield = 100
 case.run()
 

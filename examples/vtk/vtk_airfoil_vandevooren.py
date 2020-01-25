@@ -1,8 +1,8 @@
 import numpy as np
 
-from paraBEM.airfoil.conformal_mapping import VanDeVoorenAirfoil
-from paraBEM.vtk_export import VtkWriter
-from paraBEM.utils import check_path
+from parabem.airfoil.conformal_mapping import VanDeVoorenAirfoil
+from parabem.vtk_export import VtkWriter
+from parabem.utils import check_path
 
 ####################################################
 #      analytic solution of vandevooren-airfoils     #

@@ -1,21 +1,21 @@
-from openglider.glider.in_out.export_3d import paraBEM_Panels
+from openglider.glider.in_out.export_3d import parabem_Panels
 from openglider.jsonify import load
-import paraBEM
-from paraBEM.pan3d import DirichletDoublet0Source0Case3 as Case
-from paraBEM.vtk_export import CaseToVTK
+import parabem
+from parabem.pan3d import DirichletDoublet0Source0Case3 as Case
+from parabem.vtk_export import CaseToVTK
 
 with open("../openglider/glider/referenz_schirm_berg.json") as _file:
     glider = load(_file)["data"]
-    panels = paraBEM_Panels(glider.get_glider_3d() , 0, 30, 0, False)
+    panels = parabem_Panels(glider.get_glider_3d() , 0, 30, 0, False)
 
 case = Case(panels[1], panels[2])
-case.v_inf = paraBEM.Vector(glider.v_inf)
+case.v_inf = parabem.Vector(glider.v_inf)
 case.drag_calc = "on_body"
 case.A_ref = glider.shape.area
 
 #wake parallel to the x axis
 print("*    wake parallel to the x-axis")
-case.create_wake(50, 100, paraBEM.Vector3(1., 0., 0.))
+case.create_wake(50, 100, parabem.Vector3(1., 0., 0.))
 case.run()
 writer = CaseToVTK(case, "results/wake/x-parallel")
 writer.write_panels()

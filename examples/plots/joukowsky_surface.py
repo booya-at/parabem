@@ -4,10 +4,10 @@ matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 import numpy as np
 
-from paraBEM.pan2d import *
-from paraBEM import PanelVector2, Vector2, Panel2
-from paraBEM.airfoil.conformal_mapping import *
-from paraBEM.utils import check_path
+from parabem.pan2d import *
+from parabem import PanelVector2, Vector2, Panel2
+from parabem.airfoil.conformal_mapping import *
+from parabem.utils import check_path
 
 # GEOMETRY:
 airfoil = JoukowskyAirfoil(midpoint=-0.1 + 0.05j)

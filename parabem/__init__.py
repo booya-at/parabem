@@ -1,5 +1,5 @@
 """
-paraBEM (python panel method)
+parabem (python panel method)
 =============================
 
 This package provides 2d and 3d Panelmethods and other utils to
@@ -9,12 +9,12 @@ following example:
 
 Code snippets are indicated by three greater-than signs:
 
->>> import paraBEM
+>>> import parabem
 
 
 Use the built-in ``help`` function to view a function's docstring:
 
->>> help(paraBEM)
+>>> help(parabem)
 
 The code below shows the way how the package works. The example calculate the
 potential flow around a cylinder computed with a Panelmethod which uses
@@ -32,17 +32,17 @@ Dirichlet boundary condition with constant doublet (dipol) panels.
 
 2. now map the geometry to PanelVectors and create Panels from the PanelVectors:
 
->>> import paraBEM
->>> coordinates = [paraBEM.PanelVector2(*i) for i in xy]
+>>> import parabem
+>>> coordinates = [parabem.PanelVector2(*i) for i in xy]
 >>> coordinates += [coordinates[0]]
->>> panels = [paraBEM.Panel2([vec, coordinates[i+1]]) for i, vec in enumerate(coordinates[:-1])]
+>>> panels = [parabem.Panel2([vec, coordinates[i+1]]) for i, vec in enumerate(coordinates[:-1])]
 
 
 3. setup the Case and run it:
 
->>> from paraBEM.pan2d import DirichletDoublet0Case2 as Case
+>>> from parabem.pan2d import DirichletDoublet0Case2 as Case
 >>> case = Case(panels)
->>> case.v_inf = paraBEM.Vector2(1, 0)
+>>> case.v_inf = parabem.Vector2(1, 0)
 >>> case.run()
 
 
@@ -64,7 +64,7 @@ from matplotlib import pyplot as plt
 for more information look into the iPython notebook (tutorial.ipynb) which is
 located in the docs directory.
 """
-from ._paraBEM import vector2 as Vector2
-from ._paraBEM import vector3 as Vector3
-from ._paraBEM import PanelVector2, PanelVector3, Panel3, Panel2
+from ._parabem import vector2 as Vector2
+from ._parabem import vector3 as Vector3
+from ._parabem import PanelVector2, PanelVector3, Panel3, Panel2
 from .utils import Vector

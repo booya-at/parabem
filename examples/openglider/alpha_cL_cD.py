@@ -5,19 +5,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 from openglider.jsonify import load
 from openglider.utils.distribution import Distribution
-from openglider.glider.in_out.export_3d import paraBEM_Panels
+from openglider.glider.in_out.export_3d import parabem_Panels
 
-import paraBEM
-from paraBEM.pan3d import DirichletDoublet0Source0Case3 as Case
-from paraBEM.vtk_export import CaseToVTK
-from paraBEM.utils import v_inf_deg_range3, check_path
+import parabem
+from parabem.pan3d import DirichletDoublet0Source0Case3 as Case
+from parabem.vtk_export import CaseToVTK
+from parabem.utils import v_inf_deg_range3, check_path
 
 with open("glider/referenz_schirm_berg.json") as _file:
     parametricGlider = load(_file)["data"]
     parametricGlider.shape.set_const_cell_dist()
     glider = parametricGlider.get_glider_3d()
 
-_, panels, trailing_edge = paraBEM_Panels(
+_, panels, trailing_edge = parabem_Panels(
     glider,
     midribs=3,
     profile_numpoints=70,
@@ -28,13 +28,13 @@ _, panels, trailing_edge = paraBEM_Panels(
 v_inf = [8, 0, 1]
 
 case = Case(panels, trailing_edge)
-case.mom_ref_point = paraBEM.Vector3(1.25, 0, -6)
+case.mom_ref_point = parabem.Vector3(1.25, 0, -6)
 case.A_ref = parametricGlider.shape.area
 case.farfield = 5
 case.drag_calc = "on_body"
 case.trefftz_cut_pos = case.v_inf * 800
 
-case.v_inf = paraBEM.Vector3(v_inf)
+case.v_inf = parabem.Vector3(v_inf)
 case.create_wake(length=10000, count=4)    # length, count
 polars = case.polars(v_inf_deg_range3(case.v_inf, -5, 12, 15))
 

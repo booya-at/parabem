@@ -1,1 +1,0 @@
-from paraBEM._paraBEM import LiftingLine, LineSegment

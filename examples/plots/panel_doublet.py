@@ -3,23 +3,23 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-import paraBEM
-from paraBEM.pan3d import doublet_3_0_sphere as doublet
-from paraBEM.utils import check_path
+import parabem
+from parabem.pan3d import doublet_3_0_sphere as doublet
+from parabem.utils import check_path
 
-pnt1 = paraBEM.PanelVector3(-0.5, -0.5, 0)
-pnt2 = paraBEM.PanelVector3(0.5, -0.5, 0)
-pnt3 = paraBEM.PanelVector3(0.5, 0.5, 0)
-pnt4 = paraBEM.PanelVector3(-0.5, 0.5, 0)
+pnt1 = parabem.PanelVector3(-0.5, -0.5, 0)
+pnt2 = parabem.PanelVector3(0.5, -0.5, 0)
+pnt3 = parabem.PanelVector3(0.5, 0.5, 0)
+pnt4 = parabem.PanelVector3(-0.5, 0.5, 0)
 
-source = paraBEM.Panel3([pnt1, pnt2, pnt3, pnt4])
+source = parabem.Panel3([pnt1, pnt2, pnt3, pnt4])
 
 x = np.linspace(-4, 4, 100)
 y = []
 for xi in x:
-    target1 = paraBEM.PanelVector3(xi, 0., 0.0)
-    target2 = paraBEM.PanelVector3(xi, 0, 0.5)
-    target3 = paraBEM.PanelVector3(xi, 0, 1.0)
+    target1 = parabem.PanelVector3(xi, 0., 0.0)
+    target2 = parabem.PanelVector3(xi, 0, 0.5)
+    target3 = parabem.PanelVector3(xi, 0, 1.0)
     val1 = doublet(target1, source)
     val2 = doublet(target2, source)
     val3 = doublet(target3, source)
@@ -32,9 +32,9 @@ ax1.plot(x, y)
 
 y = []
 for xi in x:
-    target1 = paraBEM.Vector3(0, xi, 0.0)
-    target2 = paraBEM.Vector3(0, xi, 0.5)
-    target3 = paraBEM.Vector3(0, xi, 1.0)
+    target1 = parabem.Vector3(0, xi, 0.0)
+    target2 = parabem.Vector3(0, xi, 0.5)
+    target3 = parabem.Vector3(0, xi, 1.0)
     val1 = doublet(target1, source)
     val2 = doublet(target2, source)
     val3 = doublet(target3, source)
@@ -45,9 +45,9 @@ ax2.plot(x, y)
 
 y = []
 for xi in x:
-    target1 = paraBEM.Vector3(0., 0, xi)
-    target2 = paraBEM.Vector3(0.5, 0, xi)
-    target3 = paraBEM.Vector3(1.0, 0, xi)
+    target1 = parabem.Vector3(0., 0, xi)
+    target2 = parabem.Vector3(0.5, 0, xi)
+    target3 = parabem.Vector3(1.0, 0, xi)
     val1 = doublet(target1, source)
     val2 = doublet(target2, source)
     val3 = doublet(target3, source)

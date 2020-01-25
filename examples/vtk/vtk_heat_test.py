@@ -1,20 +1,20 @@
 from __future__ import division
 import numpy as np
-import paraBEM
-from paraBEM.pan2d import doublet_2_0, doublet_2_0_v, source_2_0, source_2_0_v
-from paraBEM.vtk_export import VtkWriter
-from paraBEM.utils import check_path
+import parabem
+from parabem.pan2d import doublet_2_0, doublet_2_0_v, source_2_0, source_2_0_v
+from parabem.vtk_export import VtkWriter
+from parabem.utils import check_path
 
-p1 = paraBEM.PanelVector2(-1, -10)
-p2 = paraBEM.PanelVector2(0, -10)
-p3 = paraBEM.PanelVector2(1, -10)
-p4 = paraBEM.PanelVector2(-1, 10)
-p5 = paraBEM.PanelVector2(0, 10)
-p6 = paraBEM.PanelVector2(1, 10)
+p1 = parabem.PanelVector2(-1, -10)
+p2 = parabem.PanelVector2(0, -10)
+p3 = parabem.PanelVector2(1, -10)
+p4 = parabem.PanelVector2(-1, 10)
+p5 = parabem.PanelVector2(0, 10)
+p6 = parabem.PanelVector2(1, 10)
 
-pan1 = paraBEM.Panel2([p4, p1])
-pan2 = paraBEM.Panel2([p2, p5])
-pan3 = paraBEM.Panel2([p3, p6])
+pan1 = parabem.Panel2([p4, p1])
+pan2 = parabem.Panel2([p2, p5])
+pan3 = parabem.Panel2([p3, p6])
 
 
 mat = np.zeros([3, 3])
@@ -66,7 +66,7 @@ x_grid = np.linspace(-3, 3, nx)
 y_grid = np.linspace(-3, 3, ny)
 
 
-grid = [paraBEM.Vector2(x, y) for y in y_grid for x in x_grid]
+grid = [parabem.Vector2(x, y) for y in y_grid for x in x_grid]
 t_list = []
 for point in grid:
     t = 0
@@ -80,7 +80,7 @@ for point in grid:
 
 q_list = []
 for point in grid:
-    q = paraBEM.Vector2(0, 0)
+    q = parabem.Vector2(0, 0)
     q -= doublet_2_0_v(point, pan1) * T1
     q -= doublet_2_0_v(point, pan3) * T2
     q += source_2_0_v(point, pan1) * sol[0]

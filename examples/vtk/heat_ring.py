@@ -1,9 +1,9 @@
 from __future__ import division
 import numpy as np
-import paraBEM
-from paraBEM.pan2d import doublet_2_0, doublet_2_0_v, source_2_0, source_2_0_v
-from paraBEM.vtk_export import VtkWriter
-from paraBEM.utils import check_path
+import parabem
+from parabem.pan2d import doublet_2_0, doublet_2_0_v, source_2_0, source_2_0_v
+from parabem.vtk_export import VtkWriter
+from parabem.utils import check_path
 
 R = 1
 
@@ -12,12 +12,12 @@ points = [
     [-1, -1], [1, -1], [1, 1], [-1, 1]
 ]
 
-points = [paraBEM.PanelVector2(*point) for point in points]
+points = [parabem.PanelVector2(*point) for point in points]
 panels = [
     [1, 0], [2, 1], [3, 2], [0, 3],
     [4, 5], [5, 6], [6, 7], [7, 4]
 ]
-panels = [paraBEM.Panel2([points[i] for i in panel]) for panel in panels]
+panels = [parabem.Panel2([points[i] for i in panel]) for panel in panels]
 
 T_boundary = [0, 0, 0, 0, 1, 1, 1, 1]
 mat = np.zeros([8, 8])
@@ -35,7 +35,7 @@ nx = 300
 ny = 300
 x_grid = np.linspace(-3, 3, nx)
 y_grid = np.linspace(-3, 3, ny)
-grid = [paraBEM.Vector2(x, y) for y in y_grid for x in x_grid]
+grid = [parabem.Vector2(x, y) for y in y_grid for x in x_grid]
 t_list = []
 for point in grid:
     t = 0
@@ -46,7 +46,7 @@ for point in grid:
 
 q_list = []
 for point in grid:
-    q = paraBEM.Vector2(0, 0)
+    q = parabem.Vector2(0, 0)
     for i, panel_i in enumerate(panels):
         q -= source_2_0_v(point, panel_i) * sol[i]
         q += doublet_2_0_v(point, panel_i) * sol[i] * R

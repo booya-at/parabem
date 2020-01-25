@@ -1,17 +1,17 @@
-import paraBEM
-from paraBEM.pan2d import doublet_2_0, source_2_0, doublet_2_0_v, source_2_0_v, doublet_2_1, doublet_2_1_v
-from paraBEM.vtk_export import VtkWriter
+import parabem
+from parabem.pan2d import doublet_2_0, source_2_0, doublet_2_0_v, source_2_0_v, doublet_2_1, doublet_2_1_v
+from parabem.vtk_export import VtkWriter
 import numpy as np
-from paraBEM.utils import check_path
+from parabem.utils import check_path
 
-v1 = paraBEM.PanelVector2(-2, 0)
-v2 = paraBEM.PanelVector2(2, 0)
-panel = paraBEM.Panel2([v1, v2])
+v1 = parabem.PanelVector2(-2, 0)
+v2 = parabem.PanelVector2(2, 0)
+panel = parabem.Panel2([v1, v2])
 
 n = 500
 space = np.linspace(-5, 5, n)
 
-grid = [paraBEM.Vector2([x, y]) for y in space for x in space]
+grid = [parabem.Vector2([x, y]) for y in space for x in space]
 dub_vals = [doublet_2_0(target, panel) for target in grid]
 dub_vals_lin_1 = [doublet_2_1(target, panel, True) for target in grid]
 dub_vals_lin_2 = [doublet_2_1(target, panel, False) for target in grid]
