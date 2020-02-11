@@ -5,6 +5,14 @@ MESSAGE(STATUS "python version set: ${py}")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
 # OPTIONS
 set (CMAKE_CXX_STANDARD 11)
 OPTION(BUILD_PYTHON_BINDINGS "create python bindings" ON)
@@ -21,7 +29,7 @@ endif()
 
 ## EIGEN
 find_package(Eigen3 REQUIRED)
-MESSAGE(${EIGEN3_VERSION})
+
 INCLUDE_DIRECTORIES( ${EIGEN3_INCLUDE_DIR})     # eigen3
 
 
