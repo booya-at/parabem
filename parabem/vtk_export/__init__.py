@@ -20,7 +20,7 @@ class CaseToVTK():
             writer.unstructed_grid(_file, "panels")
             writer.points(_file, self.vertices)
             writer.flat_cells(_file, self.panels)
-            if data_type is not "point":
+            if data_type != "point":
                 if cp:
                     writer.data(_file, self.pan_cp, "cp")
                 if pot:
@@ -236,7 +236,7 @@ class VtkWriter():
             _file.write(data_type +" " + str(len(data)) + "\n")
             self._data_set = True
 
-        if _type is "SCALARS":
+        if _type =="SCALARS":
             _file.write("SCALARS " + name + " float\n")
             _file.write("LOOKUP_TABLE default")
             for j, value in enumerate(data):
@@ -245,7 +245,7 @@ class VtkWriter():
                 _file.write(str(value) + " ")
             _file.write("\n\n")
 
-        if _type is "VECTORS":
+        if _type =="VECTORS":
             _file.write("VECTORS " + name + " float\n")
             _file.write("\n")
             for point in data:
