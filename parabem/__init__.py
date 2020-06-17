@@ -68,3 +68,5 @@ from ._parabem import vector2 as Vector2
 from ._parabem import vector3 as Vector3
 from ._parabem import PanelVector2, PanelVector3, Panel3, Panel2
 from .utils import Vector
+
+__version__ = 0.2.0
