@@ -485,31 +485,18 @@ PYBIND11_MODULE(_parabem, m) {
         .def("off_body_potential",&Case3::off_body_potential)
         .def("flow_path", &Case3::flow_path)
         .def("body_flow_path", &Case3::body_flow_path)
-        .def("run",
-            [](Case3& caase){
-                py::gil_scoped_release release;
-                caase.run();
-                py::gil_scoped_acquire acquire;
-            })
+        .def("run", &Case3::run, py::call_guard<py::gil_scoped_release>())
         .def("polars", &Case3::polars);
 
     py::class_<DirichletDoublet0Case3, Case3>(m, "DirichletDoublet0Case3")
         .def(py::init<vector<Panel3*>>(), py::keep_alive<1, 2>())
         .def(py::init<vector<Panel3*>, vector<PanelVector3*>>(), py::keep_alive<1, 2>(), py::keep_alive<1, 3>())
-        .def("run", [](DirichletDoublet0Case3& caase){
-                py::gil_scoped_release release;
-                caase.run();
-                py::gil_scoped_acquire acquire;
-            });
+        .def("run", &DirichletDoublet0Case3::run, py::call_guard<py::gil_scoped_release>());
 
     py::class_<DirichletDoublet0Source0Case3, Case3>(m, "DirichletDoublet0Source0Case3")
         .def(py::init<vector<Panel3*>>(), py::keep_alive<1, 2>())
         .def(py::init<vector<Panel3*>, vector<PanelVector3*>>(), py::keep_alive<1, 2>(), py::keep_alive<1, 3>())
-        .def("run", [](DirichletDoublet0Source0Case3& caase){
-                py::gil_scoped_release release;
-                caase.run();
-                py::gil_scoped_acquire acquire;
-            });
+        .def("run", &DirichletDoublet0Source0Case3::run, py::call_guard<py::gil_scoped_release>());
 
     py::class_<LineSegment>(m, "LineSegment")
         .def(py::init<Vector3&, Vector3&, Vector3&>())
