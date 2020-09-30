@@ -4,7 +4,7 @@
 <img src="./doc/latex_doc/Abbildungen/png/14_2_wake-rollup.png" alt="result" width="400"/>
 
 
-parabem is a python module which provides methods to calculate the potential flow over 2D and 3D meshes with boundary-elements (panel-method)
+parabem is a python module that provides methods to compute the potential flow over 2D and 3D objects with boundary-elements (panel-method).
 
 the c++ code is wrapped with pybind11 to python. This allows fast computation (eigen) with a high-level interface.
 
