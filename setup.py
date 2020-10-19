@@ -1,36 +1,77 @@
-from distutils.core import setup, Extension
+import os
+import re
+import sys
+import platform
+import subprocess
+
+from setuptools import setup, Extension
+from setuptools.command.build_ext import build_ext
+from distutils.version import LooseVersion
+
+import multiprocessing
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
+class CMakeExtension(Extension):
+    def __init__(self, name, sourcedir=''):
+        Extension.__init__(self, name, sources=[])
+        self.sourcedir = os.path.abspath(sourcedir)
 
 
-extra_link_args = ['-lgomp']
+class CMakeBuild(build_ext):
+    def run(self):
+        try:
+            out = subprocess.check_output(['cmake', '--version'])
+        except OSError:
+            raise RuntimeError("CMake must be installed to build the following extensions: " +
+                               ", ".join(e.name for e in self.extensions))
 
-include_dirs = ['/usr/include/eigen3',
-                '/usr/local/include/eigen3',
-                'src/headers']
+        if platform.system() == "Windows":
+            cmake_version = LooseVersion(re.search(r'version\s*([\d.]+)', out.decode()).group(1))
+            if cmake_version < '3.1.0':
+                raise RuntimeError("CMake >= 3.1.0 is required on Windows")
 
-src = ["src/python/parabem_ext.cpp",      "src/element_influence.cpp",
-       "src/panel2.cpp",       "src/panel3.cpp",
-       "src/case2.cpp",        "src/case3.cpp",
-       "src/lifting_line.cpp"]
+        for ext in self.extensions:
+            self.build_extension(ext)
 
-headers = ["src/headers/element_influence.h",
-           "src/headers/vector.h",         "src/headers/panel2.h",
-           "src/headers/panel3.h",         "src/headers/case2.h",
-           "src/headers/case3.h",          "src/headers/lifting_line.h"]
+    def build_extension(self, ext):
+        extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
+        
+        num_cores = multiprocessing.cpu_count()
 
-files = ["parabem", "parabem.airfoil", "parabem.liftingline", "parabem.mesh",
-         "parabem.pan2d", "parabem.pan3d", "parabem.utils", "parabem.vtk_export"]
+        cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
+                      '-DPYTHON_EXECUTABLE=' + sys.executable]
+
+        cfg = 'Debug' if self.debug else 'Release'
+        build_args = ['--config', cfg]
+
+        if platform.system() == "Windows":
+            cmake_args += ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{}={}'.format(cfg.upper(), extdir)]
+            if sys.maxsize > 2**32:
+                cmake_args += ['-A', 'x64']
+            build_args += ['--', '/m']
+        else:
+            cmake_args += ['-DCMAKE_BUILD_TYPE=' + cfg]
+            build_args += ['--', f'-j{num_cores}']
+
+        env = os.environ.copy()
+        env['CXXFLAGS'] = '{} -DVERSION_INFO=\\"{}\\"'.format(env.get('CXXFLAGS', ''),
+                                                              self.distribution.get_version())
+        if not os.path.exists(self.build_temp):
+            os.makedirs(self.build_temp)
+        subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, env=env)
+        subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
 
 
-setup(name='parabem._parabem',
+setup(name='parabem',
       version='0.0.1',
       author='looooo',
       requires='eigen',
       author_email='sppedflyer@gmail.com',
       url="https://github.com/looooo/panelmethod",
       description='Wrap parabem using pybind11',
-      packages=files,
-      ext_modules=[Extension('parabem._parabem',
-                   sources=src,
-                   include_dirs=include_dirs,
-                   extra_compile_args=['-std=c++11', '-fopenmp'],
-                   extra_link_args=extra_link_args)])
+      packages=["parabem", "parabem.utils", "parabem.pan2d", "parabem.pan3d", "parabem.mesh", "parabem.liftingline", "parabem.airfoil"],
+      ext_modules=[CMakeExtension('.')],
+      cmdclass={"build_ext": CMakeBuild}
+)

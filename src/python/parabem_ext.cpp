@@ -260,8 +260,8 @@ Vector3 wrap_vortex_3_0_edge_v(Vector3& target, Edge& e){
         return new_vec;
     }
 
-PYBIND11_MODULE(_parabem, m) {
-    m.doc() = "pybind11 example plugin";
+PYBIND11_MODULE(parabem_cpp, m) {
+    m.doc() = "parabem c++ extension";
 
     py::class_<eig::Vector2d, std::shared_ptr<eig::Vector2d>>(m, "vector2")
         .def(py::init<double, double>())

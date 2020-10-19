@@ -1,1 +1,1 @@
-from parabem._parabem import LiftingLine, LineSegment
+from parabem.parabem_cpp import LiftingLine, LineSegment
