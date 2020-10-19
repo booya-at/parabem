@@ -4,7 +4,7 @@ from copy import copy
 import requests
 import numpy
 
-from parabem import Panel2, PanelVector2
+from parabem_cpp import Panel2, PanelVector2
 
 
 class Airfoil(object):

@@ -71,7 +71,7 @@ setup(name='parabem',
       author_email='sppedflyer@gmail.com',
       url="https://github.com/looooo/panelmethod",
       description='Wrap parabem using pybind11',
-      packages=["parabem", "parabem.utils", "parabem.pan2d", "parabem.pan3d", "parabem.mesh", "parabem.liftingline", "parabem.airfoil"],
+      packages=["parabem", "parabem.utils", "parabem.pan2d", "parabem.pan3d", "parabem.mesh", "parabem.liftingline", "parabem.airfoil", "parabem.vtk_export"],
       ext_modules=[CMakeExtension('.')],
       cmdclass={"build_ext": CMakeBuild}
 )
