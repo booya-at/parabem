@@ -69,4 +69,4 @@ from parabem_cpp import vector3 as Vector3
 from parabem_cpp import PanelVector2, PanelVector3, Panel3, Panel2
 from parabem.utils import Vector
 
-__version__ = "0.2.0"
+from version import __version__

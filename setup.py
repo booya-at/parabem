@@ -63,9 +63,12 @@ class CMakeBuild(build_ext):
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, env=env)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
 
+version_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "parabem", "version.py")
+with open(version_path) as fp:
+    exec(fp.read())
 
 setup(name='parabem',
-      version='0.0.1',
+      version=__version__,
       author='looooo',
       requires='eigen',
       author_email='sppedflyer@gmail.com',
