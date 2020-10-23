@@ -64,9 +64,9 @@ from matplotlib import pyplot as plt
 for more information look into the iPython notebook (tutorial.ipynb) which is
 located in the docs directory.
 """
-from ._parabem import vector2 as Vector2
-from ._parabem import vector3 as Vector3
-from ._parabem import PanelVector2, PanelVector3, Panel3, Panel2
-from .utils import Vector
+from parabem_cpp import vector2 as Vector2
+from parabem_cpp import vector3 as Vector3
+from parabem_cpp import PanelVector2, PanelVector3, Panel3, Panel2
+from parabem.utils import Vector
 
-__version__ = "0.2.0"
+from version import __version__

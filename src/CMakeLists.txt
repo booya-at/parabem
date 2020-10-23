@@ -8,7 +8,7 @@ set(HEADER_FILES ${CMAKE_SOURCE_DIR}/src/headers/case2.h
 				 ${CMAKE_SOURCE_DIR}/src/headers/panel3.h
 				 ${CMAKE_SOURCE_DIR}/src/headers/vector.h)
 
-set(CPP_FILES element_influence.cpp
+set(CPP_FILES ${CMAKE_SOURCE_DIR}/src/element_influence.cpp
 			  ${CMAKE_SOURCE_DIR}/src/panel3.cpp
 			  ${CMAKE_SOURCE_DIR}/src/panel2.cpp
 			  ${CMAKE_SOURCE_DIR}/src/case2.cpp
