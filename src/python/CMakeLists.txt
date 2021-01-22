@@ -1,5 +1,5 @@
 EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c
-"from distutils.sysconfig import get_python_lib; import os; print(os.path.join(get_python_lib(), 'parabem'))"
+"from distutils.sysconfig import get_python_lib; import os; print(get_python_lib())"
 OUTPUT_VARIABLE _PYTHON_INSTALL_DIR OUTPUT_STRIP_TRAILING_WHITESPACE )
 
 string(REPLACE "\\" "/" PYTHON_INSTALL_DIR ${_PYTHON_INSTALL_DIR})
@@ -23,5 +23,5 @@ endif()
 
 target_link_libraries(parabem_cpp PUBLIC pm)
 
-install(DIRECTORY "../../parabem/" DESTINATION ${PYTHON_INSTALL_DIR} FILES_MATCHING PATTERN "*.py")
+install(DIRECTORY "../../parabem/" DESTINATION ${PYTHON_INSTALL_DIR}/parabem FILES_MATCHING PATTERN "*.py")
 install(TARGETS parabem_cpp DESTINATION ${PYTHON_INSTALL_DIR})
