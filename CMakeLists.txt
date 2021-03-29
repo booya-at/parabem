@@ -23,20 +23,33 @@ endif()
 set (CMAKE_CXX_STANDARD 11)
 OPTION(BUILD_PYTHON_BINDINGS "create python bindings" ON)
 
+
 if (BUILD_PYTHON_BINDINGS)
   ## PYTHON
+  
   set(Python_ADDITIONAL_VERSIONS ${py})
   find_package(PythonInterp ${py} REQUIRED)
   find_package(PythonLibs ${py} REQUIRED)
-  find_package(pybind11 2.0 REQUIRED)
+
+  if(EXISTS ${PROJECT_SOURCE_DIR}/lib/pybind11)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/lib/pybind11)
+  else()
+    find_package(pybind11 REQUIRED)
+  endif()
+  
+  #set(PYBIND11_CPP_STANDARD -std=c++14)
 endif()
 
 # FIND DEPENDENCIES
 
 ## EIGEN
-find_package(Eigen3 REQUIRED)
+if(EXISTS ${PROJECT_SOURCE_DIR}/lib/eigen)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/lib/eigen)
+else()
+  find_package (Eigen3 3.3 REQUIRED NO_MODULE)
+endif()
 
-INCLUDE_DIRECTORIES( ${EIGEN3_INCLUDE_DIR})     # eigen3
+#INCLUDE_DIRECTORIES( ${EIGEN3_INCLUDE_DIR}/eigen3)     # eigen3
 
 if (BUILD_WITH_MPI)
   find_package(OpenMP REQUIRED)
