@@ -63,4 +63,6 @@ results/
 *.glo
 *.nls
 _posts
-_site
+_site# pixi environments
+.pixi
+*.egg-info
