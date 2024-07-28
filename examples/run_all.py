@@ -7,7 +7,9 @@ print(directory)
 
 def run_example(sub_dir, file_name):
     print(f"\n\nRunning {sub_dir}/{file_name}\n")
-    sub.run(["python", os.path.join(directory, sub_dir, file_name)], check=False)
+    sub.run(["python", os.path.join(directory, sub_dir, file_name)],
+            cwd = os.path.join(directory, sub_dir),
+            check=False)
 
 run_example("tests", "test_airfoil.py")
 run_example("tests", "test_case.py")

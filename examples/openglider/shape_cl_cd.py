@@ -24,7 +24,7 @@ with open(os.path.join(directory, "glider", "referenz_schirm_berg.json"), "r") a
     aspect_ratio = glider2d.shape.aspect_ratio
 
 def results_path(*args):
-    return check_path(os.path.join(directory, "..", "results", *args))
+    return check_path(os.path.join(directory, "results", *args))
 
 def glider_set_controlpoint(glider2d, x):
     c = deepcopy(glider2d.shape.front_curve.controlpoints)

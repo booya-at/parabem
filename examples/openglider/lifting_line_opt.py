@@ -18,7 +18,7 @@ directory = os.path.dirname(__file__)
 count = 0
 #   load the glider
 
-with open(os.path.join(directory, "..", "results", "glider", "optimized.json"), "r") as _file:
+with open(os.path.join(directory, "results", "glider", "optimized.json"), "r") as _file:
     glider2d = load(_file)["data"]
     area = glider2d.shape.area
     aspect_ratio = glider2d.shape.aspect_ratio

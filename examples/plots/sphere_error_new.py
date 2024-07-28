@@ -52,7 +52,7 @@ plt.close()
 
 ax = plt.gca()
 ax.set_xlabel("$\\frac{x}{r_K}$", fontsize=30, labelpad=20)
-ax.set_ylabel("$\\frac{u}{u_{\infty}}$", fontsize=30, rotation=0, labelpad=20)
+ax.set_ylabel("$\\frac{u}{u_{\\infty}}$", fontsize=30, rotation=0, labelpad=20)
 plt.title("Geschwindigkeit", fontsize=20)
 plt.plot(vel_x, vel_y, label="Analytisch")
 plt.scatter(vel_n_x, vel_n_y, marker="+", label="Panelmethode")
