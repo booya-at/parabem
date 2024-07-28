@@ -7,7 +7,7 @@ channels = ["conda-forge"]
 platforms = ["linux-64", "osx-arm64"]
 
 [tasks]
-configure = { cmd = ["cmake", "-G", "Ninja", "-B", "build", "-S", ".", "-D", "CMAKE_INSTALL_PREFIX:FILEPATH=$CONDA_PREFIX"]}
+configure = { cmd = ["cmake", "-G", "Ninja", "-B", "build", "-S", ".", "-D", "CMAKE_INSTALL_PREFIX:FILEPATH=$CONDA_PREFIX", "-D", "CMAKE_BUILD_TYPE=Debug"]}
 configure_release = { cmd = ["cmake", "-G", "Ninja", "-B", "build", "-S", ".", "-D", "CMAKE_INSTALL_PREFIX:FILEPATH=$CONDA_PREFIX", "-D", "CMAKE_BUILD_TYPE=Release"]}
 build = {cmd = ["ninja", "-C", "build", "install"], depends-on = ["configure"]}
 build_release = {cmd = ["ninja", "-C", "build", "install"], depends-on = ["configure_release"]}
@@ -37,7 +37,6 @@ openglider = {path = "./../Openglider", editable = true}
 
 [target.osx-arm64.dependencies]
 llvm-openmp = "*"
-clangxx = ">=16,<17"
 
 [target.linux-64.dependencies]
 openmpi = "*"
