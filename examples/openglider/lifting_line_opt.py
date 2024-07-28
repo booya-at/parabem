@@ -18,13 +18,13 @@ directory = os.path.dirname(__file__)
 count = 0
 #   load the glider
 
-with open(os.path.join(directory, "glider", "optimized.json"), "r") as _file:
+with open(os.path.join(directory, "..", "results", "glider", "optimized.json"), "r") as _file:
     glider2d = load(_file)["data"]
     area = glider2d.shape.area
     aspect_ratio = glider2d.shape.aspect_ratio
 
 glider3d = glider2d.get_glider_3d()
-verts, panels, trailing_edge = parabem_Panels(glider3d,
+verts, panels, trailing_edge, mids = parabem_Panels(glider3d,
                         midribs=0,
                         profile_numpoints=20,
                         symmetric=False,

@@ -27,4 +27,7 @@ case.create_wake(length=10000, count=5)
 case.v_inf = parabem.Vector3(8, 0, 1)
 case.trefftz_cut_pos = case.v_inf * 50
 case.run()
- 
+case.create_wake(length=10000, count=5)
+case.run()
+case.relax_wake(3, 1)
+case.run()

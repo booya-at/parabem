@@ -10,6 +10,8 @@ from parabem.pan3d import DirichletDoublet0Source0Case3 as Case
 from parabem.vtk_export import CaseToVTK
 from parabem.utils import v_inf_deg_range3
 
+directory = os.path.dirname(__file__)
+
 n_x = 30
 
 with open(os.path.join(directory, "glider", "referenz_schirm_berg.json"), "r") as _file:
@@ -17,7 +19,7 @@ with open(os.path.join(directory, "glider", "referenz_schirm_berg.json"), "r") a
     glider_2d.shape.set_const_cell_dist()
     glider = glider_2d.get_glider_3d()
 
-_, panels, trailing_edge = parabem_Panels(
+vertices, panels, trailing_edge, mids = parabem_Panels(
     glider,
     midribs=3,
     profile_numpoints=n_x,

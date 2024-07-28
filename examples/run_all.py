@@ -2,10 +2,12 @@ import subprocess as sub
 import os
 
 directory = os.path.dirname(__file__)
+print(directory)
+
 
 def run_example(sub_dir, file_name):
     print(f"\n\nRunning {sub_dir}/{file_name}\n")
-    sub.run(["python", os.path.join(sub_dir, file_name)], check=False)
+    sub.run(["python", os.path.join(directory, sub_dir, file_name)], check=False)
 
 run_example("tests", "test_airfoil.py")
 run_example("tests", "test_case.py")
@@ -54,3 +56,4 @@ run_example("openglider", "shape_cl_cd.py")
 run_example("openglider", "lifting_line_opt.py")
 run_example("openglider", "vtk_glider.py")
 run_example("openglider", "wake_models.py")
+run_example("openglider", "crash.py")

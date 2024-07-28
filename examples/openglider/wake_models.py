@@ -5,6 +5,8 @@ import parabem
 from parabem.pan3d import DirichletDoublet0Source0Case3 as Case
 from parabem.vtk_export import CaseToVTK
 
+directory = os.path.dirname(__file__)
+
 with open(os.path.join(directory, "glider", "referenz_schirm_berg.json"), "r") as _file:
     glider = load(_file)["data"]
     panels = parabem_Panels(glider.get_glider_3d() , 0, 30, 0, False)

@@ -41,7 +41,7 @@ plt.rcParams['figure.figsize'] = 10, 5
 
 ax = plt.gca()
 ax.set_xlabel("$\\frac{x}{r_K}$", fontsize=30, labelpad=20)
-ax.set_ylabel("$\\frac{\phi}{u_{\infty} r_K}$", fontsize=30, rotation=0, labelpad=20)
+ax.set_ylabel("$\\frac{\\phi}{u_{\\infty} r_K}$", fontsize=30, rotation=0, labelpad=20)
 plt.plot(pot_x, pot_y, label="Analytisch")
 plt.title("Potential", fontsize=20)
 plt.scatter(pot_n_x, pot_n_y, marker="+", label="Panelmethode")
