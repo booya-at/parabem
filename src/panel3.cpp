@@ -444,6 +444,15 @@ Edge::Edge(PanelVector3* v1, PanelVector3* v2){
 
 void Edge::setup_Edge()
 {
+    // Überprüfen, ob v1 und v2 null sind
+    if (!this->v1 || !this->v2) {
+        std::cout << "Edge::setup_Edge(): v1 or v2 is null" << std::endl;
+        return;
+    }
+    if (this->v1->panels.size() == 0 || this->v2->panels.size() == 0){
+        return;
+    }
+
 //   assuming that a edge has two connected panels
   vector<Panel3*> connected_panels;
   for (Panel3*& panel_i: this->v1->panels){
@@ -453,9 +462,12 @@ void Edge::setup_Edge()
       }
     }
   }
-  if (connected_panels.size() == 0){
+// the trailing edge has 3 connected panels (p1, p2, wp)
+// how to order these panels?
+  if (connected_panels.size() != 2){
     return;
   }
+
 //    ordering the panels (first Panel3 has [..., this->v1, this->v2, ...] order) (is aligned)
   bool first = false;
   this->p1 = connected_panels[0];
