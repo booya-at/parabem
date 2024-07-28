@@ -37,6 +37,7 @@ openglider = {path = "./../Openglider", editable = true}
 
 [target.osx-arm64.dependencies]
 llvm-openmp = "*"
+clangxx = ">=16,<17"
 
 [target.linux-64.dependencies]
 openmpi = "*"
