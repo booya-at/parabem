@@ -18,7 +18,9 @@ set(CPP_FILES ${CMAKE_SOURCE_DIR}/src/element_influence.cpp
 add_library(pm STATIC ${CPP_FILES} ${HEADER_FILES})
 
 install(TARGETS pm DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
-target_link_libraries(pm PUBLIC OpenMP::OpenMP_CXX)
+if(BUILD_WITH_MPI)
+	target_link_libraries(pm PUBLIC OpenMP::OpenMP_CXX)
+endif(BUILD_WITH_MPI)
 
 if(BUILD_PYTHON_BINDINGS)
 	add_subdirectory(python)
