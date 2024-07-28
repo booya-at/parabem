@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+import os
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -12,16 +12,17 @@ from parabem.pan3d import DirichletDoublet0Source0Case3 as Case
 from parabem.vtk_export import CaseToVTK
 from parabem.utils import v_inf_deg_range3, check_path
 
-with open("glider/referenz_schirm_berg.json") as _file:
+directory = os.path.dirname(__file__)
+
+with open(os.path.join(directory, "glider", "referenz_schirm_berg.json"), "r") as _file:
     parametricGlider = load(_file)["data"]
     parametricGlider.shape.set_const_cell_dist()
     glider = parametricGlider.get_glider_3d()
 
-_, panels, trailing_edge = parabem_Panels(
+_, panels, trailing_edge, _ = parabem_Panels(
     glider,
     midribs=3,
     profile_numpoints=70,
-    distribution=Distribution.from_cos_2_distribution,
     num_average=0,
     symmetric=False)
 

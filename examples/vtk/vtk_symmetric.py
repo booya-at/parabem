@@ -1,9 +1,11 @@
+import os
 from parabem.mesh import mesh_object
 from parabem.pan3d import DirichletDoublet0Source0Case3 as Case
 from parabem.vtk_export import CaseToVTK
 
+directory = os.path.dirname(__file__)
 
-mesh = mesh_object.from_OBJ("../mesh/sphere_half.obj")
+mesh = mesh_object.from_OBJ(os.path.join(directory, "..", "mesh", "sphere_half.obj"))
 for panel in mesh.panels:
     panel.set_symmetric()
 

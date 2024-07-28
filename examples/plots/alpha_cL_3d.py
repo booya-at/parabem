@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -9,7 +10,9 @@ from parabem.mesh import mesh_object
 from parabem.vtk_export import CaseToVTK
 from parabem.utils import check_path, v_inf_deg_range3
 
-mesh = mesh_object.from_OBJ("../mesh/wing_lift.obj")
+directory = os.path.dirname(__file__)
+
+mesh = mesh_object.from_OBJ(os.path.join(directory, "..", "mesh", "wing_lift.obj"))
 alpha_0 = np.deg2rad(5)
 v_inf = parabem.Vector3(np.cos(alpha_0), 0, np.sin(alpha_0))
 v_inf_range = v_inf_deg_range3(v_inf, -5, 10, 20)

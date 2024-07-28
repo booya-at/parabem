@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -7,10 +8,12 @@ from parabem import pan3d
 from parabem.mesh import mesh_object
 from parabem.utils import check_path
 
+directory = os.path.dirname(__file__)
+
 # plots the values of the numerical solution as a scatter plot.
 
 # running the case
-mesh = mesh_object.from_OBJ("../mesh/sphere_low_tri.obj")
+mesh = mesh_object.from_OBJ(os.path.join(directory, "..", "mesh", "sphere_low_tri.obj"))
 case = pan3d.DirichletDoublet0Case3(mesh.panels)
 case.v_inf = parabem.Vector3(1, 0, 0)
 case.run()

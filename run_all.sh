@@ -1,4 +1,3 @@
-#!/usr/bin/bash
 # argument is the version number of the python interpreter
 BASEDIR=$(dirname $0)
 cd $BASEDIR/examples

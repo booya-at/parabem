@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-from __future__ import division
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -10,15 +9,16 @@ from openglider.glider.in_out.export_3d import parabem_Panels
 from openglider.utils.distribution import Distribution
 
 import parabem
-from parabem._parabem import Case3
+from parabem_cpp import Case3
 from parabem.liftingline import LiftingLine
 from parabem.pan3d import DirichletDoublet0Source0Case3
 from parabem.utils import check_path
 
-
+directory = os.path.dirname(__file__)
 count = 0
 #   load the glider
-with open("results/glider/optimized.json") as _file:
+
+with open(os.path.join(directory, "glider", "optimized.json"), "r") as _file:
     glider2d = load(_file)["data"]
     area = glider2d.shape.area
     aspect_ratio = glider2d.shape.aspect_ratio
@@ -28,7 +28,6 @@ verts, panels, trailing_edge = parabem_Panels(glider3d,
                         midribs=0,
                         profile_numpoints=20,
                         symmetric=False,
-                        distribution=Distribution.from_cos_2_distribution,
                         num_average=0)
 
 case = DirichletDoublet0Source0Case3(panels, trailing_edge)

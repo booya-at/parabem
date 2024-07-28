@@ -1,3 +1,4 @@
+import os
 import numpy as np
 
 from openglider.jsonify import load
@@ -11,7 +12,7 @@ from parabem.utils import v_inf_deg_range3
 
 n_x = 30
 
-with open("glider/referenz_schirm_berg.json") as _file:
+with open(os.path.join(directory, "glider", "referenz_schirm_berg.json"), "r") as _file:
     glider_2d = load(_file)["data"]
     glider_2d.shape.set_const_cell_dist()
     glider = glider_2d.get_glider_3d()
@@ -20,7 +21,6 @@ _, panels, trailing_edge = parabem_Panels(
     glider,
     midribs=3,
     profile_numpoints=n_x,
-    distribution=Distribution.from_cos_2_distribution(n_x),
     num_average=0,
     symmetric=False)
 

@@ -3,6 +3,7 @@ project(parabem)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)  # needed?
+set (CMAKE_CXX_STANDARD 11)
 
 option(BUILD_PYTHON_BINDINGS "build the python bindings" ON)
 option(BUILD_WITH_MPI "switch multithreading support" ON)
@@ -24,7 +25,6 @@ endif()
 ## eigen
 find_package(Eigen3 REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})
-
 
 ## mpi
 if(BUILD_WITH_MPI)

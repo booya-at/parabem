@@ -1,3 +1,4 @@
+import os
 from copy import deepcopy
 import numpy as np
 import matplotlib
@@ -14,13 +15,16 @@ from parabem.pan3d import DirichletDoublet0Source0Case3 as Case
 from parabem.vtk_export import CaseToVTK
 from parabem.utils import check_path, v_inf_deg_range3
 
+directory = os.path.dirname(__file__)
+
 count = 0
-#   load the glider
-with open("glider/referenz_schirm_berg.json") as _file:
+with open(os.path.join(directory, "glider", "referenz_schirm_berg.json"), "r") as _file:
     glider2d = load(_file)["data"]
     area = glider2d.shape.area
     aspect_ratio = glider2d.shape.aspect_ratio
 
+def results_path(*args):
+    return check_path(os.path.join(directory, "..", "results", *args))
 
 def glider_set_controlpoint(glider2d, x):
     c = deepcopy(glider2d.shape.front_curve.controlpoints)
@@ -52,7 +56,6 @@ def min_func(x):
                         midribs=0,
                         profile_numpoints=40,
                         symmetric=True,
-                        distribution=Distribution.from_nose_cos_distribution(40, 0.2),
                         num_average=0)
     case = Case(panels[1], panels[2])
     case.farfield = 5
@@ -82,7 +85,7 @@ plt.plot(y_positions, cD, marker="x")
 plt.xlabel('y-Position der Kontrollpunkte [m]', fontsize=15)
 plt.ylabel('induzierter Widerstandsbeiwert $c_{Wi}$', fontsize=15)
 plt.grid(True)
-plt.savefig(check_path('results/vtk_opt/induced_drag.png'),  bbox_inches='tight')
+plt.savefig(results_path("vtk_opt", "induced_drag.png"),  bbox_inches='tight')
 # # plt.show()
 plt.close()
 plt.figure(figsize=(10, 4))
@@ -90,7 +93,7 @@ plt.plot(y_positions, 0.6 / np.array(cD), marker="x")
 plt.xlabel('y-Position der Kontrollpunkte [m]', fontsize=15)
 plt.ylabel('Gleitzahl $\\epsilon$', fontsize=15)
 plt.grid(True)
-plt.savefig(check_path('results/vtk_opt/glide.png'),  bbox_inches='tight')
+plt.savefig(results_path("vtk_opt", "glide.png"),  bbox_inches='tight')
 plt.close()
 
 
@@ -98,7 +101,8 @@ best_ind = list(cD).index(min(cD))
 best_y = y_positions[best_ind]
 
 glider_set_controlpoint(glider2d, best_y)
-with open(check_path("results/glider/optimized.json"), "w") as _file:
+
+with open(results_path("glider", "optimized.json"), "w") as _file:
     dump(glider2d, _file)
 
 plt.figure(figsize=(10, 5))
@@ -107,16 +111,16 @@ plt.grid(True)
 plt.plot(*shape_plot(glider2d), color="0", label="optimal", linewidth=2)
 
 glider_set_controlpoint(glider2d, y_positions[0])
-with open(check_path("results/glider/min.json"), "w") as _file:
+with open(results_path("glider", "min.json"), "w") as _file:
     dump(glider2d, _file)
 plt.plot(*shape_plot(glider2d), color="r", label="untere Grenze")
 
 
 glider_set_controlpoint(glider2d, y_positions[-1])
-with open(check_path("results/glider/max.json"), "w") as _file:
+with open(results_path("glider", "max.json"), "w") as _file:
     dump(glider2d, _file)
 
 plt.plot(*shape_plot(glider2d), color="b", label="obere Grenze")
 plt.legend()
 plt.ylim((-2, 3))
-plt.savefig(check_path('results/vtk_opt/shapes.png'), bbox_inches='tight')
+plt.savefig(results_path("vtk_opt", "shapes.png"), bbox_inches='tight')
