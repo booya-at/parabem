@@ -464,7 +464,7 @@ void Edge::setup_Edge()
   }
 // the trailing edge has 3 connected panels (p1, p2, wp)
 // how to order these panels?
-  if (connected_panels.size() != 2){
+  if (connected_panels.size() < 2){
     return;
   }
 

@@ -282,14 +282,14 @@ void Case3::create_wake(double length, int count, Vector3& direction){
         vector<PanelVector3*> stream_line;
         for (int k = 0; k < count; k++){
             if (k == 0){
-            stream_line.push_back(trailing_point);
+                stream_line.push_back(trailing_point);
+            }
+            else{
+                PanelVector3* point = new PanelVector3(*trailing_point + direction * (length / count * k));
+                stream_line.push_back(point);
+            }
         }
-        else{
-            PanelVector3* point = new PanelVector3(*trailing_point + direction * (length / count * k));
-            stream_line.push_back(point);
-        }
-    }
-    this->wake_streams.push_back(stream_line);
+        this->wake_streams.push_back(stream_line);
     }
     for (int i = 0; i < edge_len -1; i++)
     {
