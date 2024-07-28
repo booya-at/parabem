@@ -62,14 +62,13 @@ void Case2::sum_forces()
     this->moment = 0;
     this->force.setZero();
     for (int i = 0; i < this->mat_size; i++){
-        force += this->panels[i]->force();
+        this->force += this->panels[i]->force();
         Vector2 distance = (this->panels[i]->center - this->mom_ref_point);
         this->moment += this->panels[i]->force().y() * distance.x();
         this->moment -= this->panels[i]->force().x() * distance.y();
     }
     this->ca = force.dot(Vector2(-this->v_inf.y(), this->v_inf.x()));
     this->center_of_pressure = this->mom_ref_point + Vector2(this->moment / this->force.y(), 0.);
-    this->force = force;
 }
 
 
