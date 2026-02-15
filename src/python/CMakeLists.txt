@@ -6,8 +6,9 @@ else()
     OUTPUT_VARIABLE _PYTHON_INSTALL_DIR
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
-  string(REPLACE "\\" "/" PYTHON_INSTALL_DIR "${_PYTHON_INSTALL_DIR}")
+  set(PYTHON_INSTALL_DIR "${_PYTHON_INSTALL_DIR}")
 endif()
+string(REPLACE "\\" "/" PYTHON_INSTALL_DIR "${PYTHON_INSTALL_DIR}")
 
 message(STATUS "python-py${Python_VERSION_MAJOR}${Python_VERSION_MINOR}")
 message(STATUS "installing to ${PYTHON_INSTALL_DIR}")
@@ -22,5 +23,5 @@ endif()
 
 target_link_libraries(parabem_cpp PRIVATE pm)
 
-install(DIRECTORY "../../parabem/" DESTINATION ${PYTHON_INSTALL_DIR}/parabem FILES_MATCHING PATTERN "*.py")
-install(TARGETS parabem_cpp DESTINATION ${PYTHON_INSTALL_DIR})
+install(DIRECTORY "../../parabem/" DESTINATION "${PYTHON_INSTALL_DIR}/parabem" FILES_MATCHING PATTERN "*.py")
+install(TARGETS parabem_cpp DESTINATION "${PYTHON_INSTALL_DIR}")
