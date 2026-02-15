@@ -1,24 +1,30 @@
-cmake_minimum_required(VERSION 3.0)
-project(parabem)
+cmake_minimum_required(VERSION 3.18)
+project(parabem LANGUAGES C CXX)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)  # needed?
-set (CMAKE_CXX_STANDARD 11)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-option(BUILD_PYTHON_BINDINGS "build the python bindings" ON)
-option(BUILD_WITH_MPI "switch multithreading support" ON)
-option(BUILD_PYTHON_BINDINGS "create python bindings" ON)
+option(BUILD_PYTHON_BINDINGS "Build Python bindings" ON)
+option(BUILD_WITH_MPI "Enable OpenMP support" ON)
 
-if (WIN32)
-  add_definitions(-D_DISABLE_EXTENDED_ALIGNED_STORAGE)
+if(WIN32)
+  add_compile_definitions(_DISABLE_EXTENDED_ALIGNED_STORAGE)
 endif()
 
+if(POLICY CMP0057)
+  cmake_policy(SET CMP0057 NEW)
+endif()
+if(POLICY CMP0148)
+  cmake_policy(SET CMP0148 NEW)
+endif()
 
 ## python
 if (BUILD_PYTHON_BINDINGS)
-  ## PYTHON
-  find_package(PythonInterp REQUIRED)
-  find_package(PythonLibs REQUIRED)
+  set(PYBIND11_FINDPYTHON ON)
+  find_package(Python REQUIRED COMPONENTS Interpreter Development.Module)
   find_package(pybind11 REQUIRED)
 endif()
 
@@ -29,15 +35,6 @@ include_directories(${EIGEN3_INCLUDE_DIR})
 ## mpi
 if(BUILD_WITH_MPI)
   find_package(OpenMP REQUIRED)
-  ## OPENMP
-  if(OPENMP_FOUND)
-      if(CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
-          link_libraries(${OpenMP_libomp_LIBRARY})
-          link_libraries(${OpenMP_libomp_LIBRARY})
-      endif()
-      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-      set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   ${OpenMP_C_FLAGS}")
-  endif(OPENMP_FOUND)
 endif(BUILD_WITH_MPI)
 
 add_subdirectory(parabem)

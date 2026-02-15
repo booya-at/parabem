@@ -1,6 +1,6 @@
-[project]
+[workspace]
 name = "parabem"
-version = "0.1.0"
+version = "1.0.2"
 description = "Add a short description here"
 authors = ["looooo <sppedflyer@gmail.com>"]
 channels = ["conda-forge"]
