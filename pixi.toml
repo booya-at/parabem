@@ -4,7 +4,7 @@ version = "1.0.2"
 description = "Add a short description here"
 authors = ["looooo <sppedflyer@gmail.com>"]
 channels = ["conda-forge"]
-platforms = ["linux-64", "osx-arm64", "win-64"]
+platforms = ["linux-64", "linux-aarch64", "osx-arm64", "win-64"]
 
 [tasks]
 configure = { cmd = ["cmake", "-G", "Ninja", "-B", "build", "-S", ".", "-D", "CMAKE_INSTALL_PREFIX:FILEPATH=$CONDA_PREFIX", "-D", "CMAKE_BUILD_TYPE=Debug"]}
@@ -24,11 +24,7 @@ eigen = "*"
 numpy = "*"
 matplotlib-base = "*"
 requests = "*"
-openglider = "*"
+# openglider = "*"
+compilers="*"
 
 
-[target.osx-arm64.dependencies]
-llvm-openmp = "*"
-
-[target.linux-64.dependencies]
-openmpi = "*"
